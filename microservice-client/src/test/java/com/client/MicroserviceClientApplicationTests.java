@@ -1,10 +1,10 @@
-package com.front;
+package com.client;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MicroserviceFrontApplicationTests {
+class MicroserviceClientApplicationTests {
 
 	@Test
 	void contextLoads() {

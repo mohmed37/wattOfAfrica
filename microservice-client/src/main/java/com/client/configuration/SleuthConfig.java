@@ -1,4 +1,4 @@
-package com.front.configuration;
+package com.client.configuration;
 
 
 import brave.sampler.Sampler;
