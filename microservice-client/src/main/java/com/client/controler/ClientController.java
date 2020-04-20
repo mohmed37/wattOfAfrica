@@ -3,6 +3,7 @@ package com.client.controler;
 
 
 import com.client.bean.ProfiluBean;
+import com.client.bean.ResultProfiluBean;
 import com.client.proxy.MtestsProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ public class ClientController {
     @Autowired
     MtestsProxy mtestsProxy;
 
+
     @Value("${dir.images}")
     private String imageDir;
 
@@ -35,6 +37,32 @@ public class ClientController {
 
         return "profil";
     }
+
+    @RequestMapping("/question")
+    public String question(Model model) {
+        List<ResultProfiluBean>resulutatsList=mtestsProxy.listResultat();
+        ResultProfiluBean resultProfiluBean=mtestsProxy.questionClient(1).get();
+
+        for (ResultProfiluBean resultatClient:resulutatsList){
+            if (resultatClient.getIdclient()!=resultProfiluBean.getIdclient()){
+                ResultProfiluBean resultProfiluBean1=new ResultProfiluBean();
+                resultProfiluBean1.setIdclient(1);
+                resultProfiluBean1.setQuestion(1);
+                mtestsProxy.saveClient(resultProfiluBean1);
+            }
+        }
+
+
+        int nQuestion=resultProfiluBean.getQuestion()+1;
+        model.addAttribute("nQuestion",nQuestion);
+        ProfiluBean question = mtestsProxy.question(nQuestion).get();
+        model.addAttribute("pageQuestion", question);
+
+        mtestsProxy.save(nQuestion,1,5);
+
+           return "question";
+    }
+
 
 
 }
