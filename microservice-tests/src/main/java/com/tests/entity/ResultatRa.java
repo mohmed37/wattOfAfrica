@@ -10,12 +10,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "resultat")
+@Table(name = "resultatRa")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
 @NoArgsConstructor
-public class Resultat implements Serializable {
+public class ResultatRa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +25,14 @@ public class Resultat implements Serializable {
     Integer idclient;
     @Column(name = "question")
     Integer question;
+    @Column(name = "note")
+    Integer note;
     @Column(name = "authenticite")
     Double authenticite;
     @Column(name = "tenacite")
     Double tenacite;
-    @Column(name = "reactivite")
-    Double reactivite;
+    @Column(name = "reflexion")
+    Double reflexion;
     @Column(name = "introversion")
     Double introversion;
     @Column(name = "methode")
@@ -39,8 +41,8 @@ public class Resultat implements Serializable {
     Double intuition;
     @Column(name = "nonConformisme")
     Double nonConformisme;
-    @Column(name = "equilibre")
-    Double equilibre;
+    @Column(name = "personnelle")
+    Double personnelle;
     @Column(name = "directive")
     Double directive;
     @Column(name = "prudence")
@@ -51,5 +53,9 @@ public class Resultat implements Serializable {
     Double individualisme;
     @Column(name = "traditionnel")
     Double traditionnel;
+    @Column(name = "stabilite")
+    Double stabilite;
+
+
 
 }

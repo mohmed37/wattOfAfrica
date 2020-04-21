@@ -2,10 +2,10 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css"/>
     <title>Title</title>
 
     <style>
@@ -52,7 +52,7 @@
 </head>
 <body>
 
-div class="container">
+<div class="container">
 <div class="row">
     <div class="col-md-12 ">
 
@@ -72,9 +72,22 @@ div class="container">
                                     <td>Question</td>
                                     <td th:text="${pageQuestion.question}"></td>
                                 </tr>
-                                <form th:action="@{question/}" method="get">
-                                    <button class="btn btn-success" type="submit" >Prolongation</button>
-                                </form>
+                                <div class="container">
+                                    <form th:action="@{save}" method="post" th:object="${resultat}" enctype="multipart/form-data">
+
+                                        <div class="col-md-6" >
+
+                                            <div class="form-group">
+                                                <label>Titre</label>
+                                                <input type="text"  th:field="*{note}" class="form-control"   placeholder=""/>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+                                        </div>
+
+                                    </form>
+                                </div>
                                 </tbody>
                             </table>
                         </div>
@@ -85,7 +98,7 @@ div class="container">
         </div>
     </div>
 </div>
-</div></br>
+</div>
 
 </body>
 </html>
