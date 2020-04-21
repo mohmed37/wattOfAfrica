@@ -1,8 +1,11 @@
 package com.tests.dao;
 
+import com.tests.entity.ResultatRa;
 import com.tests.entity.ResultatRb;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ResultatRbRepository extends JpaRepository<ResultatRb,Integer> {
+import java.util.Optional;
 
+public interface ResultatRbRepository extends JpaRepository<ResultatRb,Integer> {
+    Optional<ResultatRb> findByIdclient(int id);
 }

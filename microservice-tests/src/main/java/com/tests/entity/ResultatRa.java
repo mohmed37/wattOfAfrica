@@ -53,9 +53,9 @@ public class ResultatRa implements Serializable {
     Double individualisme;
     @Column(name = "traditionnel")
     Double traditionnel;
-    @Column(name = "stabilite")
-    Double stabilite;
 
+    @Column(name = "reactivite")
+    Double reactivite;
 
 
 }

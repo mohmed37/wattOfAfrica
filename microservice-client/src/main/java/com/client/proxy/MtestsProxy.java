@@ -20,14 +20,17 @@ public interface MtestsProxy {
     @GetMapping(value = "/microservice-tests/question/{id}")
     Optional<ProfiluBean> question(@PathVariable("id") int id);
 
-    @PutMapping(value = "/microservice-tests/saveResutatProfilU")
+    @PutMapping(value = "/microservice-tests/saveResutatRa")
     void saveRa(@RequestBody ResultRaBean resultRaBean);
 
-    @PutMapping(value = "saveResutatRb")
+    @PutMapping(value = "/microservice-tests/saveResutatRb")
     void saveRb(@RequestBody ResultRbBean resultatRb);
 
     @GetMapping(value = "/microservice-tests/questionClient/{id}")
     Optional<ResultRaBean> questionClient(@PathVariable("id") int id);
+
+    @GetMapping(value = "/microservice-tests/questionClientRb/{id}")
+    Optional<ResultRbBean> questionClientRb(@PathVariable("id") int id);
 
     @GetMapping(value = "/microservice-tests/listResultat")
     List<ResultRaBean>listResultat();

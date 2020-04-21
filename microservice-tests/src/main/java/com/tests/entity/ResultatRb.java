@@ -53,7 +53,7 @@ public class ResultatRb implements Serializable {
     Double professionnelle;
     @Column(name = "extraversion")
     Double extraversion;
-    @Column(name = "reactivite")
-    Double reactivite;
+    @Column(name = "stabilite")
+    Double stabilite;
 
 }

@@ -50,6 +50,14 @@ public class testControler {
         if(!resultatClient.isPresent()) throw new QuestioneNotFoundException("Ce client n'a pas de test");
         return resultatClient;}
 
+    @GetMapping(value = "/questionClientRb/{id}")
+    public Optional<ResultatRb> questionClientRb(@PathVariable("id") int id){
+        Optional<ResultatRb> resultatClient= resultatRbRepository.findByIdclient(id);
+        if(!resultatClient.isPresent()) throw new QuestioneNotFoundException("Ce client n'a pas de test");
+        return resultatClient;
+
+    }
+
 
     @PostMapping(value = "saveClient")
     public ResultatRa saveClient(ResultatRa resultatRa){

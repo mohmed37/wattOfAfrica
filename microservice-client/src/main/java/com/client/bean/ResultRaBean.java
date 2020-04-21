@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,6 +31,7 @@ public class ResultRaBean {
     Double individualisme;
     Double traditionnel;
     Double reactivite;
+
 
 
 }
