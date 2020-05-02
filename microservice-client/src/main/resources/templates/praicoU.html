@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css"/>
+    <meta charset="UTF-8"/>
+    <title>PraicoU</title>
+</head>
+<style>
+    .container {
+        width: 1024px;
+        padding: 2em;
+    }
+
+    .bold-blue {
+        font-weight: bold;
+        color: #0277BD;
+    }
+</style>
+<body>
+<div th:insert="header.html :: header"></div></br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+                <div class="panel panel-info">
+                    <div class="panel-heading" >
+                        <h2>Mes informations</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-striped">
+                                    <tbody class="thead-light" th:if="${questionnaire.getQcm1()==false}">
+
+                                        <p>Questionnaire n°1 – Comment vous décririez-vous ? (5 minutes)</p>
+                                        <p th:text="${qcm1.get().question}"></p>
+
+                                    <div class="container">
+                                        <form th:action="@{saveQcm1}" method="post" th:object="${questionnaire}" enctype="multipart/form-data">
+
+                                            <!-- Material inline 1 -->
+                                            <div class="form-check form-check-inline">
+                                                <input th:field="*{resultatString}" th:value="${qcm1.get().code1}" type="radio" id="materialInline1" class="form-check-input" name="materialExample2" >
+                                                <label class="form-check-label" for="materialInline2"><p th:text="${qcm1.get().reponse1}"></p></label>
+                                            </div>
+                                            <!-- Material inline 2 -->
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" th:field="*{resultatString}" th:value="${qcm1.get().code2}" class="form-check-input" id="materialInline2" name="inlineMaterialRadiosExample">
+                                                <label class="form-check-label" for="materialInline2"><p th:text="${qcm1.get().reponse2}"></p></label>
+                                            </div>
+
+                                            <div>
+                                                <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+                                            </div>
+                                            <p>Question numéro:</p>
+                                            <p th:text="${qcm1.get().id}"></p>
+
+                                        </form>
+                                    </div>
+                                    </tbody>
+                                    <tbody class="thead-light" th:if="${questionnaire.getQcm2()==false && questionnaire.getQcm1()==true}">
+
+                                    <p>Questionnaire n°2 – Quelles activités et environnements préférez-vous ? (7 minutes)</p>
+                                    <p th:text="${qcm2.get().question}"></p>
+
+                                    <div class="container">
+                                        <form th:action="@{saveQcm1}" method="post" th:object="${questionnaire}" enctype="multipart/form-data">
+
+
+                                            <!-- Material inline 1 -->
+                                            <div class="form-check form-check-inline">
+                                                <input th:field="*{resultatString}" th:value="${qcm2.get().getProfile()}" type="radio" id="materialInline3" class="form-check-input" name="materialExample2" checked="checked" >
+                                                <label class="form-check-label" for="materialInline2">Oui</label>
+                                            </div>
+                                            <!-- Material inline 2 -->
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" th:field="*{resultatString}" th:value="z" class="form-check-input" id="materialInline4" name="inlineMaterialRadiosExample">
+                                                <label class="form-check-label" for="materialInline2">Non</p></label>
+                                            </div>
+
+                                            <div>
+                                                <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+                                            </div>
+                                            <p>Question numéro:</p>
+                                            <p th:text="${qcm2.get().id}"></p>
+
+                                        </form>
+                                    </div>
+                                    </tbody>
+                                    <tbody class="thead-light" th:if="${questionnaire.getQcm2()==true && questionnaire.getQcm3()==false}">
+
+                                    <p>Questionnaire n°3 – Quels sont vos loisirs ? (5 minutes)</p>
+                                    <p th:text="${qcm3.get().question}"></p>
+
+                                    <div class="container">
+                                        <form th:action="@{saveQcm1}" method="post" th:object="${questionnaire}" enctype="multipart/form-data">
+
+                                            <!-- Material inline 1 -->
+                                            <div class="form-check form-check-inline">
+                                                <input th:field="*{resultatString}" th:value="${qcm3.get().getProfile()}" type="radio" id="materialInline5" class="form-check-input" name="materialExample2" checked="checked">
+                                                <label class="form-check-label" for="materialInline2">Oui</label>
+                                            </div>
+                                            <!-- Material inline 2 -->
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" th:field="*{resultatString}" th:value="z" class="form-check-input" id="materialInline6" name="inlineMaterialRadiosExample">
+                                                <label class="form-check-label" for="materialInline2">Non</p></label>
+                                            </div>
+
+                                            <div>
+                                                <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+                                            </div>
+                                            <p>Question numéro:</p>
+                                            <p th:text="${qcm3.get().id}"></p>
+
+                                        </form>
+                                    </div>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container"  th:if="${questionnaire.getQcm3()==true && questionnaire.getQcm4()==false}">
+    <p>Questionnaire n°4 – Quels métiers vous attirent ? (3 minutes)</p>
+    <p>Parmi la liste des différents métiers présentés, cochez les 5 que vous pratiquez ou aimez. </p>
+
+    <table id="table"
+           data-toggle="table"
+           data-search="true"
+           data-filter-control="true"
+           data-show-export="true"
+           data-click-to-select="true"
+           data-toolbar="#toolbar">
+        <thead>
+        <tr>
+            <th data-field="state" data-checkbox="true"></th>
+            <th data-field="prenom" data-filter-control="input" data-sortable="true">Métiers</th>
+            <th data-field="state" data-checkbox="true"></th>
+        </tr>
+        </thead>
+        <tbody>
+
+            <form th:action="@{saveQcm4}" method="post" th:object="${questionnaire}" enctype="multipart/form-data">
+        <tr  th:each="qcm4List : ${qcm4}">
+            <td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox" th:value="${qcm4List.getCode()}"  th:field="*{resultatString}"  onclick = "checking(this)" ></td>
+            <td th:text="${qcm4List.getMetier()}"></td>
+        </tr>
+
+                <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true" ></i> Enregistrer</button>
+            </form>
+        </tbody>
+
+    </table>
+
+</div>
+<script>
+    var queue = [];
+    function checking(id){
+        queue.push(id)
+        if (queue.length===6){
+            queue[0].checked = false
+            queue.shift()
+        }
+    }
+    var trBoldBlue = $("table");
+
+    $(trBoldBlue).on("click", "tr", function (){
+        $(this).toggleClass("bold-blue");
+    });
+</script>
+</body>
+</html>

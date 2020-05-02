@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css"/>
+
+    <title>Nouveau livre</title>
+
+
+</head>
+<style>
+    .content-header{
+        font-family: 'Oleo Script', cursive;
+        color:#F8080C;
+        font-size: 45px;
+    }
+
+    .section-content{
+        text-align: center;
+
+    }
+    #contact{
+
+        font-family: 'Teko', sans-serif;
+        padding-top: 60px;
+        width: 100%;
+        width: 100vw;
+        height: 550px;
+        background: #3a6186; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #3a6186 , #89253e); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #3a6186 , #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        color : #fff;
+    }
+    .contact-section{
+        padding-top: 40px;
+    }
+    .contact-section .col-md-6{
+        width: 50%;
+    }
+
+    .form-line{
+        border-right: 1px solid #B29999;
+    }
+
+    .form-group{
+        margin-top: 10px;
+    }
+    label{
+        font-size: 1.3em;
+        line-height: 1em;
+        font-weight: normal;
+    }
+    .form-control{
+        font-size: 1.3em;
+        color: #080808;
+    }
+    textarea.form-control {
+        height: 135px;
+        /* margin-top: px;*/
+    }
+
+    .container {
+        margin-top: 100px;
+    }
+
+
+
+
+
+
+</style>
+<body>
+<div th:insert="header.html :: header"></div></br>
+
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div class="section-content">
+            <h1  class="text-center">Enregister <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s">une nouvelle restitution.</span></h1>
+            <h3></h3>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <form th:action="@{saveRest}" method="post" th:object="${restitution}" enctype="multipart/form-data">
+
+        <div class="col-md-6" >
+
+
+            <div class="form-group">
+                <label>Dimension</label>
+                <input type="text"  th:field="*{dimension}" class="form-control"   placeholder=" Entrer la dimension"/>
+            </div>
+            <div class="form-group">
+                <label>titre</label>
+                <input type="text"  th:field="*{titre}" class="form-control"   placeholder=" Entrer le titre"/>
+            </div>
+
+
+            <div class="form-group">
+                <label>Résumé</label>
+                <textarea  type="text" th:field="*{restitution}"  class="form-control"  placeholder=" Entrer la restitution"></textarea>
+            </div>
+
+            <div>
+                <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+</body>
+
+</html>

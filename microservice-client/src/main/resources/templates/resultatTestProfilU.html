@@ -1,5 +1,5 @@
    <!DOCTYPE html>
-    <html lang="en">
+
     <html xmlns:th="http://www.thymeleaf.org">
     <head>
 
@@ -9,6 +9,45 @@
         <title>Title</title>
 
         <style>
+
+            @media (max-width: 500px) {
+                .responsive-table-line td:before { content: attr(data-title); }
+                .responsive-table-line table,
+                .responsive-table-line thead,
+                .responsive-table-line tbody,
+                .responsive-table-line th,
+                .responsive-table-line td,
+                .responsive-table-line tr {
+                    display: block;
+                }
+
+                .responsive-table-line thead tr {
+                    display:none;
+                }
+                .responsive-table-line td {
+                    position: relative;
+                    border: 0px solid transparent;
+                    padding-left: 50% !important;
+                    white-space: normal;
+                    text-align:right;
+                }
+
+                .responsive-table-line td:before {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    width: 45%;
+                    padding-right: 15px;
+                    height:100%;
+                    white-space: nowrap;
+                    text-overflow: ellipsis !important;
+                    overflow:hidden !important;
+                    text-align:left;
+                    background-color:#f8f8f8;
+                    padding:2px;
+                }
+            }
+
             .user-row {
                 margin-bottom: 14px;
             }
@@ -46,83 +85,515 @@
             {
                 color:#F8080C;
             }
+            .table-ligne1 {
+
+                background-color: blue;
+            }
+            .table-ligne2 {
+
+                background-color: #A7CFD3;
+            }
+            .table-ligne3 {
+
+                background-color: #c1b4aa;
+            }
+            .table-ligne4 {
+
+                background-color: #c17c24;
+                color: white;
+            }
+            .table-ligne5 {
+                background-color: #1f46c1;
+                color: white;
+            }
+
+            .table-ligne12 {
+
+                background-color: #d35943;
+            }
+
+            .table-ligne14 {
+
+                background-color: #c17c24;
+                color: white;
+            }
+            .table-ligne15 {
+                background-color: #c1260e;
+                color: white;
+            }
 
         </style>
 
     </head>
-</head>
-<body>
+
+
+    <body >
+    <div th:insert="header.html :: header"></div></br>
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 ">
 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+<div class="responsive-table-line">
 
-
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h2>Mes informations</h2>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class=" col-md-9 col-lg-9 ">
-                                <table class="table table-striped">
-                                    <tbody class="thead-light">
-                                    <tr>
-                                        <td>Authenticite:</td>
-                                        <td th:text="${Authenticite}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Strategie:</td>
-                                        <td th:text="${Strategie}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tenacite:</td>
-                                        <td th:text="${Tenacite}"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Flexibilite:</td>
-                                        <td th:text="${Flexibilite}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Authenticite:</td>
-                                        <td th:text="${Reactivite}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Strategie:</td>
-                                        <td th:text="${Stabilite}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Introversion:</td>
-                                        <td th:text="${Introversion}"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Extraversion:</td>
-                                        <td th:text="${Extraversion}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Methode:</td>
-                                        <td th:text="${Methode}"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Improvisation:</td>
-                                        <td th:text="${Improvisation}"></td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+    <div class="table-ligne5">
+        <p class="text-center">Personnalité et comportement professionnel
     </div>
-</div></br>
+
+
+    <table class="table table-bordered table-condensed table-body-center" >
+        <thead class="table-ligne4">
+        <tr>
+
+            <th >Facteur opposé</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>Facteur principal</th>
+            <th>bouton</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="table-ligne2" data-title="Droit"><strong>Besoin d’authenticité</strong>
+                Sincère, objectif, transparent
+            </td>
+            <div th:if="${Authenticite>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Authenticite<1}"> <td class="table-ligne2"></td></div>
+            <div th:if="${Authenticite>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Authenticite<2}"> <td class="table-ligne2"></td></div>
+            <div th:if="${Authenticite>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Authenticite<=3}"> <td class="table-ligne2"></td></div>
+            <div th:if="${Authenticite>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Authenticite<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Authenticite>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Authenticite<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Authenticite>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Authenticite<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Authenticite>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Authenticite<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Authenticite>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Authenticite<8}"> <td class="table-ligne2"></td></div>
+            <div th:if="${Authenticite>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Authenticite<9}"> <td class="table-ligne2"></td></div>
+            <div th:if="${Authenticite>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Authenticite<10}"> <td class="table-ligne2"></td></div>
+            <td  class="table-ligne2" data-title="Valeur binaire"><strong>Capacités stratégiques</strong>
+                Convaincant, influent, persuasion
+            </td>
+
+        </tr>
+        <tr>
+            <td  data-title="Droit"><strong>Tenace</strong>
+                Décidé, exigeant, ferme
+            </td>
+            <div th:if="${Tenacite>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Tenacite<1}"> <td ></td></div>
+            <div th:if="${Tenacite>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Tenacite<2}"> <td></td></div>
+            <div th:if="${Tenacite>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Tenacite<3}"> <td></td></div>
+            <div th:if="${Tenacite>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Tenacite<4}"> <td class="table-ligne3"></td ></div>
+            <div th:if="${Tenacite>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Tenacite<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Tenacite>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Tenacite<6}"> <td class="table-ligne3"> </td></div>
+            <div th:if="${Tenacite>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Tenacite<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Tenacite>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Tenacite<=8}"> <td></td></div>
+            <div th:if="${Tenacite>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Tenacite<9}"> <td></td></div>
+            <div th:if="${Tenacite>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Tenacite<10}"> <td ></td></div>
+            <td data-title="Valeur binaire"><strong>Accomodant</strong>
+                Conciliant, à l’écoute d’autrui, diplomate
+            </td>
+        </tr>
+        <tr>
+            <td class="table-ligne2" data-title="Droit"><strong>Réactivité émotionnelle</strong>
+                Passionné, expressif, réactif
+            </td>
+            <div th:if="${reactivite>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reactivite<1}"> <td class="table-ligne2"></td></div>
+            <div th:if="${reactivite>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reactivite<2}"> <td class="table-ligne2"></td></div>
+            <div th:if="${reactivite>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reactivite<3}"> <td class="table-ligne2"></td></div>
+            <div th:if="${reactivite>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reactivite<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${reactivite>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reactivite<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${reactivite>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reactivite<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${reactivite>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reactivite<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${reactivite>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reactivite<8}"> <td class="table-ligne2"></td></div>
+            <div th:if="${reactivite>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reactivite<9}"> <td class="table-ligne2"></td></div>
+            <div th:if="${reactivite>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reactivite<10}"> <td class="table-ligne2"></td></div>
+            <td class="table-ligne2" data-title="Valeur binaire"><strong>Stabilité émotionnelle</strong>
+                Calme, maître de soi, détaché
+            </td>
+        </tr>
+
+        <tr>
+            <td data-title="Droit"><strong>Introversion</strong>
+                Réservé, discret, formel
+            </td>
+            <div th:if="${Introversion>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Introversion<1}"> <td></td></div>
+            <div th:if="${Introversion>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Introversion<2}"> <td></td></div>
+            <div th:if="${Introversion>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Introversion<3}"> <td></td></div>
+            <div th:if="${Introversion>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Introversion<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Introversion>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Introversion<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Introversion>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Introversion<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Introversion>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Introversion<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Introversion>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Introversion<8}"> <td></td></div>
+            <div th:if="${Introversion>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Introversion<9}"> <td></td></div>
+            <div th:if="${Introversion>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Introversion<10}"> <td></td></div>
+            <td data-title="Valeur binaire"><strong>Extraversion</strong>
+                Ouvert, sociable, enjoué
+            </td>
+        </tr>
+        <tr>
+            <td class="table-ligne2"
+                data-title="Droit"><strong>Méthodique</strong>
+                Organisé, planificateur, systématique
+            </td>
+            <div th:if="${Methode>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Methode<1}"> <td class="table-ligne2"></td></div>
+            <div th:if="${Methode>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Methode<2}"> <td class="table-ligne2"></td></div>
+            <div th:if="${Methode>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Methode<3}"> <td class="table-ligne2"></td></div>
+            <div th:if="${Methode>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Methode<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Methode>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Methode<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Methode>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Methode<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Methode>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Methode<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Methode>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Methode<8}"> <td class="table-ligne2"></td></div>
+            <div th:if="${Methode>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Methode<9}"> <td class="table-ligne2"></td></div>
+            <div th:if="${Methode>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Methode<10}"> <td class="table-ligne2"></td></div>
+            <td class="table-ligne2" data-title="Valeur binaire"><strong>Capacités d’improvisation</strong>
+                Spontané, adaptable, à l’aise avec l’incertitude
+            </td>
+        </tr>
+        <tr>
+            <td data-title="Droit"><strong>Intuition</strong>
+                Instinct, vision globale, ressenti
+            </td>
+            <div th:if="${Intuition>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Intuition<1}"> <td></td></div>
+            <div th:if="${Intuition>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Intuition<2}"> <td></td></div>
+            <div th:if="${Intuition>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Intuition<3}"> <td></td></div>
+            <div th:if="${Intuition>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Intuition<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Intuition>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Intuition<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Intuition>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Intuition<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Intuition>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Intuition<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Intuition>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Intuition<8}"> <td></td></div>
+            <div th:if="${Intuition>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Intuition<9}"> <td></td></div>
+            <div th:if="${Intuition>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Intuition<10}"> <td></td></div>
+            <td data-title="Valeur binaire"><strong>Rationalisme</strong>
+                Centré sur les faits, logique, analytique
+            </td>
+        </tr>
+        <tr>
+            <td class="table-ligne2" data-title="Droit"><strong>Non conformiste</strong>
+                Libre pensée, définit ses propres standards, regard critique
+            </td>
+            <div th:if="${NonConformisme>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${NonConformisme<1}"> <td class="table-ligne2"></td></div>
+            <div th:if="${NonConformisme>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${NonConformisme<2}"> <td class="table-ligne2"></td></div>
+            <div th:if="${NonConformisme>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${NonConformisme<3}"> <td class="table-ligne2"></td></div>
+            <div th:if="${NonConformisme>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${NonConformisme<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${NonConformisme>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${NonConformisme<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${NonConformisme>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${NonConformisme<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${NonConformisme>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${NonConformisme<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${NonConformisme>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${NonConformisme<8}"> <td class="table-ligne2"></td></div>
+            <div th:if="${NonConformisme>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${NonConformisme<9}"> <td class="table-ligne2"></td></div>
+            <div th:if="${NonConformisme>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${NonConformisme<10}"> <td class="table-ligne2"></td></div>
+            <td  class="table-ligne2" data-title="Valeur binaire"><strong>Droiture</strong>
+                Adhère aux standards, se conforme, suit les conventions
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div><br>
+<div class="responsive-table-line" >
+
+    <div class="table-ligne15">
+        <p class="text-center">Motivations, aspirations et valeurs
+    </div>
+
+
+    <table class="table table-bordered table-condensed table-body-center" >
+        <thead class="table-ligne14">
+        <tr>
+
+            <th >Facteur opposé</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>Facteur principal</th>
+            <th>Détail</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="table-ligne12" data-title="Droit"><strong>Equilibre travail/vie privée</strong>
+                Equilibre personnel, déconnecte après le travail
+            </td>
+            <div th:if="${Personnelle>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Personnelle<1}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Personnelle>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Personnelle<2}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Personnelle>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Personnelle<=3}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Personnelle>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Personnelle<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Personnelle>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Personnelle<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Personnelle>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Personnelle<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Personnelle>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Personnelle<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Personnelle>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Personnelle<8}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Personnelle>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Personnelle<9}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Personnelle>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Personnelle<10}"> <td class="table-ligne12"></td></div>
+            <td  class="table-ligne12" data-title="Valeur binaire"><strong>Engagement au travail</strong>
+                Dévoué, impliqué, bourreau de travail
+            </td>
+        </tr>
+        <tr>
+            <td  data-title="Droit"><strong>Besoin de directives</strong>
+                Recherche les conseils, encadrement, apprécie d’être guidé
+            </td>
+            <div th:if="${Directive>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Directive<1}"> <td ></td></div>
+            <div th:if="${Directive>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Directive<2}"> <td></td></div>
+            <div th:if="${Directive>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Directive<3}"> <td></td></div>
+            <div th:if="${Directive>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Directive<4}"> <td class="table-ligne3"></td ></div>
+            <div th:if="${Directive>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Directive<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Directive>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Directive<6}"> <td class="table-ligne3"> </td></div>
+            <div th:if="${Directive>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Directive<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Directive>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Directive<=8}"> <td></td></div>
+            <div th:if="${Directive>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Directive<9}"> <td></td></div>
+            <div th:if="${Directive>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Directive<10}"> <td ></td></div>
+            <td data-title="Valeur binaire"><strong>Responsable</strong>
+                Prend les choses en main, autoritaire
+            </td>
+        </tr>
+        <tr>
+            <td class="table-ligne12" data-title="Droit"><strong>Réfléchi</strong>
+                Patient, besoin de réflexion, aime conceptualiser
+            </td>
+            <div th:if="${reflexion>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reflexion<1}"> <td class="table-ligne12"></td></div>
+            <div th:if="${reflexion>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reflexion<2}"> <td class="table-ligne12"></td></div>
+            <div th:if="${reflexion>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reflexion<3}"> <td class="table-ligne12"></td></div>
+            <div th:if="${reflexion>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reflexion<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${reflexion>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reflexion<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${reflexion>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reflexion<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${reflexion>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reflexion<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${reflexion>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reflexion<8}"> <td class="table-ligne12"></td></div>
+            <div th:if="${reflexion>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reflexion<9}"> <td class="table-ligne12"></td></div>
+            <div th:if="${reflexion>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${reflexion<10}"> <td class="table-ligne12"></td></div>
+            <td class="table-ligne12" data-title="Valeur binaire"><strong>Dynamique</strong>
+                Besoin d’action, prend des risques, résultat rapide
+            </td>
+        </tr>
+
+        <tr>
+            <td data-title="Droit"><strong>Prudence</strong>
+                Satisfait(e), stable, modestie
+            </td>
+            <div th:if="${Prudence>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Prudence<1}"> <td></td></div>
+            <div th:if="${Prudence>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Prudence<2}"> <td></td></div>
+            <div th:if="${Prudence>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Prudence<3}"> <td></td></div>
+            <div th:if="${Prudence>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Prudence<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Prudence>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Prudence<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Prudence>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Prudence<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Prudence>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Prudence<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Prudence>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Prudence<8}"> <td></td></div>
+            <div th:if="${Prudence>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Prudence<9}"> <td></td></div>
+            <div th:if="${Prudence>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Prudence<10}"> <td></td></div>
+            <td data-title="Valeur binaire"><strong>Compétition</strong>
+                Compétitif, ambitieux, cherche la réussite
+            </td>
+        </tr>
+        <tr>
+            <td class="table-ligne12"
+                data-title="Droit"><strong>Grégaire</strong>
+                Coopératif, affiliation, orienté équipe
+            </td>
+            <div th:if="${Gregarite>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Gregarite<1}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Gregarite>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Gregarite<2}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Gregarite>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Gregarite<3}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Gregarite>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Gregarite<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Gregarite>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Gregarite<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Gregarite>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Gregarite<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Gregarite>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Gregarite<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Gregarite>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Gregarite<8}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Gregarite>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Gregarite<9}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Gregarite>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Gregarite<10}"> <td class="table-ligne12"></td></div>
+            <td class="table-ligne12" data-title="Valeur binaire"><strong>Autonome</strong>
+                Besoin d’autonomie, besoin d’indépendance
+            </td>
+        </tr>
+        <tr>
+            <td data-title="Droit"><strong>Individualisme</strong>
+                Pragmatique, cherche à satisfaire ses intérêts
+            </td>
+            <div th:if="${individualisme>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${individualisme<1}"> <td></td></div>
+            <div th:if="${individualisme>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${individualisme<2}"> <td></td></div>
+            <div th:if="${individualisme>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${individualisme<3}"> <td></td></div>
+            <div th:if="${individualisme>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${individualisme<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${individualisme>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${individualisme<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${individualisme>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${individualisme<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${individualisme>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${individualisme<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${individualisme>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${individualisme<8}"> <td></td></div>
+            <div th:if="${individualisme>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${individualisme<9}"> <td></td></div>
+            <div th:if="${individualisme>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${individualisme<10}"> <td></td></div>
+            <td data-title="Valeur binaire"><strong>Altruisme</strong>
+                Serviable, généreux, soucieux du bien-être d’autrui
+            </td>
+        </tr>
+        <tr>
+            <td class="table-ligne12" data-title="Droit"><strong>Traditionnel</strong>
+                Routine, conventionnel, recherche de familiarité
+            </td>
+            <div th:if="${Traditionnel>=0}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Traditionnel<1}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Traditionnel>=2}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Traditionnel<2}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Traditionnel>=3}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Traditionnel<3}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Traditionnel>=4}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Traditionnel<4}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Traditionnel>=5}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Traditionnel<5}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Traditionnel>=6}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Traditionnel<6}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Traditionnel>=7}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Traditionnel<7}"> <td class="table-ligne3"></td></div>
+            <div th:if="${Traditionnel>=8}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Traditionnel<8}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Traditionnel>=9}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Traditionnel<9}"> <td class="table-ligne12"></td></div>
+            <div th:if="${Traditionnel>=10}"> <td class="table-ligne1"></td></div>
+            <div th:if="${Traditionnel<10}"> <td class="table-ligne12"></td></div>
+            <td  class="table-ligne12" data-title="Valeur binaire"><strong>Attirance pour l’exploration</strong>
+                Curieux, créatif, aime expérimenter, la nouveauté
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</div>
 
 </body>
 </html>

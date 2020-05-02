@@ -1,6 +1,6 @@
 package com.client.controler;
 
-import com.client.bean.ProfiluBean;
+import com.client.bean.profilU.ProfiluBean;
 import lombok.Data;
 
 import java.util.List;

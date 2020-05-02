@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Resultat Praico-U</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+</head>
+<style>
+    .extraPadding {
+        margin-top: 100px;
+    }
+
+    .head-text {
+        text-transform: uppercase;
+        letter-spacing: 0.5em;
+        margin-bottom: 50px;
+        clear: both;
+        padding-top: 20px;
+        color: #aaa;
+    }
+
+    .navbar, .navbar-inverse {
+        border-radius: 0;
+        border: none;
+        margin-bottom: 0;
+        min-height: 60px;
+    }
+
+    .nav li {
+        display: inline;
+        color: white;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #ffffff;
+        font-family: Lato;
+        font-size: 1.2em;
+        font-weight: 300;
+        /*padding: 30px 25px 20px 25px;*/
+    }
+
+    .navbar-inverse .navbar-nav li a:hover {
+        background-color: #444444;
+        transition: 0.7s all linear;
+        height: 100%;
+    }
+
+</style>
+<body>
+<div th:insert="header.html :: header"></div></br>
+<!--- Bar Chart Section --->
+<div id="Bar" class="bar">
+    <div class="block text-center head-text extraPadding">
+        <h1>Entrepreneur</h1>
+        <br>
+        <canvas id="bar-chart"width="300" height="100"></canvas>
+    </div>
+</div>
+<hr>
+<script th:inline="javascript">
+    var REA ="[[${result.realisation}]]";
+    var DEF ="[[${result.defi}]]";
+    var AUT ="[[${result.autonomie}]]";
+    var POU ="[[${result.pouvoir}]]";
+    var CON ="[[${result.confiance}]]";
+    var PER ="[[${result.perseverance}]]";
+    var TOL ="[[${result.tolerance}]]";
+    var CRE ="[[${result.creativie}]]";
+    var DES ="[[${result.destin}]]";
+    var ACT ="[[${result.action}]]";
+
+    console.log(showtext);
+</script>
+
+<script>
+    //Chart Example from http://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
+
+    // Bar chart
+    new Chart(document.getElementById("bar-chart"), {
+        type: 'horizontalBar',
+        data: {
+            labels: ["Autonomie/Liberté ", "Confiance en soi/Enthousiasme ", "Persévérance/Détermination "
+                , "Réalisation/Réussite ", "Défi/Ambition ","Pouvoir/Contrôle ","Attitude envers l’action/le temps ",
+                "Tolérance à l’ambiguïté/Gestion du stress ","Créativité/Imagination ","Attitude envers le destin/chance "
+               ],
+            datasets: [
+                {
+                    label: "Resultat",
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#0101DF","#c45850","#3e95cd", "#8e5ea2"
+                        ,"#3cba9f","#e8c3b9","#c45850",],
+                    data: [AUT,CON,PER,REA,DEF,POU,ACT,TOL,CRE,DES,,0,10],
+
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Resultat de votre test'
+            },
+            layout: {
+                padding: {
+                    left: 50
+                }
+            },
+        }
+    });
+</script>
+</body>
+</html>

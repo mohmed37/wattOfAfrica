@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css"/>
+    <meta charset="UTF-8"/>
+    <title>Authentification</title>
+</head>
+
+<div th:insert="header.html :: header"></div></br>
+<div class="jumbotron">
+    <div class="row w-100">
+        <div class="col-md-3">
+            <div class="card border-info mx-sm-1 p-3">
+                <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-car" aria-hidden="true"></span></div>
+                <div class="text-info text-center mt-3"><h4>Test ProfilU</h4></div>
+                <div class="text-info text-center mt-3" th:if="${questionnaire.get().getProfilU()}==false">
+                <form th:action="@{question}" method="get">
+                    <button class="btn btn-success" type="submit" >Questionnaires ProfilU</button>
+                </form> </div>
+                <div class="text-info text-center mt-3" th:if="${questionnaire.get().getProfilU()}==true">
+                <form th:action="@{restitutionProfilU}" method="get">
+                    <button class="btn btn-success" type="submit" >Restitution profilU</button>
+                </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-success mx-sm-1 p-3">
+                <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-eye" aria-hidden="true"></span></div>
+                <div class="text-success text-center mt-3"><h4>Test PraicoU</h4></div>
+                <div class="text-info text-center mt-3" th:if="${questionnaire.get().getQcm4()}==true">
+                    <form th:action="@{resultPraicoU}" method="get">
+                        <button class="btn btn-success" type="submit" >Restitution Praico-U</button>
+                    </form>
+                </div>
+                <div th:if="${questionnaire.get().getQcm1()}==false">
+                <div class="text-info text-center mt-3" >
+                    <form th:action="@{Qcm1}" method="get">
+                        <button class="btn btn-success" type="submit" >Qcm n°1</button>
+                    </form> </div>
+                </div>
+
+            <div th:if="${questionnaire.get().getQcm2()==false && questionnaire.get().getQcm1()==true} ">
+            <div class="text-info text-center mt-3" >
+                <form th:action="@{Qcm1}" method="get">
+                    <button class="btn btn-success" type="submit" >Qcm n°2</button>
+                </form> </div>
+            </div>
+
+            <div th:if="${questionnaire.get().getQcm3()==false && questionnaire.get().getQcm2()==true} ">
+                <div class="text-info text-center mt-3" >
+                    <form th:action="@{Qcm1}" method="get">
+                        <button class="btn btn-success" type="submit" >Qcm n°3</button>
+                    </form> </div>
+            </div>
+
+
+            <div th:if="${questionnaire.get().getQcm4()==false && questionnaire.get().getQcm3()==true} ">
+    <div class="text-info text-center mt-3" >
+        <form th:action="@{Qcm1}" method="get">
+            <button class="btn btn-success" type="submit" >Qcm n°4</button>
+        </form> </div>
+
+</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-danger mx-sm-1 p-3">
+                <div class="card border-danger shadow text-danger p-3 my-card" ><span class="fa fa-heart" aria-hidden="true"></span></div>
+                <div class="text-danger text-center mt-3"><h4>Test Emo-U</h4></div>
+
+                    <div class="text-info text-center mt-3" th:if="${questionnaire.get().getEmoU()==false} ">
+                        <form th:action="@{questionEmoU}" method="get">
+                            <button class="btn btn-success" type="submit" >Questionnaire</button>
+                        </form> </div>
+
+                        <div class="text-info text-center mt-3" th:if="${questionnaire.get().getEmoU()==true} ">
+                            <form th:action="@{resultatEmoU}" method="get">
+                                <button class="btn btn-success" type="submit" >Resultat</button>
+                            </form> </div>
+                </div>
+        </div>
+</div>
+<div class="row w-100">
+
+    <div class="col-md-3">
+        <div class="card border-danger mx-sm-1 p-3">
+            <div class="card border-danger shadow text-danger p-3 my-card" ><span class="fa fa-heart" aria-hidden="true"></span></div>
+            <div class="text-danger text-center mt-3"><h4>Test Entrepreneur</h4></div>
+
+            <div class="text-info text-center mt-3" th:if="${questionnaire.get().getEntrepreneur()==false} ">
+                <form th:action="@{questionEntrepreneur}" method="get">
+                    <button class="btn btn-success" type="submit" >Questionnaire</button>
+                </form> </div>
+
+            <div class="text-info text-center mt-3" th:if="${questionnaire.get().getEntrepreneur()==true} ">
+                <form th:action="@{resultatEntrepreneur}" method="get">
+                    <button class="btn btn-success" type="submit" >Resultat</button>
+                </form> </div>
+        </div>
+    </div>
+
+
+</div>
+</div>
+</body>
+</html>
