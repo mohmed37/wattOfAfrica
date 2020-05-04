@@ -11,70 +11,87 @@
     </head>
 <style>
 
-    .user-row {
-        margin-bottom: 14px;
+    header {
+        position: relative;
+        background-color: black;
+        height: 75vh;
+        min-height: 25rem;
+        width: 100%;
+        overflow: hidden;
     }
 
-    .user-row:last-child {
-        margin-bottom: 0;
+    header video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: 0;
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
     }
 
-    .dropdown-user {
-        margin: 13px 0;
-        padding: 5px;
+    header .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    header .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
         height: 100%;
+        width: 100%;
+        background-color: black;
+        opacity: 0.5;
+        z-index: 1;
     }
 
-    .dropdown-user:hover {
-        cursor: pointer;
+    @media (pointer: coarse) and (hover: none) {
+        header {
+            background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+        }
+        header video {
+            display: none;
+        }
     }
-
-    .table-user-information > tbody > tr {
-        border-top: 1px solid rgb(221, 221, 221);
-    }
-
-    .table-user-information > tbody > tr:first-child {
-        border-top: 0;
-    }
-
-
-    .table-user-information > tbody > tr > td {
-        border-top: 0;
-    }
-    .toppad
-    {margin-top:20px;
-    }
-    h2
-    {
-        color:#F8080C;
-    }
-
 </style>
 <body>
 <div th:insert="header.html :: header"></div></br>
 <div class="container">
-    <div class="row">
-        <h2>Liste des questions</h2></br>
-        <table class="table table-striped">
-            <thead class="thead-light">
-            <tr>
-                <th>ITM</th>
-                <th>Dimension</th>
-                <th>Question</th>
-                <th>code</th>
-            </tr>
-            </thead>
-            <tbody>
-           <tr th:each="lisq : ${listQuestion}" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-                <td th:text="${lisq.item}"></td>
-                <td th:text="${lisq.dimention}" ></td>
-                <td th:text="${lisq.question}"></td>
-                <td th:text="${lisq.code}"></td>
-            </tr>
-            </tbody>
-        </table>
+<header>
+    <div class="overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+    </video>
+    <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+            <div class="w-100 text-white">
+                <h1 class="display-3">WATT OF AFRICA</h1>
+                <p class="lead mb-0">Site en construction</p>
+            </div>
+        </div>
     </div>
-</div>
+</header>
 
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+             <!--   <p>The HTML5 video element uses an mp4 video as a source. Change the source video to add in your own background! The header text is vertically centered using flex utilities that are build into Bootstrap 4.</p>
+                <p>The overlay color can be changed by changing the <code>background-color</code> of the <code>.overlay</code> class in the CSS.</p>
+                <p>Set the mobile fallback image in the CSS by changing the background image of the header element within the media query at the bottom of the CSS snippet.</p>
+                <p class="mb-0">
+                    Created by <a href="https://startbootstrap.com">Start Bootstrap</a>
+                </p>-->
+            </div>
+        </div>
+    </div>
+</section>
+</div>
 </body>
 </html>

@@ -53,6 +53,7 @@
 </style>
 <body>
 <div th:insert="header.html :: header"></div></br>
+<div class="container">
 <!--- Bar Chart Section --->
 <div id="Bar" class="bar">
     <div class="block text-center head-text extraPadding">
@@ -93,7 +94,7 @@
                     label: "Resultat",
                     backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#0101DF","#c45850","#3e95cd", "#8e5ea2"
                         ,"#3cba9f","#e8c3b9","#c45850",],
-                    data: [AUT,CON,PER,REA,DEF,POU,ACT,TOL,CRE,DES,,0,10],
+                    data: [AUT,CON,PER,REA,DEF,POU,ACT,TOL,CRE,DES,0,10],
 
                 }
             ]
@@ -112,5 +113,6 @@
         }
     });
 </script>
+</div>
 </body>
 </html>

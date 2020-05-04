@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Title</title>
+
+    <style>
+        .user-row {
+            margin-bottom: 14px;
+        }
+
+        .user-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .dropdown-user {
+            margin: 13px 0;
+            padding: 5px;
+            height: 100%;
+        }
+
+        .dropdown-user:hover {
+            cursor: pointer;
+        }
+
+        .table-user-information > tbody > tr {
+            border-top: 1px solid rgb(221, 221, 221);
+        }
+
+        .table-user-information > tbody > tr:first-child {
+            border-top: 0;
+        }
+
+
+        .table-user-information > tbody > tr > td {
+            border-top: 0;
+        }
+        .toppad
+        {margin-top:20px;
+        }
+        h2
+        {
+            color:#F8080C;
+        }
+
+    </style>
+
+</head>
+<body>
+<div th:insert="header.html :: header"></div><br>
+<div class="container">
+    <div class="row">
+        <h2>Motiv-U</h2>
+    </div>
+    <div class="row">
+        <p th:text="${question.question}"></p><br>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <form th:action="@{saveMotivU}" method="post" th:object="${questionnaire}" enctype="multipart/form-data">
+
+            <!-- Material inline 1 -->
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="1" type="radio" class="custom-control-input" id="defaultUnchecked1" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked1">Vous êtes entièrement en désaccord</label>
+            </div>
+
+            <!-- Material inline 2 -->
+            <div class="custom-control custom-radio">
+                <input  th:field="*{resultatInteger}" th:value="2" type="radio" class="custom-control-input" id="defaultUnchecked2" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked2">Vous êtes plutôt en désaccord</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input  th:field="*{resultatInteger}" th:value="3" type="radio" class="custom-control-input" id="defaultUnchecked3" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked3">Vous n’êtes ni en accord ni en désaccord </label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input  th:field="*{resultatInteger}" th:value="4" type="radio" class="custom-control-input" id="defaultUnchecked4" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked4">Vous êtes plutôt d’accord</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input  th:field="*{resultatInteger}" th:value="5" type="radio" class="custom-control-input" id="defaultUnchecked5" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked5">Vous êtes totalement en accord</label>
+            </div>
+
+
+            <div>
+                <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+                <p th:text="${result.question}"></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+

@@ -76,7 +76,7 @@ public class EntrepControler {
     }
 
     @RequestMapping("/saveEntrepreneur")
-    public String saveEmoU(@Valid @ModelAttribute("questionnaire") QuestionnairesBean questionnairesBean , BindingResult bindingResult){
+    public String saveEntrepreneur(@Valid @ModelAttribute("questionnaire") QuestionnairesBean questionnairesBean , BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return "redirect:/questionEntrepreneur";
         }

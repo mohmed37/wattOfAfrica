@@ -20,7 +20,10 @@ public class QuestionnairesBean {
     Boolean qcm3;
     Boolean qcm4;
     Boolean emoU;
+    Boolean comU;
+    Boolean commercial;
     Boolean entrepreneur;
+    Boolean motivU;
     String resultatString;
     Integer resultatInteger;
     @ManyToOne
