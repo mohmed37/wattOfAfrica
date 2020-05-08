@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Title</title>
+
+    <style>
+        .user-row {
+            margin-bottom: 14px;
+        }
+
+        .user-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .dropdown-user {
+            margin: 13px 0;
+            padding: 5px;
+            height: 100%;
+        }
+
+        .dropdown-user:hover {
+            cursor: pointer;
+        }
+
+        .table-user-information > tbody > tr {
+            border-top: 1px solid rgb(221, 221, 221);
+        }
+
+        .table-user-information > tbody > tr:first-child {
+            border-top: 0;
+        }
+
+
+        .table-user-information > tbody > tr > td {
+            border-top: 0;
+        }
+        .toppad
+        {margin-top:20px;
+        }
+        h2
+        {
+            color:#F8080C;
+        }
+
+    </style>
+
+</head>
+<body>
+<div th:insert="header.html :: header"></div><br>
+<div class="container">
+    <div class="row">
+        <h2>Test vente / Aptitudes commerciales</h2>
+    </div>
+<div th:if="${result.getExercice1()==false}">
+
+    <div class="row">
+        <p th:text="${question1.question}"></p>
+        <p th:text="${result.resultat}"></p>
+    </div>
+
+    <div class="row">
+        <form th:action="@{saveVerbale}" method="post" th:object="${questionnaire}" enctype="multipart/form-data" >
+
+            <!-- Material inline 1 -->
+            <tr >
+                <td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox" th:value="${question1.reponse1}"  th:field="*{resultatString}"  onclick = "checking(this)" ></td>
+                <td th:text="${question1.reponse1}"></td>
+            </tr><br>
+
+            <!-- Material inline 2 -->
+            <tr >
+                <td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox" th:value="${question1.reponse2}"  th:field="*{resultatString}"  onclick = "checking(this)" ></td>
+                <td th:text="${question1.reponse2}"></td>
+            </tr><br>
+
+            <tr >
+                <td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox" th:value="${question1.reponse3}"  th:field="*{resultatString}"  onclick = "checking(this)" ></td>
+                <td th:text="${question1.reponse3}"></td>
+            </tr><br>
+            <tr >
+                <td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox" th:value="${question1.reponse4}"  th:field="*{resultatString}"  onclick = "checking(this)" ></td>
+                <td th:text="${question1.reponse4}"></td>
+            </tr><br>
+            <tr th:if="${question1.reponse5!=null}" >
+                <td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox" th:value="${question1.reponse5}"  th:field="*{resultatString}"  onclick = "checking(this)" ></td>
+                <td th:text="${question1.reponse5}"></td>
+            </tr><br>
+            <div>
+                <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+    <div th:if="${result.getExercice1()==true && result.getExercice2()==false}">
+
+        <div class="row" >
+            <p th:text="${question2.numero}"><p>
+            <p th:text="${question2.texte}"></p>
+           <p th:text="${question2.question}"></p>
+            <p th:text="${result.resultat}"></p>
+        </div>
+
+        <div class="row">
+            <form th:action="@{saveVerbale}" method="post" th:object="${questionnaire}" enctype="multipart/form-data" >
+
+                <!-- Material inline 1 -->
+                <div class="custom-control custom-radio">
+                    <input th:field="*{resultatString}" th:value="${question2.reponse1}" type="radio" class="custom-control-input" id="defaultUnchecked6" name="defaultExampleRadios">
+                    <label class="custom-control-label" for="defaultUnchecked6"><td th:text="${question2.reponse1}"></td></label>
+                </div>
+
+                <!-- Material inline 2 -->
+                <div class="custom-control custom-radio">
+                    <input th:field="*{resultatString}" th:value="${question2.reponse2}" type="radio" class="custom-control-input" id="defaultUnchecked7" name="defaultExampleRadios">
+                    <label class="custom-control-label" for="defaultUnchecked7"><td th:text="${question2.reponse2}"></td></label>
+                </div>
+
+                <div class="custom-control custom-radio">
+                    <input th:field="*{resultatString}" th:value="${question2.reponse3}" type="radio" class="custom-control-input" id="defaultUnchecked8" name="defaultExampleRadios">
+                    <label class="custom-control-label" for="defaultUnchecked8"><td th:text="${question2.reponse3}"></td></label>
+                </div>
+
+                <div>
+                    <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div th:if="${result.getExercice2()==true}">
+
+        <div class="row" >
+            <p th:text="${question3.numero}"><p>
+            <p th:text="${question3.texte}"></p>
+            <p th:text="${result.resultat}"></p>
+        </div>
+
+        <div class="row">
+            <form th:action="@{saveVerbale}" method="post" th:object="${questionnaire}" enctype="multipart/form-data" >
+
+                <!-- Material inline 1 -->
+                <div class="custom-control custom-radio">
+                    <input th:field="*{resultatString}" th:value="${question3.reponse1}" type="radio" class="custom-control-input" id="defaultUnchecked9" name="defaultExampleRadios">
+                    <label class="custom-control-label" for="defaultUnchecked9"><td th:text="${question3.reponse1}"></td></label>
+                </div>
+
+                <!-- Material inline 2 -->
+                <div class="custom-control custom-radio">
+                    <input th:field="*{resultatString}" th:value="${question3.reponse2}" type="radio" class="custom-control-input" id="defaultUnchecked10" name="defaultExampleRadios">
+                    <label class="custom-control-label" for="defaultUnchecked10"><td th:text="${question3.reponse2}"></td></label>
+                </div>
+
+                <div class="custom-control custom-radio">
+                    <input th:field="*{resultatString}" th:value="${question3.reponse3}" type="radio" class="custom-control-input" id="defaultUnchecked11" name="defaultExampleRadios">
+                    <label class="custom-control-label" for="defaultUnchecked11"><td th:text="${question3.reponse3}"></td></label>
+                </div>
+
+                <div class="custom-control custom-radio">
+                    <input th:field="*{resultatString}" th:value="${question3.reponse4}" type="radio" class="custom-control-input" id="defaultUnchecked12" name="defaultExampleRadios">
+                    <label class="custom-control-label" for="defaultUnchecked12"><td th:text="${question3.reponse4}"></td></label>
+                </div>
+                <div>
+                    <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+</div>
+<script>
+var queue = [];
+function checking(id){
+queue.push(id)
+if (queue.length===3){
+queue[0].checked = false
+queue.shift()
+}
+}
+var trBoldBlue = $("table");
+
+$(trBoldBlue).on("click", "tr", function (){
+$(this).toggleClass("bold-blue");
+});
+</script>
+
+</body>
+</html>
+

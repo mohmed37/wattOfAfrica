@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css"/>
 
-    <title>Nouveau livre</title>
+    <title>Nouvelle photo</title>
 
 
 </head>
@@ -74,62 +74,33 @@
 </style>
 <body>
 <div th:insert="header.html :: header"></div></br>
+<!--<p th:text="${userConnect.nom != null ? userConnect.nom: ''}"></P>
+<p th:text="${userConnect.prenom != null ? userConnect.prenom: ''}"></P></br>-->
+
 
 <div class="container">
     <div class="d-flex justify-content-center">
         <div class="section-content">
-            <h1  class="text-center">Enregister <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s">une nouvelle restitution.</span></h1>
+            <h1  class="text-center">Enregister <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s">une nouvelle photo.</span></h1>
             <h3></h3>
         </div>
     </div>
 </div>
 <div class="container">
-    <form th:action="@{saveRest}" method="post" th:object="${restitution}" enctype="multipart/form-data">
-
+    <form th:action="@{savePhoto}" method="post" th:object="${photo}" enctype="multipart/form-data">
         <div class="col-md-6" >
-
             <div class="form-group">
-                <label>Texte numéro</label>
-                <textarea  type="text" th:field="*{numero}"  class="form-control"  placeholder=" Entrer la restitution"></textarea>
-            </div>
-
-                <div class="form-group">
-                    <label>Texte</label>
-                    <textarea  type="text" th:field="*{texte}"  class="form-control"  placeholder=" Entrer la restitution"></textarea>
-                </div>
-
-            <div class="form-group">
-                <label>Question</label>
-                <input type="text"  th:field="*{question}" class="form-control"   placeholder=" Entrer la dimension"/>
-            </div>
-            <div class="form-group">
-                <label>Réponse 1</label>
-                <input type="text"  th:field="*{reponse1}" class="form-control"   placeholder=" Entrer le titre"/>
-            </div>
-            <div class="form-group">
-                <label>Réponse 2</label>
-                <input type="text"  th:field="*{reponse2}" class="form-control"   placeholder=" Entrer le titre"/>
-            </div>
-
-            <div class="form-group">
-                <label>Réponse 3</label>
-                <input type="text"  th:field="*{reponse3}" class="form-control"   placeholder=" Entrer le titre"/>
-            </div>
-
-            <div class="form-group">
-                <label>Solution</label>
-                <input type="text"  th:field="*{solution}" class="form-control"   placeholder=" Entrer le titre"/>
-            </div>
-
+                <label>Photo</label>
+                <input type="file" name="picture" placeholder=" Importer la photo"/>
+           </div>
 
             <div>
                 <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
             </div>
-
         </div>
-
     </form>
 </div>
 </body>
 
 </html>
+

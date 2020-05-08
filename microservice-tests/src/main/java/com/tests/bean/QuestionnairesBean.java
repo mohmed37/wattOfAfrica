@@ -23,6 +23,7 @@ public class QuestionnairesBean {
     Boolean comU;
     Boolean commercial;
     Boolean entrepreneur;
+    Boolean compVerbale;
     Boolean motivU;
     String resultatString;
     Integer resultatInteger;

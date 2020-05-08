@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Resultat comprehension verbale</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+</head>
+<body>
+<div th:insert="header.html :: header"></div></br>
+<div class="container">
+   <div class="row">
+     <h3 class="text-center">
+         Interprétation des résultats en fonction des scores obtenus
+         Raisonnement verbal
+     </h3>
+   </div><br>
+<div class="row" th:if="${resultVerbale.resultat<=8}">
+    <h5>
+        Il apparait que vous éprouvez certaines difficultés à comprendre les exercices et les textes
+        professionnels complexes. De ce fait, vous ne parvenez pas toujours à traiter ce type de données
+        efficacement. Une fonction qui requerrait de devoir tirer fréquemment des conclusions sur base
+        d’une information verbale fournie par écrit ne semble dès lors pas la plus appropriée à votre profil.
+        Cherchez le bon équilibre entre rapidité d’exécution et précision. Lisez attentivement les instructions
+        afin d’être bien préparée et certaine de bien comprendre la tâche que vous avez à accomplir avant de commencer.
+        Procéder de cette manière vise également à favoriser votre concentration avant d’entamer l’exercice.
+        Commencez à répondre aux questions calmement et travaillez à votre propre rythme en restant concentrée
+        et en travaillant aussi précisément que possible. Ne vous référez pas à votre propre système de référence
+        ou à vos connaissances préalables.
+    </h5>
+
+</div><br>
+
+    <div class="row" th:if="${resultVerbale.resultat>=9&&resultVerbale.resultat<=16}">
+        <h5>
+            Ce n’est pas sans difficultés que vous traitez les exercices et les textes complexes qui ont trait au
+            domaine professionnel. Il est intéressant que vous teniez comptez du fait que vous ne parvenez pas toujours
+            à traiter correctement ce genre d’information. Une fonction dans laquelle vous seriez assez fréquemment
+            amenée à devoir interpréter des textes complexes vous posera peut- être davantage de difficultés, à moins
+            que vous puissiez bénéficier d’un encadrement suffisant. Il est essentiel de travailler calmement et de ne
+            pas se laisser envahir par la panique. Travaillez aussi précisément que possible, mais à votre propre rythme.
+            Ne vous laissez pas distraire et concentrez-vous sur les questions qui vous sont posées. Ne vous référez pas
+            à votre propre système de référence ou à vos connaissances préalables mais réfléchissez de manière logique
+            sur la base des informations données.
+        </h5>
+
+    </div><br>
+    <div class="row" th:if="${resultVerbale.resultat>=17&&resultVerbale.resultat<=24}">
+        <h5>
+            Vous êtes capable, la plupart du temps, d’analyser assez rapidement de l’information écrite et vous parvenez
+            à interpréter assez correctement des textes et les exercices qui ont trait au domaine professionnel.
+            Vous risquez cependant d’éprouver davantage de difficultés lorsque la complexité des textes augmente.
+            Restez calme et concentrez-vous sur l’information fournie afin d’opérer une bonne analyse. Ne vous référez
+            pas à votre propre système de référence ou à vos connaissances préalables. Une fonction dans laquelle vous
+            seriez amenée à interpréter des textes complexes qui ont trait au domaine professionnel semble dès lors, à
+            ce jour, moins appropriée à votre profil et ce, à moins que vous puissiez bénéficier d’un soutien et d’un
+            encadrement approprié.
+        </h5>
+    </div><br>
+    <div class="row" th:if="${resultVerbale.resultat>=25&&resultVerbale.resultat<=43}">
+        <h5>
+            Il apparait que vous parvenez à traiter rapidement de l’information écrite. Bien que vous puissiez éprouver
+            parfois un peu plus de difficultés lorsque la complexité des textes augmente, vous êtes malgré tout capable
+            de traiter efficacement ce type d’information. Vous parvenez généralement à bien comprendre les textes qui
+            ont trait au domaine professionnel. Le score que vous avez obtenu laisse penser que vous serez assez capable
+            de d’assumer une fonction qui requerrait des capacités verbales moyennes –voire bonnes. Veillez toutefois à
+            pouvoir bénéficier d’un certain soutien si vous êtes amenée à interpréter de l’information verbale très
+            complexe.
+        </h5>
+    </div><br>
+    <div class="row">
+        <h4 class="text-center">
+            Conseils
+        </h4><br>
+        <h5>
+            Il est possible d’améliorer ses capacités de raisonnement verbal en lisant des textes, en interprétant de
+            l’information verbale, en effectuant des résumés de textes et en formulant les idées et les opinions que
+            vous pouvez émettre sur base de données écrites. Vous pouvez vous exercer par exemple en en écrivant des
+            comptes rendus de réunions ou en dressant des rapports. Mettre par écrit votre opinion par rapport à une
+            étude ou à un extrait de la littérature peut également vous permettre d’améliorer vos capacités de
+            raisonnement verbal.
+            Gardez toutefois à l’esprit que ce n’est pas parce que votre emploi actuel ou futur ne considère pas le
+            fait d’avoir de bonnes capacités de raisonnement verbal comme prioritaire que vous devez en sous-estimer
+            l’importance. Un candidat à un poste peut immédiatement sortir du lot s’il présente un bon score dans un
+            domaine d’aptitudes et des connaissances requises ou au niveau de certaines compétences additionnelles telles
+            que le raisonnement verbal.
+
+        </h5>
+    </div>
+
+</div>
+<p th:text="${resultVerbale.resultat}">Test Verbale</p>
+</body>
+
+</html>

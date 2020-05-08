@@ -2,16 +2,17 @@ package com.client.controler;
 
 
 
+import com.client.bean.compVerbale.CompVerbale2Bean;
+import com.client.bean.compVerbale.CompVerbale3Bean;
 import com.client.bean.profilU.*;
 import com.client.bean.user.QuestionnairesBean;
 import com.client.bean.user.UserBean;
+import com.client.proxy.MCompVerbaleProxy;
 import com.client.proxy.MProfilUProxy;
 import com.client.proxy.MuserProxy;
 import com.client.service.IUserService;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,9 +24,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +35,8 @@ public class ClientController {
     MProfilUProxy mtestsProxy;
     @Autowired
     MuserProxy muserProxy;
+    @Autowired
+    MCompVerbaleProxy mCompVerbaleProxy;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
@@ -65,16 +65,16 @@ public class ClientController {
 
     @RequestMapping("/form")
     public String formLivre(Model model){
-        RestitutionBean restitutionBean =new RestitutionBean();
-        model.addAttribute("restitution",restitutionBean);
+        CompVerbale2Bean comptVerbaleBean =new CompVerbale2Bean();
+        model.addAttribute("restitution",comptVerbaleBean);
 
         return "formRest";
     }
 
 
     @RequestMapping("/saveRest")
-    public String saveRestitution(@Valid @ModelAttribute("restitution") RestitutionBean restitutionBean){
-        mtestsProxy.saveRestitution(restitutionBean);
+    public String saveRestitution(@Valid @ModelAttribute("restitution") CompVerbale2Bean compVerbaleBean){
+        mCompVerbaleProxy.saveVerbale(compVerbaleBean);
 
         return "redirect:/form";
     }
@@ -106,12 +106,5 @@ public class ClientController {
         return muserProxy.findUserByUsername(username);}
 
 
-    @RequestMapping(value = "/getPhoto",produces = MediaType.IMAGE_JPEG_VALUE)
-    @ResponseBody
-    public byte[] getPhoto(String id) throws IOException {
-        File f=new File(imageDir+id);
-        return IOUtils.toByteArray(new FileInputStream(f));
-
-    }
 
 }

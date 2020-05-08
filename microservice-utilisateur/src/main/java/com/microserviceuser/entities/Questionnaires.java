@@ -28,6 +28,7 @@ public class Questionnaires implements Serializable {
     Boolean entrepreneur;
     Boolean commercial;
     Boolean motivU;
+    Boolean compVerbale;
     String resultatString;
     Integer resultatInteger;
     @ManyToOne
