@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Resultat comprehension verbale</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+</head>
+<style>
+    .p{
+        background-color: #F8080C;
+    }
+</style>
+<body>
+<div th:insert="header.html :: header"></div></br>
+<div class="container">
+    <h4 style="color: #F8080C" class="row">Résultat orthographe </h4><br>
+
+    <div th:if="${result.scoreOrtho>=0&&result.scoreOrtho<=5}">
+            <h5> <b class="row" ><p th:text="${result.scoreOrtho}"></p>/30: niveau très faible</b></h5>
+        <h5 class="row">Vos résultats sont insuffisants. Il est important de les améliorer et de revoir les bases en orthographe.
+        </h5>
+    </div>
+    <div  th:if="${result.scoreOrtho>=6&&result.scoreOrtho<=12}">
+            <h5> <b class="row" ><p th:text="${result.scoreOrtho}"></p>/30: niveau faible</b></h5>
+        <h5 class="row">Formulation de quelques idées de base, souvent avec des grosses erreurs.
+        </h5>
+    </div>
+    <div th:if="${result.scoreOrtho>=13&&result.scoreOrtho<=18}">
+            <h5> <b class="row" ><p th:text="${result.scoreOrtho}"></p>/30: niveau intermédiaire</b></h5>
+        <h5 class="row">  Vous avez un niveau moyen. Vous êtes à l’aise avec la plupart des exercices. Des erreurs restent à rectifier.
+        </h5>
+    </div>
+    <div  th:if="${result.scoreOrtho>=19&&result.scoreOrtho<=24}">
+        <h5> <b class="row" ><p th:text="${result.scoreOrtho}"></p>/30: niveau confirmé</b></h5>
+        <h5 class="row">
+            Vous êtes à l’aise avec tous les exercices, très peu d’erreurs.
+        </h5>
+    </div>
+    <div  th:if="${result.scoreOrtho>=25&&result.scoreOrtho<=30}">
+        <h5> <b class="row" ><p th:text="${result.scoreOrtho}"></p>/30: niveau avancé</b></h5>
+        <h5 class="row">
+            Vous êtes extrêmement à l ‘aise avec les exercices, capacité à traiter tous les exercices.
+        </h5>
+    </div>
+    <div th:if="${result.scoreOrtho<19}">
+    <h5 class="row" >
+        <b>Conseil</b><br> </h5>
+
+       <h6 class="row"> Si vous avez un niveau <b>&nbsp;très faible , faible , intermédiaire:</b> Il est possible d’améliorer vos capacités en
+        faisant plus d’exercices. Pour cela vous pouvez utiliser le Bescherelle. C’est un livre complet il contient
+        un grand nombre d’exercices qui vous permettront de vous exercer autant de fois que vous voulez et de façon
+        continue jusqu’à obtenir un bon niveau. Si vous avez <b>un bon niveau:</b>&nbsp;Vous possédez un niveau acceptable continuez
+        ainsi. Mais une pratique occasionnelle des exercices n’est pas à bannir.</h6></div>
+
+<br><div th:if="${questionnaires.grammaire}">
+
+    <h4 style="color: #F8080C" class="row">Résultat grammaire </h4><br>
+
+    <div th:if="${result.scoreGram1>=0&&result.scoreGram1<=5}">
+        <h5> <b class="row" ><p th:text="${result.scoreGram1}"></p>/30: niveau très faible</b></h5>
+        <h5 class="row">Vos résultats sont insuffisants. Il est important de les améliorer et de revoir les bases de grammaire.
+        </h5>
+    </div>
+    <div  th:if="${result.scoreGram1>=6&&result.scoreGram1<=12}">
+        <h5> <b class="row" ><p th:text="${result.scoreGram1}"></p>/30: niveau faible</b></h5>
+        <h5 class="row">Formulation de quelques idées de base, souvent avec des grosses erreurs.
+        </h5>
+    </div>
+    <div th:if="${result.scoreGram1>=13&&result.scoreGram1<=18}">
+        <h5> <b class="row" ><p th:text="${result.scoreGram1}"></p>/30: niveau intermédiaire</b></h5>
+        <h5 class="row">  Vous avez un niveau moyen. Vous êtes à l’aise avec la plupart des exercices. Des erreurs restent à rectifier.
+        </h5>
+    </div>
+    <div  th:if="${result.scoreGram1>=19&&result.scoreGram1<=24}">
+        <h5> <b class="row" ><p th:text="${result.scoreGram1}"></p>/30: niveau confirmé</b></h5>
+        <h5 class="row">
+            Vous êtes à l’aise avec tous les exercices, très peu d’erreurs.
+        </h5>
+    </div>
+    <div  th:if="${result.scoreGram1>=25&&result.scoreGram1<=30}">
+        <h5> <b class="row" ><p th:text="${result.scoreGram1}"></p>/30: niveau avancé</b></h5>
+        <h5 class="row">
+            Vous êtes extrêmement à l ‘aise avec les exercices, capacité à traiter tous les exercices.
+        </h5>
+    </div>
+    <div th:if="${result.scoreGram1<19}">
+    <h5 class="row" >
+        <b>Conseil</b><br> </h5>
+
+    <h6 class="row"> Si vous avez un niveau <b>&nbsp;très faible , faible , intermédiaire:</b> Il est possible d’améliorer vos capacités en
+        faisant plus d’exercices. Pour cela vous pouvez utiliser le Bescherelle. C’est un livre complet il contient
+        un grand nombre d’exercices qui vous permettront de vous exercer autant de fois que vous voulez et de façon
+        continue jusqu’à obtenir un bon niveau. Si vous avez <b>un bon niveau:</b>&nbsp;Vous possédez un niveau acceptable continuez
+        ainsi. Mais une pratique occasionnelle des exercices n’est pas à bannir.</h6></div>
+</div>
+</div>
+
+</body>
+
+</html>

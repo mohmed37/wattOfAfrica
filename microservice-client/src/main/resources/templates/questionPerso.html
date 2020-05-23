@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Title</title>
+
+    <style>
+        .user-row {
+            margin-bottom: 14px;
+        }
+
+        .user-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .dropdown-user {
+            margin: 13px 0;
+            padding: 5px;
+            height: 100%;
+        }
+
+        .dropdown-user:hover {
+            cursor: pointer;
+        }
+
+        .table-user-information > tbody > tr {
+            border-top: 1px solid rgb(221, 221, 221);
+        }
+
+        .table-user-information > tbody > tr:first-child {
+            border-top: 0;
+        }
+
+
+        .table-user-information > tbody > tr > td {
+            border-top: 0;
+        }
+        .toppad
+        {margin-top:20px;
+        }
+        h2
+        {
+            color:#F8080C;
+        }
+
+    </style>
+
+</head>
+<body>
+<div th:insert="header.html :: header"></div><br>
+<div class="container">
+    <div class="row">
+        <h2>Questionnaire de personnalité </h2>
+    </div>
+    <div class="row">
+        Veuillez lire attentivement chaque affirmation et l'évaluer en indiquant sur l'échelle la lettre qui reflète votre opinion.
+        <ul>
+            <li>Indiquez la lettre A si vous n'êtes pas du tout d'accord avec l'affirmation.</li>
+            <li>Indiquez la lettre B si vous n'êtes pas d'accord avec l'affirmation.</li>
+            <li>Indiquez la lettre C si vous êtes neutre ou si vous n'avez pas d'opinion.</li>
+            <li>Indiquez la lettre D si vous êtes d'accord avec l'affirmation.</li>
+            <li>Indiquez la lettre E si vous êtes tout à fait d'accord avec l'affirmation.</li>
+
+        </ul>
+    </div>
+
+    <div class="row">
+        <p th:text="${result.question}"></p><br>
+
+        <p th:text="${question.question}"></p><br>
+    </div>
+
+    <div class="row">
+        <form th:action="@{savePerso}" method="post" th:object="${questionnaire}" enctype="multipart/form-data"  th:if="${question.inverse==false}">
+
+            <!-- Material inline 1 -->
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="0" type="radio" class="custom-control-input" id="defaultUnchecked1" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked1">A</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="1" type="radio" class="custom-control-input" id="defaultUnchecked2" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked2">B</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="2" type="radio" class="custom-control-input" id="defaultUnchecked3" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked3">C</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="3" type="radio" class="custom-control-input" id="defaultUnchecked4" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked4">D</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="4" type="radio" class="custom-control-input" id="defaultUnchecked5" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked5">E</label>
+            </div>
+
+            <div>
+                <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+            </div>
+
+        </form>
+        <form th:action="@{savePerso}" method="post" th:object="${questionnaire}" enctype="multipart/form-data"  th:if="${question.inverse==true}">
+
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="4" type="radio" class="custom-control-input" id="defaultUnchecked6" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked6">A</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="3" type="radio" class="custom-control-input" id="defaultUnchecked7" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked7">B</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="2" type="radio" class="custom-control-input" id="defaultUnchecked8" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked8">C</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="1" type="radio" class="custom-control-input" id="defaultUnchecked9" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked9">D</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+                <input th:field="*{resultatInteger}" th:value="0" type="radio" class="custom-control-input" id="defaultUnchecked10" name="defaultExampleRadios">
+                <label class="custom-control-label" for="defaultUnchecked10">E</label>
+            </div>
+            <div>
+                <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+

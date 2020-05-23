@@ -1,89 +1,43 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:background="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- head -->
 <head>
+    <title>Watt of africa</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <title>Mlibrairie</title>
-    <style>
-        body {
-
-            background-image:url(../static/css/css/photo/fond.jpg);
-        }
-
-        h1
-        {
-            color:#F8080C;
-            margin:40px 0 60px 0;
-            font-weight:300;
-        }
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <!-- css -->
+    <!--font  -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/44fca66a73.js" crossorigin="anonymous"></script>
+    <!-- font -->
 
 
-        .our-team-main img
-        {
-            border-radius:50%;
-            margin-bottom:20px;
-            width: 150px;
-        }
-
-        .our-team-main h3
-        {
-            font-size:20px;
-            font-weight:700;
-        }
-
-        .our-team-main p
-        {
-            margin-bottom:0;
-        }
-
-        .our-team-main:hover .team-front
-        {
-            bottom:-200px;
-            transition: all 0.5s ease;
-        }
-
-    </style>
-
+    <!-- meta SEO -->
 </head>
+<!-- head -->
+
+<!-- body -->
 <body>
-<div class="container"  th:fragment="header">
+<!-- header -->
+<div class="block">
+    <div class="container">
+        <header class="header">
 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="/">Accueil</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <nav class="header-menu">
+                <a href="/">Accueil</a>
+                <a th:if="${#httpServletRequest.remoteUser}" href="/listQuestionnaires">List des questionnaires</a>
+                <a th:if="${#httpServletRequest.remoteUser}" href="form">Formulaire</a>
+                <a th:if="!${#httpServletRequest.remoteUser}" href="/login">Me connecter</a>
+                <a th:if="${#httpServletRequest.remoteUser}" href="/logout">Me déconnecter</a>
+            </nav>
 
-            <ul class="navbar-nav">
-                <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
-                    <li class="nav--right">
-                        <a class="nav-link" onclick="window.location.href='listQuestionnaires'; return false;">Liste des questionnaires</a>
-                    </li>
-
-                </div>
-                <div sec:authorize="hasRole('ROLE_ADMIN')">
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="window.location.href='form'; return false;">Nouveau questionnaire</a>
-                    </li>
-                </div>
-                <li class="navbar-right">
-                <button th:if="!${#httpServletRequest.remoteUser}" class="btn btn-success" onclick="window.location.href='login'; return false;">Me connecter</button>
-            </li>
-                <li class="navbar-right" th:if="${#httpServletRequest.remoteUser}">
-                    <form th:action="@{/logout}" method="post">
-                        <button class="btn btn-danger" type="submit" >Me déconnecter</button>
-                   </form>
-                </li>
-            </ul>
-        </div>
-        <div style="background-color:#ffffff" >
-            <img  th:src="@{getPhoto(id=100)}" class="img" style="width: 120px;" />
-        </div>
-    </nav>
+        </header>
+    </div>
 </div>
+<!-- header -->
 </body>
 </html>

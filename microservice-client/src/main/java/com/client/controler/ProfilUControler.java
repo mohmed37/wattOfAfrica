@@ -125,13 +125,14 @@ public class ProfilUControler {
         List<ProfiluBean>listQuestion=mtestsProxy.listDesQuestion();
 
         if (listQuestion.size()==resultRaBean.getQuestion()||listQuestion.size()==resultRbBean.getQuestion()) {
-            mtestsProxy.saveRa(resultRaBean);
-            mtestsProxy.saveRb(resultRbBean);
-            resultatTestProfilU();
             UserBean userConnec=userService.getUserConnec();
             Optional<QuestionnairesBean> questionnairesBean=muserProxy.questionnairesUser(userConnec.getNum());
             questionnairesBean.get().setProfilU(true);
             muserProxy.updateQuestionnaire(questionnairesBean.get());
+            mtestsProxy.saveRa(resultRaBean);
+            mtestsProxy.saveRb(resultRbBean);
+            resultatTestProfilU();
+
             return "redirect:/restitutionProfilU";
 
         }
@@ -171,12 +172,12 @@ public class ProfilUControler {
     @RequestMapping("/restitusion/{id}")
     public String restitusion(Model model,@PathVariable("id") int id){
         model.addAttribute("restitusion",mtestsProxy.findById(id).get());
+
         return "redirect:/restitutionProfilU";
     }
 
 
-    private double arrondi(double val) {
-        return (Math.floor(val*100+0.5))/100;}
+
 
 
 

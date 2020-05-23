@@ -1,0 +1,53 @@
+/*
+Global
+*/
+.heading-site{
+    text-align: center;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+
+/*
+HEADER
+*/
+
+.header{
+
+    width: 100%;
+    margin-left:0;
+    margin-right: 0;
+    height: 70px;
+    line-height: 70px;
+    background-color: rgba(0,0,0,0.4);
+    top: 0;
+    position:fixed;
+    z-index: 999;
+}
+
+.header .header-logo{
+    color: #ffffff;
+    font-family:'Montserrat', sans-serif;
+    float: left;
+    margin-left: 30px;
+
+
+}
+
+.header .header-menu{
+    margin-left: 30px;
+    font-size:large;
+
+}
+
+
+.header .header-menu a{
+    margin-right: 15px;
+    color: white;
+}
+
+.header .header-menu a:hover{
+    color: #3498db;
+}
+.photo {
+
+}

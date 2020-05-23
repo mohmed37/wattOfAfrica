@@ -25,6 +25,13 @@ public class QuestionnairesBean {
     Boolean entrepreneur;
     Boolean compVerbale;
     Boolean motivU;
+    Boolean perso;
+    Boolean ortho;
+    Boolean Grammaire;
+    Boolean photoLangage;
+    Boolean roueVie;
+    Boolean hero;
+    Boolean autoPortrait;
     String resultatString;
     Integer resultatInteger;
     @ManyToOne

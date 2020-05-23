@@ -1,12 +1,10 @@
 package com.client.controler;
 
 
-import com.client.bean.comU.ComUBean;
 import com.client.bean.compVerbale.CompVerbale1Bean;
 import com.client.bean.compVerbale.CompVerbale2Bean;
 import com.client.bean.compVerbale.CompVerbale3Bean;
 import com.client.bean.compVerbale.VerbaleResultBean;
-import com.client.bean.praicoU.ResultPraicoUBean;
 import com.client.bean.user.QuestionnairesBean;
 import com.client.bean.user.UserBean;
 import com.client.proxy.MCompVerbaleProxy;

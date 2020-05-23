@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Resultat comprehension verbale</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+</head>
+<style>
+.p{
+   background-color: #F8080C;
+}
+</style>
+<body>
+<div th:insert="header.html :: header"></div></br>
+<div class="container">
+    <div class="row">
+        <h3 class="text-center">
+            Interprétation des résultats en fonction des scores obtenus
+            Raisonnement verbal
+        </h3>
+    </div><br>
+    <b>Equilibre émotionnel</b>
+    <div class="row" th:if="${result.getEquilibre()>=0&&result.getEquilibre()<=10}">
+    <h5>
+        Vous ne vous sentez peut-être pas toujours sûr de vous. Il peut arriver que vous éprouviez des difficultés
+        à gérer les contrariétés, le stress, la frustration ou la pression. Les autres pourraient dès lors vous
+        trouver parfois nerveux, agité ou tendu, et ce, principalement lors d'évènements importants. De manière
+        générale vous n'agissez pas de façon impulsive. Vous préférez le certain à l'incertain. Et c'est plutôt une
+        qualité. Vous pouvez peut-être veiller à ce que votre engagement ou votre tendance à prendre les choses à
+        cœur ne vous surmène pas.
+    </h5>
+</div>
+    <div class="row" th:if="${result.getEquilibre()>=11&&result.getEquilibre()<=22}">
+        <h5>
+            Vous montrez régulièrement vos émotions, mais vous ne les laissez pas prendre le dessus. Des évènements
+            importants entraînent généralement une certaine nervosité et il peut arriver que certaines situations vous
+            déconcertent, mais vous êtes capable d'en limiter l'influence sur vos prestations. Généralement, vous
+            parvenez à gérer la frustration, le stress, la pression ou les contrariétés.
+        </h5>
+    </div>
+    <div class="row" th:if="${result.getEquilibre()>=23&&result.getEquilibre()<=40}">
+        <h5>
+            C'est très difficile de vous déconcerter. Vous avez confiance en vous et vous assumez les tâches en toute
+            confiance. Vous êtes presque toujours de bonne humeur et adoptez une attitude très calme. Vous tenez bon
+            également lorsque vous êtes confronté à des contrariétés, du stress, de la frustration ou des critiques.
+            Vous affrontez les choses avec une grande confiance, même dans des situations difficiles
+        </h5>
+    </div>
+
+    <b>Extraversion</b>
+    <div class="row" th:if="${result.getExtraversion()>=0&&result.getExtraversion()<=10}">
+        <h5>
+            Vous êtes plutôt réservé et aimez être seul. En groupe, vous restez à l'arrière-plan et vous ne prenez pas
+            souvent l'initiative. Vous êtes autonome et plus tourné vers vous-même que vers les autres. Vous n'éprouvez
+            pas vraiment le besoin de diriger ou de motiver les autres, au contraire vous donnez aux autres l'opportunité
+            de prendre l'initiative et de donner des instructions
+        </h5>
+    </div>
+    <div class="row" th:if="${result.getExtraversion()>=11&&result.getExtraversion()<=22}">
+        <h5>
+            Vous aimez parler avec les autres et avez la fibre sociale. En groupe, vous pouvez être autant à l'avant-plan
+            qu'à l'arrière-plan, et le cas échéant vous prenez l'initiative et les devants. Vous parvenez à transmettre
+            votre vision aux autres, sans ressentir le besoin de les rallier à votre avis. Dans une conversation, vous
+            écouterez et serez ouvert à l'opinion des autres.
+        </h5>
+    </div>
+    <div class="row" th:if="${result.getExtraversion()>=23&&result.getExtraversion()<=40}">
+        <h5>
+            Vous aimez être à l'avant-plan et prendre les initiatives nécessaires. Vous êtes assertif, loquace et
+            énergique et jouez souvent un rôle dominant ou de leader. Vous savez comment convaincre les autres de vos idées.
+        </h5>
+    </div>
+
+    <b>Ouverture à l’expérience</b>
+    <div class="row" th:if="${result.getExperience()>=0&&result.getExperience()<=10}">
+        <h5>
+            Vous n'êtes pas vraiment curieux et vous vous concentrez principalement sur un certain nombre de domaines.
+            De ce fait, vous êtes capable de réfléchir de façon très ciblée et de rechercher une solution pragmatique
+            qui a déjà fait ses preuves. Vous vous caractérisez par une attitude très conservatrice et vous acceptez en
+            général l'autorité des autres sans la remettre en question.
+        </h5>
+    </div>
+    <div class="row" th:if="${result.getExperience()>=11&&result.getExperience()<=22}">
+        <h5>
+            Vous êtes plutôt conservateur dès lors qu'il s'agit d'effectuer des changements. Vous préférez vous en tenir
+            à un nombre limité de méthodes de travail éprouvées. Il est pour vous plus important qu'une solution
+            fonctionne d'un point de vue pratique que d'être basée sur un modèle théorique et abstrait. C'est certainement
+            un point positif. Vous devez peut-être faire attention à ne pas freiner certains changements mais plutôt
+            utiliser votre attitude pragmatique pour exécuter les changements dans la pratique.
+        </h5>
+    </div>
+    <div class="row" th:if="${result.getExperience()>=23&&result.getExperience()<=40}">
+        <h5>
+            Vous vous intéressez à tout ce qui est nouveau et êtes toujours à la recherche d'opportunités pour vivre de
+            nouvelles expériences. Vous êtes toujours disponible dès lors qu'il s'agit d'apporter des changements et
+            faire preuve d'originalité. Vous aimez réfléchir à des problèmes difficiles et vous abordez souvent ces
+            problèmes à partir d'un angle original
+        </h5>
+    </div>
+
+    <b>Altruisme</b>
+    <div class="row" th:if="${result.getAltruisme()>=0&&result.getAltruisme()<=10}">
+        <h5>
+            Vous vous caractérisez par une vie sociale assez limitée. La vie sociale n'est pas très importante à vos yeux.
+            Vous êtes plutôt quelqu'un de fermé et accordez peu votre confiance aux autres. Par conséquent, vous vous
+            faites surtout du souci pour vous-même et préférez être totalement indépendant.
+        </h5>
+    </div>
+    <div class="row" th:if="${result.getAltruisme()>=11&&result.getAltruisme()<=22}">
+        <h5>
+            Vous vous caractérisez par une vie sociale assez limitée. La vie sociale n'est pas très importante à vos yeux.
+            Vous êtes plutôt quelqu'un de fermé et accordez peu votre confiance aux autres. Par conséquent, vous vous
+            faites surtout du souci pour vous-même et préférez être totalement indépendant.
+        </h5>
+    </div>
+    <div class="row" th:if="${result.getAltruisme()>=23&&result.getAltruisme()<=40}">
+        <h5>
+            Vous êtes une personne sociable : joviale, aimable et serviable. Vous établissez très facilement le contact
+            avec les autres et cherchez la compagnie. Les contacts sociaux sont donc fondamentaux pour votre fonctionnement.
+            Sur le plan professionnel, vous aimez travailler avec les autres et vous considérez le respect mutuel comme
+            un élément clé du travail d'équipe. Vous consultez régulièrement les autres.
+        </h5>
+    </div>
+    <b>Méticulosité</b>
+    <div class="row" th:if="${result.getMeticulosite()>=0&&result.getMeticulosite()<=10}">
+        <h5>
+            En général, vous n'avez pas besoin de faire une analyse détaillée avant de commencer une tâche.
+            Vous travaillez au jour le jour et par conséquent n'êtes pas toujours organisé. Il peut arriver que
+            certaines tâches soient à l'occasion oubliées ou reportées ou que vous ne les finissiez pas toujours.
+            Vous êtes toutefois capable de vous adapter facilement à des situations imprévues et faire face à une
+            certaine opposition.
+        </h5>
+    </div>
+    <div class="row" th:if="${result.getMeticulosite()>=11&&result.getMeticulosite()<=22}">
+        <h5>
+            Il se peut que vous ne soyez pas toujours aussi précis et méticuleux dans l'exécution des tâches.
+            Ce n'est qu'exceptionnellement que vous faites un planning des tâches à exécuter. Au contraire, vous essayez
+            de vous adapter à la situation et d'être flexible. Selon vous, il n'est pas nécessaire de procéder à une
+            analyse si détaillée. Vous jugez un certain nombre de choses en vous basant sur votre intuition et des
+            informations incomplètes ou contradictoires ne vont pas vous effrayer ou vous freiner.
+        </h5>
+    </div>
+    <div class="row" th:if="${result.getMeticulosite()>=23&&result.getMeticulosite()<=40}">
+        <h5>
+            Il est primordial pour vous d'atteindre la perfection dans votre travail. Vous essayez toujours de
+            travailler de façon précise et vous planifiez les diverses tâches de façon méticuleuse.
+            En général, vous êtes parfaitement bien organisé et vous faites une analyse approfondie des données avant
+            de prendre une décision. Vous faites preuve de persévérance en cas d'opposition.
+        </h5>
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

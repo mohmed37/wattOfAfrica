@@ -1,21 +1,558 @@
 <!DOCTYPE html>
-<<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <meta charset="utf-8">
+    <title>BNDreams</title>
+    <style>
+.page-link {
+    color: #F8080C;
+    background-color: #a58e6f;
+    font-size: 20px;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+input {
+    margin-top: 10px;
+    margin-right: 20px;
+    padding-right: 40px;
+}
 
 
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+ .qcm{
+     margin-right: auto;
+     border-color: #1f46c1;
+ }
+
+
+
+
+
+    </style>
 </head>
-<style>
+<div th:insert="header.html :: header"></div></br>
+<div class="container" th:if="${questionnairesBean1.getPhotoLangage()==false}"  >
+
+<h5 class="">1ère étape : PHOTOLANGAGE </h5>
+
+    <div class="row">
+        <ul class="pagination">
+        <li  class="page-item"><a th:if="${pageCourant>=1}" class="page-link" th:href=" @{/bnDream(page=${pageCourant}-1)}">-</a></li>
+        <li class="page-item" th:each="photo : ${pagePhoto}" th:id="${photo.id}">
+             <span style="color: blue; "><a th:href="@{'/savePhotosClient/'+${photo.id}+'/'+${pageCourant}}" ><p><img th:id="dragElement+${photo.id}"  th:src="@{getPhoto(id=${photo.id})}"  style="width:90%"/>
+               </p></a></span>
+            </li>
+        <li  class="page-item"><a th:if="${pageCourant<=16}" class="page-link"  th:href="@{/bnDream(page=${pageCourant}+1)}">+</a></li>
+
+    </ul>
+        </div><br>
+    <div th:if="${nbdreamBean.getTest1()==false}">
+    <div class="row">
+    <u class="text-center">CONSIGNE PHOTOLANGAGE</u>
+    <p><b>1ère phase :</b> Situation actuelle.<br>
+        Vous avez une trentaine de photographies à votre disposition. Choisissez-en tout d’abord trois qui vous évoquentvotre
+        situation actuelle, d’un point de vue personnel et/ou professionnel. Ce choix vous est propre, il n’y a pas de bons
+        ou mauvais choix, les photos doivent venir à vous en fonction de ce qu’elles représentent à vos yeux.
+        Inscrivez <b>les 3 mots</b> qui représentent les photos choisies.
+    </p></div>
+
+  <form th:action="@{saveMotsClient}" method="post" th:object="${nbdreamBean}" enctype="multipart/form-data">
+      <div class="row">
+
+    <div class="col-3" th:if="${nbdreamBean.getPhoto1()>0}">
+             <a onclick="window.location.href='deletePhoto/'+1+'/'+page; return false;" class="closebtn">
+                 <img class="image" th:src="@{getPhoto(id=${nbdreamBean.getPhoto1()})}"  alt="Image" style="max-width:100%;">
+           </a><br>
+        <input th:if="${nbdreamBean.getPhoto1()>0}" type="text"  th:field="*{mot1}" class="desc"/></div>
 
 
-</style>
+
+    <div class="col-3" th:if="${nbdreamBean.getPhoto2()>0}">
+          <a onclick="window.location.href='deletePhoto/'+2+'/'+page; return false;" class="closebtn">
+              <img class="image" th:src="@{getPhoto(id=${nbdreamBean.getPhoto2()})}"  alt="Image" style="max-width:100%;">
+       </a><br>
+        <input th:if="${nbdreamBean.getPhoto2()>0}" type="text"  th:field="*{mot2}" class="desc"/></div>
 
 
-<body>
+
+
+    <div class="col-3" th:if="${nbdreamBean.getPhoto3()>0}">
+        <a onclick="window.location.href='deletePhoto/'+3+'/'+page; return false;" class="closebtn">
+            <img class="image" th:src="@{getPhoto(id=${nbdreamBean.getPhoto3()})}" alt="Image" style="max-width:100%;">
+            </a><br>
+        <input th:if="${nbdreamBean.getPhoto3()>0}" type="text"  th:field="*{mot3}" class="desc"/></div>
+      </div><br>
+      <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+  </form>
+    </div>
+<br>
+<div th:if="${nbdreamBean.getTest1()==true}">
+      <div class="row">
+      <p><b>2ème phase:</b> Situation désirée.<br>
+          Ensuite, il vous faudra choisir trois autres images représentant votre situation future rêvée.
+          Qu’est-ce qui vous inspire ? Vers quoi voulez-vous aller ? Quelle vie rêvez-vous de vivre ? A quoi aspirez-vous ?
+          En réfléchissant à ces questions, écrivez <b>3 mots</b> pour chaque image, suivant ce qu’elle représente pour vous.
+      </p>
+      </div>
+      <form th:action="@{saveMotsClient}" method="post" th:object="${nbdreamBean}" enctype="multipart/form-data">
+          <div class="row">
+
+              <div class="col-3" th:if="${nbdreamBean.getPhoto4()>0}">
+                  <span onclick="window.location.href='deletePhoto/'+4+'/'+page; return false;" class="closebtn">
+                  <img class="image" th:src="@{getPhoto(id=${nbdreamBean.getPhoto4()})}"  alt="Image" style="max-width:100%;">
+                  </span><br>
+                  <input  type="text"  th:field="*{mot4}" class="desc"/></div>
+
+
+              <div class="col-3" th:if="${nbdreamBean.getPhoto5()>0}">
+                  <span onclick="window.location.href='deletePhoto/'+5+'/'+page; return false;" class="closebtn">
+                  <img class="image" th:src="@{getPhoto(id=${nbdreamBean.getPhoto5()})}"  alt="Image" style="max-width:100%;">
+                  </span><br>
+                  <input  type="text"  th:field="*{mot5}" class="desc"/></div>
+
+
+              <div class="col-3" th:if="${nbdreamBean.getPhoto6()>0}">
+                  <span onclick="window.location.href='deletePhoto/'+6+'/'+page; return false;" class="closebtn">
+                       <img class="image" th:src="@{getPhoto(id=${nbdreamBean.getPhoto6()})}" alt="Image" style="max-width:100%;">
+                  </span><br>
+                  <input  type="text"  th:field="*{mot6}" class="desc"/></div>
+
+          </div>
+          <br>
+          <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+
+  </form>
+</div>
+    </div>
+<div class="container" >
+
+<div th:if="${questionnairesBean1.roueVie==false}">
+<h5>2ème étape : LA ROUE DE LA VIE (Inspiration HUDSON)</h5>
+   <p th:if="${roueVieBean.getRoueVie1()==true && roueVieBean.roueVie2==true}">Prenez ensuite conscience
+       de vos résultats, les bons comme les moins
+    bons. Les écarts sont ils surprenants ?</p>
+
+    <div th:if="${ roueVieBean.roueVie2==false}">
+<p >Complétez la roue de la vie pour gagner en «mieux-être»</p>
+    <p> Installez-vous dans un endroit calme,
+        détendez-vous et surtout, soyez honnête avec vous-même et laissez-vous
+        aller à la spontanéité.</p></div>
+
+  <div th:if="${roueVieBean.getRoueVie1()==false}">
+<p style="color: orange">1ère étape : Votre roue de la vie actuelle </p>
+
+  <p> Chaque cercle de la roue, représente l’indice de satisfaction. Du
+        plus petit au plus grand. Indiquez un score entre 0 et 10 votre indice dans
+        chacune des catégories.</p>
+
+    <p>Pour démarrer il convient d’évaluer vos 5 domaines de vie et de savoir quelle est votre vision de l’avenir ?</p><br>
+
+</ul>
+
+
+    <form th:action="@{saveRoueVieClient}" method="post" th:object="${roueVieBean}" enctype="multipart/form-data">
+    <label for="personnelle1">La vie personnelle : </label>
+    <input type="number" id="personnelle1"  th:field="*{personnelle1}" name="personnelle1"
+           min="0" max="10">
+        <label for="social1">Le social : </label>
+        <input type="number" id="social1"  th:field="*{social1}" name="social1"
+           min="0" max="10">
+        <label for="sante1">La santé :</label>
+        <input type="number" id="sante1"  th:field="*{sante1}" name="sante1"
+               min="0" max="10">
+        <label for="famille1">La famille : </label>
+        <input type="number" id="famille1"  th:field="*{famille1}" name="famille1"
+               min="0" max="10">
+        <label for="professionnel1">Le professionnel : </label>
+        <input type="number" id="professionnel1"  th:field="*{professionnel1}" name="professionnel1"
+               min="0" max="10">
+        <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+    </form>
+    </div>
+
+    <div th:if="${roueVieBean.getRoueVie1()==true && roueVieBean.roueVie2==false}">
+    <p style="color: orange">2ème étape : Votre roue de la vie souhaitée :</p>
+        <p>Imaginons, maintenant que vous ayez le pouvoir d’améliorer certains
+            des secteurs de votre roue. Sur la 2ème roue, pour chacun des domaines, indiquer un score entre 0 et 10
+            dans chacune des catégories qui correspondraient à votre indice de satisfaction que vous aimeriez atteindre
+            pour mieux équilibrer votre vie.
+        </p><br>
+
+
+        <form th:action="@{saveRoueVieClient}" method="post" th:object="${roueVieBean}" enctype="multipart/form-data">
+            <label for="personnelle2">La vie personnelle :</label>
+            <input type="number" id="personnelle2"  th:field="*{personnelle2}" name="personnelle2"
+                   min="0" max="10">
+            <label for="sociel2">Le social : </label>
+            <input type="number" id="sociel2"  th:field="*{social2}" name="social2"
+                   min="0" max="10">
+            <label for="sante2">La santé : </label>
+            <input type="number" id="sante2"  th:field="*{sante2}" name="sante2"
+                   min="0" max="10">
+            <label for="famille2">La famille : </label>
+            <input type="number" id="famille2"  th:field="*{famille2}" name="famille2"
+                   min="0" max="10">
+            <label for="professionnel2">Le professionnel : </label>
+            <input type="number" id="professionnel2"  th:field="*{professionnel2}" name="professionnel2"
+                   min="0" max="10">
+            <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+        </form>
+
+</div>
+
+<div class="row">
+    <div style="width: 50%" class="text-center" >
+        <b >Votre roue de la vie actuelle:</b><br>
+        <canvas id="myChart"></canvas>
+    </div>
+    <div >
+    </div>
+    <div style="width: 50%" class="text-center" >
+        <b >Votre roue de la vie souhaitée:</b><br>
+        <canvas id="myChart2"></canvas>
+    </div>
+</div><br>
+    <div th:if="${roueVieBean.roueVie2==true &&questionnairesBean1.getRoueVie()==false}">
+    <h5>Autodiagnostic : Réfléchissez et agissez.</h5>
+        <img src="img/ghandi.jpg" class="image" alt="Image" style="max-width:100%;"><br>
+    <b>« La différence entre le possible et l'impossible réside dans la détermination »</b>
+    <b>GANDHI</b>
+
+    <p>Face à ce diagnostic, vous pouvez agir pour arriver à un meilleur équilibre dans votre vie : Ce qu’il
+        faudrait modifier:</p>
+    <form th:action="@{saveRoueVieClient}" method="post" th:object="${roueVieBean}" enctype="multipart/form-data">
+<div class="row">
+    <div class=qcm>
+        <label for="qcm1">Ce qu’il faudrait modifier: </label>
+            <textarea th:field="*{qcm1}"  id="qcm1"  name="qcm1" maxlength="250" rows="5" cols="33" ></textarea></div>
+    <div class=qcm>
+        <label for="qcm2">Ce qu’il faudrait arrêter: </label>
+        <textarea type="text"   th:field="*{qcm2}"  id="qcm2"  name="qcm2" maxlength="250" rows="5" cols="33"></textarea></div>
+    <div class=qcm>
+        <label for="qcm3">Ce qu’il faudrait prioriser: </label>
+        <textarea type="text"   th:field="*{qcm3}"  id="qcm3"  name="qcm3" maxlength="250" rows="5" cols="33"></textarea></div>
+</div><br>
+        <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+</form>
+    </div>
+    <div th:if="${questionnairesBean1.getRoueVie()}">
+        <b>Ce qu’il faudrait modifier:</b>
+        <p th:text="${roueVieBean.qcm1}"></p><br>
+        <b>Ce qu’il faudrait arrêter:</b>
+        <p th:text="${roueVieBean.qcm2}"></p><br>
+        <b>Ce qu’il faudrait prioriser:</b>
+        <p th:text="${roueVieBean.qcm3}"></p>
+    </div>
+</div>
+    <div th:if="${questionnairesBean1.autoPortrait==false}">
+    <h5>3ème étape : AUTOPORTRAIT</h5>
+    <h6>Qui suis-je vraiment ?</h6>
+    <p>Il est temps de mieux vous connaître en identifiant vos qualités !</p>
+    <p th:if="${autoPortraitBean.getAuto1()==false}"><b>1ère phase:</b> Dans le tableau suivant, cliquez les  3 qualités
+        puis 3 défauts qui vous correspondent le plus. </p>
+    <p th:if="${autoPortraitBean.getAuto1()==true}"><b>2ème phase:</b> DÉFI : Passez une soirée entre amis et profitez
+        de l’occasion pour leur demander ce qu’ils pensent de vous. Vous pouvez vous aider de la fiche </p>
+
+    <div class="row">
+
+            <div class="page-item" th:each="portrait : ${portraitBeanList}">
+             <span style="color: blue; "><a th:href="@{'/savePortraitClient/'+${portrait.id}}"><p th:text="${portrait.personnalite+'&nbsp;-&nbsp;'}" >
+             </p></a></span>
+           </div>
+      <br>
+        </div>
+    <div class="row" th:if="${autoPortraitBean.getAuto1()==false}">
+        <p><b>Qualités</b></p>
+        <ol>
+
+            <li th:text="${autoPortraitBean.getQualite1()}"></li>
+            <li th:text="${autoPortraitBean.getQualite2()}"></li>
+            <li th:text="${autoPortraitBean.getQualite3()}"></li>
+        </ol><br>
+        <p><b>Défaut</b></p>
+        <ol>
+            <li th:text="${autoPortraitBean.getDefaut1()}"></li>
+            <li th:text="${autoPortraitBean.getDefaut2()}"></li>
+            <li th:text="${autoPortraitBean.getDefaut3()}"></li>
+        </ol>
+    </div><br>
+    <div class="row" th:if="${autoPortraitBean.getAuto1()==true}">
+        <p><b>Qualités</b></p>
+        <ol>
+            <li th:text="${autoPortraitBean.getQualite4()}"></li>
+            <li th:text="${autoPortraitBean.getQualite5()}"></li>
+            <li th:text="${autoPortraitBean.getQualite6()}"></li>
+        </ol><br>
+
+        <p><b>Défaut</b></p>
+        <ol>
+            <li th:text="${autoPortraitBean.getDefaut4()}"></li>
+            <li th:text="${autoPortraitBean.getDefaut5()}"></li>
+            <li th:text="${autoPortraitBean.getDefaut6()}"></li>
+        </ol>
+    </div><br>
+    </div>
+    <div th:if="${questionnairesBean1.autoPortrait==false}">
+    <p th:if="${autoPortraitBean.getAuto2()==true} "><b>3ème phase:</b> Que constatez-vous ? Votre entourage vous
+        perçoit-il comme vous vous percevez ? Avez-vous été surpris par certaines réponses ?</p>
+    <div class="row" th:if="${autoPortraitBean.getAuto1()==true}">
+        <div >
+            <p><b>Qualités vu par vous</b></p>
+            <ol>
+                <li th:text="${autoPortraitBean.getQualite1()}"></li>
+                <li th:text="${autoPortraitBean.getQualite2()}"></li>
+                <li th:text="${autoPortraitBean.getQualite3()}"></li>
+            </ol><br>
+            <b></b>
+            <p><b>Défaut vu par vous</b></p>
+            <ol>
+                <li th:text="${autoPortraitBean.getDefaut1()}"></li>
+                <li th:text="${autoPortraitBean.getDefaut2()}"></li>
+                <li th:text="${autoPortraitBean.getDefaut3()}"></li>
+            </ol>
+
+        </div>
+        <div>
+            <p></p><b>Qualités vu par les autres</b></p>
+        <ol>
+            <li th:text="${autoPortraitBean.getQualite4()}"></li>
+            <li th:text="${autoPortraitBean.getQualite5()}"></li>
+            <li th:text="${autoPortraitBean.getQualite6()}"></li>
+        </ol><br>
+        <b></b>
+            <p><b>Défaut vu par les autres</b></p>
+        <ol>
+            <li th:text="${autoPortraitBean.getDefaut4()}"></li>
+            <li th:text="${autoPortraitBean.getDefaut5()}"></li>
+            <li th:text="${autoPortraitBean.getDefaut6()}"></li>
+        </ol>
+    </div>
+        </div>
+
+    <div class="block">
+        <form th:action="@{savePortraitClient/1}" method="post" th:object="${autoPortraitBean}" enctype="multipart/form-data">
+            <label for="qcm3">REFLEXION:</label>
+            <textarea type="text"   th:field="*{reflexion}"  id="qcm4"  name="qcm4" maxlength="500" rows="5" cols="100"></textarea><br>
+            <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+        </form>
+    </div>
+    </div>
+    <div class="block" th:if="${questionnairesBean1.qcm4==false}">
+        <h5><b>4ème étape : DECOUVREZ VOTRE ADN VOCATIONNEL</b></h5><br>
+        <h4>TEST PRAICO </h4>
+        <p>
+            Pour apprendre à mieux vous connaître et à cerner précisément vos intérêts professionnels nous vous invitons
+            à réaliser le test « PRAICO ». Il pourra également vous aider à vous orienter pour choisir le métier qui est
+            fait pour vous.
+        </p>
+        <div>
+            <button class="button is-success is-rounded" onclick="window.location.href='Qcm1'; return false;">Passer le test Praico</button>
+        </div>
+        <p>Nouvelle citation : « Un gagnant est un rêveur qui n’abandonne jamais » Nelson Mandela.</p>
+        <figure class="image is-128x128">
+            <img  src="img/mandela.jpg"  alt="Image" >
+        </figure>
+
+    </div>
+    <div class="block" th:if="${heroResultBean.choixHero==false}">
+        <h5><b>5ème étape : Découvrez vos valeurs, celles qui vous donnent envies de vous lever tous les matins et qui
+            vous font vibrer !</b></h5><br>
+        <h4>HERO / HEROÏNE </h4>
+        <img src="img/hero.jpg">
+        <h5>Et si vous étiez un héros / une héroïne, qui seriez-vous ? Vous pouvez vous inspirez de personnages de films,
+            de livres, de mangas…
+            Qui seriez-vous ?</h5>
+        <form th:action="@{saveHeroClient}" method="post" th:object="${heroResultBean}" enctype="multipart/form-data">
+            <label for="personnelle2">La vie personnelle :</label>
+            <input type="text" id="hero"  th:field="*{hero}" name="hero">
+
+            <button  type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Enregistrer</button>
+        </form>
+    </div>
+
+    <div class="block">
+        <P>Quelles sont les valeurs qui ont motivées ce choix ?Qu’est ce qui est important pour vous dans le vie ?</P><br>
+
+<div class="row" th:if="${questionnairesBean1.hero==false}">
+        <div class="page-item" th:each="valeur : ${listValeur}">
+             <span style="color: blue; "><a th:href="@{'/saveValeurClient/'+${valeur.id}}"><p th:text="${valeur.valeur+'&nbsp;-&nbsp;'}" >
+             </p></a></span>
+        </div></div>
+    </div>
+    <p><b>Valeur</b></p>
+    <div class="row">
+        <ol>
+            <li th:text="${heroResultBean.getValeur1()}"></li>
+            <li th:text="${heroResultBean.getValeur2()}"></li>
+            <li th:text="${heroResultBean.getValeur3()}"></li>
+        </ol><br>
+
+
+    </div>
+
+
+</div>
+
+<script th:inline="javascript">
+    var SOC1 ="[[${roueVieBean.social1}]]";
+    var PER1 ="[[${roueVieBean.personnelle1}]]";
+    var SAN1 ="[[${roueVieBean.sante1}]]";
+    var FAM1 ="[[${roueVieBean.famille1}]]";
+    var RES1 ="[[${roueVieBean.professionnel1}]]";
+    var SOC2 ="[[${roueVieBean.social2}]]";
+    var PER2 ="[[${roueVieBean.personnelle2}]]";
+    var SAN2 ="[[${roueVieBean.sante2}]]";
+    var FAM2 ="[[${roueVieBean.famille2}]]";
+    var RES2 ="[[${roueVieBean.professionnel2}]]";
+    var page="[[${pageCourant}]]";
+    console.log(showtext);
+</script>
+
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'pie',
+
+        // The data for our dataset
+        data: {
+            labels: ['Social', 'Vie Personnel', 'Santé', 'Famille', 'Professionnel'],
+            datasets: [{
+                label: 'My First dataset',
+
+                data: [SOC1,PER1,SAN1,FAM1,RES1],
+
+            backgroundColor: [
+
+                'rgba(193, 28, 199, 1)',
+                'rgba(29, 4, 255,1)',
+                'rgba(25,193 ,13, 1)',
+                'rgba(255, 213, 4, 1)',
+                'rgba(255, 4, 4, 1)',
+
+
+            ],
+            }]
+        },
+
+        // Configuration options go here
+        options: {},
+    });
+</script>
+<script>
+    var ctx = document.getElementById('myChart2').getContext('2d');
+    new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'pie',
+
+        // The data for our dataset
+        data: {
+            labels: ['Social', 'Vie Personnel', 'Santé', 'Famille', 'Professionnel'],
+            datasets: [{
+                label: 'My First dataset',
+
+                data: [SOC2,PER2,SAN2,FAM2,RES2],
+
+                backgroundColor: [
+
+                    'rgba(193, 28, 199, 1)',
+                    'rgba(29, 4, 255,1)',
+                    'rgba(25,193 ,13, 1)',
+                    'rgba(255, 213, 4, 1)',
+                    'rgba(255, 4, 4, 1)',
+
+
+                ],
+            }]
+        },
+
+        // Configuration options go here
+        options: {},
+    });
+</script>
+
+<script>
+
+    var dragItem4= document.getElementById("dragElement4");
+    var droploc4=document.getElementById("droplocation4");
+    dragItem4.ondragstart=function (evt4) {
+        evt4.dataTransfer.setData('key4',evt4.target.id);
+        console.log("ist draggint")
+    };
+
+
+    droploc4.ondragover=function (evt4) {
+        evt4.preventDefault();
+        console.log("ist dragover")
+    };
+    droploc4.ondrop=function (evt4) {
+        var dropItem4= evt4.dataTransfer.getData('key4');
+        evt4.preventDefault();
+        var myElement4 =document.getElementById(dropItem4);
+        var  myNewElement4= document.createElement('img');
+        myNewElement4.src=myElement4.src;
+        droploc4.appendChild(myNewElement4);
+
+    }
+</script>
+
+<script>
+
+    var dragItem4= document.getElementById("dragElement4");
+    var droploc4=document.getElementById("droplocation4");
+    dragItem4.ondragstart=function (evt4) {
+        evt4.dataTransfer.setData('key4',evt4.target.id);
+        console.log("ist draggint")
+    };
+
+
+    droploc4.ondragover=function (evt4) {
+        evt4.preventDefault();
+        console.log("ist dragover")
+    };
+    droploc4.ondrop=function (evt4) {
+        var dropItem4= evt4.dataTransfer.getData('key4');
+        evt4.preventDefault();
+        var myElement4 =document.getElementById(dropItem4);
+        var  myNewElement4= document.createElement('img');
+        myNewElement4.src=myElement4.src;
+        droploc4.appendChild(myNewElement4);
+
+    }
+</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- Also include jQueryUI -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 
 </body>
 </html>
+
+

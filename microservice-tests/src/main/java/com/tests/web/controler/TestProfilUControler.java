@@ -8,9 +8,11 @@ import com.tests.entity.profilU.ProfilU;
 import com.tests.entity.profilU.RestitutionProfilU;
 import com.tests.entity.profilU.ResultatRa;
 import com.tests.entity.profilU.ResultatRb;
+import com.tests.proxy.MuserProxy;
 import com.tests.web.exceptions.QuestioneNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.MapUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +27,10 @@ public class TestProfilUControler {
     ProfiluRepository profiluRepository;
     @Autowired
     RestititutionRepository restititutionRepository;
+    @Autowired
+    MuserProxy muserProxy;
+
+
 
 
     @GetMapping(value = "/listQuestion")

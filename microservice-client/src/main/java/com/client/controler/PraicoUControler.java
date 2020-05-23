@@ -1,13 +1,11 @@
 package com.client.controler;
 
 import com.client.bean.praicoU.*;
-import com.client.bean.profilU.ResultRaBean;
 import com.client.bean.user.QuestionnairesBean;
 import com.client.bean.user.UserBean;
 import com.client.proxy.MPraicoUProxy;
 import com.client.proxy.MuserProxy;
 import com.client.service.IUserService;
-import lombok.experimental.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,7 +81,7 @@ public class PraicoUControler {
         List<Qcm4Bean> qcm4Bean = praicoUProxy.questionnnaire4();
         model.addAttribute("qcm4", qcm4Bean);
 
-        return "praicoU";
+        return "questionPraicoU";
 
     }
     @RequestMapping("/saveQcm4")

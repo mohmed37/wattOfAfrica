@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/dream.css">
+    <!-- css -->
+    <!--font  -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/44fca66a73.js" crossorigin="anonymous"></script>
+    <!-- font -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css"/>
+
     <meta charset="UTF-8"/>
     <title>Authentification</title>
 </head>
 
-<div th:insert="header.html :: header"></div></br>
+<div class="container">
+    <div class="block"  th:insert="header.html :: header"></div></div></br>
 <div class="container">
 <div class="jumbotron">
     <div class="row w-100">
@@ -160,7 +172,11 @@
                     </form> </div>
                 <div class="text-info text-center mt-3" >
                     <form th:action="@{bnDream}" method="get">
-                        <button class="btn btn-success" type="submit" >Carousel</button>
+                        <button class="btn btn-success" type="submit">Questionnaire</button>
+                    </form> </div>
+                <div class="text-info text-center mt-3" >
+                    <form th:action="@{resultatNbdream}" method="get">
+                        <button class="btn btn-success" type="submit" >Resultat</button>
                     </form> </div>
 
             </div>
@@ -186,15 +202,14 @@
         <div class="col-md-3">
             <div class="card border-danger mx-sm-1 p-3">
                 <div class="card border-danger shadow text-danger p-3 my-card" ><span class="fa fa-heart" aria-hidden="true"></span></div>
-                <div class="text-danger text-center mt-3"><h4>Test </h4></div>
-
-                <div class="text-info text-center mt-3" >
-                    <form  method="get">
+                <div class="text-danger text-center mt-3"><h4>Test de personnalité </h4></div>
+                <div class="text-info text-center mt-3" th:if="${questionnaire.get().getPerso()}==false" >
+                    <form th:action="@{questionPerso}" method="get">
                         <button class="btn btn-success" type="submit" >Questionnaire</button>
                     </form> </div>
 
-                <div class="text-info text-center mt-3">
-                    <form method="get">
+                <div class="text-info text-center mt-3" th:if="${questionnaire.get().getPerso()}==true">
+                    <form th:action="@{resultatPerso}"  method="get">
                         <button class="btn btn-success" type="submit" >Resultat</button>
                     </form> </div>
             </div>
@@ -202,15 +217,15 @@
         <div class="col-md-3">
             <div class="card border-danger mx-sm-1 p-3">
                 <div class="card border-danger shadow text-danger p-3 my-card" ><span class="fa fa-heart" aria-hidden="true"></span></div>
-                <div class="text-danger text-center mt-3"><h4>Test </h4></div>
+                <div class="text-danger text-center mt-3"><h4>Test d'orthoraphe et de grammaire </h4></div>
 
-                <div class="text-info text-center mt-3">
-                    <form  method="get">
+                <div class="text-info text-center mt-3" th:if="${questionnaire.get().getGrammaire()}==false" >
+                    <form th:action="@{questionOrthoGram}" method="get">
                         <button class="btn btn-success" type="submit" >Questionnaire</button>
                     </form> </div>
 
-                <div class="text-info text-center mt-3">
-                    <form  method="get">
+                <div class="text-info text-center mt-3" th:if="${questionnaire.get().getGrammaire()}==true">
+                    <form th:action="@{resultatOrthoGram}"  method="get">
                         <button class="btn btn-success" type="submit" >Resultat</button>
                     </form> </div>
             </div>

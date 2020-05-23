@@ -4,11 +4,13 @@ package com.client.controler;
 
 import com.client.bean.compVerbale.CompVerbale2Bean;
 import com.client.bean.compVerbale.CompVerbale3Bean;
+import com.client.bean.nDream.FicheMetierBean;
 import com.client.bean.profilU.*;
 import com.client.bean.user.QuestionnairesBean;
 import com.client.bean.user.UserBean;
 import com.client.proxy.MCompVerbaleProxy;
 import com.client.proxy.MProfilUProxy;
+import com.client.proxy.MndreamProxy;
 import com.client.proxy.MuserProxy;
 import com.client.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,13 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +46,8 @@ public class ClientController {
     BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     IUserService userService;
+    @Autowired
+    MndreamProxy mndreamProxy;
 
     @Value("${dir.images}")
     private String imageDir;
@@ -52,7 +59,7 @@ public class ClientController {
         List<ProfiluBean>questionsList=mtestsProxy.listDesQuestion();
         model.addAttribute("listQuestion",questionsList);
 
-        return "accueil";
+        return "accueil1";
     }
 
     @RequestMapping(value ="/listQuestionnaires")
@@ -65,17 +72,22 @@ public class ClientController {
 
     @RequestMapping("/form")
     public String formLivre(Model model){
-        CompVerbale2Bean comptVerbaleBean =new CompVerbale2Bean();
-        model.addAttribute("restitution",comptVerbaleBean);
+        FicheMetierBean ficheMetierBean=new FicheMetierBean();
+        model.addAttribute("ficheMetierBean",ficheMetierBean);
 
         return "formRest";
     }
 
 
     @RequestMapping("/saveRest")
-    public String saveRestitution(@Valid @ModelAttribute("restitution") CompVerbale2Bean compVerbaleBean){
-        mCompVerbaleProxy.saveVerbale(compVerbaleBean);
+    public String saveRestitution(@Valid @ModelAttribute("ficheMetierBean") FicheMetierBean ficheMetierBean, @RequestParam(name = "picture") MultipartFile file) throws IOException {
 
+        if(!(file.isEmpty())){
+            ficheMetierBean.setPhoto(file.getOriginalFilename());
+            file.transferTo(new File(imageDir+ficheMetierBean.getId()));
+        }
+
+        mndreamProxy.saveFicheMetier(ficheMetierBean);
         return "redirect:/form";
     }
 

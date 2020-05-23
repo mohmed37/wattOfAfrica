@@ -1,8 +1,6 @@
 package com.client.controler;
 
 
-import com.client.bean.emoU.EmoUResultBean;
-import com.client.bean.emoU.EmoUbean;
 import com.client.bean.entreprendre.EntreprResultBean;
 import com.client.bean.entreprendre.EntrepreneurBean;
 import com.client.bean.user.QuestionnairesBean;

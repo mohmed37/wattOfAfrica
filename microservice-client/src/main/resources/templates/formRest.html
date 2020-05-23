@@ -84,41 +84,36 @@
     </div>
 </div>
 <div class="container">
-    <form th:action="@{saveRest}" method="post" th:object="${restitution}" enctype="multipart/form-data">
+    <form th:action="@{saveRest}" method="post" th:object="${ficheMetierBean}" enctype="multipart/form-data">
 
         <div class="col-md-6" >
 
             <div class="form-group">
-                <label>Texte numéro</label>
-                <textarea  type="text" th:field="*{numero}"  class="form-control"  placeholder=" Entrer la restitution"></textarea>
+                <label>Métier</label>
+                <input  type="text" th:field="*{metier}"  class="form-control"  placeholder=" Entrer le métier"/>
+            </div>
+            <div class="form-group">
+                <label>Photo</label>
+                <input type="file" name="picture" placeholder="Photo"/>
             </div>
 
                 <div class="form-group">
                     <label>Texte</label>
-                    <textarea  type="text" th:field="*{texte}"  class="form-control"  placeholder=" Entrer la restitution"></textarea>
+                    <textarea  type="text" th:field="*{texte}"  class="form-control"  placeholder=" Entrer le texte" ></textarea>
                 </div>
 
             <div class="form-group">
-                <label>Question</label>
-                <input type="text"  th:field="*{question}" class="form-control"   placeholder=" Entrer la dimension"/>
+                <label>Compétences</label>
+                <textarea type="text"  th:field="*{competence}" class="form-control"   placeholder=" Entrer les compétences " rows="6" cols="50" Wrap="hard"></textarea>
             </div>
             <div class="form-group">
-                <label>Réponse 1</label>
-                <input type="text"  th:field="*{reponse1}" class="form-control"   placeholder=" Entrer le titre"/>
-            </div>
-            <div class="form-group">
-                <label>Réponse 2</label>
-                <input type="text"  th:field="*{reponse2}" class="form-control"   placeholder=" Entrer le titre"/>
+                <label>Qualités</label>
+                <textarea type="text"  th:field="*{qualite}" class="form-control"   placeholder=" Entrer les qualités" rows="6" cols="50"  Wrap="hard"></textarea>
             </div>
 
             <div class="form-group">
-                <label>Réponse 3</label>
-                <input type="text"  th:field="*{reponse3}" class="form-control"   placeholder=" Entrer le titre"/>
-            </div>
-
-            <div class="form-group">
-                <label>Solution</label>
-                <input type="text"  th:field="*{solution}" class="form-control"   placeholder=" Entrer le titre"/>
+                <label>Code</label>
+                <input type="text"  th:field="*{code}" class="form-control"   placeholder=" Entrer le code"/>
             </div>
 
 

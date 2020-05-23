@@ -4,8 +4,12 @@
     <head>
 
         <meta charset="utf-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
         <title>Title</title>
 
         <style>
@@ -186,6 +190,43 @@
             <td  class="table-ligne2" data-title="Valeur binaire"><strong>Capacités stratégiques</strong>
                 Convaincant, influent, persuasion
             </td>
+           <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                   Détail
+                </button>
+           </td>
+                <!-- The Modal -->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h5 style="color: blueviolet" class="modal-title">POUVOIR DE PERSUASION (Authenticité vs stratégi)</h5>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                               <div th:if="${Authenticite<=3}">
+                                   <span style="color:orange" th:text="${listRestit.get(0).titre}"></span>
+                                <p  th:text="${listRestit.get(0).restitution}"></p>
+                                </div>
+                                <div th:if="${Authenticite>3&&Authenticite<=7}" class="row">
+                                     <span style="color:green" th:text="${listRestit.get(1).titre}"></span>
+                                        <p th:text="${listRestit.get(1).restitution}"></p>
+                                </div>
+                                <div th:if="${Authenticite>7}">
+                                    <span style="color:blue" th:text="${listRestit.get(2).titre}"></span>
+                                <p  th:text="${listRestit.get(2).restitution}"></p>
+                                </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         </tr>
         <tr>
@@ -215,6 +256,43 @@
             <td data-title="Valeur binaire"><strong>Accomodant</strong>
                 Conciliant, à l’écoute d’autrui, diplomate
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModal2">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">AGREABILITE (Ténacité vs Flexibilité)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${Tenacite<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(3).titre}"></span>
+                                <p  th:text="${listRestit.get(3).restitution}"></p>
+                            </div>
+                            <div th:if="${Tenacite>3&&Tenacite<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(4).titre}"></span>
+                                <p th:text="${listRestit.get(4).restitution}"></p>
+                            </div>
+                            <div th:if="${Tenacite>7}">
+                                <span style="color:blue" th:text="${listRestit.get(5).titre}"></span>
+                                <p  th:text="${listRestit.get(5).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         <tr>
             <td class="table-ligne2" data-title="Droit"><strong>Réactivité émotionnelle</strong>
@@ -243,6 +321,44 @@
             <td class="table-ligne2" data-title="Valeur binaire"><strong>Stabilité émotionnelle</strong>
                 Calme, maître de soi, détaché
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal3">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModal3">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">GESTION DES EMOTIONS (Réactivité vs Stabilité)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${reactivite<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(6).titre}"></span>
+                                <p  th:text="${listRestit.get(6).restitution}"></p>
+                            </div>
+                            <div th:if="${reactivite>3&&reactivite<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(7).titre}"></span>
+                                <p th:text="${listRestit.get(7).restitution}"></p>
+                            </div>
+                            <div th:if="${reactivite>7}">
+                                <span style="color:blue" th:text="${listRestit.get(8).titre}"></span>
+                                <p  th:text="${listRestit.get(8).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </tr>
 
         <tr>
@@ -272,6 +388,44 @@
             <td data-title="Valeur binaire"><strong>Extraversion</strong>
                 Ouvert, sociable, enjoué
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModal4">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">SOCIABILITE (Introversion / extraversion) </h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${Introversion<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(9).titre}"></span>
+                                <p  th:text="${listRestit.get(9).restitution}"></p>
+                            </div>
+                            <div th:if="${Introversion>3&&Introversion<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(10).titre}"></span>
+                                <p th:text="${listRestit.get(10).restitution}"></p>
+                            </div>
+                            <div th:if="${Introversion>7}">
+                                <span style="color:blue" th:text="${listRestit.get(11).titre}"></span>
+                                <p  th:text="${listRestit.get(11).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </tr>
         <tr>
             <td class="table-ligne2"
@@ -301,6 +455,45 @@
             <td class="table-ligne2" data-title="Valeur binaire"><strong>Capacités d’improvisation</strong>
                 Spontané, adaptable, à l’aise avec l’incertitude
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModal5">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">CONSCIENCE (Méthode vs Improvisation)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${Methode<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(12).titre}"></span>
+                                <p  th:text="${listRestit.get(12).restitution}"></p>
+                            </div>
+                            <div th:if="${Methode>3&&Methode<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(13).titre}"></span>
+                                <p th:text="${listRestit.get(13).restitution}"></p>
+                            </div>
+                            <div th:if="${Methode>7}">
+                                <span style="color:blue" th:text="${listRestit.get(14).titre}"></span>
+                                <p  th:text="${listRestit.get(14).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </tr>
         <tr>
             <td data-title="Droit"><strong>Intuition</strong>
@@ -320,7 +513,7 @@
             <div th:if="${Intuition<6}"> <td class="table-ligne3"></td></div>
             <div th:if="${Intuition>=7}"> <td class="table-ligne3">*</td></div>
             <div th:if="${Intuition<7}"> <td class="table-ligne3"></td></div>
-            <div th:if="${Intuition>=8}"> <td class="table-ligne2">*</td></div>
+            <div th:if="${Intuition>=8}"> <td>*</td></div>
             <div th:if="${Intuition<8}"> <td></td></div>
             <div th:if="${Intuition>=9}"> <td>*</td></div>
             <div th:if="${Intuition<9}"> <td></td></div>
@@ -329,6 +522,43 @@
             <td data-title="Valeur binaire"><strong>Rationalisme</strong>
                 Centré sur les faits, logique, analytique
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal6">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModal6">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">SENSIBILITE (Intuition vs Rationalisme)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${Intuition<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(15).titre}"></span>
+                                <p  th:text="${listRestit.get(15).restitution}"></p>
+                            </div>
+                            <div th:if="${Intuition>3&&Intuition<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(16).titre}"></span>
+                                <p th:text="${listRestit.get(16).restitution}"></p>
+                            </div>
+                            <div th:if="${Intuition>7}">
+                                <span style="color:blue" th:text="${listRestit.get(17).titre}"></span>
+                                <p  th:text="${listRestit.get(17).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         <tr>
             <td class="table-ligne2" data-title="Droit"><strong>Non conformiste</strong>
@@ -357,6 +587,43 @@
             <td  class="table-ligne2" data-title="Valeur binaire"><strong>Droiture</strong>
                 Adhère aux standards, se conforme, suit les conventions
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal7">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModal7">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">CONVENTIONNEL (Non conformisme vs Droiture)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${NonConformisme<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(18).titre}"></span>
+                                <p  th:text="${listRestit.get(18).restitution}"></p>
+                            </div>
+                            <div th:if="${NonConformisme>3&&NonConformisme<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(19).titre}"></span>
+                                <p th:text="${listRestit.get(19).restitution}"></p>
+                            </div>
+                            <div th:if="${NonConformisme>7}">
+                                <span style="color:blue" th:text="${listRestit.get(20).titre}"></span>
+                                <p  th:text="${listRestit.get(20).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
 
         </tbody>
@@ -417,6 +684,43 @@
             <td  class="table-ligne12" data-title="Valeur binaire"><strong>Engagement au travail</strong>
                 Dévoué, impliqué, bourreau de travail
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal8">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModal8">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">ENGAGEMENT AU TRAVAIL (Equilibre vie personnelle vs vie professionnelle)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${Personnelle<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(21).titre}"></span>
+                                <p  th:text="${listRestit.get(21).restitution}"></p>
+                            </div>
+                            <div th:if="${Personnelle>3&&Personnelle<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(22).titre}"></span>
+                                <p th:text="${listRestit.get(22).restitution}"></p>
+                            </div>
+                            <div th:if="${Personnelle>7}">
+                                <span style="color:blue" th:text="${listRestit.get(23).titre}"></span>
+                                <p  th:text="${listRestit.get(23).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         <tr>
             <td  data-title="Droit"><strong>Besoin de directives</strong>
@@ -445,6 +749,43 @@
             <td data-title="Valeur binaire"><strong>Responsable</strong>
                 Prend les choses en main, autoritaire
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal9">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModal9">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">ENCADREMENT (Directive vs Pouvoir)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${Directive<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(24).titre}"></span>
+                                <p  th:text="${listRestit.get(24).restitution}"></p>
+                            </div>
+                            <div th:if="${Directive>3&&Directive<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(25).titre}"></span>
+                                <p th:text="${listRestit.get(25).restitution}"></p>
+                            </div>
+                            <div th:if="${Directive>7}">
+                                <span style="color:blue" th:text="${listRestit.get(26).titre}"></span>
+                                <p  th:text="${listRestit.get(26).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         <tr>
             <td class="table-ligne12" data-title="Droit"><strong>Réfléchi</strong>
@@ -473,6 +814,43 @@
             <td class="table-ligne12" data-title="Valeur binaire"><strong>Dynamique</strong>
                 Besoin d’action, prend des risques, résultat rapide
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa20">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModa20">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">DYNAMISME (Réflexion vs action)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${reflexion<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(27).titre}"></span>
+                                <p  th:text="${listRestit.get(27).restitution}"></p>
+                            </div>
+                            <div th:if="${reflexion>3&&reflexion<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(28).titre}"></span>
+                                <p th:text="${listRestit.get(28).restitution}"></p>
+                            </div>
+                            <div th:if="${reflexion>7}">
+                                <span style="color:blue" th:text="${listRestit.get(29).titre}"></span>
+                                <p  th:text="${listRestit.get(29).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
 
         <tr>
@@ -502,6 +880,43 @@
             <td data-title="Valeur binaire"><strong>Compétition</strong>
                 Compétitif, ambitieux, cherche la réussite
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa21">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModa21">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">AMBITION (Prudence vs compétition)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${Prudence<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(30).titre}"></span>
+                                <p  th:text="${listRestit.get(30).restitution}"></p>
+                            </div>
+                            <div th:if="${Prudence>3&&Prudence<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(31).titre}"></span>
+                                <p th:text="${listRestit.get(31).restitution}"></p>
+                            </div>
+                            <div th:if="${Prudence>7}">
+                                <span style="color:blue" th:text="${listRestit.get(32).titre}"></span>
+                                <p  th:text="${listRestit.get(32).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         <tr>
             <td class="table-ligne12"
@@ -531,6 +946,43 @@
             <td class="table-ligne12" data-title="Valeur binaire"><strong>Autonome</strong>
                 Besoin d’autonomie, besoin d’indépendance
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa22">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModa22">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">INDEPENDANCE (Grégarité vs Autonomie)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${Gregarite<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(33).titre}"></span>
+                                <p  th:text="${listRestit.get(33).restitution}"></p>
+                            </div>
+                            <div th:if="${Gregarite>3&&Gregarite<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(34).titre}"></span>
+                                <p th:text="${listRestit.get(34).restitution}"></p>
+                            </div>
+                            <div th:if="${Gregarite>7}">
+                                <span style="color:blue" th:text="${listRestit.get(35).titre}"></span>
+                                <p  th:text="${listRestit.get(35).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         <tr>
             <td data-title="Droit"><strong>Individualisme</strong>
@@ -559,6 +1011,43 @@
             <td data-title="Valeur binaire"><strong>Altruisme</strong>
                 Serviable, généreux, soucieux du bien-être d’autrui
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa23">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModa23">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">ALTRUISME (Individualisme vs altruisme)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${individualisme<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(36).titre}"></span>
+                                <p  th:text="${listRestit.get(36).restitution}"></p>
+                            </div>
+                            <div th:if="${individualisme>3&&individualisme<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(37).titre}"></span>
+                                <p th:text="${listRestit.get(37).restitution}"></p>
+                            </div>
+                            <div th:if="${individualisme>7}">
+                                <span style="color:blue" th:text="${listRestit.get(38).titre}"></span>
+                                <p  th:text="${listRestit.get(38).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         <tr>
             <td class="table-ligne12" data-title="Droit"><strong>Traditionnel</strong>
@@ -587,6 +1076,43 @@
             <td  class="table-ligne12" data-title="Valeur binaire"><strong>Attirance pour l’exploration</strong>
                 Curieux, créatif, aime expérimenter, la nouveauté
             </td>
+            <td>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa24">
+                    Détail
+                </button>
+            </td>
+            <!-- The Modal -->
+            <div class="modal" id="myModa24">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 style="color: blueviolet" class="modal-title">OUVERTURE A L’EXPERIENCE (Traditionnel vs Exploration)</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div th:if="${Traditionnel<=3}">
+                                <span style="color:orange" th:text="${listRestit.get(39).titre}"></span>
+                                <p  th:text="${listRestit.get(39).restitution}"></p>
+                            </div>
+                            <div th:if="${Traditionnel>3&&Traditionnel<=7}" class="row">
+                                <span style="color:green" th:text="${listRestit.get(40).titre}"></span>
+                                <p th:text="${listRestit.get(40).restitution}"></p>
+                            </div>
+                            <div th:if="${Traditionnel>7}">
+                                <span style="color:blue" th:text="${listRestit.get(41).titre}"></span>
+                                <p  th:text="${listRestit.get(41).restitution}"></p>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </tr>
         </tbody>
