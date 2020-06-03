@@ -20,22 +20,20 @@ HEADER
     top: 0;
     position:fixed;
     z-index: 999;
+
 }
 
 .header .header-logo{
-    color: #ffffff;
-    font-family:'Montserrat', sans-serif;
     float: left;
     margin-left: 30px;
-
-
 }
 
 .header .header-menu{
-    margin-left: 30px;
     font-size:large;
-
+    float: right;
+    margin-right:30px ;
 }
+
 
 
 .header .header-menu a{
@@ -72,23 +70,53 @@ BANNER
     color: #ffffff;
 }
 
+.test .test-image{
+    position: relative;
+    height: 400px;
+    width: 600px;
+    margin-left: 200px;
+
+}
+.test .test-texte{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 20%
+}
+
+
+
 /*
 ABOUT
 */
-.about .about-sigle-element .icon{
-    font-size: 60px;
-    text-align: center;
 
-}
 
 .about .about-sigle-element {
     text-align: center;
+    margin-left: 100px;
+    width: 100%;
+    margin-right: 20px;
+    margin-left: 20px;
 
 }
 
 .about .about-sigle-element p {
-    text-align: left;
+    text-align:  left;
     margin-top: 20px;
+
+}
+about .about-sigle-element h1 {
+    text-align: left ;
+
+
+}
+.icon-apropos {
+
+    color: #F8080C;
+    font-size: 2em;
+    border-radius: 100px;
+    border-color:#F8080C;
+    border-style: dashed;
 
 }
 
@@ -115,7 +143,8 @@ responsive exemple
 
 @media screen and (max-width: 640px) {
     #open_modal {
-        display:none;
+        display: none;
 
     }
 }
+

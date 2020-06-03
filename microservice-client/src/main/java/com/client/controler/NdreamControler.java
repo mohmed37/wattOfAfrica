@@ -51,22 +51,52 @@ public class NdreamControler {
    @RequestMapping("/savePhoto")
     public String saveLivre(@Valid @ModelAttribute("photo") PhotoBean photo,
                             @RequestParam(name = "picture") MultipartFile file, BindingResult bindingResult) throws IOException {
+       if (bindingResult.hasErrors()) {
+           return "photos";
+       }
+
+       List<PhotoBean> listPhoto = mndream.listPhotosAll();
+       photo.setId(listPhoto.size() + 1);
+
+       if (!(file.isEmpty())) {
+           photo.setPhoto(file.getOriginalFilename());
+           file.transferTo(new File(imageDir + (photo.getId())));
+       }
+       mndream.savePhoto(photo);
+       return "redirect:/photos";
+
+   }
+
+       @RequestMapping("/photosFicheMetier")
+       public String photosFicheMetier(Model model){
+           PhotoFicheMetierBean photo =new PhotoFicheMetierBean();
+           model.addAttribute("photo",photo);
+           return "photoFicheMetier";
+       }
+
+
+
+    @RequestMapping("/savePhotoFicheMetier")
+    public String savePhotoFicheMetier(@Valid @ModelAttribute("photo")  PhotoFicheMetierBean photo,
+                            @RequestParam(name = "picture") MultipartFile file, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()){
-            return "photos";
+            return "photoFicheMetier";
         }
 
-
-        List<PhotoBean>listPhoto=mndream.listPhotosAll();
-        photo.setId(listPhoto.size()+1);
+        List<PhotoFicheMetierBean>listPhoto=mndream.getPhotoFicheMetierAll();
+        photo.setId(listPhoto.size()+81);
 
         if(!(file.isEmpty())){
             photo.setPhoto(file.getOriginalFilename());
             file.transferTo(new File(imageDir+(photo.getId())));
         }
-        mndream.savePhoto(photo);
-        return "redirect:/photos";
+        mndream.photoFicheMetier(photo);
+        return "redirect:/photoFicheMetier";
 
     }
+
+
+
 
     @RequestMapping(value = "bnDream")
     public String bnDream(Model model,@RequestParam(name="page",defaultValue = "0")int page,
@@ -237,6 +267,8 @@ public class NdreamControler {
         model.addAttribute("result",resultRaBean.get());
         Optional<QuestionnairesBean> questionnairesBean = muserProxy.questionnairesUser(userConnec.getNum());
         model.addAttribute("questionnairesBean1",questionnairesBean.get());
+        Optional<HeroResultBean>heroResultBean=mndream.getResultHeroClient(userConnec.getNum());
+        model.addAttribute("heroResultBean",heroResultBean.get());
         return "bnDreamResult";
 
     }
@@ -355,6 +387,8 @@ public class NdreamControler {
                 return "redirect:/bnDream";}}
         if (resultBean.get().getAuto2()){
             resultBean.get().setReflexion(autoPortraitBean.getReflexion());
+           questionnairesBean1.get().setAutoPortrait(true);
+            muserProxy.updateQuestionnaire(questionnairesBean1.get());
             mndream.modifAutoPortraitClient(resultBean.get());
 
 
@@ -376,7 +410,6 @@ public class NdreamControler {
             model.addAttribute("competence",competence);
         String[] qualite=ficheMetier.get().getQualite().split("-");
         model.addAttribute("qualite",qualite);
-
         return "ficheMetier";
     }
 
@@ -405,7 +438,7 @@ public class NdreamControler {
         UserBean userConnec = userService.getUserConnec();
         Optional<HeroResultBean>hero=mndream.getResultHeroClient(userConnec.getNum());
         Optional<HeroBean> valeur=mndream.getValeurHero(id);
-
+        Optional<QuestionnairesBean> questionnairesBean1=muserProxy.questionnairesUser(userConnec.getNum());
 
         if (hero.get().getValeur1().equals("-")){
             hero.get().setValeur1(valeur.get().getValeur());
@@ -422,6 +455,8 @@ public class NdreamControler {
         if (hero.get().getValeur3().equals("-")){
             hero.get().setValeur3(valeur.get().getValeur());
             mndream.mmodifHeroClient(hero.get());
+            questionnairesBean1.get().setHero(true);
+            muserProxy.updateQuestionnaire(questionnairesBean1.get());
             return "redirect:/bnDream";
         }
 
@@ -429,4 +464,25 @@ public class NdreamControler {
 
     }
 
+
+
+    @RequestMapping("/selectionParCategorie{categorie}")
+    public String selectionParCategorie(Model model,@PathVariable("categorie") String categorie) {
+
+    List<FicheMetierBean>ficheMetierBeanList=mndream.findByCategorie(categorie);
+    model.addAttribute("ficheMetierBeanList",ficheMetierBeanList);
+    model.addAttribute("categorie",categorie);
+        return "listeMetier";
     }
+
+
+
+    @RequestMapping("/ficheMetier")
+    public String ficheMetier(Model model) {
+
+        List<PhotoFicheMetierBean>categorieAll=mndream.getPhotoFicheMetierAll();
+        model.addAttribute("categorieAll",categorieAll);
+        return "listFicheMetier";
+    }
+
+}

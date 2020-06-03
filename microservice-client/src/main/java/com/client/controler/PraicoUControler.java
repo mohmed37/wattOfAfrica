@@ -129,7 +129,7 @@ public class PraicoUControler {
         questionnairesBean.get().setQcm4(true);
         muserProxy.updateQuestionnaire(questionnairesBean.get());
         praicoUProxy.modifResultPraicoU(resultPraicoUBean);
-        return "redirect:/listQuestionnaires";
+        return "redirect:/bnDream";
 
     }
 

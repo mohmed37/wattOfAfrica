@@ -3,9 +3,13 @@
 <head>
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dream.css">
+    <!-- font -->
 
     <title>Nouveau livre</title>
 
@@ -22,28 +26,9 @@
         text-align: center;
 
     }
-    #contact{
 
-        font-family: 'Teko', sans-serif;
-        padding-top: 60px;
-        width: 100%;
-        width: 100vw;
-        height: 550px;
-        background: #3a6186; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to left, #3a6186 , #89253e); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to left, #3a6186 , #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        color : #fff;
-    }
-    .contact-section{
-        padding-top: 40px;
-    }
-    .contact-section .col-md-6{
-        width: 50%;
-    }
 
-    .form-line{
-        border-right: 1px solid #B29999;
-    }
+
 
     .form-group{
         margin-top: 10px;
@@ -92,10 +77,11 @@
                 <label>Métier</label>
                 <input  type="text" th:field="*{metier}"  class="form-control"  placeholder=" Entrer le métier"/>
             </div>
-            <div class="form-group">
-                <label>Photo</label>
-                <input type="file" name="picture" placeholder="Photo"/>
-            </div>
+            <label>Catégorie Métier</label>
+            <select id="iDCategorie" name="iDCategorie">
+                <option value="default">Slectionner la catégorie de métier</option>
+                <option th:each="categorie : ${categorieMetier}" th:value="${categorie.id}" th:text="${categorie.categirie}"></option>
+            </select>
 
                 <div class="form-group">
                     <label>Texte</label>

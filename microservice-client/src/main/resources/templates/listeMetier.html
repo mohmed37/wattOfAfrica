@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- head -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Métiers</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/dream.css">
+    <!-- font -->
+
+
+</head>
+<style>
+
+
+    .footer-contact-informations{
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .footer-contact-informations ul{
+        padding: 0;
+    }
+
+    .footer-contact-informations ul li{
+        display: inline-block;
+        list-style-type: none;
+
+    }
+
+    .footer-contact-informations p {
+        font-family: 'Balsamiq Sans', cursive;
+    }
+
+    .footer-contact-informations a {
+        font-family: 'Balsamiq Sans', cursive;
+    }
+
+    .logo{
+        padding-left: 630px;
+        padding-bottom: 10px;
+    }
+    .breadcrumb{
+
+        padding-top: 50px;
+        padding-left: 50px;
+    }
+    #detail{
+        padding: 50px;
+    }
+    td{
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+
+    th{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+
+       border: 5px outset black;
+    }
+
+
+
+</style>
+<!-- head -->
+<div class="block"  th:insert="header.html :: header"></div></div></br>
+<!-- body -->
+<body>
+
+
+<div class="block">
+<nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+        <li>
+            <a href="/ficheMetier">
+        <span class="icon is-small">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </span>
+                <span>Domaines professionnels</span>
+            </a>
+        </li>
+
+        <li class="is-active">
+            <a href="#">
+        <span class="icon is-small">
+          <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+        </span>
+                <span>Liste de métiers</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+</div>
+<!-- banner -->
+
+<div class="block" id="detail">
+    <table >
+        <thead>
+        <tr>
+            <th th:text="${categorie}"></th>
+        </tr>
+        </thead>
+        <tbody th:each="listFicheMetier : ${ficheMetierBeanList}">
+        <tr>
+            <td>
+            <span style="color: blue; "><a th:href="@{'/fiche'+${listFicheMetier.id}}">
+                <p th:text="${listFicheMetier.getMetier()}"></p></a></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- banner -->
+
+
+<!-- portfolio -->
+
+
+<div class="block">
+    <div class="footer-contact-informations">
+        <div class="footer-contact-informations">
+            <div class="logo">
+                <figure class="image is-96x96">
+                    <img src="img/logo.jpg">
+                </figure>
+            </div>
+            <p>Paris Alger Dakar</p>
+            <a>contact@wattOfAfrica.com</a>
+            <ul>
+                <li>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fab fa-google-plus"></i></a>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- scrip -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+
+<!-- scrip -->
+</body>
+
+<!-- body -->
+</html>
+

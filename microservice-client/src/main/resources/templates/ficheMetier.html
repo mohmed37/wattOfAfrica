@@ -7,7 +7,7 @@
     <!-- css -->
     <link rel="stylesheet" href="css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/">
+    <link rel="stylesheet" type="text/css" href="css/dream.css">
     <!-- css -->
     <!--font  -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700&display=swap" rel="stylesheet">
@@ -94,18 +94,47 @@ footer
         padding-left: 630px;
         padding-bottom: 10px;
     }
-
+    .breadcrumb{
+        padding-top: 30px;
+    }
 </style>
 <!-- head -->
-
+<div class="block"  th:insert="header.html :: header"></div></div></br>
 <!-- body -->
 <body>
 
 <!-- banner -->
 <div class="block">
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li>
+                <a href="/ficheMetier">
+        <span class="icon is-small">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </span>
+                    <span>Domaines professionnels</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="selectionParCategorie+${ficheMetier.photo.categirie}">
+        <span class="icon is-small">
+          <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+        </span>
+                    <span>Liste de métiers</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+<div class="block">
 
         <div class="banner">
-            <img  th:src="@{getPhoto(id=${0})}" alt="Un ordinateur" class="banner-image">
+
+
+            <img  th:src="@{getPhoto(id=${ficheMetier.getPhoto().id})}" alt="Un ordinateur" class="banner-image">
             <div class="banner-content">
                 <h1 class="title is-1" style="background-color: #2f3542" th:text="${ficheMetier.metier}"></h1>
             </div>

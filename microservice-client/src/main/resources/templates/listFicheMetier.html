@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- head -->
+<head>
+    <title>List fiche métier</title>
+    <meta charset="utf-8">
+    <!-- css -->
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/dream.css">
+    <!-- css -->
+    <!--font  -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/44fca66a73.js" crossorigin="anonymous"></script>
+    <!-- font -->
+
+
+</head>
+<style>
+
+    /*
+footer
+*/
+
+    .footer-contact-informations{
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .footer-contact-informations ul{
+        padding: 0;
+    }
+
+    .footer-contact-informations ul li{
+        display: inline-block;
+        list-style-type: none;
+
+    }
+
+    .footer-contact-informations p {
+        font-family: 'Balsamiq Sans', cursive;
+    }
+    .footer-contact-informations a {
+        font-family: 'Balsamiq Sans', cursive;
+    }
+    .logo{
+        padding-left: 630px;
+        padding-bottom: 10px;
+    }
+
+
+
+    .banner-image{
+
+        width: 70%;
+
+
+    }
+    #photo{
+
+        padding-top: 50px;
+        padding-left: 100px;
+
+    }
+    .title{
+        text-align: center;
+
+         color: black;
+
+    }
+    .block-title{
+        border-radius: 50px;
+        background-color: #c10e75;
+        margin-left: 80px;
+        margin-right:80px;
+        margin-top: 30px;
+
+    }
+
+
+
+</style>
+<!-- head -->
+<div class="block"  th:insert="header.html :: header"></div></div></br>
+<!-- body -->
+<body>
+
+<div class="block-title">
+    <h1 class="title">
+        DICO-METIERS
+    </h1>
+</div>
+
+<!-- banner -->
+<div class="block " id="photo">
+
+    <div class="columns is-mobile">
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Banque finance'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=80)}"></a></span><p>Banque finance</p></div>
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Administration Gestion'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=81)}"></a></span><p>Administration-Gestion</p></div>
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Artisanat'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=82)}"></a></span><p>Artisanat</p></div>
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Commerce'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=84)}"></a></span><p>Commerce</p></div>
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Architecture Urbanisme'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=85)}"></a></span><p>Architecture Urbanisme</p></div>
+    </div>
+
+    <div class="columns is-mobile">
+
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Agriculture'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=86)}"></a></span><p>Agriculture</p></div>
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Audiovisuel'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=87)}"></a></span><p>Audiovisuel</p></div>
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Alimentaire'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=88)}"></a></span><p>Alimentaire</p></div>
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Marketing Pub'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=89)}"></a></span><p>Marketing Pub</p></div>
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Art'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=90)}"></a></span><p>Art</p></div>
+    </div>
+
+    <div class="columns is-mobile">
+
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorie Justice Droit'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=91)}"></a></span><p>Justice Droit</p></div>
+        <div class="column"><span style="color: blue; "><a th:href="@{'/selectionParCategorieart Culture et Patimoine'}" >
+        <img class="banner-image" th:src="@{getPhoto(id=92)}"></a></span><p>Art Culture et Patrimoine</p></div>
+
+    </div>
+</div>
+<!-- banner -->
+
+
+<!-- portfolio -->
+
+
+<div class="block">
+    <div class="footer-contact-informations">
+        <div class="footer-contact-informations">
+            <div class="logo">
+                <figure class="image is-96x96">
+                    <img src="img/logo.jpg">
+                </figure>
+            </div>
+            <p>Paris Alger Dakar</p>
+            <a>contact@wattOfAfrica.com</a>
+            <ul>
+                <li>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fab fa-google-plus"></i></a>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- scrip -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+<!-- scrip -->
+</body>
+
+<!-- body -->
+</html>

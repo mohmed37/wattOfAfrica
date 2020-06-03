@@ -5,6 +5,7 @@ package com.client.controler;
 import com.client.bean.compVerbale.CompVerbale2Bean;
 import com.client.bean.compVerbale.CompVerbale3Bean;
 import com.client.bean.nDream.FicheMetierBean;
+import com.client.bean.nDream.PhotoFicheMetierBean;
 import com.client.bean.profilU.*;
 import com.client.bean.user.QuestionnairesBean;
 import com.client.bean.user.UserBean;
@@ -67,26 +68,23 @@ public class ClientController {
         UserBean userConnec=userService.getUserConnec();
         Optional<QuestionnairesBean> questionnairesBean=muserProxy.questionnairesUser(userConnec.getNum());
         model.addAttribute("questionnaire",questionnairesBean);
-
         return "listQuestionnaires";}
 
     @RequestMapping("/form")
     public String formLivre(Model model){
         FicheMetierBean ficheMetierBean=new FicheMetierBean();
         model.addAttribute("ficheMetierBean",ficheMetierBean);
+        List<PhotoFicheMetierBean>categorieMetier=mndreamProxy.getPhotoFicheMetierAll();
+        model.addAttribute("categorieMetier",categorieMetier);
+
 
         return "formRest";
     }
 
 
     @RequestMapping("/saveRest")
-    public String saveRestitution(@Valid @ModelAttribute("ficheMetierBean") FicheMetierBean ficheMetierBean, @RequestParam(name = "picture") MultipartFile file) throws IOException {
-
-        if(!(file.isEmpty())){
-            ficheMetierBean.setPhoto(file.getOriginalFilename());
-            file.transferTo(new File(imageDir+ficheMetierBean.getId()));
-        }
-
+    public String saveRestitution(@Valid @ModelAttribute("ficheMetierBean") FicheMetierBean ficheMetierBean, @RequestParam("iDCategorie") int iDCategorie) {
+        ficheMetierBean.setPhoto(mndreamProxy.getPhotoFicheMetier(iDCategorie).get());
         mndreamProxy.saveFicheMetier(ficheMetierBean);
         return "redirect:/form";
     }

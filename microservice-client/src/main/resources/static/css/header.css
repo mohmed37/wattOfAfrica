@@ -12,10 +12,10 @@ HEADER
 */
 
 .header{
-
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-right: 30px;
     width: 100%;
-    margin-left:0;
-    margin-right: 0;
     height: 70px;
     line-height: 70px;
     background-color: rgba(0,0,0,0.4);
@@ -25,18 +25,14 @@ HEADER
 }
 
 .header .header-logo{
-    color: #ffffff;
-    font-family:'Montserrat', sans-serif;
     float: left;
     margin-left: 30px;
-
-
 }
 
 .header .header-menu{
-    margin-left: 30px;
     font-size:large;
-
+    float: right;
+    margin-right:30px ;
 }
 
 

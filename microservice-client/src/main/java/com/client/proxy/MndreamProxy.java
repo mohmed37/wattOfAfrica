@@ -60,6 +60,7 @@ public interface MndreamProxy {
 
    @GetMapping(value = "microservice-tests/getAutoportrait/{id}")
    Optional<AutoPortraitBean>getAutoportrait(@PathVariable("id") int id);
+
    @GetMapping(value = "microservice-tests/ResulAutoportraitAll")
    List<AutoPortraitResultBean> ResulAutoportraitAll();
 
@@ -68,8 +69,10 @@ public interface MndreamProxy {
 
    @PostMapping(value = "microservice-tests/saveAutoPortraitClient")
    AutoPortraitResultBean saveAutoPortraitClient(@RequestBody AutoPortraitResultBean autoportraitResult);
+
     @PutMapping(value = "microservice-tests/modifAutoPortraitClient")
      AutoPortraitResultBean modifAutoPortraitClient(@RequestBody AutoPortraitResultBean autoportraitResult);
+
     @PostMapping(value = "microservice-tests/saveFicheMetier")
     ResponseEntity<FicheMetierBean> saveFicheMetier(@RequestBody FicheMetierBean ficheMetier);
 
@@ -79,8 +82,21 @@ public interface MndreamProxy {
     @GetMapping(value = "microservice-tests/getFicheMetierCode/{code}")
     List<FicheMetierBean>getFicheMetierCode(@PathVariable("code") String code);
 
+    @PostMapping(value = "microservice-tests/photoFicheMetier")
+   ResponseEntity<PhotoFicheMetierBean> photoFicheMetier(@RequestBody PhotoFicheMetierBean photo);
+
+    @GetMapping(value = "microservice-tests/getPhotoFicheMetier/{id}")
+    Optional<PhotoFicheMetierBean>getPhotoFicheMetier(@PathVariable("id") int id);
+
+    @GetMapping(value = "microservice-tests/getPhotoFicheMetierAll")
+    List<PhotoFicheMetierBean>getPhotoFicheMetierAll();
+
+    @GetMapping(value = "microservice-tests/categorie")
+    List<FicheMetierBean> findByCategorie(  @RequestParam(name = "categorie",defaultValue =" " )String categorie);
+
     @GetMapping(value = "microservice-tests/listvaleurHero")
     List<HeroBean> listvaleurHero();
+
     @GetMapping(value = "microservice-tests/listResultHero")
     List<HeroResultBean> listResultHero();
 
@@ -95,6 +111,8 @@ public interface MndreamProxy {
 
     @PutMapping(value = "microservice-tests/modifHeroClient")
     HeroResultBean mmodifHeroClient(@RequestBody HeroResultBean heroResult);
+
+
 
 
 }

@@ -21,8 +21,6 @@ public class FicheMetier {
     int id;
     @Column(name = "metier")
     String metier;
-    @Column(name = "photo")
-    String photo;
     @Column(name = "texte")
     String texte;
     @Column(name = "competence")
@@ -31,5 +29,7 @@ public class FicheMetier {
     String qualite;
     @Column(name = "code")
     String code;
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "photo_id")
+    PhotoFicheMetier photo;
 }

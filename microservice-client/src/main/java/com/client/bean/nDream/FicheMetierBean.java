@@ -6,6 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,9 +18,11 @@ public class FicheMetierBean {
 
     int id;
     String metier;
-    String photo;
     String texte;
     String competence;
     String qualite;
     String code;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "photo_id")
+    PhotoFicheMetierBean photo;
 }

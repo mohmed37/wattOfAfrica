@@ -19,9 +19,9 @@
     <title>Authentification</title>
 </head>
 
-<div class="container">
-    <div class="block"  th:insert="header.html :: header"></div></div></br>
-<div class="container">
+
+    <div class="block"  th:insert="header.html :: header"></div></br>
+
 <div class="jumbotron">
     <div class="row w-100">
         <div class="col-md-3">
@@ -167,8 +167,8 @@
                 <div class="text-danger text-center mt-3"><h4>B’N’DREAM</h4></div>
 
                 <div class="text-info text-center mt-3" >
-                    <form th:action="@{photos}" method="get">
-                        <button class="btn btn-success" type="submit" >Inserer une photo</button>
+                    <form th:action="@{photosFicheMetier}" method="get">
+                        <button class="btn btn-success" type="submit" >Inserer fiche metier</button>
                     </form> </div>
                 <div class="text-info text-center mt-3" >
                     <form th:action="@{bnDream}" method="get">
@@ -236,8 +236,8 @@
                 <div class="text-danger text-center mt-3"><h4>Test</h4></div>
 
                 <div class="text-info text-center mt-3" >
-                    <form method="get">
-                        <button class="btn btn-success" type="submit">Questionnaire</button>
+                    <form th:action="@{ficheMetier}" method="get">
+                        <button class="btn btn-success" type="submit">DICO-METIERS</button>
                     </form> </div>
                 <div class="text-info text-center mt-3" >
                     <form method="get">
@@ -251,6 +251,5 @@
 
 </div>
 
-</div>
 </body>
 </html>

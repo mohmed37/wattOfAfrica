@@ -14,6 +14,10 @@ footer
 .footer .footer-contact-informations ul{
     padding: 0;
 }
+.valeur {
+    margin-left: 40px;
+
+}
 
 .footer .footer-contact-informations ul li{
     display: inline-block;
@@ -76,6 +80,11 @@ HEADER
 .image{
     width: 70%;
 }
-.praico{
-    width: 50%;
+.praico {
+    width: 40%;
 }
+.roue{
+    width: 80%;
+    margin-top: 10px;
+}
+

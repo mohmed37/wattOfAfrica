@@ -34,6 +34,8 @@ public class TestNbreamControler {
     heroRepositories heroRepositories;
     @Autowired
     FicheMetierRepositories ficheMetierRepositories;
+    @Autowired
+    PhotoFMRepositories photoFMRepositories;
 
     @PostMapping(value = "/photo")
     public ResponseEntity<Photo> savePhoto(@RequestBody Photo photo, BindingResult bindingResult){
@@ -45,6 +47,9 @@ public class TestNbreamControler {
 
         return new ResponseEntity<Photo>(savePhoto, HttpStatus.CREATED);
     }
+
+
+
 
     @GetMapping(value = "/listPhotos")
     public Page<Photo> listPhotos(@RequestParam(name="page",defaultValue = "0")int page,
@@ -155,6 +160,7 @@ public class TestNbreamControler {
             return null;
         }
         roueVie.setRoueVie1(false);
+        roueVie.setRoueVie2(false);
         return roueVieRepositories.save(roueVie);
 
     }
@@ -210,6 +216,7 @@ public class TestNbreamControler {
         autoportraitResult.setQualite5("-");
         autoportraitResult.setQualite6("-");
         autoportraitResult.setAuto1(false);
+        autoportraitResult.setAuto2(false);
 
         return autoportraitResultRepositories.save(autoportraitResult);
     }
@@ -250,6 +257,9 @@ public class TestNbreamControler {
             return null;
         }
         heroResult.setChoixHero(false);
+        heroResult.setValeur1("-");
+        heroResult.setValeur2("-");
+        heroResult.setValeur3("-");
         return heroResultRepositories.save(heroResult);
 
     }
@@ -288,6 +298,37 @@ public class TestNbreamControler {
     public List<FicheMetier>getFicheMetierCode(@PathVariable("code") String code) {
         return ficheMetierRepositories.findByCode(code);
     }
+
+    @PostMapping(value = "/photoFicheMetier")
+    public ResponseEntity<PhotoFicheMetier> photoFicheMetier(@RequestBody PhotoFicheMetier photo, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return null;
+        }
+
+        PhotoFicheMetier savePhoto = photoFMRepositories.save(photo);
+
+        return new ResponseEntity<PhotoFicheMetier>(savePhoto, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "getPhotoFicheMetier/{id}")
+    public Optional<PhotoFicheMetier>getPhotoFicheMetier(@PathVariable("id") int id) {
+        Optional<PhotoFicheMetier> photo = photoFMRepositories.findById(id);
+        if (!photo.isPresent()) throw new QuestioneNotFoundException("Cette photo n'existe pas");
+        return photo;
+    }
+    @GetMapping(value = "getPhotoFicheMetierAll")
+    public List<PhotoFicheMetier>getPhotoFicheMetierAll() {
+
+        return photoFMRepositories.findAll();
+    }
+
+    @GetMapping(value = "/categorie")
+    public List<FicheMetier> findByCategorie(  @RequestParam(name = "categorie",defaultValue =" " )String categorie){
+        return ficheMetierRepositories.findByPhoto_Categirie(categorie);
+    }
+
+
+
 
 
 }

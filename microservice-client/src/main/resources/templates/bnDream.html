@@ -43,13 +43,54 @@ label {
      margin-right: auto;
      border-color: #1f46c1;
  }
+/*
+HEADER
+*/
 
+.header{
+
+    width: 100%;
+    margin-left:0;
+    margin-right: 0;
+    height: 70px;
+    line-height: 70px;
+    background-color: rgba(0,0,0,0.4);
+    top: 0;
+    position:fixed;
+    z-index: 999;
+}
+
+.header .header-logo{
+    color: #ffffff;
+    font-family:'Montserrat', sans-serif;
+    float: left;
+    margin-left: 30px;
+
+
+}
+
+.header .header-menu{
+    margin-left: 30px;
+    font-size:large;
+
+}
+
+
+.header .header-menu a{
+    margin-right: 15px;
+    color: white;
+}
+
+.header .header-menu a:hover{
+    color: #3498db;
+}
 
 
 
 
     </style>
 </head>
+<body>
 <div th:insert="header.html :: header"></div></br>
 <div class="container" th:if="${questionnairesBean1.getPhotoLangage()==false}"  >
 
@@ -144,8 +185,11 @@ label {
   </form>
 </div>
     </div>
+
 <div class="container" >
 
+<!--     Roue de la vie-->
+<div class="roueDeLaVie" th:if="${questionnairesBean1.photoLangage==true}" >
 <div th:if="${questionnairesBean1.roueVie==false}">
 <h5>2ème étape : LA ROUE DE LA VIE (Inspiration HUDSON)</h5>
    <p th:if="${roueVieBean.getRoueVie1()==true && roueVieBean.roueVie2==true}">Prenez ensuite conscience
@@ -264,18 +308,21 @@ label {
         <p th:text="${roueVieBean.qcm3}"></p>
     </div>
 </div>
+    </div>
+<!--     AutoPortrait-->
+    <div th:if="${questionnairesBean1.roueVie==true &&questionnairesBean1.autoPortrait==false}">
     <div th:if="${questionnairesBean1.autoPortrait==false}">
     <h5>3ème étape : AUTOPORTRAIT</h5>
     <h6>Qui suis-je vraiment ?</h6>
     <p>Il est temps de mieux vous connaître en identifiant vos qualités !</p>
     <p th:if="${autoPortraitBean.getAuto1()==false}"><b>1ère phase:</b> Dans le tableau suivant, cliquez les  3 qualités
         puis 3 défauts qui vous correspondent le plus. </p>
-    <p th:if="${autoPortraitBean.getAuto1()==true}"><b>2ème phase:</b> DÉFI : Passez une soirée entre amis et profitez
+    <p th:if="${autoPortraitBean.getAuto1()==true &&autoPortraitBean.getAuto2()==false}"><b>2ème phase:</b> DÉFI : Passez une soirée entre amis et profitez
         de l’occasion pour leur demander ce qu’ils pensent de vous. Vous pouvez vous aider de la fiche </p>
 
     <div class="row">
 
-            <div class="page-item" th:each="portrait : ${portraitBeanList}">
+            <div class="page-item" th:each="portrait : ${portraitBeanList}" th:if="${autoPortraitBean.getAuto1()==true&& autoPortraitBean.getAuto2()==false}">
              <span style="color: blue; "><a th:href="@{'/savePortraitClient/'+${portrait.id}}"><p th:text="${portrait.personnalite+'&nbsp;-&nbsp;'}" >
              </p></a></span>
            </div>
@@ -296,7 +343,7 @@ label {
             <li th:text="${autoPortraitBean.getDefaut3()}"></li>
         </ol>
     </div><br>
-    <div class="row" th:if="${autoPortraitBean.getAuto1()==true}">
+    <div class="row" th:if="${autoPortraitBean.getAuto1()==true&& autoPortraitBean.getAuto2()==false}">
         <p><b>Qualités</b></p>
         <ol>
             <li th:text="${autoPortraitBean.getQualite4()}"></li>
@@ -312,8 +359,8 @@ label {
         </ol>
     </div><br>
     </div>
-    <div th:if="${questionnairesBean1.autoPortrait==false}">
-    <p th:if="${autoPortraitBean.getAuto2()==true} "><b>3ème phase:</b> Que constatez-vous ? Votre entourage vous
+    <div th:if="${questionnairesBean1.autoPortrait==false && autoPortraitBean.getAuto2()==true}">
+    <p><b>3ème phase:</b> Que constatez-vous ? Votre entourage vous
         perçoit-il comme vous vous percevez ? Avez-vous été surpris par certaines réponses ?</p>
     <div class="row" th:if="${autoPortraitBean.getAuto1()==true}">
         <div >
@@ -357,7 +404,11 @@ label {
         </form>
     </div>
     </div>
-    <div class="block" th:if="${questionnairesBean1.qcm4==false}">
+    </div>
+
+<!--    Praico-->
+
+    <div class="block" th:if="${questionnairesBean1.qcm4==false&&questionnairesBean1.autoPortrait==true}">
         <h5><b>4ème étape : DECOUVREZ VOTRE ADN VOCATIONNEL</b></h5><br>
         <h4>TEST PRAICO </h4>
         <p>
@@ -374,7 +425,9 @@ label {
         </figure>
 
     </div>
-    <div class="block" th:if="${heroResultBean.choixHero==false}">
+<!--    Héro-->
+    <div th:if="${questionnairesBean1.qcm4==true}">
+    <div class="block" th:if="${heroResultBean.choixHero==false }">
         <h5><b>5ème étape : Découvrez vos valeurs, celles qui vous donnent envies de vous lever tous les matins et qui
             vous font vibrer !</b></h5><br>
         <h4>HERO / HEROÏNE </h4>
@@ -390,15 +443,15 @@ label {
         </form>
     </div>
 
-    <div class="block">
+    <div class="block" th:if="${questionnairesBean1.hero==false}" >
         <P>Quelles sont les valeurs qui ont motivées ce choix ?Qu’est ce qui est important pour vous dans le vie ?</P><br>
 
-<div class="row" th:if="${questionnairesBean1.hero==false}">
+<div class="row" >
         <div class="page-item" th:each="valeur : ${listValeur}">
              <span style="color: blue; "><a th:href="@{'/saveValeurClient/'+${valeur.id}}"><p th:text="${valeur.valeur+'&nbsp;-&nbsp;'}" >
              </p></a></span>
         </div></div>
-    </div>
+
     <p><b>Valeur</b></p>
     <div class="row">
         <ol>
@@ -409,8 +462,30 @@ label {
 
 
     </div>
+    </div>
+    <div class="block" th:if="${questionnairesBean1.hero==true}" >
+        <h4 style="color: orange; text-align: center">MES FELICITATIONS !
+            VOUS AVEZ REUSSI LA 1ère ETAPE DE WATT
+            B’NDREAM VOUS A PERMIS DE MIEUX VOUS CONNAITRE ET
+            D’IDENTIFIER DES PISTES DE METIERS
+            YES YOU WILL BE !</h4><br>
+
+            <h4  style="color: orange; text-align: center">
+            MAINTENANT DECOUVREZ QUELS SONT VOS TALENTS AVEC LE
+            B’N BECOME ET CONSOLIDEZ VOTRE PROJET PROFESSIONNEL
+            YES YOU CAN !
+            </h4><br>
+
+        <form th:action="@{resultatNbdream}" method="get">
+            <button class="btn btn-success" type="submit" >Restitution</button>
+        </form>
+
+        <h4  style="color: red; text-align: center"> BOUTON : CLIQUER SUR LE BOUTON B’N BECOME</h4>
 
 
+
+        </div>
+    </div>
 </div>
 
 <script th:inline="javascript">

@@ -25,18 +25,39 @@
     <!-- meta SEO -->
 </head>
 <!-- head -->
+<style>
+    .title{
+        border-radius: 50px;
+        background-color: #c10e75;
+        margin-left: 80px;
+        margin-right:80px;
+        margin-top: 30px;
 
+    }
+    .titre{
+        border-radius: 50px;
+        background-color: #c10e75;
+        padding-right: 10px;
+        padding-left: 10px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        color: black;
+
+    }
+
+
+</style>
 <!-- body -->
 <body>
 <!-- header -->
 
-    <div class="block"  th:insert="header.html :: header"></div><br><br>
+    <div th:insert="header.html :: header"></div><br><br>
 <!-- header -->
 
 <div class="block">
-<h1 class="title"><b>B’N’DREAM</b></h1>
+<h1 class="title"><b >B’N’DREAM</b></h1>
 <!-- PHOTOLANGAGE   -->
-    <p class="subtitle"><b>PHOTOLANGAGE</b></p>
+    <p class="subtitle"><b class="titre" >PHOTOLANGAGE</b></p>
 </div>
     <div class="photo">
     <div class="block">
@@ -89,18 +110,18 @@
 </div><br>
     <!-- PHOTOLANGAGE   -->
     <div class="block">
-        <p class="subtitle"><b>ROUE DE LA VIE</b></p><br>
+        <p class="subtitle"><b class="titre">ROUE DE LA VIE</b></p><br>
         <div class="block">
             <div class="columns">
                 <div class="column">
-                <div class="text-center" >
-                    <b >Votre roue de la vie actuelle:</b><br>
+                <div class="roue" >
+                    <b class="roue-titre">Votre roue de la vie actuelle:</b><br>
                     <canvas id="myChart"></canvas>
                 </div>
                 </div>
                 <div class="column">
-                <div class="text-center" >
-                    <b >Votre roue de la vie souhaitée:</b><br>
+                <div class="roue" >
+                    <b class="roue-titre">Votre roue de la vie souhaitée:</b><br>
                     <canvas id="myChart2"></canvas>
                 </div>
                 </div>
@@ -118,7 +139,7 @@
 
     </div>
     <div class="block">
-        <p class="subtitle"><b>AUTOPORTRAIT</b></p><br>
+        <p class="subtitle"><b class="titre">AUTOPORTRAIT</b></p><br>
         <div class="columns">
             <div class="column">
         <ul>
@@ -157,11 +178,25 @@
     </div><br>
     <div class="block" th:if="${questionnairesBean1.qcm4==true}">
         <p class="subtitle"><b>VOTRE ADN VOCATIONNEL</b></P><br>
-        <p class="subtitle"><b>TEST PRAICO</b> </p>
+        <p class="subtitle"><b class="titre">TEST PRAICO</b> </p>
         <div class="praico">
         <canvas id="canvas"></canvas>
         </div>
     </div>
+<div class="block">
+    <p class="subtitle"><b class="titre">HERO / HEROÏNE </b></p><br>
+    <P th:text="${heroResultBean.hero}"></P>
+</div>
+<div class="valeur">
+<p><b>Valeur</b></p>
+<div class="row">
+    <ol >
+        <li th:text="${heroResultBean.getValeur1()}"></li>
+        <li th:text="${heroResultBean.getValeur2()}"></li>
+        <li th:text="${heroResultBean.getValeur3()}"></li>
+    </ol><br>
+</div>
+</div>
 
 
 

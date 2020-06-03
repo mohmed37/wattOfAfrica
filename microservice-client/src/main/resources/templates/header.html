@@ -24,20 +24,19 @@
 <body>
 <!-- header -->
 <div class="block">
-    <div class="container">
         <header class="header">
-
+            <div class="header-logo"><a href="/WATT/" title=""><img src="img/logo.png" alt=""></a></div>
             <nav class="header-menu">
-                <a href="/">Accueil</a>
+                <a href="/"><i class="fas fa-home"></i> Accueil</a>
                 <a th:if="${#httpServletRequest.remoteUser}" href="/listQuestionnaires">List des questionnaires</a>
                 <a th:if="${#httpServletRequest.remoteUser}" href="form">Formulaire</a>
-                <a th:if="!${#httpServletRequest.remoteUser}" href="/login">Me connecter</a>
-                <a th:if="${#httpServletRequest.remoteUser}" href="/logout">Me déconnecter</a>
+               <a th:if="!${#httpServletRequest.remoteUser}" href="/login"><i class="fas fa-external-link-square-alt"></i> Connexion</a>
+                <a th:if="${#httpServletRequest.remoteUser}" href="/logout"><i class="fas fa-external-link-square-alt"></i> Déconnection</a>
+                <a href="#"><i class="fas fa-key"></i> Inscription</a>
             </nav>
-
         </header>
     </div>
-</div>
+
 <!-- header -->
 </body>
 </html>
