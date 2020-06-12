@@ -1,0 +1,46 @@
+.carre {
+  margin-left: 50px;
+  margin-top: 50px;
+  width: 200px;
+  height: 200px;
+}
+.data{
+  margin-left: 50px;
+  margin-top: 50px;
+}
+.boutton{
+  margin-left: 50px;
+  margin-top: 50px;
+}
+.ngstyle{
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.newCarre{
+  margin-left: 50px;
+  margin-top: 50px;
+  width: 200px;
+  height: 200px;
+
+}
+
+.class{
+  width: 200px;
+  height: 200px;
+  background-color: red;
+}
+.newClass{
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+}
+
+.class2{
+  margin-left: 50px;
+  margin-top: 50px;
+}
+.ngFor{
+  margin-left: 50px;
+  margin-top: 50px;
+}

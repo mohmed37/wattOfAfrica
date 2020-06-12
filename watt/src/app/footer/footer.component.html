@@ -1,0 +1,41 @@
+<div class="carre" [style.background]="color"
+     (click)="changeColor('blue')"
+     (mouseenter)="changeColor('green')"
+     (mouseleave)="changeColor('red')" >
+</div>
+
+<div class="data">
+<input type="text" [(ngModel)]="content">
+<br>
+<p>{{content}}</p>
+</div>
+
+<div class="boutton">
+  <button class="btn btn-success" (click)="displayButton =!displayButton ">Click</button>
+  <p *ngIf="displayButton">Bonjour</p>
+</div>
+
+  <div class="ngstyle">
+    <input type="text" [(ngModel)]="colorNew">
+    <div [ngStyle]="{
+    width: '200px',
+    height: '200px',
+    backgroundColor: colorNew
+    }" >
+    </div> </div>
+
+<div class="newCarre" [style.backgroundColor]="colorNew" (click)="changeColor('red')">2</div>
+
+<div class="class2">
+<input type="text" [(ngModel)]="colorNew2">
+    <div class="class" [class.newClass]="colorNew2==='bleu'" ></div>
+</div>
+
+<div class="ngFor">
+  <ul>
+    <li *ngFor="let user of users let i=index">{{i}}-{{user.nom}}</li>
+
+  </ul>
+
+
+</div>
