@@ -1,0 +1,43 @@
+<div class="col-md-6">
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Authentification</div>
+  <div class="panel-body">
+    <form #f='ngForm' (ngSubmit)="onLogin(f.value)" >
+      <div class="form-group">
+        <label class="control-label">Userame</label>
+        <input type="text" name="username" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label class="control-label">Mot de passe</label>
+        <input type="password" name="password" ngModel class="form-control">
+      </div>
+        <button class="btn btn-primary" type="submit">Valider</button>
+    </form>
+
+  </div>
+
+</div>
+
+</div>
+
+<!--
+<div class="my-5 py-5" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-title>Connexion</mat-card-title>
+    <mat-card-content>
+    <form [formGroup]="form" fxLayout="column" fxLayoutGap="15px">
+      <mat-form-field>
+        <input formControlName="email" matInput type="text" placeholder="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="password" matInput type="password" placeholder="mot de passe">
+      </mat-form-field>
+      <div *ngIf="error" >{{error}}</div>
+      <button color="primary" (click)="subnit()" mat-raised-button>Connection</button>
+    </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>
+-->

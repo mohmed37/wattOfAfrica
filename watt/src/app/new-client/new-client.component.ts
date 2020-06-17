@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ClientService} from "../services/client.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Client} from "../model/client.model";
@@ -20,7 +20,10 @@ export class NewClientComponent implements OnInit {
   private  idClient:number;
   public modeClient:number=0;
   constructor(private clientService:ClientService, private router:Router,private activatedRoute:ActivatedRoute) { }
-
+@HostListener('click')
+click(){
+    this.clientService.client();
+}
   ngOnInit(): void {
 
   }

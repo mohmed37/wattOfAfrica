@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
 import { FooterComponent } from './footer/footer.component';
@@ -17,6 +17,16 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import {MatInputModule} from "@angular/material/input";
 import {CommonModule} from "@angular/common";
 import {EditorModule} from "@progress/kendo-angular-editor";
+import { LoginComponent } from './login/login.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import { HomepageComponent } from './homepage/homepage.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { TopbarComponent } from './share/components/topbar/topbar.component';
+import {LayoutModule} from "./share/layout/layout.module";
+import {ClientService} from "./services/client.service";
+import {LogoutComponent} from "./auth/logout/logout.component";
+
 
 @NgModule({
   declarations: [
@@ -26,6 +36,10 @@ import {EditorModule} from "@progress/kendo-angular-editor";
     NewClientComponent,
     ModifClientComponent,
     MonCvComponent,
+    LoginComponent,
+    SigninComponent,
+    LogoutComponent
+
 
   ],
   imports: [
@@ -39,9 +53,15 @@ import {EditorModule} from "@progress/kendo-angular-editor";
     MatInputModule,
     CommonModule,
     EditorModule,
+    FlexLayoutModule,
+    LayoutModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [
+    ClientService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

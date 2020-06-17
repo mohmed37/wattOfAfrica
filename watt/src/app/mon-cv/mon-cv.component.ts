@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CvModel} from "../model/cv.model";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import {HttpClient,HttpEventType} from "@angular/common/http";
+import {ClientService} from "../services/client.service";
 
 @Component({
   selector: 'app-mon-cv',
@@ -75,10 +76,41 @@ public  bouttonActif3: boolean=false;
 public  bouttonActif4: boolean=false;
 public  bouttonActif5: boolean=false;
 public bouttonActif6:boolean=false;
+
 cheminImage : string = "/assets/img/portrai.jpg";
 fileToUpload : File= null;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private clientService:ClientService) { }
   public Editor = ClassicEditor;
+  public nomClient2;
+  public  userConnect;
+
+  nomClient(){
+
+
+}
+
+  ngOnInit(): void {
+    let non = "LAURA MONTREUIL";
+    let clientActuel =`${non}`
+    this.nomClient2=clientActuel;
+    console.log(this.nomClient2);
+
+    /*this.clientService.change.subscribe(
+      isClient=>{
+        this.nomClient2=isClient;
+      }
+    );*/
+
+
+    const nom = {
+      nom2:"Mohamed Behillil"
+    };
+
+
+  }
+
+
+
 
 
   public onReady( editor ) {
@@ -117,9 +149,7 @@ fileToUpload : File= null;
       this.cheminImage = editor.getData();}
   }
 
-  ngOnInit(): void {
 
-  }
 
   modif(current:string) {
 
@@ -195,11 +225,15 @@ selectedFile=null;
     var reader = new FileReader();
     reader.onload= (ev:any) => {
       this.cheminImage = ev.target.result;
-    }
+    };
     reader.readAsDataURL(this.fileToUpload);
   }
 
+
   changeColor() {
+
+
+
     switch (this.colorNew) {
       case 'pink':
         this.colorNew = "#bdc3c7";

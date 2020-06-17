@@ -81,10 +81,10 @@ a:hover {
   color: red;
 }
 
-a h1:hover {
+a:hover {
   color: red;
 }
 
-a h3:hover {
+h1:hover {
   color: red;
 }

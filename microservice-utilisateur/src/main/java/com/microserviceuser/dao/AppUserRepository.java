@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 import java.util.List;
+import java.util.Optional;
+
 @RepositoryRestResource
 @CrossOrigin("*")
 public interface AppUserRepository extends JpaRepository<AppUser,Integer> {
  AppUser findByUsername(String username);
  Page<AppUser>findByPrenomContains(@Param("prenom") String prenon,Pageable pageable);
+  Optional<AppUser> findByEmailAndPassword(String email,String password);
 
 
 }

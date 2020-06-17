@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutAlign="start stretch" style="background-color: red;height: 100%">
+<div style="background: palevioletred;" fxFlex="200px"  fxFlex.xs="50px" fxLayout="column nowrap" fxLayoutAlign="start" fxLayoutGap="3px">
+ <div [ngStyle]="{ backgroundColor:'orange' }" fxFlex="50px" [ngStyle.xs]="{ backgroundColor:'yellow' }"></div>
+  <div style="background-color:orange;" fxFlex="50px"></div>
+  <div style="background-color:orange;" fxFlex="50px"></div>
+  <div style="background-color:orange;" fxFlex="50px"></div>
+</div>
+<div style="background: green;" fxFlex="auto" fxLayout="row warp" fxLayout.xs="column nowarp"fxLayoutAlign="space-between space-between" fxLayoutGap.xs="3px">
+  <div style="background-color: red; height: 200px" fxFlex="200px" fxShow="false" fxShow.gt-xs="true">1</div>
+  <div class="exColor" fxFlex="200px" [ngClass.xs]="'newColor'"  >2</div>
+  <div style="background-color: red; height: 200px" fxFlex="200px">3</div>
+  <div style="background-color: red; height: 200px" fxFlex="200px">4</div>
+  <div style="background-color: red; height: 200px" fxFlex="200px">5</div>
+  <div style="background-color: red; height: 200px" fxFlex="200px">6</div>
+  <div style="background-color: red; height: 200px" fxFlex="200px">7</div>
+
+</div>
+
+
+
+</div>

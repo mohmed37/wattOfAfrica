@@ -1,30 +1,35 @@
 package com.microserviceuser.web.controller;
 
 
+
 import com.microserviceuser.dao.AppRoleRepository;
 import com.microserviceuser.dao.AppUserRepository;
 import com.microserviceuser.dao.QuestionnairesRepository;
-import com.microserviceuser.entities.AppRole;
 import com.microserviceuser.entities.AppUser;
 import com.microserviceuser.entities.Questionnaires;
 import com.microserviceuser.web.exeception.QuestionNotFoundException;
-import org.aspectj.weaver.patterns.TypePatternQuestions;
+import com.microserviceuser.web.exeception.UserNotFoundException;
+import io.jsonwebtoken.Claims;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.hibernate.boot.model.relational.QualifiedNameParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 
 
 @RestController
 public class UserController {
+
 
     @Autowired
     private AppUserRepository appUserRepository;
@@ -117,6 +122,41 @@ public class UserController {
        appUserRepository.deleteById(id);
 
     }
+
+    @PostMapping(value = "/authUser")
+    public String authUser(@RequestBody AppUser user ){
+        boolean test=false;
+        String mail=user.getEmail();
+        String password=user.getPassword();
+        Optional<AppUser> userConnect=appUserRepository.findByEmailAndPassword(mail,password);
+        if (userConnect.isPresent()){
+
+           String token= generate(userConnect.get());
+
+
+            return token;
+        }
+        throw new UserNotFoundException("Vous n'avez pas de compte");
+
+    }
+
+
+        private String generate(AppUser jwtUser) {
+            // TODO Auto-generated method stub
+            Claims claim= Jwts.claims()
+                    .setSubject(jwtUser.getUsername());
+            claim.put("userId", String.valueOf(jwtUser.getNum()));
+            claim.put("role", jwtUser.getRoles());
+
+            String secret = "YouTube";
+
+            byte[] bytesEncoded = Base64.getEncoder().encode(secret.getBytes());
+
+            return  Jwts.builder().setClaims(claim).signWith(SignatureAlgorithm.HS512, secret).compact();
+
+        }
+
+
 
 
 

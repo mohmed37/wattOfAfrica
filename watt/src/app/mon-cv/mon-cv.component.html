@@ -1,5 +1,5 @@
 <div class="container">
-
+  <P>{{nomClient2?.nom}}</P>
   <div class="row" >
     <div class="competences col-lg-4" [style.backgroundColor]="colorNew" [style.color]="colorNewText" (click)="changeColor()">
       <div *ngIf="bouttonActif===true">
@@ -41,7 +41,7 @@
     <div class="presentations col-lg-8" *ngIf="modifCom===false" >
 
       <div class="presentation"[style.backgroundColor]="colorNew2"  (click)="changeColor2()">
-        <a (click)="modif('nom')" title="Cliquez ici pour modifier"> <h1 [style.color]="colorNewTextNom" [innerHTML]="currentCv.nom" ></h1></a>
+        <a (click)="modif('nom')" title="Cliquez ici pour modifier"> <h1 *ngIf="nomClient2!==null" [style.color]="colorNewTextNom" [innerHTML]="nomClient2" ></h1></a>
         <a (click)="modif('metier')" title="Cliquez ici pour modifier" ><h3 [style.color]="colorNewTextMetier"  [innerHTML]="currentCv.metier" ></h3></a>
       </div>
 
@@ -60,6 +60,5 @@
 
     <div class="basPage col-lg-12" [style.backgroundColor]="colorNew2"></div>
 </div>
-
-
 </div>
+

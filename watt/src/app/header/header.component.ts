@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+import {ClientService} from "../services/client.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -9,6 +11,7 @@ import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+   public nomClient2;
   public Editor = ClassicEditor;
 
   public onReady( editor ) {
@@ -18,9 +21,14 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  constructor() { }
+  constructor(private clientService:ClientService,private router:Router) { }
 
   ngOnInit(): void {
+    this.clientService.change.subscribe(
+      isClient=>{
+        this.nomClient2=isClient;
+      }
+    )
 
   }
 

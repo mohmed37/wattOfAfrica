@@ -2,11 +2,11 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Liste des clients</div>
     <div class="panel-body">
-      <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
+      <form #f="ngForm" (ngSubmit)="onChercher(f.value)" >
         <div class="form-group">
           <label>keyword :</label>
           <input style="margin-left: 10px" type="test" name="keyword" ngModel>
-          <button style="margin-left: 10px" type="submit" class="btn btn-primary">
+          <button style="margin-left: 10px" type="submit" class="btn btn-primary" (click)="click()">
             <samp class="glyphicon glyphicon-search"></samp>
             Chercher</button>
 
@@ -34,6 +34,7 @@
 
         </tr>
       </table>
+
       <ul *ngIf="pages"  class="nav nav-pills">
         <li class="clickable" [ngClass]="i==currentPage?'active':''" *ngFor="let p of pages; let i=index">
           <a (click)="onPageClient(i)">{{i}}</a>
@@ -135,10 +136,7 @@
         </div>
         <button class="btn btn-success" type="submit" (click)="modifOk()">Modification</button>
       </form>
-
     </div>
-
-
   </div>
-
 </div>
+
