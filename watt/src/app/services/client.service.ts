@@ -45,15 +45,16 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
     return this.htttpClient.get(this.hostUser + "/usersAll?page=" + page + "&size=" + size);
   }
   public clientConnect(user){
-    return  this.htttpClient.post<string>(this.hostUser +"/authUser",user).p(token=>{
+    return  this.htttpClient.post<string>(this.hostUser +"/authUser",user).subscribe(token=>{
 
       tap(( token: string ) => {
         this.jwtToken.next({
           isAuthenticated: true,
           token: token
+
         });
-        console.log(this.jwtToken)
-      }),
+        console.log(this.jwtToken);
+      });
       console.log(token);
     })
 
