@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
+import {HttpClient, HttpEvent} from "@angular/common/http";
+import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {Client} from "../model/client.model";
 import {tap} from "rxjs/operators";
 import {JwtTokenModel} from "../model/jwt-token.model";
@@ -16,6 +16,7 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   public currentClient:Client;
   @Output() change: EventEmitter<Client> = new EventEmitter();
   nom:Client;
+  userConnect:string;
 
   public hostUser: string = "http://localhost:9004/microservice-utilisateur";
   public  modeClient:number=0;
@@ -42,6 +43,25 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
 
   public getClient(page: number, size: number) {
     return this.htttpClient.get(this.hostUser + "/usersAll?page=" + page + "&size=" + size);
+  }
+  public clientConnect(user){
+    return  this.htttpClient.post<string>(this.hostUser +"/authUser",user).p(token=>{
+
+      tap(( token: string ) => {
+        this.jwtToken.next({
+          isAuthenticated: true,
+          token: token
+        });
+        console.log(this.jwtToken)
+      }),
+      console.log(token);
+    })
+
+  }
+
+
+  public getClientBy(id):Observable<Client> {
+    return this.htttpClient.get<Client>(this.hostUser +"/user/"+id);
   }
 
   public getClientByKey(prenon:string,page: number, size: number) {
@@ -74,11 +94,7 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
     this.change.emit(this.nom);
   }
 
-  public getClientBy(id):Observable<Client> {
-    return this.htttpClient.get<Client>(this.hostUser +"/user/"+id);
 
-
-  }
 
   public updateClientBy(url,data) {
     return this.htttpClient.put(url,data);

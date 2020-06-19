@@ -38,8 +38,8 @@ import {LogoutComponent} from "./auth/logout/logout.component";
     MonCvComponent,
     LoginComponent,
     SigninComponent,
-    LogoutComponent
-
+    LogoutComponent,
+    SignupComponent
 
   ],
   imports: [

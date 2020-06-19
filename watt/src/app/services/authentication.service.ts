@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import {Observable} from "rxjs";
+import {tap} from "rxjs/operators";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(private htttpClient: HttpClient) { }
   private users=[
     {usemane:'admin',password:'1234',roles:['ADMIN','USER']},
     {usemane:'user1',password:'1234',roles:['USER']},
@@ -14,6 +17,18 @@ export class AuthenticationService {
   public isAuthenticated:boolean;
   public userAuthenticated;
   public token:string;
+  public hostUser: string = "http://localhost:9004/microservice-utilisateur";
+
+  public signin(credential: { email: string; password: string }):Observable<string>{
+
+    return this.htttpClient.post<string>(this.hostUser+"/authUser",credential).pipe(
+
+      tap((client: string)=>{
+        console.log(client);
+      })
+
+    ) };
+
 
 
 

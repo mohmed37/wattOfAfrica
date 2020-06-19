@@ -13,7 +13,6 @@ import io.jsonwebtoken.Claims;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.hibernate.boot.model.relational.QualifiedNameParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -124,7 +123,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/authUser")
-    public String authUser(@RequestBody AppUser user ){
+    @ResponseBody
+    public String authUser(@RequestBody AppUser user){
         boolean test=false;
         String mail=user.getEmail();
         String password=user.getPassword();
