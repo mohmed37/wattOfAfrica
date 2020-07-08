@@ -4,6 +4,8 @@ import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {Client} from "../model/client.model";
 import {tap} from "rxjs/operators";
 import {JwtTokenModel} from "../model/jwt-token.model";
+import {AuthenticationService} from "./authentication.service";
+import {QuestionnairesModel} from "../model/questionnaires.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +18,12 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   public currentClient:Client;
   @Output() change: EventEmitter<Client> = new EventEmitter();
   nom:Client;
-  userConnect:string;
+
 
   public hostUser: string = "http://localhost:9004/microservice-utilisateur";
   public  modeClient:number=0;
 
-  constructor(private htttpClient: HttpClient) {
+  constructor(private htttpClient: HttpClient, private userConnect:AuthenticationService) {
     this.initToken();
   }
 
@@ -44,21 +46,6 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   public getClient(page: number, size: number) {
     return this.htttpClient.get(this.hostUser + "/usersAll?page=" + page + "&size=" + size);
   }
-  public clientConnect(user){
-    return  this.htttpClient.post<string>(this.hostUser +"/authUser",user).subscribe(token=>{
-
-      tap(( token: string ) => {
-        this.jwtToken.next({
-          isAuthenticated: true,
-          token: token
-
-        });
-        console.log(this.jwtToken);
-      });
-      console.log(token);
-    })
-
-  }
 
 
   public getClientBy(id):Observable<Client> {
@@ -77,21 +64,16 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
     return this.htttpClient.get("http://localhost:8080/getConnect");
   }
 
-
-
-
-
   public saveResource(url,data):Observable<Client>{
     return this.htttpClient.post<Client>(url,data);
   }
 
   client(){
-    this.htttpClient.get<Client>(this.hostUser +"/user/"+6).subscribe(
+    this.htttpClient.get<Client>(this.hostUser +"/user/"+this.userConnect.userAuthenticated.num).subscribe(
       client1=>{
         this.nom=client1;
       }
     );
-
     this.change.emit(this.nom);
   }
 
@@ -99,14 +81,12 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
 
   public updateClientBy(url,data) {
     return this.htttpClient.put(url,data);
-
   }
 
 
   public signup(user):Observable<Client>{
     console.log(user);
     return  this.htttpClient.post<Client>(this.hostUser+"/saveUser",user)
-
   }
 
   public signin(credential: {email: string, password: string}):Observable<string>{
@@ -123,10 +103,14 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
         console.log(token)
         })
     );
-
-
   }
 
+  public getQuestionnaires():Observable<QuestionnairesModel>  {
+    return this.htttpClient.get<QuestionnairesModel>(this.hostUser + "/questionnairesUser/"+this.userConnect.userAuthenticated.num);
+  }
 
+  public putQuestionnaires(typeQuetionnaire:string){
+    return this.htttpClient.put(this.hostUser + "/modifQuestionnaire/"+this.userConnect.userAuthenticated.num,typeQuetionnaire);
+  }
 
 }

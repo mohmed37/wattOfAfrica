@@ -25,18 +25,17 @@ click(){
     this.clientService.client();
 }
   ngOnInit(): void {
-
+    this.onGetClient();
   }
+
 //CLIENT
   onGetClient() {
     this.clientService.getClient(this.currentPage,this.size)
       .subscribe(data=>{
-        console.log(data);
+
         this.totalPage=data["totalPages"];
-        console.log(this.totalPage);
         this.pages=new Array<number>(this.totalPage);
         this.clients=data["content"];
-
       },error => {
         console.log(error);
       })
@@ -55,7 +54,6 @@ click(){
   chercherClient() {
     this.clientService.getClientByKey(this.currentKeyword,this.currentPage,this.size)
       .subscribe(data=>{
-        console.log(data);
         this.totalPage=data["totalPages"];
 
         this.pages=new Array<number>(this.totalPage);
@@ -127,6 +125,7 @@ click(){
       .subscribe(data=>{
         alert("Mise à jour avec succés")
         this.router.navigateByUrl("/new-client")
+
       },error => {
         console.log(error)
       })

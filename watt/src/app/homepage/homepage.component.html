@@ -1,1 +1,51 @@
-<p>homepage works!</p>
+  <div class="container" fxLayout="row wrap">
+    <img class="imageBlock" [src]="photoblock3" >
+    <div class="blockText">
+      <div class="blockChiffre">
+        <b>1</b>
+      </div>
+      <mat-icon class="blockIcon">fingerprint</mat-icon>
+      <div class="text">
+      <h2>B'n Dream: Votre ADN Vocationnel</h2>
+      <P>Des tests d’évaluation, des outils de développement personnel, du coaching pour découvrir votre
+        ADN Vocationnel, vos forces et vos limites
+      </P>
+
+        <button mat-raised-button routerLink="BnDeam">Découvrir<mat-icon class="iconDecouvrir">send</mat-icon></button>
+    </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="blockText blockText2">
+      <div class="blockChiffre2">
+        <b>2</b>
+      </div>
+      <mat-icon class="blockIcon Icon2">my_location</mat-icon>
+      <div class="text2">
+        <h2>B'n go: Vos talents</h2>
+        <P>BDécouvrir pour quel métier vous êtes fait, identifier vos compétences et vos soft skills, trouver la
+          formation qui vous aidera à réaliser votre projet.
+        </P>
+        <button mat-raised-button routerLink="BnDeam">Découvrir<mat-icon class="iconDecouvrir" >send</mat-icon> </button>
+      </div>
+    </div>
+    <img  [src]="photoblock2" class="imageBlock img2">
+  </div>
+
+  <div class="container" fxLayout="row wrap">
+    <img  [src]="photoblock1" class="imageBlock">
+    <div class="blockText">
+      <div class="blockChiffre">
+        <b>3</b>
+      </div>
+      <mat-icon class="blockIcon">thumb_up_alt</mat-icon>
+      <div class="text">
+        <h2>B'n Become : Votre projet en action </h2>
+        <P>Construire vos outils de recherche d’emploi : CV, lettre de motivation, se préparer à un entretien d’embauche,
+          se fixer un plan d’actions pour réaliser projet.
+        </P>
+        <button mat-raised-button >Découvrir<mat-icon class="iconDecouvrir">send</mat-icon></button>
+      </div>
+    </div>
+  </div>

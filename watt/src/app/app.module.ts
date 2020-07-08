@@ -26,6 +26,18 @@ import { TopbarComponent } from './share/components/topbar/topbar.component';
 import {LayoutModule} from "./share/layout/layout.module";
 import {ClientService} from "./services/client.service";
 import {LogoutComponent} from "./auth/logout/logout.component";
+import {MatIconModule} from "@angular/material/icon";
+import { DefinitionComponent } from './definition/definition.component';
+import { BndreamComponent } from './bndream/bndream.component';
+import { BndreamTestComponent } from './bndream-test/bndream-test.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { PhotolangageComponent } from './photolangage/photolangage.component';
+import { RoueVieComponent } from './roue-vie/roue-vie.component';
+import { AutoportraitComponent } from './autoportrait/autoportrait.component';
+import { PraicoComponent } from './praico/praico.component';
+import { HeroComponent } from './hero/hero.component';
+import { AdministrateurComponent } from './administrateur/administrateur.component';
+import { FicheMetierComponent } from './fiche-metier/fiche-metier.component';
 
 
 @NgModule({
@@ -39,7 +51,18 @@ import {LogoutComponent} from "./auth/logout/logout.component";
     LoginComponent,
     SigninComponent,
     LogoutComponent,
-    SignupComponent
+    SignupComponent,
+    HomepageComponent,
+    DefinitionComponent,
+    BndreamComponent,
+    BndreamTestComponent,
+    PhotolangageComponent,
+    RoueVieComponent,
+    AutoportraitComponent,
+    PraicoComponent,
+    HeroComponent,
+    AdministrateurComponent,
+    FicheMetierComponent
 
   ],
   imports: [
@@ -56,6 +79,9 @@ import {LogoutComponent} from "./auth/logout/logout.component";
     FlexLayoutModule,
     LayoutModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatProgressBarModule,
     ReactiveFormsModule
 
   ],

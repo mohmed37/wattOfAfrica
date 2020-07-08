@@ -36,8 +36,6 @@ public class Questionnaires implements Serializable {
     Boolean roueVie;
     Boolean autoPortrait;
     Boolean hero;
-    String resultatString;
-    Integer resultatInteger;
     @ManyToOne
     AppUser user;
 

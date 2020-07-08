@@ -1,5 +1,7 @@
 package com.tests.entity.ndream;
 
+import com.microserviceuser.entities.AppUser;
+import com.tests.bean.UserBean;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,7 +47,6 @@ public class PhotoLangage {
     String mot5;
     @Column(name = "mot6")
     String mot6;
-    @Column(name = "test1")
-    Boolean test1;
-
+    @Column(name = "expression")
+    String expression;
 }

@@ -55,6 +55,7 @@
         <P class="diplome" [innerHTML]="currentCv.diplome"></P>
       </div>
       <ckeditor  *ngIf="modifDiplom===true" [editor]="Editor" data="{{currentCv.diplome}}" (change)="onChange($event)"></ckeditor>
+
       <button *ngIf="bouttonActif4===true" type="button" class="btn btn-success" (click)="finModif()" >Valider</button>
     </div>
 

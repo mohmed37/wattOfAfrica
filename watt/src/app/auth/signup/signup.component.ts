@@ -11,36 +11,30 @@ import {Router} from "@angular/router";
 })
 export class SignupComponent implements OnInit {
 
-  public form: FormGroup;
-  public error:string;
-  public currentClient:Client;
+  public color="red";
+  public content="Mohamed";
+  public displayButton= true;
+  public colorNew="green";
+  public colorNew2= "rouge";
+  public users:Array<{nom:string}>=[
+    {
+      nom:"Mohamed"
+    },
+    {
+      nom:"Mehdi"
+    },
+    {
+      nom:"Anis"
+    }
+  ];
 
-  constructor(private fb: FormBuilder, private cleintService:ClientService,private router:Router) { }
+  constructor(private clientService:ClientService,private router:Router) { }
 
   ngOnInit(): void {
-    this.form = this.fb.group(
-      {
-        email:[''],
-        nom:[''],
-        password:[''],
-        prenom:[''],
-        phone:[''],
-        date:[''],
-        matchingPassword:[''],
-        username:['']
-      }
-    );
   }
-  public subnit():void {
-    this.cleintService.signup(this.form.value).subscribe(
-      res=>{
-        this.currentClient=res;
-      },error1 => {
-        console.log(error1)
-      }
-    );
-    this.router.navigate(['/signin']);
-    console.log(this.form.value)
+  changeColor(newColor: string) {
+    this.color=newColor;
+    this.colorNew=newColor;
   }
 
 

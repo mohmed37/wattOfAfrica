@@ -1,0 +1,40 @@
+
+  <div class="container row">
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="idFicheMetier" placeholder="Id fiche métier" [(ngModel)]="idFicheMetier"
+             name="idFicheMetier" />
+    </div>
+    <div class="col-md-6">
+      <input type="button" (click)="getFicheMetier()" value="id fiche">
+    </div>
+  </div>
+
+  <div class="container" *ngIf=FicheMetier >
+
+    <div class="item photo">
+      <img class="photoFicheMetier" [src]="retrievedImageFicheMetier">
+    <h1 class="metier">{{metier}}</h1>
+    </div>
+    <div class="item texte">
+      <p>{{texte}}</p>
+    </div>
+
+    <div class="item">
+      <h2>Compétences requises :</h2>
+      <ul *ngIf="competences" >
+        <li  *ngFor="let c of competences ">
+          <p>{{c}}</p>
+        </li>
+      </ul>
+    </div>
+
+   <div class="item">
+      <h2>Eléments de personnalité :</h2>
+      <ul *ngIf="qualites" >
+        <li  *ngFor="let q of qualites ">
+          <p>{{q}}</p>
+        </li>
+      </ul>
+    </div>
+
+</div>

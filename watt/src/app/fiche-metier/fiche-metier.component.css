@@ -1,0 +1,40 @@
+.photoFicheMetier{
+  width: 100%;
+  height: 500px;
+
+}
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.metier{
+  position: absolute;
+  margin-left: 50px;
+  color: #3498db;
+  font-size: 35px;
+  font-family: 'Poiret One', cursive;
+  top: 20%;
+}
+
+ul{
+  list-style: none;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+
+}
+.texte p{
+  font-family: 'Poiret One', cursive;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 20px;
+
+}
+.photo{
+  position: relative;
+
+}
+h2{
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
+  color: #3498db;
+}

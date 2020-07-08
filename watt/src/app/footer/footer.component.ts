@@ -9,30 +9,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  public color="red";
-  public content="Mohamed";
-  public displayButton= true;
-  public colorNew="green";
-  public colorNew2= "rouge";
-  public users:Array<{nom:string}>=[
-    {
-      nom:"Mohamed"
-    },
-    {
-      nom:"Mehdi"
-    },
-    {
-      nom:"Anis"
-    }
-];
-
+  public logon:string="assets/img/logon.png";
   constructor(private clientService:ClientService,private router:Router) { }
 
   ngOnInit(): void {
   }
 
-    changeColor(newColor: string) {
-    this.color=newColor;
-    this.colorNew=newColor;
-  }
 }

@@ -67,8 +67,8 @@ public class UserController {
         return appUserRepository.findByUsername(username);
     }
 
-    @GetMapping(value = "questionnairesUser")
-    public Optional<Questionnaires>questionnairesUser(@RequestParam(name="id",defaultValue = " ")int id){
+    @GetMapping(value = "questionnairesUser/{id}")
+    public Optional<Questionnaires>questionnairesUser(@PathVariable("id") int id){
         Optional<Questionnaires>question=questionRepository.findByUser_Num(id);
         if (!question.isPresent())throw new QuestionNotFoundException("Vous n'avez pas de quetionnaires");
         return question;
@@ -85,9 +85,23 @@ public class UserController {
         return new ResponseEntity<Questionnaires>(saveQusetionnaires, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "modifQuestionnaire")
-    public void updateQuestionnaire(@RequestBody Questionnaires questionnaires){
-        questionRepository.save(questionnaires);
+    @PutMapping(value = "modifQuestionnaire/{id}")
+    public void updateQuestionnaire(@PathVariable("id") int id,@RequestBody String questionnaireType){
+        Optional<Questionnaires> questionClient=questionnairesUser(id);
+        switch (questionnaireType){
+            case "photolangage":
+                questionClient.get().setPhotoLangage(true);
+                break;
+            case "roue de la vie":
+                questionClient.get().setRoueVie(true);
+                break;
+            default:
+                break;
+
+        }
+
+
+        questionRepository.save(questionClient.get());
     }
 
     @PostMapping(value = "saveUser")
@@ -124,17 +138,17 @@ public class UserController {
 
     @PostMapping(value = "/authUser")
     @ResponseBody
-    public String authUser(@RequestBody AppUser user){
-        boolean test=false;
+    public AppUser authUser(@RequestBody AppUser user){
+
         String mail=user.getEmail();
         String password=user.getPassword();
         Optional<AppUser> userConnect=appUserRepository.findByEmailAndPassword(mail,password);
         if (userConnect.isPresent()){
 
-           String token= generate(userConnect.get());
+          /* String token= generate(userConnect.get());*/
 
 
-            return token;
+            return userConnect.get();
         }
         throw new UserNotFoundException("Vous n'avez pas de compte");
 

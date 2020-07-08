@@ -1,41 +1,54 @@
-<div class="carre" [style.background]="color"
-     (click)="changeColor('blue')"
-     (mouseenter)="changeColor('green')"
-     (mouseleave)="changeColor('red')" >
+  <!--/.footer-->
+<footer>
+      <div class="form">
+        <div class="textForm">
+        <h2>Vous avez besoin d'un accompagnement personnalisé ?</h2>
+        <p>Contactez notre expert dès maintenant.</p>
+          </div>
+        <form>
+          <div  class="form-search">
+          <input type="text" class="input-search" placeholder="              Adresse Mail">
+          </div>
+          <div class="iconSearch">
+          <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
+            <mat-icon>send</mat-icon></button>
+            </div>
+        </form>
+      </div>
+
+    <div class="reseau">
+    <span>
+    <a href='#'><i class="fa fa-twitch fa-3x fa-fw"></i></a>
+    <a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
+    <a href='#'><i class="fa fa-twitter fa-3x fa-fw"></i></a>
+    <a href='#'><i class="fa fa-youtube-play fa-3x fa-fw"></i></a>
+    <a href='#'><i class="fa fa-rss fa-3x fa-fw"></i></a>
+    <a href='#'><i class="fa fa-vine fa-3x fa-fw"></i></a>
+    <a href='#'><i class="fa fa-flickr fa-3x fa-fw"></i></a>
+    <a href='#'><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
+    </span>
+  </div>
+
+
+<div class="flooterLogo">
+  <img [src]="logon" >
 </div>
-
-<div class="data">
-<input type="text" [(ngModel)]="content">
-<br>
-<p>{{content}}</p>
-</div>
-
-<div class="boutton">
-  <button class="btn btn-success" (click)="displayButton =!displayButton ">Click</button>
-  <p *ngIf="displayButton">Bonjour</p>
-</div>
-
-  <div class="ngstyle">
-    <input type="text" [(ngModel)]="colorNew">
-    <div [ngStyle]="{
-    width: '200px',
-    height: '200px',
-    backgroundColor: colorNew
-    }" >
-    </div> </div>
-
-<div class="newCarre" [style.backgroundColor]="colorNew" (click)="changeColor('red')">2</div>
-
-<div class="class2">
-<input type="text" [(ngModel)]="colorNew2">
-    <div class="class" [class.newClass]="colorNew2==='bleu'" ></div>
-</div>
-
-<div class="ngFor">
-  <ul>
-    <li *ngFor="let user of users let i=index">{{i}}-{{user.nom}}</li>
-
-  </ul>
-
-
-</div>
+  <div class="flooterContact">
+  <a>A propos</a>
+  <a>CGU</a>
+  <a>Comment ça marche?</a>
+  <a>Aide</a>
+  <a>Contactez nous</a>
+  </div>
+  <div class="flooterContact2">
+    <p> 58 rue George Sand 37000 TOURS</p>
+    <P>+33 2 47 56 98 65</P>
+    <P>contact@watofafrica.com</P>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p class="pull-left"> Copyright © Footer E-commerce Plugin 2014. All right reserved. </p>
+    </div>
+  </div>
+  <!--/.footer-bottom-->
+</footer>

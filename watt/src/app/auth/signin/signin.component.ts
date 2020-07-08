@@ -28,25 +28,19 @@ export class SigninComponent implements OnInit {
   }
   public subnit(){
    this.clientService.signin(this.form.value).subscribe(()=>{
-     this.router.navigate(['/']);
+
    })
   }
 
 
-  onLogin(dataForm: any) {
-    this.autheService.isUserLoggedIn(dataForm.username,dataForm.password);
 
+  public userConnect(){
+    this.autheService.clientConnect(this.form.value);
     if (this.autheService.isAuthenticated){
       this.autheService.saveAuthenticateurUser();
-      this.router.navigateByUrl('/new-client');
+      this.router.navigate(['/']);
     }
-console.log(dataForm.password);
-    console.log(dataForm.username);
 
   }
 
-  public userConnect():void {
-    console.log(this.form.value)
-    this.clientService.clientConnect(this.form.value)}
-
-    }
+}

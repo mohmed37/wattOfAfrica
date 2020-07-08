@@ -1,36 +1,41 @@
-<<!--div class="my-5 py-5" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card>
-    <mat-card-title>Inscription</mat-card-title>
-    <mat-card-content>
-      <form [formGroup]="form" fxLayout="column" fxLayoutGap="15px">
-        <mat-form-field>
-          <input formControlName="nom" matInput type="text" placeholder="Nom">
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="prenom" matInput type="text" placeholder="Prénom">
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="username" matInput type="text" placeholder="Identifiant">
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="email" matInput type="email" placeholder="Email">
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="phone" matInput type="text" placeholder="Numéro de téléphone">
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="date" matInput type="date" placeholder="Date de naissance">
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="password" matInput type="password" placeholder="Mot de passe">
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="matchingPassword" matInput type="password" placeholder="Contrôle mot de passe">
-        </mat-form-field>
-        <div *ngIf="error">{{error}}</div>
-        <button color="primary" (click)="subnit()" mat-raised-button>Inscription</button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+<div class="carre" [style.background]="color"
+     (click)="changeColor('blue')"
+     (mouseenter)="changeColor('green')"
+     (mouseleave)="changeColor('red')" >
+</div>
 
-</div>-->
+<div class="data">
+  <input type="text" [(ngModel)]="content">
+  <br>
+  <p>{{content}}</p>
+</div>
+
+<div class="boutton">
+  <button class="btn btn-success" (click)="displayButton =!displayButton ">Click</button>
+  <p *ngIf="displayButton">Bonjour</p>
+</div>
+
+<div class="ngstyle">
+  <input type="text" [(ngModel)]="colorNew">
+  <div [ngStyle]="{
+    width: '200px',
+    height: '200px',
+    backgroundColor: colorNew
+    }" >
+  </div> </div>
+
+<div class="newCarre" [style.backgroundColor]="colorNew" (click)="changeColor('red')">2</div>
+
+<div class="class2">
+  <input type="text" [(ngModel)]="colorNew2">
+  <div class="class" [class.newClass]="colorNew2==='bleu'" ></div>
+</div>
+
+<div class="ngFor">
+  <ul>
+    <li *ngFor="let user of users let i=index">{{i}}-{{user.nom}}</li>
+
+  </ul>
+
+
+</div>

@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface FicheMetierRepositories extends JpaRepository<FicheMetier,Integer> {
     List<FicheMetier>findByCode(String code);
-    List<FicheMetier>findByPhoto_Categirie(String categorie);
+    List<FicheMetier>findByPhoto_Name(String name);
 
 }

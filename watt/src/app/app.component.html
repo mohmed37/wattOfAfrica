@@ -1,31 +1,3 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/new-client">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active" *ngIf="authService.isAdmin()"><a routerLink="/flooter">Home</a></li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" routerLink="/client">Client
-          <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a routerLink="/client">Anis</a></li>
-          <li><a routerLink="/new-client">Recherche client</a></li>
-          <li><a href="#">Vide</a></li>
-        </ul>
-      </li>
-      <li><a href="#" >Rien</a></li>
-      <li><a routerLink="/mon-cv">Page 3</a></li>
-    </ul>
-    <ul class="nav navbar-nav pull-right">
-      <li>
-        <a class="btn" (click)="onLogout()">
-          <span class="glyphicon glyphicon-log-out"></span>
-        </a>
-      </li>
-
-    </ul>
-  </div>
-</nav>
-
+<app-header></app-header>
 <router-outlet></router-outlet>
+<app-footer></app-footer>

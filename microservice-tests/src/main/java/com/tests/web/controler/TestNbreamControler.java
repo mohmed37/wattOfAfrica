@@ -1,19 +1,43 @@
 package com.tests.web.controler;
 
+import com.microserviceuser.entities.AppUser;
+import com.tests.bean.UserBean;
 import com.tests.dao.ndream.*;
 import com.tests.entity.ndream.*;
+import com.tests.proxy.MuserProxy;
 import com.tests.web.exceptions.QuestioneNotFoundException;
+import lombok.var;
+import org.hibernate.engine.jdbc.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import java.io.ByteArrayOutputStream;
+import java.util.zip.DataFormatException;
+import java.util.zip.Deflater;
+import java.util.zip.Inflater;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+
 
 @RestController
 public class TestNbreamControler {
@@ -21,7 +45,7 @@ public class TestNbreamControler {
     @Autowired
     PhotoRepositories photoRepositories;
     @Autowired
-    PhotoLangageRepositories nbdreamRepositories;
+    PhotoLangageRepositories langageRepositories;
     @Autowired
     RoueVieRepositories roueVieRepositories;
     @Autowired
@@ -36,6 +60,103 @@ public class TestNbreamControler {
     FicheMetierRepositories ficheMetierRepositories;
     @Autowired
     PhotoFMRepositories photoFMRepositories;
+    @Autowired
+    MuserProxy muserProxy;
+
+
+
+    @PostMapping("/upload")
+    public ResponseEntity<Object> uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+        System.out.println("Original Image Byte Size - " + file.getBytes().length);
+        Photo img = new Photo(file.getOriginalFilename(), file.getContentType(),
+                compressBytes(file.getBytes()));
+        photoRepositories.save(img);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping(path = { "/get/{imageName}" })
+    public Photo getImage(@PathVariable("imageName") String imageName) throws IOException {
+        final Optional<Photo> retrievedImage = photoRepositories.findByName(imageName);
+        Photo img = new Photo(retrievedImage.get().getName(), retrievedImage.get().getType(),
+                decompressBytes(retrievedImage.get().getPicByte()));
+        return img;
+    }
+
+    @GetMapping(path = { "/getId/{id}" })
+    public Photo getImageId(@PathVariable("id") int id) throws IOException {
+        final Optional<Photo> retrievedImage = photoRepositories.findById(id);
+        Photo img = new Photo(retrievedImage.get().getName(), retrievedImage.get().getType(),
+                decompressBytes(retrievedImage.get().getPicByte()));
+        return img;
+    }
+
+
+    @GetMapping(path = { "/getAll/{listImage}" })
+    public List<Photo> getAll(@PathVariable("listImage") ArrayList<Integer> imageName ) throws IOException {
+        int image1 = 0;
+        int image2 = 0;
+        int image3 = 0;
+        int image4 = 0;
+        int image5 = 0;
+       image1=imageName.get(0);
+        image2=imageName.get(1);
+        image3=imageName.get(2);
+        image4=imageName.get(3);
+        image5=imageName.get(4);
+        Photo photo1=getImageId(image1);
+        Photo photo2=getImageId(image2);
+        Photo photo3=getImageId(image3);
+        Photo photo4=getImageId(image4);
+        Photo photo5=getImageId(image5);
+        ArrayList<Photo> listPhoto=new ArrayList<>();
+        listPhoto.add(photo1);
+        listPhoto.add(photo2);
+        listPhoto.add(photo3);
+        listPhoto.add(photo4);
+        listPhoto.add(photo5);
+        return listPhoto;
+    }
+        // compresser les octets d'image avant de les stocker dans la base de données
+
+    public static byte[] compressBytes(byte[] data) {
+        Deflater deflater = new Deflater();
+        deflater.setInput(data);
+        deflater.finish();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
+        byte[] buffer = new byte[1024];
+        while (!deflater.finished()) {
+            int count = deflater.deflate(buffer);
+            outputStream.write(buffer, 0, count);
+        }
+        try {
+            outputStream.close();
+        } catch (IOException e) {
+        }
+        System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
+        return outputStream.toByteArray();
+    }
+    // décompresse les octets de l'image avant de les renvoyer à l'application angulaire
+
+    public static byte[] decompressBytes(byte[] data) {
+        Inflater inflater = new Inflater();
+        inflater.setInput(data);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
+        byte[] buffer = new byte[1024];
+        try {
+            while (!inflater.finished()) {
+                int count = inflater.inflate(buffer);
+                outputStream.write(buffer, 0, count);
+            }
+            outputStream.close();
+        } catch (IOException ioe) {
+        } catch (DataFormatException e) {
+        }
+        return outputStream.toByteArray();
+    }
+
+
+
+
 
     @PostMapping(value = "/photo")
     public ResponseEntity<Photo> savePhoto(@RequestBody Photo photo, BindingResult bindingResult){
@@ -47,8 +168,6 @@ public class TestNbreamControler {
 
         return new ResponseEntity<Photo>(savePhoto, HttpStatus.CREATED);
     }
-
-
 
 
     @GetMapping(value = "/listPhotos")
@@ -73,74 +192,36 @@ public class TestNbreamControler {
     }
 
 
-    @PostMapping(value = "saveResultClientNbdream")
-    public PhotoLangage saveResultClient(@RequestBody PhotoLangage resultNbdream, BindingResult bindingResult ){
+    @PostMapping(value = "saveResultPhotoLangage")
+    public PhotoLangage saveResultPhotoLangage(@RequestBody PhotoLangage resultNbdream, BindingResult bindingResult ){
+        List<PhotoLangage>list=langageRepositories.findAll();
+        if (list.size()>0){
+            for (PhotoLangage photoLangage: list ){
+                if (photoLangage.getClient().equals(resultNbdream.getClient())){
+                    return null;
+                }
+            }
+        }
         if (bindingResult.hasErrors()){
             return null;
         }
-        resultNbdream.setPhoto1(0);
-        resultNbdream.setPhoto2(0);
-        resultNbdream.setPhoto3(0);
-        resultNbdream.setPhoto4(0);
-        resultNbdream.setPhoto5(0);
-        resultNbdream.setPhoto6(0);
-        resultNbdream.setTest1(false);
-        return nbdreamRepositories.save(resultNbdream);
 
+
+        return langageRepositories.save(resultNbdream);
     }
 
-
-    @PutMapping(value = "modifResultNbdream")
-    public PhotoLangage modifResultNbdream(@RequestBody PhotoLangage resultNbdream, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            return null;
-        }
-        return nbdreamRepositories.save(resultNbdream);
-    }
-
-    @GetMapping(value = "getNbdream/{id}")
-    public Optional<PhotoLangage>getNbdream(@PathVariable("id") int id) {
-        Optional<PhotoLangage> resultatClient = nbdreamRepositories.findByClient(id);
+    @GetMapping(value = "getPhotoLangage/{id}")
+    public Optional<PhotoLangage>getPhotoLangage(@PathVariable("id") int id) {
+        Optional<PhotoLangage> resultatClient = langageRepositories.findByClient(id);
         if (!resultatClient.isPresent()) throw new QuestioneNotFoundException("Ce client n'a pas de test");
         return resultatClient;
-
     }
-    @GetMapping(value = "getNbdreamAll")
+    @GetMapping(value = "getPhotoLangageAll")
     public List<PhotoLangage> getNbdreamAll(){
-        return  nbdreamRepositories.findAll();
+        return  langageRepositories.findAll();
     }
 
-    @DeleteMapping(value = "deletePhoto/{id}/{idClient}")
-    public PhotoLangage deletePhoto(@PathVariable("id") int id , @PathVariable("idClient") int idClient){
-         Optional<PhotoLangage> client= getNbdream(idClient);
-        if (id==1){
-            client.get().setPhoto1(0);
-            return nbdreamRepositories.save(client.get());
-       }
-        if (id==2){
-            client.get().setPhoto2(0);
-            return nbdreamRepositories.save(client.get());
-        }
-        if (id==3){
-            client.get().setPhoto3(0);
-            return nbdreamRepositories.save(client.get());
-        }
-        if (id==4){
-            client.get().setPhoto4(0);
-            return nbdreamRepositories.save(client.get());
-        }
-        if (id==5){
-            client.get().setPhoto5(0);
-            return nbdreamRepositories.save(client.get());
-        }
-        if (id==6){
-            client.get().setPhoto6(0);
-            return nbdreamRepositories.save(client.get());
-        }
 
-        return null;
-
-    }
 
     @GetMapping(value = "/listRoueVie")
     public List<RoueVie> listRoueVie(){
@@ -153,6 +234,8 @@ public class TestNbreamControler {
         if (!roueVieClient.isPresent()) throw new QuestioneNotFoundException("Cette photo n'existe pas");
         return roueVieClient;
     }
+
+
 
     @PostMapping(value = "saveRoueVieClient")
     public RoueVie saveRoueVieClient(@RequestBody RoueVie roueVie, BindingResult bindingResult ) {
@@ -299,32 +382,36 @@ public class TestNbreamControler {
         return ficheMetierRepositories.findByCode(code);
     }
 
-    @PostMapping(value = "/photoFicheMetier")
-    public ResponseEntity<PhotoFicheMetier> photoFicheMetier(@RequestBody PhotoFicheMetier photo, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            return null;
-        }
-
-        PhotoFicheMetier savePhoto = photoFMRepositories.save(photo);
-
-        return new ResponseEntity<PhotoFicheMetier>(savePhoto, HttpStatus.CREATED);
+    @PostMapping("/photoFicheMetier")
+    public ResponseEntity<Object> photoFicheMetier(@RequestParam("imageFile") MultipartFile file) throws IOException {
+        System.out.println("Original Image Byte Size - " + file.getBytes().length);
+        PhotoFicheMetier img = new PhotoFicheMetier(file.getOriginalFilename(), file.getContentType(),
+                compressBytes(file.getBytes()));
+        photoFMRepositories.save(img);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping(value = "getPhotoFicheMetier/{id}")
-    public Optional<PhotoFicheMetier>getPhotoFicheMetier(@PathVariable("id") int id) {
-        Optional<PhotoFicheMetier> photo = photoFMRepositories.findById(id);
-        if (!photo.isPresent()) throw new QuestioneNotFoundException("Cette photo n'existe pas");
-        return photo;
+
+    @GetMapping(path = { "/getPhotoFicheMetier/{id}" })
+    public PhotoFicheMetier getPhotoFicheMetier(@PathVariable("id") int id) throws IOException {
+        final Optional<PhotoFicheMetier> retrievedImage = photoFMRepositories.findById(id);
+        PhotoFicheMetier img = new PhotoFicheMetier(retrievedImage.get().getName(), retrievedImage.get().getType(),
+                decompressBytes(retrievedImage.get().getPicByte()));
+        return img;
     }
+
+
+
+
     @GetMapping(value = "getPhotoFicheMetierAll")
     public List<PhotoFicheMetier>getPhotoFicheMetierAll() {
 
         return photoFMRepositories.findAll();
     }
 
-    @GetMapping(value = "/categorie")
-    public List<FicheMetier> findByCategorie(  @RequestParam(name = "categorie",defaultValue =" " )String categorie){
-        return ficheMetierRepositories.findByPhoto_Categirie(categorie);
+    @GetMapping(value = "/name")
+    public List<FicheMetier> findByCategorie(  @RequestParam(name = "name",defaultValue =" " )String name){
+        return ficheMetierRepositories.findByPhoto_Name(name);
     }
 
 

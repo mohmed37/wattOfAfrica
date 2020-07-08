@@ -1,0 +1,15 @@
+<h1 class="titre">B' n Dream</h1>
+<div class="container">
+  <div class="item">
+    <h2>Contexte</h2>
+  </div>
+  <div class="item">
+    <h2>Objectif</h2>
+  </div>
+  <div class="item">
+    <h2>Résultat</h2>
+  </div>
+</div>
+<div class="bouton" *ngIf="authService.userAuthenticated">
+<button mat-raised-button routerLink="/BnDeamTest">Démarrez <mat-icon class="icon">send</mat-icon></button>
+  </div>
