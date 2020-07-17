@@ -7,9 +7,9 @@
       <a  routerLink="/ficheMetier">Fiches métier</a>
       <a routerLink="/"><mat-icon class="iconHeader">home</mat-icon>Accueil</a>
       <a  routerLink="/mon-cv" *ngIf="authService.isAuthenticated">Mon Cv</a>
-      <a (click)="onLogout()"*ngIf="!authService.isAuthenticated"><i class="fas fa-external-link-square-alt"></i> Connexion</a>
+      <a (click)="onLogout()" *ngIf="!authService.isAuthenticated"><i class="fas fa-external-link-square-alt"></i> Connexion</a>
       <a *ngIf="authService.isAuthenticated"  (click)="onLogout()"><i class="fas fa-external-link-square-alt"></i> Déconnection</a>
-      <a routerLink="/new-client"><i class="fas fa-key"></i> Inscription</a>
+      <a routerLink="/new-client" *ngIf="!authService.isAuthenticated"><i class="fas fa-key"></i> Inscription</a>
     </nav>
     <div class="textCentre">
       <h1 >TROUVEZ VOTRE VOIE – CHANGEZ DE METIER – BOOSTEZ VOTRE CARRIERE – DEVENEZ ENTREPRENEUR</h1>

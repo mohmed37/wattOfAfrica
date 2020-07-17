@@ -48,9 +48,5 @@ public class RoueVie {
     String qcm2;
     @Column(name = "qcm3")
     String qcm3;
-    @Column(name = "roueVie2")
-    Boolean roueVie2;
-    @Column(name = "roueVie1")
-    Boolean roueVie1;
 
 }

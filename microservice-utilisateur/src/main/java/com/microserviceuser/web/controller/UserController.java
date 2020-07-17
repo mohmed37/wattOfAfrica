@@ -92,7 +92,7 @@ public class UserController {
             case "photolangage":
                 questionClient.get().setPhotoLangage(true);
                 break;
-            case "roue de la vie":
+            case "roueDeLaVie":
                 questionClient.get().setRoueVie(true);
                 break;
             default:

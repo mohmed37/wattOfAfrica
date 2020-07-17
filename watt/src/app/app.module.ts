@@ -38,6 +38,7 @@ import { PraicoComponent } from './praico/praico.component';
 import { HeroComponent } from './hero/hero.component';
 import { AdministrateurComponent } from './administrateur/administrateur.component';
 import { FicheMetierComponent } from './fiche-metier/fiche-metier.component';
+import {ChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -82,11 +83,12 @@ import { FicheMetierComponent } from './fiche-metier/fiche-metier.component';
     ReactiveFormsModule,
     MatIconModule,
     MatProgressBarModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [
     ClientService
+
   ],
   bootstrap: [AppComponent]
 })

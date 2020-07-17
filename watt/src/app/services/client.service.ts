@@ -110,7 +110,12 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   }
 
   public putQuestionnaires(typeQuetionnaire:string){
-    return this.htttpClient.put(this.hostUser + "/modifQuestionnaire/"+this.userConnect.userAuthenticated.num,typeQuetionnaire);
+    return this.htttpClient.put(this.hostUser + "/modifQuestionnaire/"+this.userConnect.userAuthenticated.num,typeQuetionnaire).subscribe(data=>{
+
+    },error => {
+      console.log(error)
+    });
+
   }
 
 }

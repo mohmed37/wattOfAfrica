@@ -1,10 +1,7 @@
 package com.tests.web.controler;
 
-import com.microserviceuser.entities.AppUser;
-import com.tests.bean.UserBean;
 import com.tests.dao.ndream.*;
 import com.tests.entity.ndream.*;
-import com.tests.proxy.MuserProxy;
 import com.tests.web.exceptions.QuestioneNotFoundException;
 import lombok.var;
 import org.hibernate.engine.jdbc.StreamUtils;
@@ -60,9 +57,6 @@ public class TestNbreamControler {
     FicheMetierRepositories ficheMetierRepositories;
     @Autowired
     PhotoFMRepositories photoFMRepositories;
-    @Autowired
-    MuserProxy muserProxy;
-
 
 
     @PostMapping("/upload")
@@ -74,7 +68,7 @@ public class TestNbreamControler {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping(path = { "/get/{imageName}" })
+    @GetMapping(path = {"/get/{imageName}"})
     public Photo getImage(@PathVariable("imageName") String imageName) throws IOException {
         final Optional<Photo> retrievedImage = photoRepositories.findByName(imageName);
         Photo img = new Photo(retrievedImage.get().getName(), retrievedImage.get().getType(),
@@ -82,7 +76,7 @@ public class TestNbreamControler {
         return img;
     }
 
-    @GetMapping(path = { "/getId/{id}" })
+    @GetMapping(path = {"/getId/{id}"})
     public Photo getImageId(@PathVariable("id") int id) throws IOException {
         final Optional<Photo> retrievedImage = photoRepositories.findById(id);
         Photo img = new Photo(retrievedImage.get().getName(), retrievedImage.get().getType(),
@@ -91,24 +85,24 @@ public class TestNbreamControler {
     }
 
 
-    @GetMapping(path = { "/getAll/{listImage}" })
-    public List<Photo> getAll(@PathVariable("listImage") ArrayList<Integer> imageName ) throws IOException {
+    @GetMapping(path = {"/getAll/{listImage}"})
+    public List<Photo> getAll(@PathVariable("listImage") ArrayList<Integer> imageName) throws IOException {
         int image1 = 0;
         int image2 = 0;
         int image3 = 0;
         int image4 = 0;
         int image5 = 0;
-       image1=imageName.get(0);
-        image2=imageName.get(1);
-        image3=imageName.get(2);
-        image4=imageName.get(3);
-        image5=imageName.get(4);
-        Photo photo1=getImageId(image1);
-        Photo photo2=getImageId(image2);
-        Photo photo3=getImageId(image3);
-        Photo photo4=getImageId(image4);
-        Photo photo5=getImageId(image5);
-        ArrayList<Photo> listPhoto=new ArrayList<>();
+        image1 = imageName.get(0);
+        image2 = imageName.get(1);
+        image3 = imageName.get(2);
+        image4 = imageName.get(3);
+        image5 = imageName.get(4);
+        Photo photo1 = getImageId(image1);
+        Photo photo2 = getImageId(image2);
+        Photo photo3 = getImageId(image3);
+        Photo photo4 = getImageId(image4);
+        Photo photo5 = getImageId(image5);
+        ArrayList<Photo> listPhoto = new ArrayList<>();
         listPhoto.add(photo1);
         listPhoto.add(photo2);
         listPhoto.add(photo3);
@@ -116,7 +110,7 @@ public class TestNbreamControler {
         listPhoto.add(photo5);
         return listPhoto;
     }
-        // compresser les octets d'image avant de les stocker dans la base de données
+    // compresser les octets d'image avant de les stocker dans la base de données
 
     public static byte[] compressBytes(byte[] data) {
         Deflater deflater = new Deflater();
@@ -155,12 +149,9 @@ public class TestNbreamControler {
     }
 
 
-
-
-
     @PostMapping(value = "/photo")
-    public ResponseEntity<Photo> savePhoto(@RequestBody Photo photo, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    public ResponseEntity<Photo> savePhoto(@RequestBody Photo photo, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return null;
         }
 
@@ -171,20 +162,20 @@ public class TestNbreamControler {
 
 
     @GetMapping(value = "/listPhotos")
-    public Page<Photo> listPhotos(@RequestParam(name="page",defaultValue = "0")int page,
-                                  @RequestParam(name="size",defaultValue = "4")int size){
+    public Page<Photo> listPhotos(@RequestParam(name = "page", defaultValue = "0") int page,
+                                  @RequestParam(name = "size", defaultValue = "4") int size) {
 
-        return photoRepositories.findAll(PageRequest.of(page,size));
+        return photoRepositories.findAll(PageRequest.of(page, size));
     }
 
     @GetMapping(value = "/listPhotosAll")
-    public List<Photo> listPhotosAll(){
+    public List<Photo> listPhotosAll() {
 
         return photoRepositories.findAll();
     }
 
     @GetMapping(value = "getPhoto/{id}")
-    public Optional<Photo>getPhoto(@PathVariable("id") int id) {
+    public Optional<Photo> getPhoto(@PathVariable("id") int id) {
         Optional<Photo> photo = photoRepositories.findById(id);
         if (!photo.isPresent()) throw new QuestioneNotFoundException("Cette photo n'existe pas");
         return photo;
@@ -193,60 +184,60 @@ public class TestNbreamControler {
 
 
     @PostMapping(value = "saveResultPhotoLangage")
-    public PhotoLangage saveResultPhotoLangage(@RequestBody PhotoLangage resultNbdream, BindingResult bindingResult ){
-        List<PhotoLangage>list=langageRepositories.findAll();
-        if (list.size()>0){
-            for (PhotoLangage photoLangage: list ){
-                if (photoLangage.getClient().equals(resultNbdream.getClient())){
-                    return null;
-                }
-            }
-        }
-        if (bindingResult.hasErrors()){
+    public PhotoLangage saveResultPhotoLangage(@RequestBody PhotoLangage resultNbdream, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return null;
         }
-
-
+        List<PhotoLangage> photoLangageList = langageRepositories.findAll();
+        for (PhotoLangage photoLangage : photoLangageList) {
+            if (photoLangage.getClient().equals(resultNbdream.getClient())) {
+                return null;
+            }
+        }
         return langageRepositories.save(resultNbdream);
     }
 
     @GetMapping(value = "getPhotoLangage/{id}")
-    public Optional<PhotoLangage>getPhotoLangage(@PathVariable("id") int id) {
+    public Optional<PhotoLangage> getPhotoLangage(@PathVariable("id") int id) {
         Optional<PhotoLangage> resultatClient = langageRepositories.findByClient(id);
         if (!resultatClient.isPresent()) throw new QuestioneNotFoundException("Ce client n'a pas de test");
         return resultatClient;
     }
+
     @GetMapping(value = "getPhotoLangageAll")
-    public List<PhotoLangage> getNbdreamAll(){
-        return  langageRepositories.findAll();
+    public List<PhotoLangage> getNbdreamAll() {
+        return langageRepositories.findAll();
     }
 
 
-
     @GetMapping(value = "/listRoueVie")
-    public List<RoueVie> listRoueVie(){
+    public List<RoueVie> listRoueVie() {
         return roueVieRepositories.findAll();
     }
 
     @GetMapping(value = "getRoueVieClient/{id}")
-    public Optional<RoueVie>getRoueVieClient(@PathVariable("id") int id) {
+    public Optional<RoueVie> getRoueVieClient(@PathVariable("id") int id) {
         Optional<RoueVie> roueVieClient = roueVieRepositories.findByClient(id);
         if (!roueVieClient.isPresent()) throw new QuestioneNotFoundException("Cette photo n'existe pas");
         return roueVieClient;
     }
 
 
-
     @PostMapping(value = "saveRoueVieClient")
-    public RoueVie saveRoueVieClient(@RequestBody RoueVie roueVie, BindingResult bindingResult ) {
+    public RoueVie saveRoueVieClient(@RequestBody RoueVie roueVie, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return null;
-        }
-        roueVie.setRoueVie1(false);
-        roueVie.setRoueVie2(false);
+            return null;}
+
+            List<RoueVie> roueVieList = roueVieRepositories.findAll();
+            for (RoueVie roueVie1 : roueVieList) {
+                if (roueVie1.getClient().equals(roueVie.getClient())) {
+                    return null;
+                }
+
+            }
         return roueVieRepositories.save(roueVie);
 
-    }
+        }
 
     @PutMapping(value = "modifRoueVieClient")
     public RoueVie modifRoueVieClient(@RequestBody RoueVie roueVie, BindingResult bindingResult ) {
@@ -268,6 +259,36 @@ public class TestNbreamControler {
         if (!autoPortrait.isPresent()) throw new QuestioneNotFoundException("Ce mot n'existe pas");
         return autoPortrait;
     }
+
+    @GetMapping(path = { "/autoportraitAll/{listTrait}" })
+    public List<Autoportrait> autoportraitAll(@PathVariable("listTrait") ArrayList<Integer> traitId ) throws IOException {
+        int traitId1 = 0;
+        int traitId2 = 0;
+        int traitId3 = 0;
+        int traitId4 = 0;
+        int traitId5 = 0;
+        traitId1=traitId.get(0);
+        traitId2=traitId.get(1);
+        traitId3=traitId.get(2);
+        traitId4=traitId.get(3);
+        traitId5=traitId.get(4);
+        Optional<Autoportrait> autoportrait1=getAutoportrait(traitId1);
+        Optional<Autoportrait> autoportrait2=getAutoportrait(traitId2);
+        Optional<Autoportrait> autoportrait3=getAutoportrait(traitId3);
+        Optional<Autoportrait> autoportrait4=getAutoportrait(traitId4);
+        Optional<Autoportrait> autoportrait5=getAutoportrait(traitId5);
+        ArrayList<Autoportrait> listTrait=new ArrayList<>();
+        listTrait.add(autoportrait1.get());
+        String personnalite = autoportrait1.get().getPersonnalite();
+        listTrait.add(autoportrait2.get());
+        listTrait.add(autoportrait3.get());
+        listTrait.add(autoportrait4.get());
+        listTrait.add(autoportrait5.get());
+        autoportrait5.get().getPersonnalite();
+        return listTrait;
+    }
+
+
     @GetMapping(value = "/ResulAutoportraitAll")
     public List<AutoportraitResult> ResulAutoportraitAll(){
         return autoportraitResultRepositories.findAll();

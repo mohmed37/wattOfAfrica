@@ -102,3 +102,7 @@ p{
 .action{
   text-align: center;
 }
+.photIntero{
+  opacity: 0.7;
+  border: 1px solid #3498db;
+}

@@ -34,3 +34,12 @@ button{
   margin-left: 20px;
   color: white;
 }
+.selection{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.btn{
+  margin: 20px;
+}

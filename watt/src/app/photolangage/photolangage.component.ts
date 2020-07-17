@@ -20,7 +20,10 @@ export class PhotolangageComponent implements OnInit {
   public retrieveResonseAll: any;
   public dedutTestPhotolangage: boolean=false;
 
-  constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,private serviceClient:ClientService, private userConnect:AuthenticationService) { }
+  constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,private serviceClient:ClientService, private userConnect:AuthenticationService) {
+    this.userId=this.userConnect.userAuthenticated.num;
+  }
+  public userId:number;
   base64Data: any;
   message: string;
   public photos:any;
@@ -76,6 +79,7 @@ export class PhotolangageComponent implements OnInit {
   public choixMot6:string;
   public texte:string;
   public questionnaires2:QuestionnairesModel;
+  photoInterog:string="assets/img/intero.jpg";
 
 
 
@@ -98,7 +102,7 @@ export class PhotolangageComponent implements OnInit {
       mot6:new FormControl('',Validators.required)
 
     });
-    console.log(this.formPhotoLangage.value.mot2)
+
     this.bndreamService.getResultPhotoLangage()
       .subscribe(data=>{
         this.resultPhotoLangage=data;
@@ -300,12 +304,12 @@ export class PhotolangageComponent implements OnInit {
     this.photoLangage.mot4=this.formPhotoLangage.value.mot4;
     this.photoLangage.mot5=this.formPhotoLangage.value.mot5;
     this.photoLangage.mot6=this.formPhotoLangage.value.mot6;
-    this.photoLangage.client=6;
+    this.photoLangage.client=this.userId;
     this.questionnaires.photoLangage=true;
       this.bndreamService.savePhotLangage(this.hostTest+ "/saveResultPhotoLangage/",this.photoLangage)
         .subscribe(res=>{
           console.log(res);
-          this.onUpdateQuestionnaire("photolangage");
+          this.serviceClient.putQuestionnaires("photolangage");
           this.router.navigateByUrl("/BnDeamTest");
 
         }, error => {
@@ -327,17 +331,6 @@ export class PhotolangageComponent implements OnInit {
   onChange({ editor }: ChangeEvent) {
     this.photoLangage.expression=editor.getData();
   }
-
-  onUpdateQuestionnaire(value: string) {
-    this.serviceClient.putQuestionnaires(value)
-      .subscribe(data=>{
-
-      },error => {
-        console.log(error)
-      })
-
-  }
-
 
 
 }

@@ -13,4 +13,29 @@
 <div class="bouton">
   <button mat-raised-button routerLink="/BnDeamTest">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
+<div class="selection">
+  <div class="information">
+  <h2>Qui suis-je vraiment ?</h2>
+  <p>Il est temps de mieux vous connaître en identifiant vos qualités ! </p>
+  <p>1ère phase : Dans le tableau suivant, cochez les 5 traits de personnalité qui vous correspondent le plus.</p>
+  </div>
+  <div class="mots">
+  <div class="boutonImage" >
+    <button mat-raised-button *ngIf="traitId1<=1" disabled="disabled"><mat-icon class="icon">navigate_before</mat-icon></button>
+    <button mat-raised-button *ngIf="traitId1>1" (click)="getTraitList(0) "><mat-icon class="icon">navigate_before</mat-icon></button>
+  </div>
+  <button  (click)="imageClientChoix(traitId1,iDautoPortrait1)" class="btn btn-primary" >{{autoPortrait1}}</button>
+  <button (click)="imageClientChoix(traitId2,iDautoPortrait2)" class="btn btn-primary" >{{autoPortrait2}}</button>
+  <button (click)="imageClientChoix(traitId3,iDautoPortrait3)" class="btn btn-primary">{{autoPortrait3}}</button>
+  <button (click)="imageClientChoix(traitId4,iDautoPortrait4)" class="btn btn-primary">{{autoPortrait4}}</button>
+  <button (click)="imageClientChoix(traitId5,iDautoPortrait5)" class="btn btn-primary" >{{autoPortrait5}}</button>
+  <div class="boutonImage">
+    <button mat-raised-button *ngIf="traitId5>=50" disabled="disabled"><mat-icon class="icon">navigate_next</mat-icon></button>
+    <button mat-raised-button *ngIf="traitId5<50" (click)="getTraitList(1) "><mat-icon class="icon">navigate_next</mat-icon></button>
+  </div>
+  </div>
 
+
+
+
+</div>
