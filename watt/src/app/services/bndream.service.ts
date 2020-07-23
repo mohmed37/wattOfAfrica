@@ -6,6 +6,11 @@ import {FicheMetier} from "../model/ficheMetier.model";
 import {PhotoLangageModel} from "../model/photoLangage.model";
 import {AuthenticationService} from "./authentication.service";
 import {RoueDeLaVieModel} from "../model/roueDeLaVie.model";
+import {ChoixAutoPortraitModel} from "../model/choixAutoPortrait.model";
+import {Questionnaire1Model} from "../model/questionnaire1.model";
+import {ResultatPraicoModel} from "../model/resultatPraico.model";
+import {Questionnaire2Model} from "../model/questionnaire2.model";
+import {Questionnaire4Model} from "../model/questionnaire4.model";
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +42,17 @@ public getPhoto() {
     return this.htttpClient.post<RoueDeLaVieModel>(url,data.valueOf());
 
   }
+  public saveAutoPortrait(url,data):Observable<ChoixAutoPortraitModel> {
+    return this.htttpClient.post<ChoixAutoPortraitModel>(url,data.valueOf());
+  }
+
+  public savepraico(url,data):Observable<ResultatPraicoModel> {
+    return this.htttpClient.post<ResultatPraicoModel>(url,data.valueOf());
+  }
+
+  public saveQcm4(url,data):Observable<Questionnaire4Model> {
+    return this.htttpClient.post<Questionnaire4Model>(url,data.valueOf());
+  }
 
   getResultPhotoLangage():Observable<PhotoLangageModel>{
     return this.htttpClient.get<PhotoLangageModel>(this.hostTest + "/getPhotoLangage/"+this.userConnect.userAuthenticated.num);
@@ -47,5 +63,28 @@ public getPhoto() {
 
   }
 
+  getResultAutoPortrait():Observable<ChoixAutoPortraitModel>{
+    return this.htttpClient.get<ChoixAutoPortraitModel>(this.hostTest + "/getResulAutoportrait/"+this.userConnect.userAuthenticated.num);
+
+  }
+
+  getQustionnaire1(id:number):Observable<Questionnaire1Model>{
+    return this.htttpClient.get<Questionnaire1Model>(this.hostTest + "/questionnaire1/"+id);
+  }
+  getQustionnaire2(id:number):Observable<Questionnaire2Model>{
+    return this.htttpClient.get<Questionnaire2Model>(this.hostTest + "/questionnaire2/"+id);
+  }
+
+  getQustionnaire3(id:number):Observable<Questionnaire2Model>{
+    return this.htttpClient.get<Questionnaire2Model>(this.hostTest + "/questionnaire3/"+id);
+  }
+
+  getQustionnaire4():Observable<Questionnaire4Model[]> {
+    return this.htttpClient.get<Questionnaire4Model[]>(this.hostTest + "/questionnaire4/");
+  }
+
+  getResultPraico():Observable<ResultatPraicoModel> {
+    return this.htttpClient.get<ResultatPraicoModel>(this.hostTest + "/praicoIdClient/"+this.userConnect.userAuthenticated.num);
+  }
 
 }

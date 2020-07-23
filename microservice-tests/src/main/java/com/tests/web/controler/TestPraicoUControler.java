@@ -29,18 +29,21 @@ public class TestPraicoUControler {
 
     @PostMapping(value = "saveResultPraicoU")
     public ResultPraicoU saveResultPraicoU(@RequestBody ResultPraicoU resultPraicoU) {
-        resultPraicoU.setNombreA(0);
-        resultPraicoU.setNombreC(0);
-        resultPraicoU.setNombreI(0);
-        resultPraicoU.setNombreO(0);
-        resultPraicoU.setNombreP(0);
-        resultPraicoU.setNombreR(0);
-        resultPraicoU.setQcm1(1);
-        resultPraicoU.setQcm2(1);
-        resultPraicoU.setQcm3(1);
-        resultPraicoU.setQcm4(1);
+        List<ResultPraicoU>praicoUList=resultRepository.findAll();
+        for (ResultPraicoU clientPraico:praicoUList)
+            if(clientPraico.getClient().equals(resultPraicoU.getClient())){
+            clientPraico.setNombreA(clientPraico.getNombreA()+resultPraicoU.getNombreA());
+            clientPraico.setNombreC(clientPraico.getNombreC()+resultPraicoU.getNombreC());
+            clientPraico.setNombreI(clientPraico.getNombreI()+resultPraicoU.getNombreI());
+            clientPraico.setNombreO(clientPraico.getNombreO()+resultPraicoU.getNombreO());
+            clientPraico.setNombreP(clientPraico.getNombreP()+resultPraicoU.getNombreP());
+            clientPraico.setNombreR(clientPraico.getNombreR()+resultPraicoU.getNombreR());
+            return resultRepository.save(clientPraico);}
+
+
         return resultRepository.save(resultPraicoU);
     }
+
     @GetMapping(value = "/praicoIdClient/{id}")
     public Optional<ResultPraicoU> praicoIdClient(@PathVariable("id") int id) {
         Optional<ResultPraicoU> resutatClient = resultRepository.findByClient(id);
@@ -70,6 +73,11 @@ public class TestPraicoUControler {
         Optional<Qcm3> questionnaire3 = qcm3Repository.findById(id);
         if (!questionnaire3.isPresent()) throw new QuestioneNotFoundException("Cette question n'existe pas");
         return questionnaire3;
+    }
+    @PostMapping(value = "saveQcm4")
+    public Qcm4 saveQcm4(@RequestBody Qcm4 qcm4){
+        return qcm4Repository.save(qcm4);
+
     }
 
     @GetMapping(value = "/questionnaire4")

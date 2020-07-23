@@ -307,20 +307,7 @@ public class TestNbreamControler {
         if (bindingResult.hasErrors()) {
             return null;
         }
-        autoportraitResult.setDefaut1("-");
-        autoportraitResult.setDefaut2("-");
-        autoportraitResult.setDefaut3("-");
-        autoportraitResult.setQualite1("-");
-        autoportraitResult.setQualite2("-");
-        autoportraitResult.setQualite3("-");
-        autoportraitResult.setDefaut4("-");
-        autoportraitResult.setDefaut5("-");
-        autoportraitResult.setDefaut6("-");
-        autoportraitResult.setQualite4("-");
-        autoportraitResult.setQualite5("-");
-        autoportraitResult.setQualite6("-");
-        autoportraitResult.setAuto1(false);
-        autoportraitResult.setAuto2(false);
+
 
         return autoportraitResultRepositories.save(autoportraitResult);
     }

@@ -1,4 +1,5 @@
 <h1 class="titre">Auto-Portrait</h1>
+<div *ngIf="!autoPortraitValide">
 <div class="container">
   <div class="item">
     <h2>Contexte</h2>
@@ -11,31 +12,117 @@
   </div>
 </div>
 <div class="bouton">
-  <button mat-raised-button routerLink="/BnDeamTest">Démarrez <mat-icon class="icon">send</mat-icon></button>
+  <button *ngIf="!testAutoPortrait &&roueDeLaVieValide" mat-raised-button (click)="clicTestAutoPortrait()">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
-<div class="selection">
-  <div class="information">
+<div  *ngIf="testAutoPortrait">
   <h2>Qui suis-je vraiment ?</h2>
   <p>Il est temps de mieux vous connaître en identifiant vos qualités ! </p>
-  <p>1ère phase : Dans le tableau suivant, cochez les 5 traits de personnalité qui vous correspondent le plus.</p>
-  </div>
-  <div class="mots">
-  <div class="boutonImage" >
-    <button mat-raised-button *ngIf="traitId1<=1" disabled="disabled"><mat-icon class="icon">navigate_before</mat-icon></button>
-    <button mat-raised-button *ngIf="traitId1>1" (click)="getTraitList(0) "><mat-icon class="icon">navigate_before</mat-icon></button>
-  </div>
-  <button  (click)="imageClientChoix(traitId1,iDautoPortrait1)" class="btn btn-primary" >{{autoPortrait1}}</button>
-  <button (click)="imageClientChoix(traitId2,iDautoPortrait2)" class="btn btn-primary" >{{autoPortrait2}}</button>
-  <button (click)="imageClientChoix(traitId3,iDautoPortrait3)" class="btn btn-primary">{{autoPortrait3}}</button>
-  <button (click)="imageClientChoix(traitId4,iDautoPortrait4)" class="btn btn-primary">{{autoPortrait4}}</button>
-  <button (click)="imageClientChoix(traitId5,iDautoPortrait5)" class="btn btn-primary" >{{autoPortrait5}}</button>
-  <div class="boutonImage">
-    <button mat-raised-button *ngIf="traitId5>=50" disabled="disabled"><mat-icon class="icon">navigate_next</mat-icon></button>
-    <button mat-raised-button *ngIf="traitId5<50" (click)="getTraitList(1) "><mat-icon class="icon">navigate_next</mat-icon></button>
-  </div>
-  </div>
-
-
-
-
+  <p  *ngIf="!list1">1ère phase : Selectionnez les 5 traits de personnalité qui vous correspondent le plus.</p>
+  <p *ngIf="list1&&!list2">2ème phase : Passez une soirée entre amis et profitez de l’occasion pour leur demander
+    ce qu’ils pensent de vous.</p>
+  <div class="container">
+    <div class="item image" *ngIf="!list1">
+      <div  class="photo2">
+  <img  [src]="photo">
+      </div>
+      <p>Comment vous voyez-vous ?</p>
+    </div>
+    <div class="item image" *ngIf="list1&&!list2">
+      <div class="photo2">
+  <img  [src]="photo2" >
+      </div>
+      <p>Comment les autres vous perçoivent-ils ?</p>
+    </div>
 </div>
+</div>
+</div>
+  <div *ngIf="list2||autoPortraitValide">
+  <p *ngIf="!resultAutoPortraitClient">3ème phase : EXERCICE DE REFLEXION</p>
+<div class="container" >
+    <ol class="item resultat">
+      <P>Comment vous vous voyez:</P>
+      <img [src]="photo" class="photo">
+      <div *ngIf="!autoPortraitValide ">
+      <li>{{resultAutoPortrait.list1[0]}}</li>
+      <li>{{resultAutoPortrait.list1[1]}}</li>
+      <li>{{resultAutoPortrait.list1[2]}}</li>
+      <li>{{resultAutoPortrait.list1[3]}}</li>
+      <li>{{resultAutoPortrait.list1[4]}}</li>
+      </div>
+      <div *ngIf="autoPortraitValide">
+        <li>{{resultAutoPortraitClient.list1[0]}}</li>
+        <li>{{resultAutoPortraitClient.list1[1]}}</li>
+        <li>{{resultAutoPortraitClient.list1[2]}}</li>
+        <li>{{resultAutoPortraitClient.list1[3]}}</li>
+        <li>{{resultAutoPortraitClient.list1[4]}}</li>
+      </div>
+    </ol>
+    <ol class="item resultat">
+      <P>Comment vous êtes perçu:</P>
+      <img [src]="photo2" class="photo">
+      <div *ngIf="!autoPortraitValide">
+      <li>{{resultAutoPortrait.list2[0]}}</li>
+      <li>{{resultAutoPortrait.list2[1]}}</li>
+      <li>{{resultAutoPortrait.list2[2]}}</li>
+      <li>{{resultAutoPortrait.list2[3]}}</li>
+      <li>{{resultAutoPortrait.list2[4]}}</li>
+      </div>
+      <div *ngIf="autoPortraitValide">
+        <li>{{resultAutoPortraitClient.list2[0]}}</li>
+        <li>{{resultAutoPortraitClient.list2[1]}}</li>
+        <li>{{resultAutoPortraitClient.list2[2]}}</li>
+        <li>{{resultAutoPortraitClient.list2[3]}}</li>
+        <li>{{resultAutoPortraitClient.list2[4]}}</li>
+      </div>
+    </ol>
+</div>
+    <div *ngIf="autoPortraitValide">
+      <p>Votre constat</p>
+      <p [innerHTML]="resultAutoPortraitClient.reflexion"></p>
+      <button class="btn btn-success" routerLink="/BnDeamTest">Retour au tests</button>
+    </div>
+    <div *ngIf="!autoPortraitValide">
+  <p>Que constatez-vous ? Votre entourage vous perçoit-il comme vous vous percevez ? Avez-vous été surpris par certaines
+    réponses ?</p>
+    <div  class="contenu" *ngIf="!saveAutoPortrait">
+      <ckeditor  [editor]="Editor" data="{{resultAutoPortrait.reflexion}}"  (change)="onChange($event)"></ckeditor>
+      <button class="btn btn-success" type="submit" (click)="onSaveAutoPortrait()">Enregistrer</button>
+    </div>
+    </div>
+  </div>
+
+<div class="container" *ngIf="!autoPortraitValide && testAutoPortrait">
+
+  <ul class="item select" *ngIf="!list2">
+
+   <li *ngIf="traitId1<=1" disabled="disabled"><mat-icon>close</mat-icon></li>
+    <li *ngIf="traitId1>1" (click)="getTraitList(0) "><mat-icon class="icon">keyboard_arrow_up</mat-icon></li>
+  <li  (click)="autoPortraitClientChoix(autoPortrait1)"  >{{autoPortrait1}}</li>
+  <li (click)="autoPortraitClientChoix(autoPortrait2)" >{{autoPortrait2}}</li>
+  <li (click)="autoPortraitClientChoix(autoPortrait3)" >{{autoPortrait3}}</li>
+  <li (click)="autoPortraitClientChoix(autoPortrait4)">{{autoPortrait4}}</li>
+  <li (click)="autoPortraitClientChoix(autoPortrait5)">{{autoPortrait5}}</li>
+    <li *ngIf="traitId5>=50" disabled="disabled"><mat-icon>close</mat-icon></li>
+    <li *ngIf="traitId5<50" (click)="getTraitList(1) "><mat-icon class="icon">keyboard_arrow_down</mat-icon></li>
+  </ul>
+<ul class="item selection" *ngIf="!list1">
+  <li (click)="delete(0,1)">{{resultAutoPortrait.list1[0]}}</li>
+  <li (click)="delete(1,1)">{{resultAutoPortrait.list1[1]}}</li>
+  <li (click)="delete(2,1)">{{resultAutoPortrait.list1[2]}}</li>
+  <li (click)="delete(3,1)">{{resultAutoPortrait.list1[3]}}</li>
+  <li (click)="delete(4,1)">{{resultAutoPortrait.list1[4]}}</li>
+  <li class="valide" *ngIf="!list1&&choixList1==5" (click)="resultList('list1')">Valider</li>
+  <li disabled="disabled" class="invalide" *ngIf="!list1&&choixList1<5" >{{choixList1}}</li>
+</ul>
+<ul class="item selection" *ngIf="list1&&!list2">
+  <li (click)="delete(0,2)">{{resultAutoPortrait.list2[0]}}</li>
+  <li (click)="delete(1,2)">{{resultAutoPortrait.list2[1]}}</li>
+  <li (click)="delete(2,2)">{{resultAutoPortrait.list2[2]}}</li>
+  <li (click)="delete(3,2)">{{resultAutoPortrait.list2[3]}}</li>
+  <li (click)="delete(4,2)" >{{resultAutoPortrait.list2[4]}}</li>
+  <li  class="valide" *ngIf="list1&&!list2&&choixList2==5" (click)="resultList('list2')">Valider</li>
+  <li  class="invalide" *ngIf="list1&&!list2&&choixList2<5" >{{choixList2}}</li>
+
+</ul>
+</div>
+

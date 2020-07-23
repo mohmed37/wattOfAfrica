@@ -308,7 +308,6 @@ export class PhotolangageComponent implements OnInit {
     this.questionnaires.photoLangage=true;
       this.bndreamService.savePhotLangage(this.hostTest+ "/saveResultPhotoLangage/",this.photoLangage)
         .subscribe(res=>{
-          console.log(res);
           this.serviceClient.putQuestionnaires("photolangage");
           this.router.navigateByUrl("/BnDeamTest");
 

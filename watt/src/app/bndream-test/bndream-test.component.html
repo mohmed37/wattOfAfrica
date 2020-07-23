@@ -1,3 +1,4 @@
+
 <div class="progressTotal">
   <img [src]="depart" class="item image" >
  <div class="item progression">
@@ -28,15 +29,17 @@
     <p class="numro numroValide" *ngIf="roueVie"><mat-icon>done_outline</mat-icon></p>
     <p class="test" *ngIf="!roueVie">Test à réaliser</p>
     <p class="test testValide" *ngIf="roueVie">Test validé</p>
-    <a class="titreProjet" routerLink="/roue-de-la-vie" (click)="bndreamService.getResultRoueDeLaVie()" >Roue de la vie </a>
+    <a class="titreProjet" routerLink="/roue-de-la-vie" (click)="serviceBream.getResultRoueDeLaVie()" >Roue de la vie </a>
     <div class="time">
       <mat-icon>access_time</mat-icon>
       <p>40 minutes</p>
     </div>
   </div>
   <div class="item projet">
-    <p class="numro">3</p>
-    <p class="test">Test à réaliser</p>
+    <p class="numro"*ngIf="!autoportrait">3</p>
+    <p class="numro numroValide" *ngIf="autoportrait"><mat-icon>done_outline</mat-icon></p>
+    <p class="test" *ngIf="!autoportrait">Test à réaliser</p>
+    <p class="test testValide" *ngIf="autoportrait">Test validé</p>
     <a class="titreProjet" routerLink="/autoPortrait" >Autoportrait</a>
     <div class="time">
       <mat-icon>access_time</mat-icon>
@@ -44,8 +47,12 @@
     </div>
   </div>
   <div class="item projet">
-    <p class="numro">4</p>
-    <p class="test" >Test à réaliser</p>
+    <p class="numro" *ngIf="!qcm1">4</p>
+    <p class="numro numroValide" *ngIf="qcm4"><mat-icon>done_outline</mat-icon></p>
+    <p class="numro numroCours" *ngIf="qcm1&&!qcm4"><mat-icon>timer</mat-icon></p>
+    <p class="test" *ngIf="!qcm1">Test à réaliser</p>
+    <p class="test testCours" *ngIf="qcm1&&!qcm4">Test en cours </p>
+    <p class="test testValide" *ngIf="qcm4">Test validé</p>
     <a class="titreProjet" routerLink="/praico">Test d’intérêt professionnel PRAICO</a>
     <div class="time">
       <mat-icon>access_time</mat-icon>
@@ -61,6 +68,5 @@
       <p>30 minutes</p>
     </div>
   </div>
-
-
 </div>
+

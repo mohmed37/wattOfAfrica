@@ -5,6 +5,10 @@ import {HttpClient} from "@angular/common/http";
 import {ClientService} from "../services/client.service";
 import {AuthenticationService} from "../services/authentication.service";
 import {ListAutoPortraitModel} from "../model/listAutoPortrait.model";
+import {ChoixAutoPortraitModel} from "../model/choixAutoPortrait.model";
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {ChangeEvent} from "@ckeditor/ckeditor5-angular";
+import {QuestionnairesModel} from "../model/questionnaires.model";
 
 @Component({
   selector: 'app-autoportrait',
@@ -35,11 +39,55 @@ export class AutoportraitComponent implements OnInit {
   public iDautoPortrait4:number;
   public iDautoPortrait5:number;
   public retrieveResonseChoix:any=null;
+  public message: string;
+  public questionnaires=new QuestionnairesModel() ;
+  public questionnaires2:QuestionnairesModel;
+  public choixList1:number=0;
+  public choixList2:number=0;
+  public resultAutoPortrait=new ChoixAutoPortraitModel(["?","?","?","?","?"],["?","?","?","?","?"],
+    "<ol ><li>- - - - - - - - - - - - - - .</li>"+
+    "<li>- - - - - - - - - - - - - - .</li>"+
+    "<li>- - - - - - - - - - - - - - .</li></ol>");
+  public list1: boolean=false;
+  public list2: boolean=false;
+  public Editor = ClassicEditor;
+  public photo:string="assets/img/autoPortrait.jpg";
+  public photo2:string="assets/img/autoPortrait2.jpg";
+  public userId: number | any;
+  public saveAutoPortrait: boolean=false;
+  public testAutoPortrait: boolean=false;
+  public roueDeLaVieValide: boolean=false;
+  public autoPortraitValide: boolean=false;
+  public resultAutoPortraitClient: ChoixAutoPortraitModel;
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
-              private serviceClient:ClientService, private userConnect:AuthenticationService) { }
+              private serviceClient:ClientService, private userConnect:AuthenticationService) {
+    this.userId=this.userConnect.userAuthenticated.num;
+  }
 
   ngOnInit(): void {
+    this.bndreamService.getResultAutoPortrait().subscribe(
+      data =>{
+        this.resultAutoPortraitClient=data;
+      }
+
+    );
+    this.serviceClient. getQuestionnaires()
+      .subscribe(data=>{
+        this.questionnaires2=data;
+        this.roueDeLaVieValide=this.questionnaires2.roueVie;
+        this.autoPortraitValide=this.questionnaires2.autoPortrait;
+      },error => {
+        console.log(error);
+      });
     this.getTraitList(2);
+  }
+  clicTestAutoPortrait(){
+    this.testAutoPortrait=true;
+
+
+
+
+
   }
 
   getTraitList(number: number) {
@@ -66,8 +114,6 @@ export class AutoportraitComponent implements OnInit {
         this.traitId5=5;
     }
     this.idTrait=new Array<number>( this.traitId1,this.traitId2,this.traitId3,this.traitId4,this.traitId5);
-    console.log(this.traitId1)
-    console.log(this.traitId5)
     this.httpClient.get(this.hostTest +"/autoportraitAll/" + this.idTrait)
       .subscribe(
         res => {
@@ -90,14 +136,101 @@ export class AutoportraitComponent implements OnInit {
       );
   }
 
-  imageClientChoix(traitId1: number,idAutoPortrait:number) {
-    this.httpClient.get(this.hostTest +"/getId/"+idAutoPortrait)
-      .subscribe(
-        res => {
-          this.retrieveResonseChoix = res;
+
+  autoPortraitClientChoix(autoPortrait: string) {
+    if(this.resultAutoPortrait.list1[0]=="?"){
+      this.resultAutoPortrait.list1[0]=autoPortrait;
+      this.choixList1=this.choixList1+1;
+      return null;
+    }
+    if(this.resultAutoPortrait.list1[1]=="?"){
+      this.resultAutoPortrait.list1[1]=autoPortrait;
+      this.choixList1=this.choixList1+1;
+      return null;
+    }
+    if(this.resultAutoPortrait.list1[2]=="?"){
+      this.resultAutoPortrait.list1[2]=autoPortrait;
+      this.choixList1=this.choixList1+1;
+      return null;
+    }
+    if(this.resultAutoPortrait.list1[3]=="?"){
+      this.resultAutoPortrait.list1[3]=autoPortrait;
+      this.choixList1=this.choixList1+1;
+      return null;
+    }
+    if(this.resultAutoPortrait.list1[4]=="?"){
+      this.resultAutoPortrait.list1[4]=autoPortrait;
+      this.choixList1=this.choixList1+1;
+      return null;
+    }
+    if(this.resultAutoPortrait.list2[0]=="?"&&this.list1){
+      this.resultAutoPortrait.list2[0]=autoPortrait;
+      this.choixList2=this.choixList2+1;
+      return null;
+    }
+    if(this.resultAutoPortrait.list2[1]=="?"&&this.list1){
+      this.resultAutoPortrait.list2[1]=autoPortrait;
+      this.choixList2=this.choixList2+1;
+      return null;
+    }
+    if(this.resultAutoPortrait.list2[2]=="?"&&this.list1){
+      this.resultAutoPortrait.list2[2]=autoPortrait;
+      this.choixList2=this.choixList2+1;
+      return null;
+    }
+    if(this.resultAutoPortrait.list2[3]=="?"&&this.list1){
+      this.resultAutoPortrait.list2[3]=autoPortrait;
+      this.choixList2=this.choixList2+1;
+      return null;
+    }
+    if(this.resultAutoPortrait.list2[4]=="?"&&this.list1){
+      this.resultAutoPortrait.list2[4]=autoPortrait;
+      this.choixList2=this.choixList2+1;
+      return null;
+    }
 
 
-        })
+  }
 
-        }
+  resultList(list:string) {
+    if(list=="list1"){
+    this.list1=true;}
+    if(list=="list2"){
+      this.list2 =true;}
+  }
+
+  onChange({ editor }: ChangeEvent) {
+    this.resultAutoPortrait.reflexion=editor.getData();
+  }
+
+  onSaveAutoPortrait() {
+
+    this.resultAutoPortrait.client=this.userId;
+    this.questionnaires.photoLangage=true;
+    this.bndreamService.saveAutoPortrait(this.hostTest+ "/saveAutoPortraitClient/",this.resultAutoPortrait)
+      .subscribe(res=>{
+        this.serviceClient.putQuestionnaires("autoPortrait");
+        this.router.navigateByUrl("/BnDeamTest");
+        this.saveAutoPortrait=true;
+
+      }, error => {
+        this.message = "l'enregistrement à échoué!";
+        console.log(error)
+      })
+  }
+
+  delete(position: number, list: number) {
+
+    if (list==1){
+      if( this.resultAutoPortrait.list1[position]!="?"){
+      this.resultAutoPortrait.list1[position]="?"
+      this.choixList1=this.choixList1-1;}
+    }
+    if (list==2){
+      if( this.resultAutoPortrait.list2[position]!="?"){
+      this.resultAutoPortrait.list2[position]="?"
+      this.choixList2=this.choixList2-1;}
+    }
+
+  }
 }

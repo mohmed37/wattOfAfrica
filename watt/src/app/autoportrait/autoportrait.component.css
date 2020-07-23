@@ -31,15 +31,91 @@ button{
   font-size: 20px;
 }
 .icon{
-  margin-left: 20px;
   color: white;
 }
 .selection{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  width: 320px;
+  margin-top: 20px;
+  padding-top: 60px;
+  background-color: #dfd5ce;
 }
 .btn{
   margin: 20px;
+}
+
+h2{
+  text-align: center;
+  color:  #3498db;
+  margin-top: 40px;
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
+}
+
+p{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;}
+
+.resultat {
+ margin-right: 10px;
+}
+.resultat li{
+  margin-top: 20px;
+  margin-left: 50px;
+  font-size: 20px;
+  font-family: 'Poiret One', cursive;
+  color:  #3498db;
+}
+.photo{
+  position: relative;
+}
+
+.contenu{
+  margin-left: 50px;
+  width: 40%;
+}
+.item li{
+  border: 1px solid #3498db;
+  text-align: center;
+  list-style-type: none;
+  margin: 10px;
+  padding: 10px;
+  font-size: 20px;
+  font-family: 'Poiret One', cursive;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.item li:hover{
+  background-color: #3498db;
+  color: white;
+}
+.item .valide{
+  margin-top: 30px;
+  background-color: green;
+  color: white;
+}
+.item .invalide{
+  margin-top: 30px;
+  background-color: #3498db;
+  color: white;
+}
+.select{
+  background-color: #dfd5ce;
+  width: 450px;
+  margin-top: 20px;
+}
+.item .photo2{
+float: left;
+}
+.image p{
+  float: right;
+  font-size: 20px;
+  color: #ff0084;
+  margin-top: 100px;
+}
+.image{
+  background-color: #dfd5ce;
+}
+.select .icon{
+  color: black;
 }

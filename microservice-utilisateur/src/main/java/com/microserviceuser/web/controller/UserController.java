@@ -95,12 +95,24 @@ public class UserController {
             case "roueDeLaVie":
                 questionClient.get().setRoueVie(true);
                 break;
+            case "autoPortrait":
+                questionClient.get().setAutoPortrait(true);
+                break;
+            case "qcm1":
+                questionClient.get().setQcm1(true);
+                break;
+            case "qcm2":
+                questionClient.get().setQcm2(true);
+                break;
+            case "qcm3":
+                questionClient.get().setQcm3(true);
+                break;
+            case "qcm4":
+                questionClient.get().setQcm4(true);
+                break;
             default:
                 break;
-
         }
-
-
         questionRepository.save(questionClient.get());
     }
 

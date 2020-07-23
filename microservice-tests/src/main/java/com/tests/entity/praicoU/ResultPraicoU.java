@@ -20,14 +20,6 @@ public class ResultPraicoU implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    @Column(name = "qcm1")
-    Integer qcm1;
-    @Column(name = "qcm2")
-    Integer qcm2;
-    @Column(name = "qcm3")
-    Integer qcm3;
-    @Column(name = "qcm4")
-    Integer qcm4;
     @Column(name = "Client")
     Integer client;
     @Column(name = "nombreP")

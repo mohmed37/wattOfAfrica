@@ -39,6 +39,9 @@ import { HeroComponent } from './hero/hero.component';
 import { AdministrateurComponent } from './administrateur/administrateur.component';
 import { FicheMetierComponent } from './fiche-metier/fiche-metier.component';
 import {ChartsModule} from "ng2-charts";
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -84,7 +87,10 @@ import {ChartsModule} from "ng2-charts";
     MatIconModule,
     MatProgressBarModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    MatTableModule,
+    MatSortModule,
+    MatCheckboxModule
   ],
   providers: [
     ClientService

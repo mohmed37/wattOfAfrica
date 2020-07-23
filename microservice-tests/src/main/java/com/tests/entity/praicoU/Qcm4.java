@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -21,10 +18,10 @@ import java.io.Serializable;
 public class Qcm4 implements Serializable {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @Column(name = "metier")
     String metier;
-    @Column(name = "code")
-    String code;
-
+    @Column(name = "lettres")
+    String[] lettres;
 }

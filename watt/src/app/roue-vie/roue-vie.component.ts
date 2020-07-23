@@ -104,11 +104,10 @@ export class RoueVieComponent implements OnInit {
       social2:new FormControl('',Validators.required),
       professionne2:new FormControl('',Validators.required),
     });
-      console.log(this.roueVie);
+
       this.bndreamService.getResultRoueDeLaVie().subscribe(
         data =>{
           this.resultroueDeLaVie=data;
-          console.log(this.resultroueDeLaVie.social1);
         this.data1=[this.resultroueDeLaVie.personnelle1,this.resultroueDeLaVie.sante1,this.resultroueDeLaVie.famille1
           ,this.resultroueDeLaVie.professionnel1,this.resultroueDeLaVie.social1];
           this.pieChartData1[0].data=this.data1;
