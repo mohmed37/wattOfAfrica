@@ -48,6 +48,7 @@ public class TestPraicoUControler {
     public Optional<ResultPraicoU> praicoIdClient(@PathVariable("id") int id) {
         Optional<ResultPraicoU> resutatClient = resultRepository.findByClient(id);
         if (!resutatClient.isPresent()) throw new QuestioneNotFoundException("Cette question n'existe pas");
+
         return resutatClient;
     }
 

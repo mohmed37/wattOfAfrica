@@ -3,6 +3,7 @@ import {AuthenticationService} from "../services/authentication.service";
 import {ClientService} from "../services/client.service";
 import {QuestionnairesModel} from "../model/questionnaires.model";
 import {BndreamService} from "../services/bndream.service";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-bndream-test',
@@ -15,10 +16,14 @@ export class BndreamTestComponent implements OnInit {
   public depart:string="assets/img/depart.jpg";
   public serviceClient;
   public serviceBream;
-  constructor(public authService:AuthenticationService,private clientService:ClientService,private bndreamService:BndreamService  ) {
+
+
+  constructor(public authService:AuthenticationService,private clientService:ClientService,private bndreamService:BndreamService,private router:Router) {
+
     this.serviceClient=clientService;
     this.serviceBream=this.bndreamService;
   }
+
   public questionnaires:QuestionnairesModel;
   public photolangage:boolean=false;
   public roueVie: boolean=false;
@@ -27,6 +32,7 @@ export class BndreamTestComponent implements OnInit {
   public qcm2:boolean=false;
   public qcm3:boolean=false;
   public qcm4:boolean=false;
+  public hero: boolean=false;
   public progression:number=0;
 
 
@@ -41,6 +47,7 @@ export class BndreamTestComponent implements OnInit {
         this.qcm2=this.questionnaires.qcm2;
         this.qcm3=this.questionnaires.qcm3;
         this.qcm4=this.questionnaires.qcm4;
+        this.hero=this.questionnaires.hero;
 
 
         if (this.photolangage){
@@ -63,6 +70,9 @@ export class BndreamTestComponent implements OnInit {
         }
         if (this.qcm4){
           this.progression=90;
+        }
+        if (this.hero){
+          this.progression=100;
         }
 
       },error => {

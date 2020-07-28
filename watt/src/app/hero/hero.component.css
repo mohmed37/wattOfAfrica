@@ -34,3 +34,30 @@ button{
   margin-left: 20px;
   color: white;
 }
+h2{
+  text-align: center;
+  color:  #3498db;
+  margin-top: 40px;
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
+}
+
+p{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;
+
+}
+.iconHero{
+  color: #3498db;
+}
+.motHero{
+  font-family: 'Poiret One', cursive;
+  color: #3498db;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+ul{
+  margin-left: 50px;
+}

@@ -21,15 +21,8 @@ public class HeroResult {
     int id;
     @Column(name = "client")
     Integer client;
-    @Column(name = "valeur1")
-    String valeur1;
-    @Column(name = "valeur2")
-    String valeur2;
-    @Column(name = "valeur3")
-    String valeur3;
-    @Column(name = "hero")
-    String hero;
+    @Column(name = "valeur")
+    String[] valeur;
     @Column(name = "choixHero")
-    Boolean choixHero;
-
+    String choixHero;
 }

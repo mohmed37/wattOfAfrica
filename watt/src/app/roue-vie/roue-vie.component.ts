@@ -20,6 +20,8 @@ import {PhotoLangageModel} from "../model/photoLangage.model";
   styleUrls: ['./roue-vie.component.css']
 })
 export class RoueVieComponent implements OnInit {
+
+
   public data: (any | number)[];
   public data1: (any | number)[];
   public data2: (any | number)[];
@@ -84,6 +86,8 @@ export class RoueVieComponent implements OnInit {
 
   }
     ngOnInit(): void {
+
+
       this.clientService. getQuestionnaires()
         .subscribe(data=>{
           this.questionnaires=data;

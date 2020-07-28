@@ -74,13 +74,39 @@ public class UserController {
         return question;
     }
 
-    @PostMapping(value = "saveQuestionnaires")
-    public ResponseEntity<Questionnaires>saveQuestionnaires(@RequestBody Questionnaires questionnaires
+    @PostMapping(value = "saveQuestionnaires/{id}")
+    public ResponseEntity<Questionnaires>saveQuestionnaires(@PathVariable("id") int id,@RequestBody Questionnaires questionnaires
             , BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return null;
         }
+       List<Questionnaires> listQuestionnaire=questionRepository.findAll();
+        for (Questionnaires questionnaire:listQuestionnaire){
+            if (questionnaire.getUser().equals(findById(id).get())){
+                return null;
+            }
+        }
+        questionnaires.setUser(findById(id).get());
         questionnaires.setProfilU(false);
+        questionnaires.setHero(false);
+        questionnaires.setQcm3(false);
+        questionnaires.setQcm4(false);
+        questionnaires.setQcm2(false);
+        questionnaires.setQcm1(false);
+        questionnaires.setEmoU(false);
+        questionnaires.setComU(false);
+        questionnaires.setEntrepreneur(false);
+        questionnaires.setCommercial(false);
+        questionnaires.setMotivU(false);
+        questionnaires.setCompVerbale(false);
+        questionnaires.setPerso(false);
+        questionnaires.setOrtho(false);
+        questionnaires.setGrammaire(false);
+        questionnaires.setAutoPortrait(false);
+        questionnaires.setRoueVie(false);
+        questionnaires.setPhotoLangage(false);
+        questionnaires.setProfilU(false);
+
         Questionnaires saveQusetionnaires=questionRepository.save(questionnaires);
         return new ResponseEntity<Questionnaires>(saveQusetionnaires, HttpStatus.CREATED);
     }
@@ -109,6 +135,9 @@ public class UserController {
                 break;
             case "qcm4":
                 questionClient.get().setQcm4(true);
+                break;
+            case "hero":
+                questionClient.get().setHero(true);
                 break;
             default:
                 break;

@@ -19,6 +19,7 @@ export class NewClientComponent implements OnInit {
   private currentKeyword: string="";
   private  idClient:number;
   public modeClient:number=0;
+  public message:string="";
   constructor(private clientService:ClientService, private router:Router,private activatedRoute:ActivatedRoute) { }
 @HostListener('click')
 click(){
@@ -102,7 +103,7 @@ click(){
        /* this.routeur.navigateByUrl("/flooter")*/
       },error => {
         console.log(error)
-      })
+      });
     console.log(data);
 
   }

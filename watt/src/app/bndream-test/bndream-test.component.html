@@ -1,5 +1,6 @@
-
-<div class="progressTotal">
+<app-beadcrumb></app-beadcrumb>
+<div id="debut"></div>
+<div class="progressTotal" >
   <img [src]="depart" class="item image" >
  <div class="item progression">
    <h2>B'n Dream</h2>
@@ -29,7 +30,7 @@
     <p class="numro numroValide" *ngIf="roueVie"><mat-icon>done_outline</mat-icon></p>
     <p class="test" *ngIf="!roueVie">Test à réaliser</p>
     <p class="test testValide" *ngIf="roueVie">Test validé</p>
-    <a class="titreProjet" routerLink="/roue-de-la-vie" (click)="serviceBream.getResultRoueDeLaVie()" >Roue de la vie </a>
+    <a class="titreProjet" routerLink="roue-de-la-vie" (click)="serviceBream.getResultRoueDeLaVie()" >Roue de la vie </a>
     <div class="time">
       <mat-icon>access_time</mat-icon>
       <p>40 minutes</p>
@@ -60,13 +61,16 @@
     </div>
   </div>
   <div class="item projet">
-    <p class="numro">5</p>
-    <p class="test">Test à réaliser</p>
+    <p class="numro" *ngIf="!hero">5</p>
+    <p class="numro numroValide" *ngIf="hero"><mat-icon>done_outline</mat-icon></p>
+    <p class="test" *ngIf="!hero">Test à réaliser</p>
+    <p class="test testValide" *ngIf="hero">Test validé</p>
     <a class="titreProjet"routerLink="/hero">Votre meilleure version (Héro / Héroïne)</a>
     <div class="time">
       <mat-icon>access_time</mat-icon>
-      <p>30 minutes</p>
+      <p>20 minutes</p>
     </div>
   </div>
 </div>
+
 

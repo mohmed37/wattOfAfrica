@@ -118,4 +118,7 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
 
   }
 
+  public SaveQuestionnaires(data,id) :Observable<QuestionnairesModel> {
+    return this.htttpClient.post<QuestionnairesModel>(this.hostUser + "/saveQuestionnaires/"+id,data);
+  }
 }

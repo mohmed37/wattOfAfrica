@@ -32,40 +32,39 @@ const routes: Routes = [
     path: 'admin',
     component: AdministrateurComponent
   },
-  {
-    path: 'hero',
-    component: HeroComponent
-  },
-  {
-    path: 'praico',
-    component: PraicoComponent
-  },
-  {
-    path: 'autoPortrait',
-    component: AutoportraitComponent
-  },
-  {
-    path: 'roue-de-la-vie',
-    component: RoueVieComponent
-  },
-  {
-    path: 'photolangage',
-    component: PhotolangageComponent
-  },
+
   {
     path: 'EnSavoirPlus',
     component: DefinitionComponent
   },
   {
     path: 'BnDeam',
-    component: BndreamComponent
+    component: BndreamComponent,
   },
   {
-    path: 'BnDeamTest',
-    component: BndreamTestComponent
+    path:'BnDeamTest',
+    children:[{
+      path: 'BnDeamTest',
+      data:{
+        breadcrumb: 'Bn Dream'
+      },
+      component: BndreamTestComponent,
+      children: [
+        {path: 'roue-de-la-vie',
+
+          component: RoueVieComponent},
+      ]
+    }
+]
   },
 
-  {
+  {path: 'hero',   component: HeroComponent},
+  { path: 'praico',component: PraicoComponent},
+  {path: 'autoPortrait',component: AutoportraitComponent},
+  {path: 'photolangage',component: PhotolangageComponent},
+
+
+    {
     path: '',
     component: HomepageComponent
   },
@@ -110,7 +109,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

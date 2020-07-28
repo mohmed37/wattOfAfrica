@@ -11,6 +11,8 @@ import {Questionnaire1Model} from "../model/questionnaire1.model";
 import {ResultatPraicoModel} from "../model/resultatPraico.model";
 import {Questionnaire2Model} from "../model/questionnaire2.model";
 import {Questionnaire4Model} from "../model/questionnaire4.model";
+import {ListHeroModel} from "../model/listHero.model";
+import {ResultatHeroModel} from "../model/resultatHero.model";
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +56,10 @@ public getPhoto() {
     return this.htttpClient.post<Questionnaire4Model>(url,data.valueOf());
   }
 
+  public saveHero(url,data):Observable<ResultatHeroModel> {
+    return this.htttpClient.post<ResultatHeroModel>(url,data.valueOf());
+  }
+
   getResultPhotoLangage():Observable<PhotoLangageModel>{
     return this.htttpClient.get<PhotoLangageModel>(this.hostTest + "/getPhotoLangage/"+this.userConnect.userAuthenticated.num);
 
@@ -86,5 +92,11 @@ public getPhoto() {
   getResultPraico():Observable<ResultatPraicoModel> {
     return this.htttpClient.get<ResultatPraicoModel>(this.hostTest + "/praicoIdClient/"+this.userConnect.userAuthenticated.num);
   }
+  getResultHero():Observable<ResultatHeroModel> {
+    return this.htttpClient.get<ResultatHeroModel>(this.hostTest + "/getResultHeroClient/"+this.userConnect.userAuthenticated.num);
+  }
 
+  getListHero():Observable<ListHeroModel[]> {
+    return this.htttpClient.get<ListHeroModel[]>(this.hostTest + "/listvaleurHero");
+  }
 }

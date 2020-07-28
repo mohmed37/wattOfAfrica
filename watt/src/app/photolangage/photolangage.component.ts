@@ -9,6 +9,8 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {ChangeEvent} from "@ckeditor/ckeditor5-angular";
 import {QuestionnairesModel} from "../model/questionnaires.model";
 import {AuthenticationService} from "../services/authentication.service";
+import {Client} from "../model/client.model";
+import {Observable} from "rxjs";
 @Component({
   selector: 'app-photolangage',
   templateUrl: './photolangage.component.html',
@@ -19,11 +21,16 @@ export class PhotolangageComponent implements OnInit {
   public hostTest: string = "http://localhost:9004/microservice-tests";
   public retrieveResonseAll: any;
   public dedutTestPhotolangage: boolean=false;
+  public currentClient:any;
+
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,private serviceClient:ClientService, private userConnect:AuthenticationService) {
     this.userId=this.userConnect.userAuthenticated.num;
+
+
   }
   public userId:number;
+
   base64Data: any;
   message: string;
   public photos:any;
@@ -80,12 +87,14 @@ export class PhotolangageComponent implements OnInit {
   public texte:string;
   public questionnaires2:QuestionnairesModel;
   photoInterog:string="assets/img/intero.jpg";
+  photoObjectif:string="assets/img/objectif.jpg";
 
 
 
 
 
   ngOnInit(): void {
+    this.currentClient=this.serviceClient.getClientBy(this.userId);
     this.serviceClient. getQuestionnaires()
       .subscribe(data=>{
         this.questionnaires2=data;
@@ -177,7 +186,12 @@ export class PhotolangageComponent implements OnInit {
 
 
   testPhotolangage() {
-    this.dedutTestPhotolangage=true;
+    this.serviceClient. SaveQuestionnaires(this.questionnaires,this.userId)
+      .subscribe(data=>{
+        this.dedutTestPhotolangage=true;
+      },error => {
+        console.log(error);
+      });
 
   }
 

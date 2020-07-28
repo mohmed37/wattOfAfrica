@@ -323,6 +323,7 @@ public class TestNbreamControler {
     public List<Hero> listvaleurHero(){
         return heroRepositories.findAll();
     }
+
     @GetMapping(value = "/listResultHero")
     public List<HeroResult> listResultHero(){
         return heroResultRepositories.findAll();
@@ -347,10 +348,6 @@ public class TestNbreamControler {
         if (bindingResult.hasErrors()) {
             return null;
         }
-        heroResult.setChoixHero(false);
-        heroResult.setValeur1("-");
-        heroResult.setValeur2("-");
-        heroResult.setValeur3("-");
         return heroResultRepositories.save(heroResult);
 
     }

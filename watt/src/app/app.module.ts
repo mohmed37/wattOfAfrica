@@ -42,6 +42,9 @@ import {ChartsModule} from "ng2-charts";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatRadioModule} from "@angular/material/radio";
+import { BeadcrumbComponent } from './beadcrumb/beadcrumb.component';
+import {MenuService} from "./services/menu.service";
 
 
 @NgModule({
@@ -66,7 +69,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     PraicoComponent,
     HeroComponent,
     AdministrateurComponent,
-    FicheMetierComponent
+    FicheMetierComponent,
+    BeadcrumbComponent
 
   ],
   imports: [
@@ -90,11 +94,13 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ChartsModule,
     MatTableModule,
     MatSortModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule,
+
   ],
   providers: [
-    ClientService
-
+    ClientService,
+    MenuService
   ],
   bootstrap: [AppComponent]
 })

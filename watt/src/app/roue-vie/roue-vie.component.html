@@ -1,3 +1,4 @@
+<p-breadcrumb [home]="home" [model]="menuItems"></p-breadcrumb>
 <h1 class="titre">Roue de la vie</h1>
 <div *ngIf="!roueVie">
   <form  [formGroup]="formRoueDeLAvie" (ngSubmit)="onSaveRoueDeLAvie()">
@@ -86,26 +87,16 @@
   <P>« La différence entre le possible et l'impossible réside dans la détermination » GANDHI</P>
   <img [src]="guandhi" class="image">
   <P>Face à ce diagnostic, vous pouvez agir pour arriver à un meilleur équilibre dans votre vie :</P>
-<div *ngIf="!modifier">
-  <P>1 - Ce qu’il faudrait modifier :</P>
+
+
   <div  class="contenu" >
-    <ckeditor  [editor]="Editor" data="{{roueDeLaVie.qcm1}}" (change)="onChange3($event,'modifier')" ></ckeditor>
-    <button (click)="editor('modifier')" class="btn btn-success" type="submit">Enregistrer</button>
-  </div>
-</div>
-  <div *ngIf="modifier&&!arret">
+    <P>1 - Ce qu’il faudrait modifier :</P>
+    <ckeditor class="editeur" [editor]="Editor" data="{{roueDeLaVie.qcm1}}" (change)="onChange3($event,'modifier')" ></ckeditor>
     <P>2 - Ce qu’il faudrait arrêter :</P>
-  <div  class="contenu">
-    <ckeditor  [editor]="Editor" data="{{roueDeLaVie.qcm2}}"  (change)="onChange3($event,'arret')"></ckeditor>
-    <button (click)="editor('arret')" class="btn btn-success" type="submit">Enregistrer</button>
-  </div>
-  </div>
-  <div *ngIf="arret&&!prioriser">
+    <ckeditor  class="editeur" [editor]="Editor" data="{{roueDeLaVie.qcm2}}"  (change)="onChange3($event,'arret')"></ckeditor>
     <P>3 - Ce qu’il faudrait prioriser :</P>
-  <div  class="contenu">
-    <ckeditor  [editor]="Editor" data="{{roueDeLaVie.qcm3}}"  (change)="onChange3($event,'prioriser')"></ckeditor>
+    <ckeditor  class="editeur" [editor]="Editor" data="{{roueDeLaVie.qcm3}}"  (change)="onChange3($event,'prioriser')"></ckeditor>
     <button class="btn btn-success" type="submit">Enregistrer</button>
-  </div>
 </div>
 
 </div>
@@ -149,6 +140,6 @@
     <div class="item"><p>Ce qu’il faudrait arrêter :</p><p [innerHTML]="resultroueDeLaVie.qcm2" ></p> </div>
     <div class="item"><p>Ce qu’il faudrait prioriser :</p><p [innerHTML]="resultroueDeLaVie.qcm3"></p></div>
   </div>
-  <button class="btn btn-success" routerLink="/BnDeamTest">Retour au tests</button>
+  <button class="btn btn-success" [routerLink] = "['/BnDeamTest']"  fragment="debut">Retour au tests</button>
 </div>
 

@@ -55,6 +55,8 @@ export class PraicoComponent implements OnInit {
   public id5:string;
   public resultat:ResultatPraicoModel;
   public a:number;
+  public list=[{name:null,value:0},{name:null,value:0},{name:null,value:0},{name:null,value:0},{name:null,value:0}
+  ,{name:null,value:0}];
   public data: (any | number)[];
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
@@ -70,9 +72,6 @@ export class PraicoComponent implements OnInit {
       lettre3:new FormControl('',Validators.required),
 
     });
-
-
-
     this.serviceClient. getQuestionnaires()
       .subscribe(data=>{
         this.questionnaires=data;
@@ -103,22 +102,31 @@ export class PraicoComponent implements OnInit {
     this.bndreamService.getQustionnaire4().subscribe(
       data =>{
         this.qucm4=data;
-
-
       }
     );
     this.bndreamService.getResultPraico().subscribe(
       data =>{
         this.resultat=data;
         this.a=this.resultat.nombreA;
-        this.data = [
-          this.resultat.nombreP,this.resultat.nombreR,this.resultat.nombreA,this.resultat.nombreI,this.resultat.nombreC,this.resultat.nombreO];
+        this.data = [this.resultat.nombreP,this.resultat.nombreR,this.resultat.nombreA,this.resultat.nombreI
+          ,this.resultat.nombreC,this.resultat.nombreO];
         this.radarChartData[0].data=this.data;
+        this.list = [
+          { name: "a", value: this.resultat.nombreA },
+          { name: "c", value: this.resultat.nombreC },
+          { name: "o", value: this.resultat.nombreO },
+          { name: "i", value: this.resultat.nombreI },
+          { name: "p", value: this.resultat.nombreP},
+          { name: "r", value: this.resultat.nombreR }
+        ];
+        this.list.sort(function (a, b) {
+          return  b.value-a.value;
+        });
+        console.log(this.list);
+        console.log(this.list[0].name)
       }
     );
   }
-
-
 
   qcmClientChoix(code1: string) {
     switch (code1) {
@@ -205,6 +213,7 @@ export class PraicoComponent implements OnInit {
 
     for (let i = 0; i < this.choix.length; i++) {
       this.qcmClientChoix(this.choix[i]);
+
     }
     console.log(this.resultatPraico);
     this.savePreco();
@@ -332,6 +341,11 @@ savePreco(){
   public radarChartType: ChartType = 'radar';
   praico: string="assets/img/praico.jpg";
   globe: string="assets/img/globe.jpg";
+  refexion: string="assets/img/reflexion.jpg";
+  invention: string="assets/img/invention.jpg";
+  cooperation: string="assets/img/cooperation.jpg";
+  action: string="assets/img/action.jpg";
+  organisation: string="assets/img/organisation.jpg";
 
 
   // events

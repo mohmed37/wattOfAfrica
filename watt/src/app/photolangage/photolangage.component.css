@@ -42,9 +42,12 @@ table {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content:center;
   align-items: center;
 }
+
+
+
 .ItemPhoto input{
   width: 10%;
   border:solid #3498db;
