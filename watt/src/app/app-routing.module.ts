@@ -5,17 +5,9 @@ import {FooterComponent} from "./footer/footer.component";
 import {NewClientComponent} from "./new-client/new-client.component";
 import {ModifClientComponent} from "./modif-client/modif-client.component";
 import {MonCvComponent} from "./mon-cv/mon-cv.component";
-import {HomepageComponent} from "./homepage/homepage.component";
 import {SignupComponent} from "./auth/signup/signup.component";
 import {SigninComponent} from "./auth/signin/signin.component";
 import {DefinitionComponent} from "./definition/definition.component";
-import {BndreamComponent} from "./bndream/bndream.component";
-import {BndreamTestComponent} from "./bndream-test/bndream-test.component";
-import {PhotolangageComponent} from "./photolangage/photolangage.component";
-import {RoueVieComponent} from "./roue-vie/roue-vie.component";
-import {AutoportraitComponent} from "./autoportrait/autoportrait.component";
-import {PraicoComponent} from "./praico/praico.component";
-import {HeroComponent} from "./hero/hero.component";
 import {AdministrateurComponent} from "./administrateur/administrateur.component";
 import {FicheMetierComponent} from "./fiche-metier/fiche-metier.component";
 
@@ -37,37 +29,21 @@ const routes: Routes = [
     path: 'EnSavoirPlus',
     component: DefinitionComponent
   },
+
   {
-    path: 'BnDeam',
-    component: BndreamComponent,
-  },
-  {
-    path:'BnDeamTest',
-    children:[{
-      path: 'BnDeamTest',
-      data:{
-        breadcrumb: 'Bn Dream'
-      },
-      component: BndreamTestComponent,
-      children: [
-        {path: 'roue-de-la-vie',
-
-          component: RoueVieComponent},
-      ]
-    }
-]
-  },
-
-  {path: 'hero',   component: HeroComponent},
-  { path: 'praico',component: PraicoComponent},
-  {path: 'autoPortrait',component: AutoportraitComponent},
-  {path: 'photolangage',component: PhotolangageComponent},
-
-
-    {
     path: '',
-    component: HomepageComponent
+    children: [
+      {path: '', redirectTo: '/home', pathMatch: 'full'},
+      {
+        path: 'home', loadChildren: () => import('./home/homepage.module').then(m=>m.HomepageModule)
+      },
+      {
+        path: 'bndream', loadChildren: () => import('./bndream/bndream.module').then(m=>m.BndreamModule)
+      }
+
+      ]
   },
+
   {
     path: "signup",
     component: SignupComponent
@@ -103,9 +79,7 @@ const routes: Routes = [
     path:"flooter",
     component:FooterComponent
   },
-  {
-  path:"",redirectTo:"/",pathMatch:'full'
-  }
+
 ];
 
 @NgModule({

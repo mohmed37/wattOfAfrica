@@ -1,0 +1,23 @@
+a{
+  text-align: center;
+  color: #3498db;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  font-style-type: none;
+}
+.icon{
+  color: #3498db;
+}
+.item{
+  text-align: center;
+  color: green;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+ align-items: center;
+}
+

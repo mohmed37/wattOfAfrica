@@ -1,0 +1,138 @@
+.titre{
+  margin: 50px;
+  text-align: center;
+  color: #3498db;
+  font-size: 40px;
+  font-family: 'Poiret One', cursive;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.item{
+  border: solid 1px #3498db;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.bouton{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+
+}
+button{
+  background-color:#3498db;
+  color: white;
+  font-size: 20px;
+}
+.icon{
+  margin-left: 20px;
+  color: white;
+}
+.select{
+  background-color: #dfd5ce;
+  width: 600px;
+  margin-top: 20px;
+}
+
+.item li{
+  border: 1px solid #3498db;
+  text-align: center;
+  list-style-type: none;
+  margin: 10px;
+  padding: 10px;
+  font-size: 20px;
+  font-family: 'Poiret One', cursive;
+  border-radius: 20px;
+}
+.item .reponse:hover{
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+}
+
+.question{
+  background-color: green;
+  color: white;
+}
+.numero{
+  border-radius: 25px;
+  background-color:#3498db;
+  width: 100px;
+  height:50px;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  float: left;
+  padding-top: 15px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+.valide{
+  margin-left: 10px;
+  color: green;
+}
+mat-checkbox{
+  color:#3498db;
+}
+.radar{
+  width: 60%;
+  height: auto;
+
+}
+h2{
+  text-align: center;
+  color:  #3498db;
+  margin-top: 40px;
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
+
+}
+
+p{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin-top:30px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.image{
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+h3{
+  color:  darkviolet;
+  margin-top: 40px;
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
+  margin-left: 50px;
+}
+.photo{
+  float: left;
+  margin-left: 50px;
+  margin-right: 10px;
+  margin-bottom: -3px;
+}
+h4{
+  margin-left: 50px;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+}
+ul{
+  list-style-type: none;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+}

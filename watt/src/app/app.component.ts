@@ -15,7 +15,8 @@ export class AppComponent implements OnInit{
   constructor(private clientService:ClientService, private router:Router,public authService:AuthenticationService) { }
 @HostListener('click')
   click(){
-    this.clientService.client();
+  if(this.authService.userAuthenticated) {
+    this.clientService.client();}
 }
 
   ngOnInit(): void {

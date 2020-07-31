@@ -1,4 +1,6 @@
-<div class="container">
+<div class="container" id="haut">
+  <p><a [routerLink]="['/EnSavoirPlus']" fragment="pedagogique">Programme pédagogique</a>&nbsp;
+    /&nbsp;<a [routerLink]="['/EnSavoirPlus']" fragment="caract">Les caractéristiques</a></p>
 <div class="texte border">
   <p>Découvrez quels sont vos talents pour bâtir le projet professionnel qui vous correspond vraiment.</p>
   <p>Vous êtes capable de faire de grande chose, il suffit juste d’y croire! Il est possible que vous ne sachiez pas
@@ -30,7 +32,7 @@
     découvrir votre métier idéal, vos talents cachés et bien d'autres clés du succès.</p>
 </div>
   </div>
-  <div class="border">
+  <div class="border" id="pedagogique">
 <h3 class="titre">●	Programme pédagogique de WATT of Africa</h3>
 <div class="texte">
   <p>Chaque séance est créée par des psychologues du travail et coachs. Elle est composée de plusieurs parties et
@@ -97,7 +99,7 @@
     avec votre profil. </p>
 </div>
   </div>
-  <div class="border">
+  <div class="border" id="caract">
 <h3 class="titre">Les caractéristiques du parcours WATT:</h3>
 <b>Accessibilité:</b>
 <p>Toutes les séquences d’accompagnement sont accessibles sur la plateforme Watt Of Africa 365j par an, et 24/7 sur tous les supports (PC, Mac, Mobile, tablette).</p>
@@ -184,5 +186,6 @@
 <p>ET</p>
 <p>SOYEZ LE CHANGEMENT QUE VOUS VOULEZ ÊTRE DANS VOTRE NATION</p>
 </div>
+  <a [routerLink]="['/EnSavoirPlus']" fragment="haut">Haut de page</a>
 </div>
 

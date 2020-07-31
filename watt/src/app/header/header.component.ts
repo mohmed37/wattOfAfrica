@@ -28,13 +28,14 @@ export class HeaderComponent implements OnInit {
   constructor(private clientService:ClientService, private router:Router,public authService:AuthenticationService) { }
 
   ngOnInit(): void {
-    this.authService.loadAuthenticatedUserFromLocalSorage();
-    this.clientService.change.subscribe(
-      isClient=>{
-        this.nomClient2=isClient;
-      }
-    )
-
+    if(this.authService.userAuthenticated) {
+      this.authService.loadAuthenticatedUserFromLocalSorage();
+      this.clientService.change.subscribe(
+        isClient => {
+          this.nomClient2 = isClient;
+        }
+      )
+    }
   }
 
   onChange({ editor }: ChangeEvent) {
@@ -44,7 +45,8 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('click')
   click(){
-    this.clientService.client();
+    if(this.authService.userAuthenticated){
+    this.clientService.client();}
   }
 
   onLogout(){

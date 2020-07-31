@@ -93,6 +93,9 @@ button{
 .form{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   margin-top: 50px;
 
 }
@@ -114,3 +117,7 @@ button{
 font-size: 30px;
 }
 
+.iconSearch{
+ margin-left: 360px;
+
+}
