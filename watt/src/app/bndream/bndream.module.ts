@@ -16,10 +16,11 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatInputModule} from "@angular/material/input";
 import {Ng2PageScrollModule} from "ng2-page-scroll";
+import {ArdoiseComponent} from "../ardoise/ardoise.component";
 
 
 @NgModule({
-  declarations: [AutoportraitComponent,HeroComponent,PhotolangageComponent,PraicoComponent,RoueVieComponent],
+  declarations: [AutoportraitComponent,HeroComponent,PhotolangageComponent,PraicoComponent,RoueVieComponent,ArdoiseComponent],
   imports: [
     CommonModule,
     BndreamRoutingModule,

@@ -68,7 +68,6 @@ export class PraicoComponent implements OnInit {
     this.userId=this.userConnect.userAuthenticated.num;
   }
   ngOnInit(): void {
-    this.fragment="haut";
     this.formQcm4=new FormGroup({
       id:new FormControl('',Validators.required),
       metier:new FormControl('',Validators.required),
@@ -340,7 +339,7 @@ savePreco(){
 
       }
 
-      this.router.navigateByUrl("bndream");
+      this.router.navigate(['/bndream'], { fragment: 'haut' });
       this.qcm1Id=1;
       this.resultatPraico=new ResultatPraicoModel(0,0,0,0,0,0);
 

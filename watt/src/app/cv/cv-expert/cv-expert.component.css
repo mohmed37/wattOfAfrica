@@ -1,0 +1,22 @@
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.photo1{
+  height: 40%;
+  width: auto;
+
+}
+.photo2{
+  height: 40%;
+
+}
+ul{
+  list-style-type: none;
+}
+
+.photo3{
+  float: left;
+}

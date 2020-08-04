@@ -16,7 +16,7 @@ export class AuthenticationService {
   public userAuthenticated;
   public token:string;
   public hostUser: string = "http://localhost:9004/microservice-utilisateur";
-  public currentClient:Client;
+  public currentClient=new Client();
   public isUserAdmin:boolean=false;
   public isUserUser: boolean=false;
 
@@ -59,7 +59,12 @@ export class AuthenticationService {
     if(tokenNew){
     let user=JSON.parse(atob(tokenNew));
     this.userAuthenticated={
-      username:user.username,roles:user.roles,num:user.num};
+      username:user.username,
+      roles:user.roles,
+      num:user.num,
+      prenom:user.prenom,
+      nom:user.nom,
+    };
     this.isAuthenticated=true;
     this.token=tokenNew;
     }

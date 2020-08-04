@@ -1,11 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AuthenticationService} from "../services/authentication.service";
-import {ClientService} from "../services/client.service";
-import {QuestionnairesModel} from "../model/questionnaires.model";
-import {Observable} from "rxjs";
-import {PhotoLangageModel} from "../model/photoLangage.model";
-import {HttpClient} from "@angular/common/http";
-import {BndreamService} from "../services/bndream.service";
+import {Component,OnInit} from '@angular/core';
+import {AuthenticationService} from "../../services/authentication.service";
+import {ClientService} from "../../services/client.service";
+import {QuestionnairesModel} from "../../model/questionnaires.model";
+import {BndreamService} from "../../services/bndream.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -38,7 +35,6 @@ export class BndreamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fragment="haut";
       if(this.authService.userAuthenticated){
     this.serviceClient. getQuestionnaires()
       .subscribe(data=>{

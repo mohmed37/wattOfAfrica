@@ -19,6 +19,9 @@ ul {
 .competences h4{
   margin-bottom: 10px;
 }
+h3:hover{
+  color: green;
+}
 
 .presentation h3{
   color:white;

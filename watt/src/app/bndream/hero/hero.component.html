@@ -29,7 +29,7 @@
       <input matInput type="text" formControlName="hero" class="form-control" placeholder="Qui seriez-vous ? ">
   </p>
 </div>
-  <P>Quelles sont les valeurs qui ont motivées ce choix ?Qu’est ce qui est important pour vous dans le vie ?</P>
+  <P>Quelles sont les 3 valeurs qui ont motivées ce choix ?Qu’est ce qui est important pour vous dans le vie ?</P>
 <div class="container">
   <mat-radio-group aria-label="Select an option" *ngFor="let valeurs of listValeurHero">
     <mat-checkbox value="{{valeurs.valeur}}"  (change)="onChange($event)" >{{valeurs.valeur}}</mat-checkbox>

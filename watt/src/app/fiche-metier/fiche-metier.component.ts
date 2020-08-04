@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {BndreamService} from "../services/bndream.service";
+import {TexteModel} from "../model/texte.model";
+import {FicheMetierService} from "../services/fiche-metier.service";
 
 @Component({
   selector: 'app-fiche-metier',
@@ -24,16 +26,18 @@ export class FicheMetierComponent implements OnInit {
   public qualites:string[];
   public texte:string;
   public code:string;
-  constructor(private httpClient: HttpClient, private router: Router,private serviceBnDream:BndreamService) {
+  public newTexte=new TexteModel();
+  constructor(private httpClient: HttpClient, private router: Router,private serviceBnDream:BndreamService,private ficheMetierService:FicheMetierService) {
   }
 
   ngOnInit(): void {
+
     this.getAllFicheMetier()
   }
 
 
   getImageFicheMeier() {
-    this.httpClient.get(this.hostTest + "/getPhotoFicheMetier/" + this.imageId)
+    this.ficheMetierService.ficheMetierByImage(this.imageId)
       .subscribe(
         res => {
           this.retrieveResonse = res;
@@ -43,7 +47,7 @@ export class FicheMetierComponent implements OnInit {
       );
   }
   getAllFicheMetier() {
-    this.httpClient.get(this.hostTest + "/getPhotoFicheMetierAll/")
+    this.ficheMetierService.ficheMetierAll()
       .subscribe(
         res => {
           this.allPhotoFicheMetier=res;
@@ -52,8 +56,8 @@ export class FicheMetierComponent implements OnInit {
       );
   }
   getFicheMetier() {
-    console.log(this.idFicheMetier)
-    this.httpClient.get(this.hostTest + "/getFicheMetier/"+this.idFicheMetier)
+
+    this.ficheMetierService.ficheMetier(this.idFicheMetier)
       .subscribe(
         res => {
           this.FicheMetier=res;
@@ -75,6 +79,7 @@ split(phrase:string){
   return phrase.split("-");
 
 }
+
 
 }
 

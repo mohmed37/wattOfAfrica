@@ -15,10 +15,11 @@ export class BreadcrumbComponent implements OnInit {
   static readonly ROUTE_DATA_BREADCRUMB = 'breadcrumb';
   readonly home = {icon: 'pi pi-home', url: 'home'};
   menuItems: MenuItem[];
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  public fragment: string;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.fragment="haut";
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => this.menuItems = this.createBreadcrumbs(this.activatedRoute.root));
@@ -48,9 +49,20 @@ export class BreadcrumbComponent implements OnInit {
 
 
   }
-
-  onChange(event: Event) {
-    console.log(event)
-
+  ngAfterViewInit() {
+    this.route.fragment.subscribe(fragment => {
+      this.fragment = fragment;
+      setTimeout(() => this.scrollToAnchor(), 10);
+    });
   }
+
+  scrollToAnchor(): void {
+    try {
+      if (this.fragment) {
+        document.querySelector('#' + this.fragment).scrollIntoView();
+      }
+    } catch (e) { }
+  }
+
+
 }

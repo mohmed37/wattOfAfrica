@@ -4,7 +4,6 @@ import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {NewClientComponent} from "./new-client/new-client.component";
 import {ModifClientComponent} from "./modif-client/modif-client.component";
-import {MonCvComponent} from "./mon-cv/mon-cv.component";
 import {SignupComponent} from "./auth/signup/signup.component";
 import {SigninComponent} from "./auth/signin/signin.component";
 import {DefinitionComponent} from "./definition/definition.component";
@@ -30,6 +29,7 @@ const routes: Routes = [
     component: DefinitionComponent
   },
 
+
   {
     path: '',
     children: [
@@ -39,6 +39,12 @@ const routes: Routes = [
       },
       {
         path: 'bndream', loadChildren: () => import('./bndream/bndream.module').then(m=>m.BndreamModule)
+      },
+      {
+        path: 'bnbecome', loadChildren: () => import('./bnbecome/bnbcome.module').then(m=>m.BnbcomeModule)
+      },
+      {
+        path: 'newCv', loadChildren: () => import('./cv/cv.module').then(m=>m.CvModule)
       }
 
       ]
@@ -70,10 +76,6 @@ const routes: Routes = [
   {
     path: "new-client",
     component: NewClientComponent
-  },
-  {
-    path: "mon-cv",
-    component: MonCvComponent
   },
   {
     path:"flooter",

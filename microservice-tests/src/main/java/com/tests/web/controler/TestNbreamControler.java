@@ -364,55 +364,7 @@ public class TestNbreamControler {
 
 
 
-    @PostMapping(value = "/saveFicheMetier")
-    public ResponseEntity<FicheMetier> saveFicheMetier(@RequestBody FicheMetier ficheMetier, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            return null;
-        }
 
-        FicheMetier saveFicheMetier = ficheMetierRepositories.save(ficheMetier);
-
-        return new ResponseEntity<FicheMetier>(saveFicheMetier, HttpStatus.CREATED);
-    }
-
-    @GetMapping(value = "getFicheMetier/{id}")
-    public Optional<FicheMetier>getFicheMetier(@PathVariable("id") int id) {
-        Optional<FicheMetier> ficheMetier = ficheMetierRepositories.findById(id);
-        if (!ficheMetier.isPresent()) throw new QuestioneNotFoundException("Cette fiche n'existe pas");
-        return ficheMetier;
-    }
-
-    @GetMapping(value = "getFicheMetierCode/{code}")
-    public List<FicheMetier>getFicheMetierCode(@PathVariable("code") String code) {
-        return ficheMetierRepositories.findByCode(code);
-    }
-
-    @PostMapping("/photoFicheMetier")
-    public ResponseEntity<Object> photoFicheMetier(@RequestParam("imageFile") MultipartFile file) throws IOException {
-        System.out.println("Original Image Byte Size - " + file.getBytes().length);
-        PhotoFicheMetier img = new PhotoFicheMetier(file.getOriginalFilename(), file.getContentType(),
-                compressBytes(file.getBytes()));
-        photoFMRepositories.save(img);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-
-    @GetMapping(path = { "/getPhotoFicheMetier/{id}" })
-    public PhotoFicheMetier getPhotoFicheMetier(@PathVariable("id") int id) throws IOException {
-        final Optional<PhotoFicheMetier> retrievedImage = photoFMRepositories.findById(id);
-        PhotoFicheMetier img = new PhotoFicheMetier(retrievedImage.get().getName(), retrievedImage.get().getType(),
-                decompressBytes(retrievedImage.get().getPicByte()));
-        return img;
-    }
-
-
-
-
-    @GetMapping(value = "getPhotoFicheMetierAll")
-    public List<PhotoFicheMetier>getPhotoFicheMetierAll() {
-
-        return photoFMRepositories.findAll();
-    }
 
     @GetMapping(value = "/name")
     public List<FicheMetier> findByCategorie(  @RequestParam(name = "name",defaultValue =" " )String name){

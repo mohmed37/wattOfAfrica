@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ClientService} from "../../services/client.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BndreamService} from "../../services/bndream.service";
@@ -11,6 +11,7 @@ import {QuestionnairesModel} from "../../model/questionnaires.model";
 import {AuthenticationService} from "../../services/authentication.service";
 import {Client} from "../../model/client.model";
 import {Observable} from "rxjs";
+import {TexteModel} from "../../model/texte.model";
 @Component({
   selector: 'app-photolangage',
   templateUrl: './photolangage.component.html',
@@ -23,7 +24,7 @@ export class PhotolangageComponent implements OnInit {
   public dedutTestPhotolangage: boolean=false;
   public currentClient:any;
   private fragment: string;
-
+  public newTexte=new TexteModel();
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient
               ,private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
@@ -101,8 +102,8 @@ export class PhotolangageComponent implements OnInit {
   public processValide: boolean=false;
 
 
+
   ngOnInit(): void {
-    this.fragment="haut";
 
     this.currentClient=this.serviceClient.getClientBy(this.userId);
     this.serviceClient. getQuestionnaires()
@@ -161,6 +162,7 @@ export class PhotolangageComponent implements OnInit {
       }
     } catch (e) { }
   }
+
 
   getImageList(number: number) {
     switch (number) {
@@ -337,44 +339,15 @@ export class PhotolangageComponent implements OnInit {
         mot6:'',
       });
     }
-
-
   }
-
-  onSavePhotoLangage() {
-    this.photoLangage.mot1=this.formPhotoLangage.value.mot1;
-    this.photoLangage.mot2=this.formPhotoLangage.value.mot2;
-    this.photoLangage.mot3=this.formPhotoLangage.value.mot3;
-    this.photoLangage.mot4=this.formPhotoLangage.value.mot4;
-    this.photoLangage.mot5=this.formPhotoLangage.value.mot5;
-    this.photoLangage.mot6=this.formPhotoLangage.value.mot6;
-    this.photoLangage.client=this.userId;
-    this.questionnaires.photoLangage=true;
-      this.bndreamService.savePhotLangage(this.hostTest+ "/saveResultPhotoLangage/",this.photoLangage)
-        .subscribe(res=>{
-          this.serviceClient.putQuestionnaires("photolangage");
-          this.router.navigateByUrl("/bndream");
-
-        }, error => {
-          this.message = "l'enregistrement à échoué!";
-          console.log(error)
-        })
-    }
 
   validePartie1() {
     this.partie1=true;
+    this.router.navigate(['/bndream/photolangage'], { fragment: 'partie2' });
   }
-
   validePartie2() {
     this.partie2=true;
   }
-
-
-
-  onChange({ editor }: ChangeEvent) {
-    this.photoLangage.expression=editor.getData();
-  }
-
 
   contexte() {
     if(!this.contexteValide){
@@ -407,5 +380,28 @@ export class PhotolangageComponent implements OnInit {
   }
 
 
+  getTexte(event: string) {
+    this.photoLangage.expression=event;
+    this.photoLangage.mot1=this.formPhotoLangage.value.mot1;
+    this.photoLangage.mot2=this.formPhotoLangage.value.mot2;
+    this.photoLangage.mot3=this.formPhotoLangage.value.mot3;
+    this.photoLangage.mot4=this.formPhotoLangage.value.mot4;
+    this.photoLangage.mot5=this.formPhotoLangage.value.mot5;
+    this.photoLangage.mot6=this.formPhotoLangage.value.mot6;
+    this.photoLangage.client=this.userId;
+    this.questionnaires.photoLangage=true;
+    console.log(this.photoLangage)
+    this.bndreamService.savePhotLangage(this.hostTest+ "/saveResultPhotoLangage/",this.photoLangage)
+      .subscribe(res=>{
+        this.serviceClient.putQuestionnaires("photolangage");
+        this.router.navigateByUrl("/bndream");
+
+      }, error => {
+        this.message = "l'enregistrement à échoué!";
+        console.log(error)
+      })
+
+
+  }
 }
 

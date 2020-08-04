@@ -13,7 +13,5 @@ export class RoueDeLaVieModel {
   public qcm1:string;
   public qcm2:string;
   public qcm3:string;
-  constructor(qcm1:string,qcm2:string,qcm3:string){
-    this.qcm1=qcm1;this.qcm2=qcm2;this.qcm3=qcm3
-  }
+
 }

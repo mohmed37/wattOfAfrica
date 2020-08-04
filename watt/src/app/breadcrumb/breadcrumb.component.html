@@ -1,14 +1,11 @@
-<div class="col">
-  <ol class="breadcrumb">
-    <li routerLink="home" class="icon"><mat-icon>home</mat-icon></li>
-    <li class="breadcrumb-item"
-        *ngFor="let item of menuItems; let i = index"
+
+  <div class="container" id="haut">
+    <a routerLink="home" class="icon"><mat-icon>home</mat-icon>&nbsp;</a>
+    <div *ngFor="let item of menuItems; let i = index"
         [class.active]="i===menuItems.length-1">
-      <a [routerLink]="item.label" *ngIf="i!==menuItems.length-1"  >
-        {{ item.label }}
-      </a>
-      <span class="item" *ngIf="i===menuItems.length-1">{{ item.label }}</span>
-    </li>
-  </ol>
-</div>
+      <a [routerLink]="item.label" *ngIf="i!==menuItems.length-1">&nbsp;{{item.label}}&nbsp;/&nbsp;</a>
+      <span class="item" *ngIf="i===menuItems.length-1">{{ item.label }}&nbsp;</span>
+    </div>
+  </div>
+
 

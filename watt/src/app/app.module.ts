@@ -9,7 +9,6 @@ import {HttpClientModule} from "@angular/common/http";
 import { FooterComponent } from './footer/footer.component';
 import { NewClientComponent } from './new-client/new-client.component';
 import { ModifClientComponent } from './modif-client/modif-client.component';
-import { MonCvComponent } from './mon-cv/mon-cv.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import {MatInputModule} from "@angular/material/input";
@@ -24,7 +23,7 @@ import {ClientService} from "./services/client.service";
 import {LogoutComponent} from "./auth/logout/logout.component";
 import {MatIconModule} from "@angular/material/icon";
 import { DefinitionComponent } from './definition/definition.component';
-import { BndreamComponent } from './bndream/bndream.component';
+import { BndreamComponent } from './bndream/accueilBndream/bndream.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { AdministrateurComponent } from './administrateur/administrateur.component';
 import { FicheMetierComponent } from './fiche-metier/fiche-metier.component';
@@ -35,6 +34,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
 import {BreadcrumbModule} from "primeng";
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import {AccueilCvComponent} from "./cv/accueil-cv/accueil-cv.component";
+import {AuthenticationService} from "./services/authentication.service";
+import { AccueilBnbcomeComponent } from './bnbecome/accueil-bnbcome/accueil-bnbcome.component';
 
 
 @NgModule({
@@ -44,7 +46,6 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     FooterComponent,
     NewClientComponent,
     ModifClientComponent,
-    MonCvComponent,
     LoginComponent,
     SigninComponent,
     LogoutComponent,
@@ -54,7 +55,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     AdministrateurComponent,
     FicheMetierComponent,
     BreadcrumbComponent,
-
+    AccueilCvComponent,
+    AccueilBnbcomeComponent,
   ],
   imports: [
     CKEditorModule,
@@ -84,7 +86,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
   ],
   providers: [
     ClientService,
-
+    AuthenticationService,
   ],
   bootstrap: [AppComponent]
 })

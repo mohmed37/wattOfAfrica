@@ -9,11 +9,13 @@
 }
 .metier{
   position: absolute;
-  margin-left: 50px;
-  color: #3498db;
+
+  background-color: #3498db;
   font-size: 35px;
   font-family: 'Poiret One', cursive;
   top: 20%;
+  color: white;
+  padding: 10px 50px 10px 50px;
 }
 
 ul{
@@ -36,5 +38,7 @@ ul{
 h2{
   font-family: 'Poiret One', cursive;
   font-size: 30px;
-  color: #3498db;
+  background-color: #3498db;
+  color: white;
+  padding: 10px 50px 10px 10px;
 }

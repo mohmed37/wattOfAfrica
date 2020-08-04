@@ -1,5 +1,5 @@
 import {RouterModule, Routes} from "@angular/router";
-import {BndreamComponent} from "./bndream.component";
+import {BndreamComponent} from "./accueilBndream/bndream.component";
 import {AutoportraitComponent} from "./autoportrait/autoportrait.component";
 import {NgModule} from "@angular/core";
 import {HeroComponent} from "./hero/hero.component";

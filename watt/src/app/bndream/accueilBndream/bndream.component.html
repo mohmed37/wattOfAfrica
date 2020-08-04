@@ -1,4 +1,4 @@
-<div>
+
 <h1 class="titre" id="haut">B' n Dream</h1>
 <div class="bndream">
   <div class="item">
@@ -14,7 +14,7 @@
 <div class="bouton" *ngIf="authService.userAuthenticated &&!questionnaires">
 <button mat-raised-button (click)="tests()" >Démarrez <mat-icon class="icon">send</mat-icon></button>
   </div>
-</div>
+
 <div *ngIf="questionnaires" >
   <div id="debut"></div>
   <div class="progressTotal" >
@@ -23,12 +23,11 @@
       <h2>B'n Dream</h2>
       <mat-progress-bar mode="determinate" value="{{progression}}" class="progressBar"></mat-progress-bar><p class="pourcentAttient">{{progression}}%</p>
       <p class="pourcentMini">0%</p><br><br>
-      <h4>Date de début du test: <b>Le :10/06/2020</b></h4>
 
     </div>
     <img [src]="coupe" class="item image" >
   </div>
-
+</div>
 
   <div class="container">
     <div class="item projet">
@@ -36,7 +35,7 @@
       <p class="numro numroValide" *ngIf="photolangage"><mat-icon>done_outline</mat-icon></p>
       <p class="test" *ngIf="!photolangage">Test à réaliser</p>
       <p class="test testValide" *ngIf="photolangage">Test validé</p>
-      <a class="titreProjet" routerLink="photolangage" >Photolangage</a>
+      <a class="titreProjet" routerLink="/bndream/photolangage" fragment="haut">Photolangage</a>
       <div class="time">
         <mat-icon>access_time</mat-icon>
         <p>30 minutes</p>
@@ -58,7 +57,7 @@
       <p class="numro numroValide" *ngIf="autoportrait"><mat-icon>done_outline</mat-icon></p>
       <p class="test" *ngIf="!autoportrait">Test à réaliser</p>
       <p class="test testValide" *ngIf="autoportrait">Test validé</p>
-      <a class="titreProjet" routerLink="autoPortrait" >Autoportrait</a>
+      <a class="titreProjet" routerLink="/bndream/autoPortrait" fragment="haut">Autoportrait</a>
       <div class="time">
         <mat-icon>access_time</mat-icon>
         <p>30 minutes</p>
@@ -71,7 +70,7 @@
       <p class="test" *ngIf="!qcm1">Test à réaliser</p>
       <p class="test testCours" *ngIf="qcm1&&!qcm4">Test en cours </p>
       <p class="test testValide" *ngIf="qcm4">Test validé</p>
-      <a class="titreProjet" routerLink="praico">Test d’intérêt professionnel PRAICO</a>
+      <a class="titreProjet" routerLink="/bndream/praico" fragment="haut">Test d’intérêt professionnel PRAICO</a>
       <div class="time">
         <mat-icon>access_time</mat-icon>
         <p>20 minutes</p>
@@ -82,7 +81,7 @@
       <p class="numro numroValide" *ngIf="hero"><mat-icon>done_outline</mat-icon></p>
       <p class="test" *ngIf="!hero">Test à réaliser</p>
       <p class="test testValide" *ngIf="hero">Test validé</p>
-      <a class="titreProjet" routerLink="hero">Votre meilleure version (Héro / Héroïne)</a>
+      <a class="titreProjet" routerLink="/bndream/hero" fragment="haut">Votre meilleure version (Héro / Héroïne)</a>
       <div class="time">
         <mat-icon>access_time</mat-icon>
         <p>20 minutes</p>
@@ -90,6 +89,6 @@
     </div>
   </div>
 
-</div>
+
 
 

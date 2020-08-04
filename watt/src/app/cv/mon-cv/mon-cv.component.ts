@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CvModel} from "../model/cv.model";
+import {CvModel} from "../../model/cv.model";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import {HttpClient,HttpEventType} from "@angular/common/http";
-import {ClientService} from "../services/client.service";
+import {ClientService} from "../../services/client.service";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-mon-cv',
@@ -76,43 +77,26 @@ public  bouttonActif3: boolean=false;
 public  bouttonActif4: boolean=false;
 public  bouttonActif5: boolean=false;
 public bouttonActif6:boolean=false;
-
+ public userId: number | any;
 cheminImage : string = "/assets/img/portrai.jpg";
 fileToUpload : File= null;
-  constructor(private http: HttpClient,private clientService:ClientService) { }
+  public colorBotton2: string="#bdc3c7";
+  public colorBotton1: string="#bdc3c7";
+  public userConnectClient:boolean;
+
+  constructor(private http: HttpClient,private clientService:ClientService, private userConnect:AuthenticationService) {
+    this.userConnectClient=userConnect.userAuthenticated;
+  }
   public Editor = ClassicEditor;
   public nomClient2;
-  public  userConnect;
-
-  nomClient(){
-
-
-}
+ public nomClient:string;
+ public premomClient:string;
 
   ngOnInit(): void {
-    let non = "LAURA MONTREUIL";
-    let clientActuel =`${non}`
-    this.nomClient2=clientActuel;
-    console.log(this.nomClient2);
-
-    /*this.clientService.change.subscribe(
-      isClient=>{
-        this.nomClient2=isClient;
-      }
-    );*/
-
-
-    const nom = {
-      nom2:"Mohamed Behillil"
-    };
-
+   this.nomClient=this.userConnect.userAuthenticated.nom;
+   this.premomClient=this.userConnect.userAuthenticated.prenom;
 
   }
-
-
-
-
-
   public onReady( editor ) {
     editor.ui.getEditableElement().parentElement.insertBefore(
       editor.ui.view.toolbar.element,
@@ -153,35 +137,36 @@ fileToUpload : File= null;
 
   modif(current:string) {
 
-    if (current==="administration"){
-      this.modifAdmin = true;}
     if (current==="metier"){
-      this.bouttonActif = true;
-      this.modifMetier = true;}
+      this.bouttonActif =!this.bouttonActif;
+      this.modifMetier =! this.modifMetier;}
     if (current==="nom"){
-      this.bouttonActif = true;
-      this.modifNom = true;}
+      this.bouttonActif =!this.bouttonActif;
+      this.modifNom =! this.modifNom;}
     if (current==="competences") {
-      this.bouttonActif2 = true;
-      this.modifCom =  true; }
+      this.bouttonActif2 =! this.bouttonActif2;
+      this.modifCom =!this.modifCom; }
     if (current==="experience") {
-      this.bouttonActif3 = true;
-      this.modifProf =  true; }
+      this.bouttonActif3 =!this.bouttonActif3;
+      this.modifProf =! this.modifProf; }
     if (current==="diplomes") {
-      this.bouttonActif4 = true;
-      this.modifDiplom =  true; }
+      this.bouttonActif4 =! this.bouttonActif4;
+      this.modifDiplom = ! this.modifDiplom; }
     if (current==="adresse") {
-      this.bouttonActif5 = true;
-      this.modifAdresse =  true; }
+      if(!this.modifMail&&!this.modifPhone){
+      this.bouttonActif5 =!this.bouttonActif5;}
+      this.modifAdresse =!this.modifAdresse; }
     if (current==="mail") {
-      this.bouttonActif5 = true;
-      this.modifMail=  true; }
+      if(!this.modifAdresse&&!this.modifPhone){
+      this.bouttonActif5 =!this.bouttonActif5;}
+      this.modifMail=! this.modifMail; }
     if (current==="phone") {
-      this.bouttonActif5 = true;
-      this.modifPhone =  true; }
+      if(!this.modifAdresse&&! this.modifMail){
+      this.bouttonActif5 = !this.bouttonActif5 ;}
+      this.modifPhone =!this.modifPhone; }
     if (current==="photo") {
-      this.bouttonActif6 = true;
-      this.modifPhoto =  true; }
+      this.bouttonActif6 =! this.bouttonActif6 ;
+      this.modifPhoto = !this.modifPhoto; }
   }
 
   finModif(){
@@ -232,23 +217,25 @@ selectedFile=null;
 
   changeColor() {
 
-
-
     switch (this.colorNew) {
       case 'pink':
+        this.colorBotton1="#1f46c1";
         this.colorNew = "#bdc3c7";
         this.colorNewText = "#1f46c1";
         break;
       case '#bdc3c7':
+        this.colorBotton1="pink";
         this.colorNew = "#1f46c1";
         this.colorNewText = "#ffffff";
         break;
-      case '#2ecc71':
+      case '#1f46c1':
+        this.colorBotton1="#bdc3c7";
         this.colorNew = "pink";
         this.colorNewText = "#1f46c1";
         break;
 
       default:
+        this.colorBotton1="#bdc3c7";
         this.colorNew = "pink";
         this.colorNewText = "#1f46c1";
     }
@@ -259,22 +246,26 @@ selectedFile=null;
 
     switch (this.colorNew2) {
       case '#1f46c1':
+        this.colorBotton2="pink";
         this.colorNew2 = "#bdc3c7";
         this.colorNewTextNom="#1f46c1";
         this.colorNewTextMetier = "#1f46c1";
 
         break;
       case '#bdc3c7':
+        this.colorBotton2="#1f46c1";
         this.colorNew2 = "pink";
         this.colorNewTextNom="#1f46c1";
         break;
       case 'pink':
+        this.colorBotton2="#bdc3c7";
         this.colorNew2= "#1f46c1";
         this.colorNewTextNom="#ffffff";
         this.colorNewTextMetier = "#ffffff";
 
         break;
       default:
+        this.colorBotton2="#bdc3c7";
         this.colorNew2 = "#1f46c1";
         this.colorNewText = "#ffffff";
         this.colorNewTextMetier = "#ffffff";

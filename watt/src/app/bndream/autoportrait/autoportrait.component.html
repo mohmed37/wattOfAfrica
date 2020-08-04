@@ -83,12 +83,7 @@
     <div *ngIf="!autoPortraitValide">
   <p>Que constatez-vous ? Votre entourage vous perçoit-il comme vous vous percevez ? Avez-vous été surpris par certaines
     réponses ?</p>
-    <div  class="contenu" *ngIf="!saveAutoPortrait">
-      <ckeditor  [editor]="Editor" data="{{resultAutoPortrait.reflexion}}"  (change)="onChange($event)"></ckeditor>
-    </div>
-      <div  class="contenu">
-      <button class="btn btn-success" type="submit" (click)="onSaveAutoPortrait()">Enregistrer</button>
-      </div>
+      <app-ardoise [texte2]="newTexte" (pick)="save($event)"></app-ardoise>
     </div>
   </div>
 

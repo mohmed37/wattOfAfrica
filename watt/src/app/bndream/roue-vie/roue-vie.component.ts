@@ -50,14 +50,7 @@ export class RoueVieComponent implements OnInit {
   public roue: string="assets/img/roue.jpg";
   public Editor = ClassicEditor;
   roueVieStart:boolean=false;
-  public  roueDeLaVie=new RoueDeLaVieModel( "<ol ><li>- - - - - - - - - - - - - - .</li>"+
-    "<li>- - - - - - - - - - - - - - .</li>"+
-    "<li>- - - - - - - - - - - - - - .</li></ol>","<ol ><li>- - - - - - - - - - - - - - .</li>"+
-    "<li>- - - - - - - - - - - - - - .</li>"+
-    "<li>- - - - - - - - - - - - - - .</li></ol>","<ol ><li>- - - - - - - - - - - - - - .</li>"+
-    "<li>- - - - - - - - - - - - - - .</li>"+
-    "<li>- - - - - - - - - - - - - - .</li></ol>");
-
+  public  roueDeLaVie=new RoueDeLaVieModel();
   public userId:number;
   message: string="";
   public modifier: boolean=false;
@@ -65,40 +58,17 @@ export class RoueVieComponent implements OnInit {
   public   prioriser: boolean=false;
   public hostTest: string = "http://localhost:9004/microservice-tests";
   public fragment: string;
+  public texte1Valide:boolean=false;
+  public texte2Valide:boolean=false;
+  public texte3Valide:boolean=false;
+
   onSaveRoueDeLAvie() {
-    if(this.roueVie2&&this.roueVie1){
-      this.roueDeLaVie.famille1=this.formRoueDeLAvie.value.famille;
-      this.roueDeLaVie.famille2=this.formRoueDeLAvie.value.famille2;
-      this.roueDeLaVie.personnelle1=this.formRoueDeLAvie.value.personnelle;
-      this.roueDeLaVie.personnelle2=this.formRoueDeLAvie.value.personnelle2;
-      this.roueDeLaVie.professionnel1=this.formRoueDeLAvie.value.professionne;
-      this.roueDeLaVie.professionnel2=this.formRoueDeLAvie.value.professionne2;
-      this.roueDeLaVie.sante1=this.formRoueDeLAvie.value.sante;
-      this.roueDeLaVie.sante2=this.formRoueDeLAvie.value.sante2;
-      this.roueDeLaVie.social1=this.formRoueDeLAvie.value.social1;
-      this.roueDeLaVie.social2=this.formRoueDeLAvie.value.social2;
-      this.roueDeLaVie.client=this.userId;
-      this.questionnaires.roueVie=true;
 
-
-      this.bndreamService.saveRoueDeLaVie(this.hostTest+ "/saveRoueVieClient/",this.roueDeLaVie)
-        .subscribe(res=>{
-          this.clientService.putQuestionnaires("roueDeLaVie");
-          this.prioriser=true;
-          this.router.navigateByUrl("/bndream");
-
-        }, error => {
-          this.message = "l'enregistrement à échoué!";
-          console.log(error)
-        })
-
-    }
   }
   get f() { return this.formRoueDeLAvie.controls;
   }
 
   ngOnInit(): void {
-    this.fragment="haut";
 
     this.clientService. getQuestionnaires()
       .subscribe(data=>{
@@ -184,6 +154,7 @@ export class RoueVieComponent implements OnInit {
     },
   ];
   public contexteValide:boolean=false;
+
 
   onChange(categorie:string,value):void  {
 
@@ -313,4 +284,42 @@ export class RoueVieComponent implements OnInit {
   pegeHaut() {
     this.router.navigate(['/bndream/roue-de-la-vie'], { fragment: 'haut' });
   }
+
+  getTexte1(event: string) {
+    this.roueDeLaVie.qcm1=event;
+    this.texte1Valide=true;
+  }
+
+  getTexte2(event: string) {
+    this.roueDeLaVie.qcm2=event;
+    this.texte2Valide=true;
+  }
+  getTexte3(event: string) {
+    this.roueDeLaVie.qcm3 = event;
+    this.roueDeLaVie.famille1 = this.formRoueDeLAvie.value.famille;
+    this.roueDeLaVie.famille2 = this.formRoueDeLAvie.value.famille2;
+    this.roueDeLaVie.personnelle1 = this.formRoueDeLAvie.value.personnelle;
+    this.roueDeLaVie.personnelle2 = this.formRoueDeLAvie.value.personnelle2;
+    this.roueDeLaVie.professionnel1 = this.formRoueDeLAvie.value.professionne;
+    this.roueDeLaVie.professionnel2 = this.formRoueDeLAvie.value.professionne2;
+    this.roueDeLaVie.sante1 = this.formRoueDeLAvie.value.sante;
+    this.roueDeLaVie.sante2 = this.formRoueDeLAvie.value.sante2;
+    this.roueDeLaVie.social1 = this.formRoueDeLAvie.value.social1;
+    this.roueDeLaVie.social2 = this.formRoueDeLAvie.value.social2;
+    this.roueDeLaVie.client = this.userId;
+    this.questionnaires.roueVie = true;
+
+    this.bndreamService.saveRoueDeLaVie(this.hostTest + "/saveRoueVieClient/", this.roueDeLaVie)
+      .subscribe(res => {
+        this.clientService.putQuestionnaires("roueDeLaVie");
+        this.prioriser = true;
+        this.texte3Valide = true;
+        this.router.navigateByUrl("/bndream");
+
+      }, error => {
+        this.message = "l'enregistrement à échoué!";
+        console.log(error)
+      })
+  }
+
 }

@@ -18,6 +18,10 @@ export class QuestionnairesModel {
   public photoLangage: boolean;
   public qcm4: boolean;
   public roueVie: boolean;
+  public dicoMetiers:boolean;
+  public porteFolio:boolean;
+  public projetPro:boolean;
+
 
   /*constructor(profilU:boolean,qcm1: boolean,qcm2: boolean,qcm3: boolean,autoPortrait: boolean,comU: boolean,
               commercial: boolean,compVerbale: boolean,emoU: boolean,entrepreneur: boolean,grammaire: boolean

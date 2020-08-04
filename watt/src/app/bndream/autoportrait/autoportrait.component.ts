@@ -9,6 +9,7 @@ import {ChoixAutoPortraitModel} from "../../model/choixAutoPortrait.model";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {ChangeEvent, CKEditor5} from "@ckeditor/ckeditor5-angular";
 import {QuestionnairesModel} from "../../model/questionnaires.model";
+import {TexteModel} from "../../model/texte.model";
 
 @Component({
   selector: 'app-autoportrait',
@@ -59,7 +60,7 @@ export class AutoportraitComponent implements OnInit {
   public roueDeLaVieValide: boolean=false;
   public autoPortraitValide: boolean=false;
   public fragment: string;
-
+  public newTexte=new TexteModel();
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
@@ -67,7 +68,6 @@ export class AutoportraitComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fragment="haut";
     this.serviceClient. getQuestionnaires()
       .subscribe(data=>{
         this.questionnaires2=data;
@@ -218,25 +218,6 @@ export class AutoportraitComponent implements OnInit {
       this.list2 =true;}
   }
 
-  onChange({ editor }: ChangeEvent) {
-    this.resultAutoPortrait.reflexion=editor.getData();
-  }
-
-  onSaveAutoPortrait() {
-
-    this.resultAutoPortrait.client=this.userId;
-    this.questionnaires.photoLangage=true;
-    this.bndreamService.saveAutoPortrait(this.hostTest+ "/saveAutoPortraitClient/",this.resultAutoPortrait)
-      .subscribe(res=>{
-        this.serviceClient.putQuestionnaires("autoPortrait");
-        this.router.navigateByUrl("/bndream");
-        this.saveAutoPortrait=true;
-
-      }, error => {
-        this.message = "l'enregistrement à échoué!";
-        console.log(error)
-      })
-  }
 
   delete(position: number, list: number) {
 
@@ -251,5 +232,22 @@ export class AutoportraitComponent implements OnInit {
       this.choixList2=this.choixList2-1;}
     }
 
+  }
+
+  save(event: string) {
+    this.resultAutoPortrait.reflexion=event;
+    this.resultAutoPortrait.client=this.userId;
+    this.questionnaires.photoLangage=true;
+
+    this.bndreamService.saveAutoPortrait(this.hostTest+ "/saveAutoPortraitClient/",this.resultAutoPortrait)
+      .subscribe(res=>{
+        this.serviceClient.putQuestionnaires("autoPortrait");
+        this.router.navigateByUrl("/bndream");
+        this.saveAutoPortrait=true;
+
+      }, error => {
+        this.message = "l'enregistrement à échoué!";
+        console.log(error)
+      })
   }
 }
