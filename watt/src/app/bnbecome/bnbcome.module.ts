@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {ChartsModule} from "ng2-charts";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCheckboxModule} from "@angular/material/checkbox";
@@ -15,9 +15,12 @@ import {ProjetProComponent} from "./projet-pro/projet-pro.component";
 import {PortefolioComponent} from "./portefolio/portefolio.component";
 import {ProfilUComponent} from "./profil-u/profil-u.component";
 import {BnbcomeRoutingModule} from "./bnbcome-routing.module";
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
+import {FicheMetierComponent} from "./fiche-metier/fiche-metier.component";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
-  declarations: [DicoMetiersComponent,ProjetProComponent,PortefolioComponent,ProfilUComponent],
+  declarations: [DicoMetiersComponent,ProjetProComponent,PortefolioComponent,ProfilUComponent,FicheMetierComponent],
   imports: [
     CommonModule,
     BnbcomeRoutingModule,
@@ -30,7 +33,10 @@ import {BnbcomeRoutingModule} from "./bnbcome-routing.module";
     MatFormFieldModule,
     MatRadioModule,
     MatInputModule,
-    Ng2PageScrollModule
+    Ng2PageScrollModule,
+    BsDropdownModule,
+    MatListModule,
+    FormsModule,
   ]
 })
 export class BnbcomeModule{}

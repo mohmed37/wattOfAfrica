@@ -1,8 +1,10 @@
 package com.tests.web.controler;
 
+import com.tests.dao.bnbecome.ListMetierClientReposirories;
 import com.tests.dao.ndream.FicheMetierRepositories;
 import com.tests.dao.ndream.PhotoFMRepositories;
 import com.tests.dao.praicoU.ResultRepository;
+import com.tests.entity.bnbecome.ListMetierClient;
 import com.tests.entity.ndream.FicheMetier;
 import com.tests.entity.ndream.PhotoFicheMetier;
 import com.tests.entity.praicoU.ResultPraicoU;
@@ -30,6 +32,9 @@ public class FicheMetierControler {
     ResultRepository resultRepository;
     @Autowired
     TestPraicoUControler testPraicoUControler;
+    @Autowired
+    ListMetierClientReposirories metierClientReposirories;
+
 
 
     @PostMapping(value = "/saveFicheMetier")
@@ -103,5 +108,42 @@ public class FicheMetierControler {
 
         return photoFMRepositories.findAll();
     }
+
+    @GetMapping(value = "getFicheMetierByPhotoId/{id}")
+    public List<FicheMetier> getFicheMetierByPhotoId(@PathVariable("id") int id) {
+        List<FicheMetier> ficheMetier = ficheMetierRepositories.findByPhotoId(id);
+
+        return ficheMetier;
+    }
+
+    @GetMapping(value = "getFicheMetierByMetier/{metier}")
+    public Optional<FicheMetier> getFicheMetierByMetier(@PathVariable("metier") String metier) {
+        Optional<FicheMetier> ficheMetier = ficheMetierRepositories.findByMetier(metier);
+        if (!ficheMetier.isPresent()) throw new QuestioneNotFoundException("Cette fiche n'existe pas");
+        return ficheMetier;
+    }
+
+    @GetMapping(value = "getMetierByClient/{id}")
+    public Optional<ListMetierClient> getMetierByClient(@PathVariable("id") Integer id) {
+        Optional<ListMetierClient> ficheMetier = metierClientReposirories.findByClient(id);
+        if (!ficheMetier.isPresent()) throw new QuestioneNotFoundException("Cette fiche n'existe pas");
+        return ficheMetier;
+    }
+
+    @PostMapping(value = "/saveMetierByClient")
+    public ListMetierClient saveMetierByClient(@RequestBody ListMetierClient ficheMetier, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return null;        }
+        return  metierClientReposirories.save(ficheMetier);
+    }
+
+    @PutMapping(value = "/modifMetierByClient")
+    public ListMetierClient modifMetierByClient(@RequestBody ListMetierClient ficheMetier, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return null;
+        }
+        return metierClientReposirories.save(ficheMetier);
+    }
+
 
 }

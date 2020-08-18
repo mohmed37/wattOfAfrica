@@ -139,6 +139,12 @@ public class UserController {
             case "hero":
                 questionClient.get().setHero(true);
                 break;
+            case "dicoMetier":
+                questionClient.get().setDicoMetiers(true);
+                break;
+            case "profilU":
+                questionClient.get().setProfilU(true);
+                break;
             default:
                 break;
         }

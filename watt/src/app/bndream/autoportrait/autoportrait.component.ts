@@ -59,8 +59,10 @@ export class AutoportraitComponent implements OnInit {
   public testAutoPortrait: boolean=false;
   public roueDeLaVieValide: boolean=false;
   public autoPortraitValide: boolean=false;
+  private dicoMetierValide: boolean=false;
   public fragment: string;
   public newTexte=new TexteModel();
+
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
@@ -73,6 +75,7 @@ export class AutoportraitComponent implements OnInit {
         this.questionnaires2=data;
         this.roueDeLaVieValide=this.questionnaires2.roueVie;
         this.autoPortraitValide=this.questionnaires2.autoPortrait;
+
         if(this.autoPortraitValide){
         this.bndreamService.getResultAutoPortrait().subscribe(
           data =>{

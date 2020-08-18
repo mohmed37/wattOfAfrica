@@ -18,16 +18,20 @@ export class FicheMetierService {
   ficheMetier(id:number):Observable<FicheMetier>{
     return this.htttpClient.get<FicheMetier>(this.hostTest + "/getFicheMetier/"+id);
   }
- ficheMetierAll(){
-   return this.htttpClient.get(this.hostTest + "/getPhotoFicheMetierAll");
+ ficheMetierAll():Observable<[]>{
+   return this.htttpClient.get<[]>(this.hostTest + "/getPhotoFicheMetierAll");
  }
   ficheMetierByImage(id:number):Observable<FicheMetier>{
     return this.htttpClient.get<FicheMetier>(this.hostTest + "/getPhotoFicheMetier/"+id);
   }
-  getFicheMetierClient():Observable<FicheMetier>{
-    console.log("service")
-    return this.htttpClient.get<FicheMetier>(this.hostTest + "/getFicheMetierClient/"+this.userConnect.userAuthenticated.num);
+  getFicheMetierClient():Observable<FicheMetier[]>{
+    return this.htttpClient.get<FicheMetier[]>(this.hostTest + "/getFicheMetierClient/"+this.userConnect.userAuthenticated.num);
   }
 
-
+  ficheMetierByPhotoId(id:number):Observable<FicheMetier[]>{
+    return this.htttpClient.get<FicheMetier[]>(this.hostTest + "/getFicheMetierByPhotoId/"+id);
+  }
+  ficheMetierByMetier(metier:string):Observable<FicheMetier>{
+    return this.htttpClient.get<FicheMetier>(this.hostTest + "/getFicheMetierByMetier/"+metier);
+  }
 }

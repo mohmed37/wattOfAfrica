@@ -5,6 +5,7 @@ import {DicoMetiersComponent} from "./dico-metiers/dico-metiers.component";
 import {PortefolioComponent} from "./portefolio/portefolio.component";
 import {ProfilUComponent} from "./profil-u/profil-u.component";
 import {ProjetProComponent} from "./projet-pro/projet-pro.component";
+import {FicheMetierComponent} from "./fiche-metier/fiche-metier.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,24 @@ const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'fichesMetiers',
+        data: {
+          breadcrumb: 'Fiches Métiers'
+        },
+        children: [
+          {
+            path: '',
+            data: {
+              breadcrumb: null
+            },
+            component: FicheMetierComponent,
+          },
+        ],
+      },
+
+
+
       {
         path: 'porteFolio',
         data: {

@@ -26,7 +26,6 @@ import { DefinitionComponent } from './definition/definition.component';
 import { BndreamComponent } from './bndream/accueilBndream/bndream.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { AdministrateurComponent } from './administrateur/administrateur.component';
-import { FicheMetierComponent } from './fiche-metier/fiche-metier.component';
 import {ChartsModule} from "ng2-charts";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
@@ -37,6 +36,9 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import {AccueilCvComponent} from "./cv/accueil-cv/accueil-cv.component";
 import {AuthenticationService} from "./services/authentication.service";
 import { AccueilBnbcomeComponent } from './bnbecome/accueil-bnbcome/accueil-bnbcome.component';
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
+import {TooltipModule} from "ngx-bootstrap/tooltip";
+import {ModalModule} from "ngx-bootstrap/modal";
 
 
 @NgModule({
@@ -53,10 +55,10 @@ import { AccueilBnbcomeComponent } from './bnbecome/accueil-bnbcome/accueil-bnbc
     DefinitionComponent,
     BndreamComponent,
     AdministrateurComponent,
-    FicheMetierComponent,
     BreadcrumbComponent,
     AccueilCvComponent,
     AccueilBnbcomeComponent,
+
   ],
   imports: [
     CKEditorModule,
@@ -82,6 +84,10 @@ import { AccueilBnbcomeComponent } from './bnbecome/accueil-bnbcome/accueil-bnbc
     MatCheckboxModule,
     MatRadioModule,
     BreadcrumbModule,
+    BrowserModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
 
   ],
   providers: [

@@ -4,7 +4,7 @@
     <div class="header-logo"><a ><img [src]="logo" alt=""></a></div>
     <nav class="header-menu">
       <a  routerLink="/admin" *ngIf="authService.isUserAdmin"  >Administrateur</a>
-      <a  routerLink="/ficheMetier">Fiches métier</a>
+      <a  routerLink="/bnbecome/fichesMetiers">Fiches métier</a>
       <a routerLink="/"><mat-icon class="iconHeader">home</mat-icon>Accueil</a>
       <a  routerLink="/newCv" *ngIf="authService.isAuthenticated">Mon Cv</a>
       <a (click)="onLogout()" *ngIf="!authService.isAuthenticated"><i class="fas fa-external-link-square-alt"></i> Connexion</a>

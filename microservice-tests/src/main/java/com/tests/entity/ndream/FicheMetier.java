@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "ficheMetier")
@@ -14,22 +15,24 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FicheMetier {
+public class FicheMetier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    public int id;
     @Column(name = "metier")
-    String metier;
+    public String metier;
     @Column(name = "texte")
-    String texte;
+    public String texte;
     @Column(name = "competence")
-    String competence;
+    public String competence;
     @Column(name = "qualite")
-    String qualite;
+    public String qualite;
     @Column(name = "code")
-    String code;
+    public String code;
+    @Column(name = "valide")
+    public Boolean valide;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "photo_id")
-    PhotoFicheMetier photo;
+    public PhotoFicheMetier photo;
 }

@@ -24,39 +24,34 @@ public class ResultatRa implements Serializable {
     int id;
     @Column(name = "idclient")
     Integer idclient;
-    @Column(name = "question")
-    Integer question=1;
-    @Column(name = "note")
-    @NotNull
-    Integer note=0;
     @Column(name = "authenticite")
-    Double authenticite=0.0;
+    Integer authenticite;
     @Column(name = "tenacite")
-    Double tenacite=0.0;
-    @Column(name = "introversion")
-    Double introversion=0.0;
-    @Column(name = "methode")
-    Double methode=0.0;
-    @Column(name = "intuition")
-    Double intuition=0.0;
-    @Column(name = "nonConformisme")
-    Double nonConformisme=0.0;
-    @Column(name = "personnelle")
-    Double personnelle=0.0;
-    @Column(name = "reflexion")
-    Double reflexion=0.0;
-    @Column(name = "directive")
-    Double directive=0.0;
-    @Column(name = "prudence")
-    Double prudence=0.0;
-    @Column(name = "gregarite")
-    Double gregarite=0.0;
-    @Column(name = "individualisme")
-    Double individualisme=0.0;
-    @Column(name = "traditionnel")
-    Double traditionnel=0.0;
+    Integer tenacite;
     @Column(name = "reactivite")
-    Double reactivite=0.0;
+    Integer reactivite;
+    @Column(name = "introversion")
+    Integer introversion;
+    @Column(name = "methode")
+    Integer methode;
+    @Column(name = "intuition")
+    Integer intuition;
+    @Column(name = "nonConformisme")
+    Integer nonConformisme;
+    @Column(name = "personnelle")
+    Integer personnelle;
+    @Column(name = "directive")
+    Integer directive;
+    @Column(name = "prudence")
+    Integer prudence;
+    @Column(name = "gregarite")
+    Integer gregarite;
+    @Column(name = "individualisme")
+    Integer individualisme;
+    @Column(name = "traditionnel")
+    Integer traditionnel;
+    @Column(name = "reflexion")
+    Integer reflexion;
 
 
 }

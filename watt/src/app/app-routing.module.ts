@@ -8,16 +8,12 @@ import {SignupComponent} from "./auth/signup/signup.component";
 import {SigninComponent} from "./auth/signin/signin.component";
 import {DefinitionComponent} from "./definition/definition.component";
 import {AdministrateurComponent} from "./administrateur/administrateur.component";
-import {FicheMetierComponent} from "./fiche-metier/fiche-metier.component";
+
 
 
 
 const routes: Routes = [
-  {
 
-    path: 'ficheMetier',
-    component: FicheMetierComponent
-  },
   {
 
     path: 'admin',

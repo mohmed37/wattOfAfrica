@@ -19,6 +19,7 @@ public class PhotoFicheMetier {
         this.name = name;
         this.type = type;
         this.picByte = picByte;
+
     }
 
     @Id

@@ -42,3 +42,37 @@ h2{
   color: white;
   padding: 10px 50px 10px 10px;
 }
+.photoFicheMetier1{
+  width: 30%;
+  height: auto;
+}
+.active{
+  margin-left: 40%;}
+
+.left{
+  margin-left: 20%;
+}
+.right{
+  margin-right: 20%;
+}
+.carousel{
+  margin-top: 50px;
+}
+label{
+  margin-left: 40%;
+  margin-top: 10px;
+}
+
+.table{
+  width: 50%;
+  margin-top: 10px;
+}
+
+
+.photos{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 20%;
+  height: auto;
+}
