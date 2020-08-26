@@ -43,9 +43,9 @@
     <p >{{message}}</p>
   </div>
 </form>-->
-<form>
+<form class="form">
   <mat-form-field appearance="fill">
-    <mat-label>Compétence:</mat-label>
+    <mat-label>Compétences:</mat-label>
     <mat-select [(ngModel)]="selectedValue" name="food">
       <mat-option *ngFor="let competence of listCompetences" [value]="competence.competence" (click)="clic(competence.id)">
         {{competence.competence}}
@@ -54,7 +54,7 @@
   </mat-form-field>
 </form>
 
-<h3 *ngIf="selectCompetence">{{selectedValue}}</h3>
+<a (click)="closeList2()"> <h3 *ngIf="selectCompetence">{{selectedValue}}</h3></a>
 <table class="table table-striped" *ngIf="selectCompetence">
   <thead>
   <tr>
@@ -110,11 +110,12 @@
   <button class="btn btn-success " *ngIf="!selecvalide" (click)="selecSavoir()">Je valide</button>
 
 </table>
-<form>
+<form *ngIf="porteFolioValide" class="form">
   <mat-form-field appearance="fill">
-    <mat-label>Compétence:</mat-label>
+    <mat-label>Votre portefeuille de compétences:</mat-label>
     <mat-select [(ngModel)]="selectedValueClient" name="food">
-      <mat-option *ngFor="let competence of dtailCompetence[0]  let index = index" [value]="competence[0][2]" (click)="clicCompetencesClient(competence)">
+      <mat-option *ngFor="let competence of dtailCompetence  let index = index" [value]="competence[0][2]" (click)="clicCompetencesClient(competence)">
+
         {{competence[0][2]}}
       </mat-option>
     </mat-select>
@@ -122,7 +123,7 @@
 </form>
 
 <div *ngIf="selectedValueClient">
-  <h3 *ngIf="selectedValueClient">{{selectedValueClient}}</h3>
+  <a (click)="closeList()"> <h3 *ngIf="selectedValueClient">{{selectedValueClient}}</h3></a>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -167,9 +168,7 @@
       <mat-icon *ngIf="savoir[5]==4">done_outline</mat-icon>
     </td>
   </tr>
-
   </tbody>
-  <button class="btn btn-success " >Je valide</button>
 
 </table>
 </div>

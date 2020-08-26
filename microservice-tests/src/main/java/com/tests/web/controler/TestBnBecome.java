@@ -54,7 +54,7 @@ public class TestBnBecome {
             return null;        }
         List<ListCompetencesClient>list=clientRepositories.findAll();
         for (ListCompetencesClient listClient:list){
-            if (listClient.getIdclient()==listCompetences.getIdclient()){
+            if (listClient.getIdclient().equals(listCompetences.getIdclient())){
                 listClient.setListCompetence(listCompetences.getListCompetence());
                 return  clientRepositories.save(listClient);
             }

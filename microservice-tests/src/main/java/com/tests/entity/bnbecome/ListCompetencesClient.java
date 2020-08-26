@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "listCompetencesClient")
@@ -24,5 +25,5 @@ public class ListCompetencesClient {
     @Column(name = "competence")
     String competence;
     @Column(name = "listCompetence")
-    Object[] listCompetence;
+    ArrayList<Object> listCompetence;
 }

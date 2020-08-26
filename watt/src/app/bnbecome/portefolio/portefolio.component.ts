@@ -40,7 +40,9 @@ export class PortefolioComponent implements OnInit {
   public ListCompetenceClient:ListCompetencesClientModel=new ListCompetencesClientModel();
   public listFaireClient=[];
   public listSavoirClient=[];
-  private porteFolioValide: boolean;
+  public porteFolioValide: boolean;
+  public nbFaire:number;
+  public nbSavoir:number;
 
   constructor(private serviceClient:ClientService, private userConnect:AuthenticationService,private bnbecome:Bnbecome) {
     this.userId=this.userConnect.userAuthenticated.num;
@@ -119,6 +121,7 @@ getListCompetences(){
       this.listCompetence=[];
       this.competences=[];
       this.listSavoir=[];
+
     },error => {
       console.log(error);
     });
@@ -132,11 +135,9 @@ getListCompetences(){
       }
     }
     this.listSavoir.push(event);
-
   }
 
   selecSavoir() {
-
     for (let i=0;i<this.listSavoir.length;i++){
       this.competences=this.split(this.listSavoir[i].value);
       for (let j=0;j<this.listCompetence.length;j++){
@@ -148,13 +149,7 @@ getListCompetences(){
         }
       }
 
-     /* if ( this.competences[5]=='maitrise'){
-        this.competences[5]='0';
-      }
-      if ( this.competences[5]=='interet'){
-        this.competences[5]=this.competences[1];
-        this.competences[1]='0';
-      }*/
+
       this.listCompetence.push(this.competences);
 
     }
@@ -166,43 +161,77 @@ getListCompetences(){
     return phrase.split("+");
   }
 savecompetencesClient(competencesClient){
-    this.competencesClient.competence=this.selectedValue;
-    this.competencesClient.idclient=this.userId;
-    this.savoirCLient.push(competencesClient);
-  this.competencesClient.listCompetence=this.savoirCLient;
+  console.log(competencesClient);
+  for (let i=0;i< competencesClient.length;i++){
 
-  this.bnbecome.saveCompetenceClient(this.competencesClient).subscribe(data=>{
-    this.message="Enregistrement effectué";
-    console.log(data);
-    this.serviceClient.putQuestionnaires("porteFolio");
-  },error => {
-    this.message="Enregistrement à échoué";
-    console.log(error);
-  });
+    if ( competencesClient[i][5]=='maitrise'){
+      competencesClient[i][5]='0';
+    }
+    if ( competencesClient[i][5]=='interet'){
+      competencesClient[i][5]=competencesClient[i][1];
+      competencesClient[i][1]='0';
+    }
+  }
+  console.log(competencesClient);
+ this.competencesClient.competence=this.selectedValue;
+ this.competencesClient.idclient=this.userId;
+for (let i=0;i<this.savoirCLient.length;i++){
+ if (this.savoirCLient[i][0][2]==competencesClient[0][2]){
+   this.savoirCLient.splice(i,1)
+ }
+
+}
+ this.savoirCLient.push(competencesClient);
+
+
+
+this.competencesClient.listCompetence=this.savoirCLient;
+
+this.bnbecome.saveCompetenceClient(this.competencesClient).subscribe(data=>{
+ this.message="Enregistrement effectué";
+ this.serviceClient.putQuestionnaires("porteFolio");
+},error => {
+ this.message="Enregistrement à échoué";
+ console.log(error);
+});
 }
 getCompetencesClient(){
-  this.bnbecome.getCompetenceClient().subscribe(data=>{
-    this.ListCompetenceClient=data;
-    this.dtailCompetence=this.ListCompetenceClient.listCompetence;
-    console.log( this.ListCompetenceClient.listCompetence);
-  },error => {
-    console.log(error);
-  });
+this.savoirCLient=[];
+this.bnbecome.getCompetenceClient().subscribe(data=>{
+ this.ListCompetenceClient=data;
+ this.dtailCompetence=this.ListCompetenceClient.listCompetence;
+
+ for (let i=0;i<this.ListCompetenceClient.listCompetence.length;i++){
+   this.savoirCLient.push(this.ListCompetenceClient.listCompetence[i]);
+
+ }
+
+},error => {
+ console.log(error);
+});
 
 }
 
 
-  clicCompetencesClient(competence:any) {
-   this.listFaireClient=[];
-    this.listSavoirClient=[];
+clicCompetencesClient(competence:any) {
+this.listFaireClient=[];
+ this.listSavoirClient=[];
 
-    for (let i=0;i<competence.length;i++){
-        if(competence[i][4]=='faire'){
-          this.listFaireClient.push(competence[i]);
-        }
-        if(competence[i][4]=='savoir'){
-          this.listSavoirClient.push(competence[i]);
-        }
-    }
+ for (let i=0;i<competence.length;i++){
+     if(competence[i][4]=='faire'){
+       this.listFaireClient.push(competence[i]);
+     }
+     if(competence[i][4]=='savoir'){
+       this.listSavoirClient.push(competence[i]);
+     }
+ }
+}
+
+  closeList() {
+    this.selectedValueClient=null;
+  }
+
+  closeList2() {
+    this.selectCompetence=null;
   }
 }
