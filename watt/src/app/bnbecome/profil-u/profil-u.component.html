@@ -34,7 +34,7 @@
    </div>
  </div>
  <button *ngIf="!resulta&&profilUvalide " class="btn btn-success" (click)="getResultatProfilU()">Voir le résutat</button>
- <button *ngIf="resulta" class="btn btn-warning" (click)="closeResultatProfiliU()">Cacher le résutat</button>
+ <button *ngIf="resulta&&profilUvalide " class="btn btn-warning" (click)="closeResultatProfiliU()">Cacher le résutat</button>
 
  <div *ngIf="resulta" class="resultat">
    <div class="responsive-table-line">
@@ -56,7 +56,7 @@
          <th>9</th>
          <th>10</th>
          <th>Facteur principal</th>
-         <th>bouton</th>
+         <th>Restitution</th>
        </tr>
        </thead>
        <tbody>
@@ -64,479 +64,230 @@
          <td class="table-ligne2" data-title="Droit"><strong>Besoin d’authenticité</strong>
            Sincère, objectif, transparent
          </td>
-          <td *ngIf="getResulta.authenticite>=0" class="table-ligne2">*</td>
+          <td *ngIf="getResulta.authenticite>=0" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.authenticite<1" class="table-ligne2"></td>
-         <td  *ngIf="getResulta.authenticite>=2" class="table-ligne2">*</td>
+         <td  *ngIf="getResulta.authenticite>=2" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td  *ngIf="getResulta.authenticite<2" class="table-ligne2"></td>
-         <td *ngIf="getResulta.authenticite>=3" class="table-ligne2">*</td>
-         <td *ngIf="getResulta.authenticite<=3" class="table-ligne2"></td>
-         <td  *ngIf="getResulta.authenticite>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.authenticite>=3" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
+         <td *ngIf="getResulta.authenticite<3" class="table-ligne2"></td>
+         <td  *ngIf="getResulta.authenticite>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td  *ngIf="getResulta.authenticite<4" class="table-ligne3"></td>
-         <td  *ngIf="getResulta.authenticite>=5" class="table-ligne3">*</td>
+         <td  *ngIf="getResulta.authenticite>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td  *ngIf="getResulta.authenticite<5" class="table-ligne3"></td>
-         <td  *ngIf="getResulta.authenticite>=6" class="table-ligne3">*</td>
+         <td  *ngIf="getResulta.authenticite>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td  *ngIf="getResulta.authenticite<6" class="table-ligne3"></td>
-         <td  *ngIf="getResulta.authenticite>=7" class="table-ligne3">*</td>
+         <td  *ngIf="getResulta.authenticite>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td  *ngIf="getResulta.authenticite<7" class="table-ligne3"></td>
-         <td  *ngIf="getResulta.authenticite>=8" class="table-ligne2">*</td>
+         <td  *ngIf="getResulta.authenticite>=8" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td  *ngIf="getResulta.authenticite<8" class="table-ligne2"></td>
-         <td  *ngIf="getResulta.authenticite>=9" class="table-ligne2">*</td>
+         <td  *ngIf="getResulta.authenticite>=9" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td  *ngIf="getResulta.authenticite<9" class="table-ligne2"></td>
-         <td  *ngIf="getResulta.authenticite>=10" class="table-ligne2">*</td>
+         <td  *ngIf="getResulta.authenticite>=10" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td  *ngIf="getResulta.authenticite<10" class="table-ligne2"></td>
          <td  class="table-ligne2" data-title="Valeur binaire"><strong>Capacités stratégiques</strong>
            Convaincant, influent, persuasion
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-             Détail
-           </button>
+             <button mat-raised-button (click)="openDialog('authenticite') " >Détail</button>
          </td>
-        <!-- &lt;!&ndash; The Modal &ndash;&gt;
-         <div class="modal" id="myModal">
-           <div class="modal-dialog">
-             <div class="modal-content">
-               &lt;!&ndash; Modal Header &ndash;&gt;
-               <div class="modal-header">
-                 <h5 style="color: blueviolet" class="modal-title">POUVOIR DE PERSUASION (Authenticité vs stratégi)</h5>
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               &lt;!&ndash; Modal body &ndash;&gt;
-               <div class="modal-body">
-                 <div th:if="${Authenticite<=3}">
-                   <span style="color:orange" th:text="${listRestit.get(0).titre}"></span>
-                   <p  th:text="${listRestit.get(0).restitution}"></p>
-                 </div>
-                 <div th:if="${Authenticite>3&&Authenticite<=7}" class="row">
-                   <span style="color:green" th:text="${listRestit.get(1).titre}"></span>
-                   <p th:text="${listRestit.get(1).restitution}"></p>
-                 </div>
-                 <div th:if="${Authenticite>7}">
-                   <span style="color:blue" th:text="${listRestit.get(2).titre}"></span>
-                   <p  th:text="${listRestit.get(2).restitution}"></p>
-                 </div>
-               </div>
-               &lt;!&ndash; Modal footer &ndash;&gt;
-               <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-               </div>
-             </div>
-           </div>
-         </div>-->
-
-       </tr>
        <tr>
          <td  data-title="Droit"><strong>Tenace</strong>
            Décidé, exigeant, ferme
          </td>
-         <td *ngIf="getResulta.tenacite>=0">*</td>
+         <td *ngIf="getResulta.tenacite>=0"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<1"></td>
-         <td *ngIf="getResulta.tenacite>=2">*</td>
+         <td *ngIf="getResulta.tenacite>=2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<2"></td>
-         <td *ngIf="getResulta.tenacite>=3">*</td>
+         <td *ngIf="getResulta.tenacite>=3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<3"></td>
-         <td *ngIf="getResulta.tenacite>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.tenacite>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<4" class="table-ligne3"></td >
-         <td *ngIf="getResulta.tenacite>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.tenacite>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.tenacite>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.tenacite>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<6" class="table-ligne3"> </td>
-         <td *ngIf="getResulta.tenacite>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.tenacite>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.tenacite>=8">*</td>
+         <td *ngIf="getResulta.tenacite>=8"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<=8"></td>
-         <td *ngIf="getResulta.tenacite>=9">*</td>
+         <td *ngIf="getResulta.tenacite>=9"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<9"></td>
-         <td *ngIf="getResulta.tenacite>=10">*</td>
+         <td *ngIf="getResulta.tenacite>=10"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<10"></td>
          <td data-title="Valeur binaire"><strong>Accomodant</strong>
            Conciliant, à l’écoute d’autrui, diplomate
          </td>
          <td>
            <!-- Button to Open the Modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
-              Détail
-            </button>
+           <button mat-raised-button (click)="openDialog('Ténacité') " >Détail</button>
           </td>
-        <!--  &lt;!&ndash; The Modal &ndash;&gt;
-          <div class="modal" id="myModal2">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                &lt;!&ndash; Modal Header &ndash;&gt;
-                <div class="modal-header">
-                  <h5 style="color: blueviolet" class="modal-title">AGREABILITE (Ténacité vs Flexibilité)</h5>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                &lt;!&ndash; Modal body &ndash;&gt;
-                <div class="modal-body">
-                  <div th:if="${Tenacite<=3}">
-                    <span style="color:orange" th:text="${listRestit.get(3).titre}"></span>
-                    <p  th:text="${listRestit.get(3).restitution}"></p>
-                  </div>
-                  <div th:if="${Tenacite>3&&Tenacite<=7}" class="row">
-                    <span style="color:green" th:text="${listRestit.get(4).titre}"></span>
-                    <p th:text="${listRestit.get(4).restitution}"></p>
-                  </div>
-                  <div th:if="${Tenacite>7}">
-                    <span style="color:blue" th:text="${listRestit.get(5).titre}"></span>
-                    <p  th:text="${listRestit.get(5).restitution}"></p>
-                  </div>
-                </div>
-                &lt;!&ndash; Modal footer &ndash;&gt;
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>-->
-       </tr>
        <tr>
          <td class="table-ligne2" data-title="Droit"><strong>Réactivité émotionnelle</strong>
            Passionné, expressif, réactif
          </td>
-         <td *ngIf="getResulta.reactivite>=0" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.reactivite>=0" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reactivite<1" class="table-ligne2"></td>
-         <td *ngIf="getResulta.reactivite>=2" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.reactivite>=2" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reactivite<2" class="table-ligne2"></td>
-         <td *ngIf="getResulta.reactivite>=3" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.reactivite>=3" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reactivite<3" class="table-ligne2"></td>
-         <td *ngIf="getResulta.reactivite>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.reactivite>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reactivite<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.reactivite>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.reactivite>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reactivite<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.reactivite>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.reactivite>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reactivite<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.reactivite>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.reactivite>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reactivite<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.reactivite>=8" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.reactivite>=8" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reactivite<8" class="table-ligne2"></td>
-         <td *ngIf="getResulta.reactivite>=9" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.reactivite>=9" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reactivite<9" class="table-ligne2"></td>
-         <td *ngIf="getResulta.reactivite>=10" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.reactivite>=10" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reactivite<10" class="table-ligne2"></td>
          <td class="table-ligne2" data-title="Valeur binaire"><strong>Stabilité émotionnelle</strong>
            Calme, maître de soi, détaché
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal3">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Réactivité') " >Détail</button>
          </td>
-         <!-- &lt;!&ndash; The Modal &ndash;&gt;
-          <div class="modal" id="myModal3">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                &lt;!&ndash; Modal Header &ndash;&gt;
-                <div class="modal-header">
-                  <h5 style="color: blueviolet" class="modal-title">GESTION DES EMOTIONS (Réactivité vs Stabilité)</h5>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                &lt;!&ndash; Modal body &ndash;&gt;
-                <div class="modal-body">
-                  <div th:if="${reactivite<=3}">
-                    <span style="color:orange" th:text="${listRestit.get(6).titre}"></span>
-                    <p  th:text="${listRestit.get(6).restitution}"></p>
-                  </div>
-                  <div th:if="${reactivite>3&&reactivite<=7}" class="row">
-                    <span style="color:green" th:text="${listRestit.get(7).titre}"></span>
-                    <p th:text="${listRestit.get(7).restitution}"></p>
-                  </div>
-                  <div th:if="${reactivite>7}">
-                    <span style="color:blue" th:text="${listRestit.get(8).titre}"></span>
-                    <p  th:text="${listRestit.get(8).restitution}"></p>
-                  </div>
-                </div>
-                &lt;!&ndash; Modal footer &ndash;&gt;
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
- -->
-       </tr>
-
        <tr>
          <td data-title="Droit"><strong>Introversion</strong>
            Réservé, discret, formel
          </td>
-         <td *ngIf="getResulta.introversion>=0">*</td>
+         <td *ngIf="getResulta.introversion>=0"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.introversion<1"></td>
-         <td *ngIf="getResulta.introversion>=2">*</td>
+         <td *ngIf="getResulta.introversion>=2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.introversion<2"></td>
-         <td *ngIf="getResulta.introversion>=3">*</td>
+         <td *ngIf="getResulta.introversion>=3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.introversion<3"></td>
-         <td *ngIf="getResulta.introversion>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.introversion>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.introversion<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.introversion>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.introversion>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.introversion<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.introversion>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.introversion>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.introversion<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.introversion>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.introversion>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.introversion<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.introversion>=8">*</td>
+         <td *ngIf="getResulta.introversion>=8"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.introversion<8"></td>
-         <td *ngIf="getResulta.introversion>=9">*</td>
+         <td *ngIf="getResulta.introversion>=9"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.introversion<9"></td>
-         <td *ngIf="getResulta.introversion>=10">*</td>
+         <td *ngIf="getResulta.introversion>=10"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.introversion<10"></td>
          <td data-title="Valeur binaire"><strong>Extraversion</strong>
            Ouvert, sociable, enjoué
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Introversion') " >Détail</button>
          </td>
-          <!--&lt;!&ndash; The Modal &ndash;&gt;
-         <div class="modal" id="myModal4">
-           <div class="modal-dialog">
-             <div class="modal-content">
-               &lt;!&ndash; Modal Header &ndash;&gt;
-               <div class="modal-header">
-                 <h5 style="color: blueviolet" class="modal-title">SOCIABILITE (Introversion / extraversion) </h5>
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               &lt;!&ndash; Modal body &ndash;&gt;
-               <div class="modal-body">
-                 <div th:if="${Introversion<=3}">
-                   <span style="color:orange" th:text="${listRestit.get(9).titre}"></span>
-                   <p  th:text="${listRestit.get(9).restitution}"></p>
-                 </div>
-                 <div th:if="${Introversion>3&&Introversion<=7}" class="row">
-                   <span style="color:green" th:text="${listRestit.get(10).titre}"></span>
-                   <p th:text="${listRestit.get(10).restitution}"></p>
-                 </div>
-                 <div th:if="${Introversion>7}">
-                   <span style="color:blue" th:text="${listRestit.get(11).titre}"></span>
-                   <p  th:text="${listRestit.get(11).restitution}"></p>
-                 </div>
-               </div>
-               &lt;!&ndash; Modal footer &ndash;&gt;
-               <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-               </div>
-             </div>
-           </div>
-         </div>
--->
-       </tr>
        <tr>
          <td class="table-ligne2"
              data-title="Droit"><strong>Méthodique</strong>
            Organisé, planificateur, systématique
          </td>
-         <td *ngIf="getResulta.methode>=0" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.methode>=0" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.methode<1" class="table-ligne2"></td>
-         <td *ngIf="getResulta.methode>=2" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.methode>=2" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.methode<2" class="table-ligne2"></td>
-         <td *ngIf="getResulta.methode>=3" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.methode>=3" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.methode<3" class="table-ligne2"></td>
-         <td *ngIf="getResulta.methode>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.methode>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.methode<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.methode>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.methode>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.methode<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.methode>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.methode>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.methode<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.methode>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.methode>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.methode<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.methode>=8" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.methode>=8" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.methode<8" class="table-ligne2"></td>
-         <td *ngIf="getResulta.methode>=9" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.methode>=9" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.methode<9" class="table-ligne2"></td>
-         <td *ngIf="getResulta.methode>=10" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.methode>=10" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.methode<10" class="table-ligne2"></td>
          <td class="table-ligne2" data-title="Valeur binaire"><strong>Capacités d’improvisation</strong>
            Spontané, adaptable, à l’aise avec l’incertitude
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Méthode') " >Détail</button>
          </td>
-         <!--&lt;!&ndash; The Modal &ndash;&gt;
-         <div class="modal" id="myModal5">
-           <div class="modal-dialog">
-             <div class="modal-content">
-               &lt;!&ndash; Modal Header &ndash;&gt;
-               <div class="modal-header">
-                 <h5 style="color: blueviolet" class="modal-title">CONSCIENCE (Méthode vs Improvisation)</h5>
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               &lt;!&ndash; Modal body &ndash;&gt;
-               <div class="modal-body">
-                 <div th:if="${Methode<=3}">
-                   <span style="color:orange" th:text="${listRestit.get(12).titre}"></span>
-                   <p  th:text="${listRestit.get(12).restitution}"></p>
-                 </div>
-                 <div th:if="${Methode>3&&Methode<=7}" class="row">
-                   <span style="color:green" th:text="${listRestit.get(13).titre}"></span>
-                   <p th:text="${listRestit.get(13).restitution}"></p>
-                 </div>
-                 <div th:if="${Methode>7}">
-                   <span style="color:blue" th:text="${listRestit.get(14).titre}"></span>
-                   <p  th:text="${listRestit.get(14).restitution}"></p>
-                 </div>
-               </div>
-               &lt;!&ndash; Modal footer &ndash;&gt;
-               <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-               </div>
-             </div>
-           </div>
-         </div>
--->
-
-       </tr>
        <tr>
          <td data-title="Droit"><strong>Intuition</strong>
            Instinct, vision globale, ressenti
          </td>
-         <td *ngIf="getResulta.intuition>=0">*</td>
+         <td *ngIf="getResulta.intuition>=0"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.intuition<1"></td>
-         <td *ngIf="getResulta.intuition>=2">*</td>
+         <td *ngIf="getResulta.intuition>=2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.intuition<2"></td>
-         <td *ngIf="getResulta.intuition>=3">*</td>
+         <td *ngIf="getResulta.intuition>=3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.intuition<3"></td>
-         <td *ngIf="getResulta.intuition>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.intuition>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.intuition<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.intuition>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.intuition>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.intuition<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.intuition>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.intuition>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.intuition<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.intuition>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.intuition>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.intuition<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.intuition>=8">*</td>
+         <td *ngIf="getResulta.intuition>=8"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.intuition<8"></td>
-         <td *ngIf="getResulta.intuition>=9">*</td>
+         <td *ngIf="getResulta.intuition>=9"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.intuition<9"></td>
-         <td *ngIf="getResulta.intuition>=10">*</td>
+         <td *ngIf="getResulta.intuition>=10"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.intuition<10"></td>
          <td data-title="Valeur binaire"><strong>Rationalisme</strong>
            Centré sur les faits, logique, analytique
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal6">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Intuition') " >Détail</button>
          </td>
-         <!--&lt;!&ndash; The Modal &ndash;&gt;
-         <div class="modal" id="myModal6">
-           <div class="modal-dialog">
-             <div class="modal-content">
-               &lt;!&ndash; Modal Header &ndash;&gt;
-               <div class="modal-header">
-                 <h5 style="color: blueviolet" class="modal-title">SENSIBILITE (Intuition vs Rationalisme)</h5>
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               &lt;!&ndash; Modal body &ndash;&gt;
-               <div class="modal-body">
-                 <div th:if="${Intuition<=3}">
-                   <span style="color:orange" th:text="${listRestit.get(15).titre}"></span>
-                   <p  th:text="${listRestit.get(15).restitution}"></p>
-                 </div>
-                 <div th:if="${Intuition>3&&Intuition<=7}" class="row">
-                   <span style="color:green" th:text="${listRestit.get(16).titre}"></span>
-                   <p th:text="${listRestit.get(16).restitution}"></p>
-                 </div>
-                 <div th:if="${Intuition>7}">
-                   <span style="color:blue" th:text="${listRestit.get(17).titre}"></span>
-                   <p  th:text="${listRestit.get(17).restitution}"></p>
-                 </div>
-               </div>
-               &lt;!&ndash; Modal footer &ndash;&gt;
-               <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-               </div>
-             </div>
-           </div>
-         </div>-->
-       </tr>
        <tr>
          <td class="table-ligne2" data-title="Droit"><strong>Non conformiste</strong>
            Libre pensée, définit ses propres standards, regard critique
          </td>
-         <td *ngIf="getResulta.nonConformisme>=0" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.nonConformisme>=0" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.nonConformisme<1" class="table-ligne2"></td>
-         <td *ngIf="getResulta.nonConformisme>=2" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.nonConformisme>=2" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.nonConformisme<2" class="table-ligne2"></td>
-         <td *ngIf="getResulta.nonConformisme>=3" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.nonConformisme>=3" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.nonConformisme<3" class="table-ligne2"></td>
-         <td *ngIf="getResulta.nonConformisme>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.nonConformisme>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.nonConformisme<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.nonConformisme>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.nonConformisme>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.nonConformisme<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.nonConformisme>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.nonConformisme>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.nonConformisme<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.nonConformisme>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.nonConformisme>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.nonConformisme<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.nonConformisme>=8" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.nonConformisme>=8" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.nonConformisme<8" class="table-ligne2"></td>
-         <td *ngIf="getResulta.nonConformisme>=9" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.nonConformisme>=9" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.nonConformisme<9" class="table-ligne2"></td>
-         <td *ngIf="getResulta.nonConformisme>=10" class="table-ligne2">*</td>
+         <td *ngIf="getResulta.nonConformisme>=10" class="table-ligne2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.nonConformisme<10" class="table-ligne2"></td>
          <td  class="table-ligne2" data-title="Valeur binaire"><strong>Droiture</strong>
            Adhère aux standards, se conforme, suit les conventions
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal7">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Non conformisme') " >Détail</button>
          </td>
-         <!--   &lt;!&ndash; The Modal &ndash;&gt;
-          <div class="modal" id="myModal7">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                &lt;!&ndash; Modal Header &ndash;&gt;
-                <div class="modal-header">
-                  <h5 style="color: blueviolet" class="modal-title">CONVENTIONNEL (Non conformisme vs Droiture)</h5>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                &lt;!&ndash; Modal body &ndash;&gt;
-                <div class="modal-body">
-                  <div th:if="${NonConformisme<=3}">
-                    <span style="color:orange" th:text="${listRestit.get(18).titre}"></span>
-                    <p  th:text="${listRestit.get(18).restitution}"></p>
-                  </div>
-                  <div th:if="${NonConformisme>3&&NonConformisme<=7}" class="row">
-                    <span style="color:green" th:text="${listRestit.get(19).titre}"></span>
-                    <p th:text="${listRestit.get(19).restitution}"></p>
-                  </div>
-                  <div th:if="${NonConformisme>7}">
-                    <span style="color:blue" th:text="${listRestit.get(20).titre}"></span>
-                    <p  th:text="${listRestit.get(20).restitution}"></p>
-                  </div>
-                </div>
-                &lt;!&ndash; Modal footer &ndash;&gt;
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>-->
-       </tr>
-
        </tbody>
      </table>
    </div><br>
    <div class="responsive-table-line" >
-
      <div class="table-ligne15">
        <p class="text-center">Motivations, aspirations et valeurs
      </div>
-
-
      <table class="table table-bordered table-condensed table-body-center" >
        <thead class="table-ligne14">
        <tr>
-
          <th >Facteur opposé</th>
          <th>1</th>
          <th>2</th>
@@ -549,7 +300,7 @@
          <th>9</th>
          <th>10</th>
          <th>Facteur principal</th>
-         <th>Détail</th>
+         <th>Restitution</th>
 
        </tr>
        </thead>
@@ -558,409 +309,206 @@
          <td class="table-ligne12" data-title="Droit"><strong>Equilibre travail/vie privée</strong>
            Equilibre personnel, déconnecte après le travail
          </td>
-         <td *ngIf="getResulta.personnelle>=0" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.personnelle>=0" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.personnelle<1" class="table-ligne12"></td>
-         <td *ngIf="getResulta.personnelle>=2" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.personnelle>=2" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.personnelle<2" class="table-ligne12"></td>
-         <td *ngIf="getResulta.personnelle>=3" class="table-ligne12">*</td>
-         <td *ngIf="getResulta.personnelle<=3" class="table-ligne12"></td>
-         <td *ngIf="getResulta.personnelle>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.personnelle>=3" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
+         <td *ngIf="getResulta.personnelle<3" class="table-ligne12"></td>
+         <td *ngIf="getResulta.personnelle>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.personnelle<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.personnelle>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.personnelle>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.personnelle<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.personnelle>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.personnelle>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.personnelle<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.personnelle>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.personnelle>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.personnelle<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.personnelle>=8" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.personnelle>=8" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.personnelle<8" class="table-ligne12"></td>
-         <td *ngIf="getResulta.personnelle>=9" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.personnelle>=9" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.personnelle<9" class="table-ligne12"></td>
-         <td *ngIf="getResulta.personnelle>=10" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.personnelle>=10" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.personnelle<10" class="table-ligne12"></td>
          <td  class="table-ligne12" data-title="Valeur binaire"><strong>Engagement au travail</strong>
            Dévoué, impliqué, bourreau de travail
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal8">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Equilibre vie personnelle') " >Détail</button>
          </td>
-         <!-- &lt;!&ndash; The Modal &ndash;&gt;
-         <div class="modal" id="myModal8">
-           <div class="modal-dialog">
-             <div class="modal-content">
-               &lt;!&ndash; Modal Header &ndash;&gt;
-               <div class="modal-header">
-                 <h5 style="color: blueviolet" class="modal-title">ENGAGEMENT AU TRAVAIL (Equilibre vie personnelle vs vie professionnelle)</h5>
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               &lt;!&ndash; Modal body &ndash;&gt;
-               <div class="modal-body">
-                 <div th:if="${Personnelle<=3}">
-                   <span style="color:orange" th:text="${listRestit.get(21).titre}"></span>
-                   <p  th:text="${listRestit.get(21).restitution}"></p>
-                 </div>
-                 <div th:if="${Personnelle>3&&Personnelle<=7}" class="row">
-                   <span style="color:green" th:text="${listRestit.get(22).titre}"></span>
-                   <p th:text="${listRestit.get(22).restitution}"></p>
-                 </div>
-                 <div th:if="${Personnelle>7}">
-                   <span style="color:blue" th:text="${listRestit.get(23).titre}"></span>
-                   <p  th:text="${listRestit.get(23).restitution}"></p>
-                 </div>
-               </div>
-               &lt;!&ndash; Modal footer &ndash;&gt;
-               <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-               </div>
-             </div>
-           </div>
-         </div>-->
-       </tr>
+
        <tr>
          <td  data-title="Droit"><strong>Besoin de directives</strong>
            Recherche les conseils, encadrement, apprécie d’être guidé
          </td>
-         <td *ngIf="getResulta.directive>=0">*</td>
+         <td *ngIf="getResulta.directive>=0"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.directive<1"></td>
-         <td *ngIf="getResulta.directive>=2">*</td>
+         <td *ngIf="getResulta.directive>=2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.directive<2"></td>
-         <td *ngIf="getResulta.directive>=3">*</td>
+         <td *ngIf="getResulta.directive>=3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.directive<3"></td>
-         <td *ngIf="getResulta.directive>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.directive>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.directive<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.directive>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.directive>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.directive<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.directive>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.directive>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.directive<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.directive>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.directive>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.directive<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.directive>=8"></td>
-         <td *ngIf="getResulta.directive<=8"></td>
-         <td *ngIf="getResulta.directive>=9">*</td>
+         <td *ngIf="getResulta.directive>=8"><mat-icon>done_outline</mat-icon></td>
+         <td *ngIf="getResulta.directive<8"></td>
+         <td *ngIf="getResulta.directive>=9"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.directive<9"></td>
-         <td *ngIf="getResulta.directive>=10">*</td>
+         <td *ngIf="getResulta.directive>=10"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.directive<10"></td>
          <td data-title="Valeur binaire"><strong>Responsable</strong>
            Prend les choses en main, autoritaire
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal9">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Directive') " >Détail</button>
          </td>
-         <!-- &lt;!&ndash; The Modal &ndash;&gt;
-         <div class="modal" id="myModal9">
-           <div class="modal-dialog">
-             <div class="modal-content">
-               &lt;!&ndash; Modal Header &ndash;&gt;
-               <div class="modal-header">
-                 <h5 style="color: blueviolet" class="modal-title">ENCADREMENT (Directive vs Pouvoir)</h5>
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               &lt;!&ndash; Modal body &ndash;&gt;
-               <div class="modal-body">
-                 <div th:if="${Directive<=3}">
-                   <span style="color:orange" th:text="${listRestit.get(24).titre}"></span>
-                   <p  th:text="${listRestit.get(24).restitution}"></p>
-                 </div>
-                 <div th:if="${Directive>3&&Directive<=7}" class="row">
-                   <span style="color:green" th:text="${listRestit.get(25).titre}"></span>
-                   <p th:text="${listRestit.get(25).restitution}"></p>
-                 </div>
-                 <div th:if="${Directive>7}">
-                   <span style="color:blue" th:text="${listRestit.get(26).titre}"></span>
-                   <p  th:text="${listRestit.get(26).restitution}"></p>
-                 </div>
-               </div>
-               &lt;!&ndash; Modal footer &ndash;&gt;
-               <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-               </div>
-             </div>
-           </div>
-         </div>-->
-       </tr>
+
        <tr>
          <td class="table-ligne12" data-title="Droit"><strong>Réfléchi</strong>
            Patient, besoin de réflexion, aime conceptualiser
          </td>
-         <td *ngIf="getResulta.reflexion>=0" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.reflexion>=0" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reflexion<1" class="table-ligne12"></td>
-         <td *ngIf="getResulta.reflexion>=2" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.reflexion>=2" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reflexion<2" class="table-ligne12"></td>
-         <td *ngIf="getResulta.reflexion>=3" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.reflexion>=3" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reflexion<3" class="table-ligne12"></td>
-         <td *ngIf="getResulta.reflexion>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.reflexion>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reflexion<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.reflexion>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.reflexion>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reflexion<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.reflexion>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.reflexion>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reflexion<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.reflexion>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.reflexion>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reflexion<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.reflexion>=8" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.reflexion>=8" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reflexion<8" class="table-ligne12"></td>
-         <td *ngIf="getResulta.reflexion>=9" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.reflexion>=9" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reflexion<9" class="table-ligne12"></td>
-         <td *ngIf="getResulta.reflexion>=10" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.reflexion>=10" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.reflexion<10" class="table-ligne12"></td>
          <td class="table-ligne12" data-title="Valeur binaire"><strong>Dynamique</strong>
            Besoin d’action, prend des risques, résultat rapide
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa20">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Réflexion') " >Détail</button>
          </td>
-         <!-- &lt;!&ndash; The Modal &ndash;&gt;
-         <div class="modal" id="myModa20">
-           <div class="modal-dialog">
-             <div class="modal-content">
-               &lt;!&ndash; Modal Header &ndash;&gt;
-               <div class="modal-header">
-                 <h5 style="color: blueviolet" class="modal-title">DYNAMISME (Réflexion vs action)</h5>
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               &lt;!&ndash; Modal body &ndash;&gt;
-               <div class="modal-body">
-                 <div th:if="${reflexion<=3}">
-                   <span style="color:orange" th:text="${listRestit.get(27).titre}"></span>
-                   <p  th:text="${listRestit.get(27).restitution}"></p>
-                 </div>
-                 <div th:if="${reflexion>3&&reflexion<=7}" class="row">
-                   <span style="color:green" th:text="${listRestit.get(28).titre}"></span>
-                   <p th:text="${listRestit.get(28).restitution}"></p>
-                 </div>
-                 <div th:if="${reflexion>7}">
-                   <span style="color:blue" th:text="${listRestit.get(29).titre}"></span>
-                   <p  th:text="${listRestit.get(29).restitution}"></p>
-                 </div>
-               </div>
-               &lt;!&ndash; Modal footer &ndash;&gt;
-               <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-               </div>
-             </div>
-           </div>
-         </div>-->
-       </tr>
-
        <tr>
          <td data-title="Droit"><strong>Prudence</strong>
            Satisfait(e), stable, modestie
          </td>
-         <td *ngIf="getResulta.prudence>=0">*</td>
+         <td *ngIf="getResulta.prudence>=0"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.prudence<1"></td>
-         <td *ngIf="getResulta.prudence>=2">*</td>
+         <td *ngIf="getResulta.prudence>=2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.prudence<2"></td>
-         <td *ngIf="getResulta.prudence>=3">*</td>
+         <td *ngIf="getResulta.prudence>=3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.prudence<3"></td>
-         <td *ngIf="getResulta.prudence>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.prudence>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.prudence<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.prudence>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.prudence>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.prudence<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.prudence>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.prudence>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.prudence<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.prudence>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.prudence>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.prudence<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.prudence>=8">*</td>
+         <td *ngIf="getResulta.prudence>=8"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.prudence<8"></td>
-         <td *ngIf="getResulta.prudence>=9">*</td>
+         <td *ngIf="getResulta.prudence>=9"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.prudence<9"></td>
-         <td *ngIf="getResulta.prudence>=10">*</td>
+         <td *ngIf="getResulta.prudence>=10"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.prudence<10"></td>
          <td data-title="Valeur binaire"><strong>Compétition</strong>
            Compétitif, ambitieux, cherche la réussite
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa21">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Prudence') " >Détail</button>
          </td>
-         <!-- &lt;!&ndash; The Modal &ndash;&gt;
-          <div class="modal" id="myModa21">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                &lt;!&ndash; Modal Header &ndash;&gt;
-                <div class="modal-header">
-                  <h5 style="color: blueviolet" class="modal-title">AMBITION (Prudence vs compétition)</h5>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                &lt;!&ndash; Modal body &ndash;&gt;
-                <div class="modal-body">
-                  <div th:if="${Prudence<=3}">
-                    <span style="color:orange" th:text="${listRestit.get(30).titre}"></span>
-                    <p  th:text="${listRestit.get(30).restitution}"></p>
-                  </div>
-                  <div th:if="${Prudence>3&&Prudence<=7}" class="row">
-                    <span style="color:green" th:text="${listRestit.get(31).titre}"></span>
-                    <p th:text="${listRestit.get(31).restitution}"></p>
-                  </div>
-                  <div th:if="${Prudence>7}">
-                    <span style="color:blue" th:text="${listRestit.get(32).titre}"></span>
-                    <p  th:text="${listRestit.get(32).restitution}"></p>
-                  </div>
-                </div>
-                &lt;!&ndash; Modal footer &ndash;&gt;
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>-->
-       </tr>
        <tr>
          <td class="table-ligne12"
              data-title="Droit"><strong>Grégaire</strong>
            Coopératif, affiliation, orienté équipe
          </td>
-         <td *ngIf="getResulta.gregarite>=0" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.gregarite>=0" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.gregarite<1" class="table-ligne12"></td>
-         <td *ngIf="getResulta.gregarite>=2" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.gregarite>=2" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.gregarite<2" class="table-ligne12"></td>
-         <td *ngIf="getResulta.gregarite>=3" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.gregarite>=3" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.gregarite<3" class="table-ligne12"></td>
-         <td *ngIf="getResulta.gregarite>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.gregarite>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.gregarite<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.gregarite>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.gregarite>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.gregarite<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.gregarite>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.gregarite>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.gregarite<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.gregarite>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.gregarite>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.gregarite<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.gregarite>=8" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.gregarite>=8" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.gregarite<8" class="table-ligne12"></td>
-         <td *ngIf="getResulta.gregarite>=9" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.gregarite>=9" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.gregarite<9" class="table-ligne12"></td>
-         <td *ngIf="getResulta.gregarite>=10" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.gregarite>=10" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.gregarite<10" class="table-ligne12"></td>
          <td class="table-ligne12" data-title="Valeur binaire"><strong>Autonome</strong>
            Besoin d’autonomie, besoin d’indépendance
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa22">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Grégarité') " >Détail</button>
          </td>
-         <!--&lt;!&ndash; The Modal &ndash;&gt;
-        <div class="modal" id="myModa22">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              &lt;!&ndash; Modal Header &ndash;&gt;
-              <div class="modal-header">
-                <h5 style="color: blueviolet" class="modal-title">INDEPENDANCE (Grégarité vs Autonomie)</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              &lt;!&ndash; Modal body &ndash;&gt;
-              <div class="modal-body">
-                <div th:if="${Gregarite<=3}">
-                  <span style="color:orange" th:text="${listRestit.get(33).titre}"></span>
-                  <p  th:text="${listRestit.get(33).restitution}"></p>
-                </div>
-                <div th:if="${Gregarite>3&&Gregarite<=7}" class="row">
-                  <span style="color:green" th:text="${listRestit.get(34).titre}"></span>
-                  <p th:text="${listRestit.get(34).restitution}"></p>
-                </div>
-                <div th:if="${Gregarite>7}">
-                  <span style="color:blue" th:text="${listRestit.get(35).titre}"></span>
-                  <p  th:text="${listRestit.get(35).restitution}"></p>
-                </div>
-              </div>
-              &lt;!&ndash; Modal footer &ndash;&gt;
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>-->
-       </tr>
        <tr>
          <td data-title="Droit"><strong>Individualisme</strong>
            Pragmatique, cherche à satisfaire ses intérêts
          </td>
-         <td *ngIf="getResulta.individualisme>=0">*</td>
+         <td *ngIf="getResulta.individualisme>=0"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.individualisme<1"></td>
-         <td *ngIf="getResulta.individualisme>=2">*</td>
+         <td *ngIf="getResulta.individualisme>=2"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.individualisme<2"></td>
-         <td *ngIf="getResulta.individualisme>=3">*</td>
+         <td *ngIf="getResulta.individualisme>=3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.individualisme<3"></td>
-         <td *ngIf="getResulta.individualisme>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.individualisme>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.individualisme<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.individualisme>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.individualisme>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.individualisme<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.individualisme>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.individualisme>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.individualisme<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.individualisme>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.individualisme>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.individualisme<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.individualisme>=8">*</td>
+         <td *ngIf="getResulta.individualisme>=8"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.individualisme<8"></td>
-         <td *ngIf="getResulta.individualisme>=9">*</td>
+         <td *ngIf="getResulta.individualisme>=9"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.individualisme<9"></td>
-         <td *ngIf="getResulta.individualisme>=10">*</td>
+         <td *ngIf="getResulta.individualisme>=10"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.individualisme<10"></td>
          <td data-title="Valeur binaire"><strong>Altruisme</strong>
            Serviable, généreux, soucieux du bien-être d’autrui
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa23">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Individualisme') " >Détail</button>
          </td>
-         <!-- &lt;!&ndash; The Modal &ndash;&gt;
-          <div class="modal" id="myModa23">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                &lt;!&ndash; Modal Header &ndash;&gt;
-                <div class="modal-header">
-                  <h5 style="color: blueviolet" class="modal-title">ALTRUISME (Individualisme vs altruisme)</h5>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                &lt;!&ndash; Modal body &ndash;&gt;
-                <div class="modal-body">
-                  <div th:if="${individualisme<=3}">
-                    <span style="color:orange" th:text="${listRestit.get(36).titre}"></span>
-                    <p  th:text="${listRestit.get(36).restitution}"></p>
-                  </div>
-                  <div th:if="${individualisme>3&&individualisme<=7}" class="row">
-                    <span style="color:green" th:text="${listRestit.get(37).titre}"></span>
-                    <p th:text="${listRestit.get(37).restitution}"></p>
-                  </div>
-                  <div th:if="${individualisme>7}">
-                    <span style="color:blue" th:text="${listRestit.get(38).titre}"></span>
-                    <p  th:text="${listRestit.get(38).restitution}"></p>
-                  </div>
-                </div>
-                &lt;!&ndash; Modal footer &ndash;&gt;
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>-->
-       </tr>
        <tr>
          <td class="table-ligne12" data-title="Droit"><strong>Traditionnel</strong>
            Routine, conventionnel, recherche de familiarité
          </td>
-         <td *ngIf="getResulta.traditionnel>=0" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.traditionnel>=0" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<1" class="table-ligne12"></td>
-         <td *ngIf="getResulta.traditionnel>=2" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.traditionnel>=2" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<2" class="table-ligne12"></td>
-         <td *ngIf="getResulta.traditionnel>=3" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.traditionnel>=3" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<3" class="table-ligne12"></td>
-         <td *ngIf="getResulta.traditionnel>=4" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.traditionnel>=4" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<4" class="table-ligne3"></td>
-         <td *ngIf="getResulta.traditionnel>=5" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.traditionnel>=5" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<5" class="table-ligne3"></td>
-         <td *ngIf="getResulta.traditionnel>=6" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.traditionnel>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<6" class="table-ligne3"></td>
          <td *ngIf="getResulta.traditionnel>=7" class="table-ligne3">*</td>
          <td *ngIf="getResulta.traditionnel<7" class="table-ligne3"></td>
@@ -975,43 +523,8 @@
          </td>
          <td>
            <!-- Button to Open the Modal -->
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa24">
-             Détail
-           </button>
+           <button mat-raised-button (click)="openDialog('Traditionnel') " >Détail</button>
          </td>
-         <!--&lt;!&ndash; The Modal &ndash;&gt;
-        <div class="modal" id="myModa24">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              &lt;!&ndash; Modal Header &ndash;&gt;
-              <div class="modal-header">
-                <h5 style="color: blueviolet" class="modal-title">OUVERTURE A L’EXPERIENCE (Traditionnel vs Exploration)</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              &lt;!&ndash; Modal body &ndash;&gt;
-              <div class="modal-body">
-                <div th:if="${Traditionnel<=3}">
-                  <span style="color:orange" th:text="${listRestit.get(39).titre}"></span>
-                  <p  th:text="${listRestit.get(39).restitution}"></p>
-                </div>
-                <div th:if="${Traditionnel>3&&Traditionnel<=7}" class="row">
-                  <span style="color:green" th:text="${listRestit.get(40).titre}"></span>
-                  <p th:text="${listRestit.get(40).restitution}"></p>
-                </div>
-                <div th:if="${Traditionnel>7}">
-                  <span style="color:blue" th:text="${listRestit.get(41).titre}"></span>
-                  <p  th:text="${listRestit.get(41).restitution}"></p>
-                </div>
-              </div>
-              &lt;!&ndash; Modal footer &ndash;&gt;
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>-->
-
-       </tr>
        </tbody>
      </table>
 

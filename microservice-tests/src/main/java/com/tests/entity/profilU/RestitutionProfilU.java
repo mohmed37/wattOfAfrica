@@ -31,4 +31,9 @@ public class RestitutionProfilU implements Serializable {
     @Column(name = "restitution")
     String restitution;
 
+    @Column(name = "position")
+    Integer position;
+
+
+
 }

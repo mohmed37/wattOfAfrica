@@ -25,33 +25,32 @@ public class ResultatRa implements Serializable {
     @Column(name = "idclient")
     Integer idclient;
     @Column(name = "authenticite")
-    Integer authenticite;
+    Double authenticite;
     @Column(name = "tenacite")
-    Integer tenacite;
+    Double tenacite;
     @Column(name = "reactivite")
-    Integer reactivite;
+    Double reactivite;
     @Column(name = "introversion")
-    Integer introversion;
+    Double introversion;
     @Column(name = "methode")
-    Integer methode;
+    Double methode;
     @Column(name = "intuition")
-    Integer intuition;
+    Double intuition;
     @Column(name = "nonConformisme")
-    Integer nonConformisme;
+    Double nonConformisme;
     @Column(name = "personnelle")
-    Integer personnelle;
+    Double personnelle;
     @Column(name = "directive")
-    Integer directive;
+    Double directive;
     @Column(name = "prudence")
-    Integer prudence;
+    Double prudence;
     @Column(name = "gregarite")
-    Integer gregarite;
+    Double gregarite;
     @Column(name = "individualisme")
-    Integer individualisme;
+    Double individualisme;
     @Column(name = "traditionnel")
-    Integer traditionnel;
+    Double traditionnel;
     @Column(name = "reflexion")
-    Integer reflexion;
-
+    Double reflexion;
 
 }

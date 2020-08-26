@@ -11,6 +11,9 @@ import {ProfilUModel} from "../../model/profilU.model";
 import {MatRadioButton, MatRadioChange} from "@angular/material/radio";
 import {ResulttatProfilUModel} from "../../model/resulttatProfilU.model";
 import {ResultatRaModel} from "../../model/resultatRa.model";
+import {RestitutionProfilUModel} from "../../model/restitutionProfilU.model";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogModalComponent} from "../../dialog-modal/dialog-modal.component";
 
 @Component({
   selector: 'app-profil-u',
@@ -33,8 +36,11 @@ export class ProfilUComponent implements OnInit {
     0,0,0,0,0,0,0,0,
     0,0);
   public getResulta:ResultatRaModel;
+  public getrestitusionProfilU:RestitutionProfilUModel;
+  public restitusionProfilU:RestitutionProfilUModel[]=[];
   public resulta: boolean;
   public profilUvalide: boolean;
+  public resutatQcmnumber=0;
 
 
 
@@ -42,7 +48,7 @@ export class ProfilUComponent implements OnInit {
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute
-    ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome) {
+    ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome,public dialog: MatDialog) {
     this.userId=this.userConnect.userAuthenticated.num;
   }
 
@@ -52,11 +58,28 @@ export class ProfilUComponent implements OnInit {
         this.questionnaires2=data;
         this.dicoMetiersValide=this.questionnaires2.dicoMetiers;
         this.profilUvalide=this.questionnaires2.profilU;
+        if(this.profilUvalide){
+          this. getRestitusion();
+        }
       },error => {
         console.log(error);
       });
     this.getQuestionnaireProfilU();
+
   }
+
+  openDialog(item:string): void {
+    this.getDimention(item);
+    this.bnbecome.getRestitusionProfilUByPosAndDim(item,this.resutatQcmnumber).subscribe(data=>{
+      this.getrestitusionProfilU=data;
+      console.log(this.getrestitusionProfilU);
+      console.log(this.resutatQcmnumber);
+      const dialogRef = this.dialog.open(DialogModalComponent, {
+        width: '50%', height: 'auto',
+        data: {titre: this.getrestitusionProfilU.titre, restitution: this.getrestitusionProfilU.restitution}
+      });
+    });
+    }
 
   getQuestionnaireProfilU(){
     this.bnbecome.getQuestionnaireProfileU().subscribe(data=>{
@@ -281,6 +304,7 @@ export class ProfilUComponent implements OnInit {
       saveProfilU(){
     this.resultRa.idclient=this.userId;
     this.bnbecome.saveProfilU(this.resultRa).subscribe(data=>{
+      this.router.navigateByUrl("/bnbecome");
       this.serviceClient.putQuestionnaires("profilU");
       this.getResultatProfilU();
       },error => {
@@ -292,12 +316,137 @@ export class ProfilUComponent implements OnInit {
     this.bnbecome.getResultatProfileU().subscribe(data=>{
       this.getResulta=data;
       this.resulta=true;
-      console.log(this.getResulta);
+
+
     });
   }
   closeResultatProfiliU(){
     this.resulta=false;
   }
+  getRestitusion(){
+    this.bnbecome.getRestitusionProfilU().subscribe(data=>{
+      this.restitusionProfilU=data;
+    });
+  }
 
+  getDimention(dimention:string){
+    switch (dimention) {
+      case "authenticite":{
+        if (this.getResulta.authenticite<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.authenticite>=4&&this.getResulta.authenticite<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.authenticite>7){
+          this.resutatQcmnumber=3;}
+        break;
+      }
+      case "Ténacité":{
+        if (this.getResulta.tenacite<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.tenacite>=4&&this.getResulta.tenacite<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.tenacite>7){
+          this.resutatQcmnumber=3;}
+        break;}
+
+      case "Réactivité":{
+        if (this.getResulta.reactivite<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.reactivite>=4&&this.getResulta.reactivite<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.reactivite>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Introversion":{
+        if (this.getResulta.introversion<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.introversion>=4&&this.getResulta.introversion<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.introversion>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Méthode":{
+        if (this.getResulta.methode<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.methode>=4&&this.getResulta.methode<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.methode>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Intuition":{
+        if (this.getResulta.intuition<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.intuition>=4&&this.getResulta.intuition<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.intuition>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Non conformisme":{
+        if (this.getResulta.nonConformisme<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.nonConformisme>=4&&this.getResulta.nonConformisme<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.nonConformisme>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Equilibre vie personnelle":{
+        if (this.getResulta.personnelle<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.personnelle>=4&&this.getResulta.personnelle<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.personnelle>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Directive":{
+        if (this.getResulta.directive<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.directive>=4&&this.getResulta.directive<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.directive>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Prudence":{
+        if (this.getResulta.prudence<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.prudence>=4&&this.getResulta.prudence<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.prudence>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Grégarité":{
+        if (this.getResulta.gregarite<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.gregarite>=4&&this.getResulta.gregarite<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.gregarite>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Individualisme":{
+        if (this.getResulta.individualisme<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.individualisme>=4&&this.getResulta.individualisme<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.individualisme>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Traditionnel":{
+        if (this.getResulta.traditionnel<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.traditionnel>=4&&this.getResulta.traditionnel<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.traditionnel>7){
+          this.resutatQcmnumber=3;}
+        break;}
+      case "Réflexion":{
+        if (this.getResulta.reflexion<=3){
+        this.resutatQcmnumber=1;}
+        if (this.getResulta.reflexion>=4&&this.getResulta.reflexion<=7){
+          this.resutatQcmnumber=2;}
+        if (this.getResulta.reflexion>7){
+          this.resutatQcmnumber=3;}
+        break;}
+    }
+  }
 
 }
+

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static java.lang.Math.round;
+
 @RestController
 public class TestProfilUControler {
     @Autowired
@@ -56,20 +58,20 @@ public class TestProfilUControler {
 
     @PostMapping(value = "saveClientRa")
     public ResultatRa saveClientRa(@RequestBody ResultatRa resultatRa) {
-        resultatRa.setAuthenticite(Math.round(resultatRa.getAuthenticite()));
-        resultatRa.setDirective(Math.round(resultatRa.getDirective()));
-        resultatRa.setGregarite(Math.round(resultatRa.getGregarite()));
-        resultatRa.setIndividualisme(Math.round(resultatRa.getIndividualisme()));
-        resultatRa.setIntroversion(Math.round(resultatRa.getIntroversion()));
-        resultatRa.setIntuition(Math.round(resultatRa.getIntuition()));
-        resultatRa.setMethode(Math.round(resultatRa.getMethode()));
-        resultatRa.setNonConformisme(Math.round(resultatRa.getNonConformisme()));
-        resultatRa.setPersonnelle(Math.round(resultatRa.getPersonnelle()));
-        resultatRa.setPrudence(Math.round(resultatRa.getPrudence()));
-        resultatRa.setReactivite(Math.round(resultatRa.getReactivite()));
-        resultatRa.setReflexion(Math.round(resultatRa.getReflexion()));
-        resultatRa.setTenacite(Math.round(resultatRa.getTenacite()));
-        resultatRa.setTraditionnel(Math.round(resultatRa.getTraditionnel()));
+        resultatRa.setAuthenticite((double) round(resultatRa.getAuthenticite()));
+        resultatRa.setDirective((double) round(resultatRa.getDirective()));
+        resultatRa.setGregarite((double) round(resultatRa.getGregarite()));
+        resultatRa.setIndividualisme((double) round(resultatRa.getIndividualisme()));
+        resultatRa.setIntroversion((double) round(resultatRa.getIntroversion()));
+        resultatRa.setIntuition((double) round(resultatRa.getIntuition()));
+        resultatRa.setMethode((double) round(resultatRa.getMethode()));
+        resultatRa.setNonConformisme((double) round(resultatRa.getNonConformisme()));
+        resultatRa.setPersonnelle((double) round(resultatRa.getPersonnelle()));
+        resultatRa.setPrudence((double) round(resultatRa.getPrudence()));
+        resultatRa.setReactivite((double) round(resultatRa.getReactivite()));
+        resultatRa.setReflexion((double) round(resultatRa.getReflexion()));
+        resultatRa.setTenacite((double) round(resultatRa.getTenacite()));
+        resultatRa.setTraditionnel((double) round(resultatRa.getTraditionnel()));
         return resultatRaRepository.save(resultatRa);
     }
 
@@ -77,9 +79,9 @@ public class TestProfilUControler {
     public RestitutionProfilU saveRestitution(@RequestBody RestitutionProfilU restitution) {
         return restititutionRepository.save(restitution);
     }
-    @GetMapping(value = "restitusionFindId/{id}")
-    public Optional<RestitutionProfilU>findById(@PathVariable("id") int id){
-        return restititutionRepository.findById(id);
+    @GetMapping(value = "restitusionByDimAndPos/{dimension}/{position}")
+    public Optional<RestitutionProfilU>restitusionByDimAndPos(@PathVariable("dimension") String dimention,@PathVariable("position") Integer position){
+        return restititutionRepository.findByDimensionAndPosition(dimention,position);
     }
 
     @GetMapping(value = "restitusionAll")

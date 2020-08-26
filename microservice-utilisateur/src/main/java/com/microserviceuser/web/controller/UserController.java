@@ -145,6 +145,9 @@ public class UserController {
             case "profilU":
                 questionClient.get().setProfilU(true);
                 break;
+            case "porteFolio":
+                questionClient.get().setPorteFolio(true);
+                break;
             default:
                 break;
         }

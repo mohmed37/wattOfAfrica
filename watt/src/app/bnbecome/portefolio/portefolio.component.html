@@ -10,4 +10,167 @@
     <h2>Résultat</h2>
   </div>
 </div>
+<!--<form [formGroup]="formCompetence" >
+  <div   class="photos ItemPhoto" >
+    <label>competence</label>
+    <input formControlName="competence" class="form-control" type="text" >
+    <label>faire1</label>
+    <input  formControlName="faire1" class="form-control" type="text" >
+    <label>faire2</label>
+    <input  formControlName="faire2" class="form-control" type="text">
+    <label>faire3</label>
+    <input formControlName="faire3" class="form-control" type="text" >
+    <label>faire4</label>
+    <input  formControlName="faire4" class="form-control" type="text" >
+    <label>faire5</label>
+    <input  formControlName="faire5" class="form-control" type="text">
+    <label>faire6</label>
+    <input  formControlName="faire6" class="form-control" type="text">
+    <label>savoir1</label>
+    <input  formControlName="savoir1" class="form-control" type="text" >
+    <label>savoir2</label>
+    <input  formControlName="savoir2" class="form-control" type="text">
+    <label>savoir3</label>
+    <input formControlName="savoir3" class="form-control" type="text" >
+    <label>savoir4</label>
+    <input  formControlName="savoir4" class="form-control" type="text" >
+    <label>savoir5</label>
+    <input  formControlName="savoir5" class="form-control" type="text">
+
+
+
+    <button class="btn btn-success " (click)="saveCompetence()">Je valide</button>
+    <p >{{message}}</p>
+  </div>
+</form>-->
+<form>
+  <mat-form-field appearance="fill">
+    <mat-label>Compétence:</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="food">
+      <mat-option *ngFor="let competence of listCompetences" [value]="competence.competence" (click)="clic(competence.id)">
+        {{competence.competence}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<h3 *ngIf="selectCompetence">{{selectedValue}}</h3>
+<table class="table table-striped" *ngIf="selectCompetence">
+  <thead>
+  <tr>
+    <td class="colone">Compétences</td>
+    <td class="colone">Degré de maîtrise</td>
+    <td class="colone">Degré d’intérêt</td>
+  </tr>
+  </thead>
+  <tbody>
+
+    <p >Savoir faire :</p>
+  <tr *ngFor="let faire of competenceSelected.faire  ; let index = index">
+    <td  class="savoir " *ngIf="faire" >{{faire}}</td>
+    <td  *ngIf="faire">
+      <mat-radio-group aria-label="Select an option" (change)="save($event)">
+      <mat-radio-button value="{{index}}+1+{{selectedValue}}+{{faire}}+faire+maitrise">1</mat-radio-button>
+      <mat-radio-button value="{{index}}+2+{{selectedValue}}+{{faire}}+faire+maitrise">2</mat-radio-button>
+      <mat-radio-button value="{{index}}+3+{{selectedValue}}+{{faire}}+faire+maitrise">3</mat-radio-button>
+      <mat-radio-button value="{{index}}+4+{{selectedValue}}+{{faire}}+faire+maitrise">4</mat-radio-button>
+    </mat-radio-group>
+    </td>
+    <td *ngIf="faire">
+      <mat-radio-group aria-label="Select an option" (change)="save($event)">
+        <mat-radio-button value="{{index}}+1+{{selectedValue}}+{{faire}}+faire+interet">1</mat-radio-button>
+        <mat-radio-button value="{{index}}+2+{{selectedValue}}+{{faire}}+faire+interet">2</mat-radio-button>
+        <mat-radio-button value="{{index}}+3+{{selectedValue}}+{{faire}}+faire+interet">3</mat-radio-button>
+        <mat-radio-button value="{{index}}+4+{{selectedValue}}+{{faire}}+faire+interet">4</mat-radio-button>
+      </mat-radio-group>
+    </td>
+  </tr>
+    <p >Savoir :</p>
+  <tr *ngFor="let savoir of competenceSelected.savoir let index = index">
+    <td class="savoir " *ngIf="savoir" >{{savoir}}</td>
+    <td *ngIf="savoir">
+      <mat-radio-group aria-label="Select an option" (change)="save($event)"  >
+      <mat-radio-button value="{{index}}+1+{{selectedValue}}+{{savoir}}+savoir+maitrise">1</mat-radio-button>
+      <mat-radio-button value="{{index}}+2+{{selectedValue}}+{{savoir}}+savoir+maitrise">2</mat-radio-button>
+      <mat-radio-button value="{{index}}+3+{{selectedValue}}+{{savoir}}+savoir+maitrise">3</mat-radio-button>
+      <mat-radio-button value="{{index}}+4+{{selectedValue}}+{{savoir}}+savoir+maitrise">4</mat-radio-button>
+    </mat-radio-group>
+    </td>
+    <td *ngIf="savoir" >
+      <mat-radio-group aria-label="Select an option" (change)="save($event)" >
+        <mat-radio-button value="{{index}}+1+{{selectedValue}}+{{savoir}}+savoir+interet">1</mat-radio-button>
+        <mat-radio-button value="{{index}}+2+{{selectedValue}}+{{savoir}}+savoir+interet">2</mat-radio-button>
+        <mat-radio-button value="{{index}}+3+{{selectedValue}}+{{savoir}}+savoir+interet">3</mat-radio-button>
+        <mat-radio-button value="{{index}}+4+{{selectedValue}}+{{savoir}}+savoir+interet">4</mat-radio-button>
+      </mat-radio-group>
+    </td>
+  </tr>
+
+  </tbody>
+  <button class="btn btn-success " *ngIf="!selecvalide" (click)="selecSavoir()">Je valide</button>
+
+</table>
+<form>
+  <mat-form-field appearance="fill">
+    <mat-label>Compétence:</mat-label>
+    <mat-select [(ngModel)]="selectedValueClient" name="food">
+      <mat-option *ngFor="let competence of dtailCompetence[0]  let index = index" [value]="competence[0][2]" (click)="clicCompetencesClient(competence)">
+        {{competence[0][2]}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<div *ngIf="selectedValueClient">
+  <h3 *ngIf="selectedValueClient">{{selectedValueClient}}</h3>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <td class="colone">Compétences</td>
+    <td class="colone">Degré de maîtrise</td>
+    <td class="colone">Degré d’intérêt</td>
+  </tr>
+  </thead>
+  <tbody>
+
+  <p >Savoir faire :</p>
+  <tr *ngFor="let faire of listFaireClient ; let index = index">
+    <td  class="savoir " *ngIf="faire" >{{faire[3]}}</td>
+    <td  *ngIf="faire">
+      <mat-icon *ngIf="faire[1]>=1">done_outline</mat-icon>
+      <mat-icon *ngIf="faire[1]>=2">done_outline</mat-icon>
+      <mat-icon *ngIf="faire[1]>=3">done_outline</mat-icon>
+      <mat-icon *ngIf="faire[1]==4">done_outline</mat-icon>
+    </td>
+    <td  *ngIf="faire">
+      <mat-icon *ngIf="faire[5]>=1">done_outline</mat-icon>
+      <mat-icon *ngIf="faire[5]>=2">done_outline</mat-icon>
+      <mat-icon *ngIf="faire[5]>=3">done_outline</mat-icon>
+      <mat-icon *ngIf="faire[5]==4">done_outline</mat-icon>
+    </td>
+
+  </tr>
+  <p >Savoir :</p>
+  <tr *ngFor="let savoir of listSavoirClient let index = index">
+    <td class="savoir " *ngIf="savoir " >{{savoir[3]}}</td>
+    <td *ngIf="savoir">
+      <mat-icon *ngIf="savoir[1]>=1">done_outline</mat-icon>
+      <mat-icon *ngIf="savoir[1]>=2">done_outline</mat-icon>
+      <mat-icon *ngIf="savoir[1]>=3">done_outline</mat-icon>
+      <mat-icon *ngIf="savoir[1]==4">done_outline</mat-icon>
+
+    </td>
+    <td *ngIf="savoir">
+      <mat-icon *ngIf="savoir[5]>=1">done_outline</mat-icon>
+      <mat-icon *ngIf="savoir[5]>=2">done_outline</mat-icon>
+      <mat-icon *ngIf="savoir[5]>=3">done_outline</mat-icon>
+      <mat-icon *ngIf="savoir[5]==4">done_outline</mat-icon>
+    </td>
+  </tr>
+
+  </tbody>
+  <button class="btn btn-success " >Je valide</button>
+
+</table>
+</div>
 

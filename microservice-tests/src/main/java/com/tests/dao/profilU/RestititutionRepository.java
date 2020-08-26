@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface RestititutionRepository extends JpaRepository<RestitutionProfilU,Integer> {
-    Optional<RestitutionProfilU>findByDimension(String dimension);
+    Optional<RestitutionProfilU>findByDimensionAndPosition(String dimension,Integer position);
+
 }

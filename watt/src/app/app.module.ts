@@ -39,6 +39,8 @@ import { AccueilBnbcomeComponent } from './bnbecome/accueil-bnbcome/accueil-bnbc
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {ModalModule} from "ngx-bootstrap/modal";
+import { DialogModalComponent } from './dialog-modal/dialog-modal.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -58,6 +60,7 @@ import {ModalModule} from "ngx-bootstrap/modal";
     BreadcrumbComponent,
     AccueilCvComponent,
     AccueilBnbcomeComponent,
+    DialogModalComponent,
 
   ],
   imports: [
@@ -87,7 +90,8 @@ import {ModalModule} from "ngx-bootstrap/modal";
     BrowserModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    MatDialogModule
 
   ],
   providers: [

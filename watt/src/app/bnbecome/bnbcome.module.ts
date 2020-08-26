@@ -18,6 +18,9 @@ import {BnbcomeRoutingModule} from "./bnbcome-routing.module";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {FicheMetierComponent} from "./fiche-metier/fiche-metier.component";
 import {MatListModule} from "@angular/material/list";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatTableModule} from "@angular/material/table";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [DicoMetiersComponent,ProjetProComponent,PortefolioComponent,ProfilUComponent,FicheMetierComponent],
@@ -37,6 +40,9 @@ import {MatListModule} from "@angular/material/list";
     BsDropdownModule,
     MatListModule,
     FormsModule,
+    MatDialogModule,
+    MatTableModule,
+    MatSelectModule,
   ]
 })
 export class BnbcomeModule{}

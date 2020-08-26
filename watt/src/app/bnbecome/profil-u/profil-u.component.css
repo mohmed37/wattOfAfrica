@@ -95,7 +95,7 @@ p{
   border-top: 0;
 }
 .toppad
-{margin-top:20px;
+{margin-top:10px;
 }
 h2
 {
@@ -139,7 +139,8 @@ h2
 }
 
 .btn{
-  margin: 50px;
+  margin-left: 50px;
+  margin-top: 10px;
 }
 
 .resultat{
