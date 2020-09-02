@@ -22,10 +22,13 @@ import {Subscription} from "rxjs";
 })
 export class RoueVieComponent implements OnInit {
   private subscription: Subscription;
+  public clientConnect:boolean;
 
   constructor(private formBuilder: FormBuilder, private router:Router,private clientService:ClientService,
               private userConnect:AuthenticationService,private bndreamService:BndreamService,private route: ActivatedRoute) {
-    this.userId=this.userConnect.userAuthenticated.num;
+    if (userConnect.userAuthenticated){
+    this.clientConnect=this.userConnect.userAuthenticated;
+    this.userId=this.userConnect.userAuthenticated.num;}
   }
 
   public data: (any | number)[];
@@ -61,6 +64,7 @@ export class RoueVieComponent implements OnInit {
   public texte1Valide:boolean=false;
   public texte2Valide:boolean=false;
   public texte3Valide:boolean=false;
+  public ListQuestionnaire:any[];
 
   onSaveRoueDeLAvie() {
 
@@ -69,42 +73,56 @@ export class RoueVieComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.userConnect.userAuthenticated) {
 
-    this.clientService. getQuestionnaires()
-      .subscribe(data=>{
-        this.questionnaires=data;
-        this.roueVie=this.questionnaires.roueVie;
-        this.photolangage=this.questionnaires.photoLangage;
+      this.clientService.getQuestionnairesAll().subscribe(list => {
+        this.ListQuestionnaire = list;
+        this.ListQuestionnaire.forEach(questionnaireUser => {
+          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+      this.clientService.getQuestionnaires()
+        .subscribe(data => {
+          this.questionnaires = data;
+          this.roueVie = this.questionnaires.roueVie;
+          this.photolangage = this.questionnaires.photoLangage;
 
-        if(this.roueVie){
-          this.bndreamService.getResultRoueDeLaVie().subscribe(
-            data =>{
-              this.roueDeLaVie=data;
-              this.data1=[this.roueDeLaVie.personnelle1,this.roueDeLaVie.sante1,this.roueDeLaVie.famille1
-                ,this.roueDeLaVie.professionnel1,this.roueDeLaVie.social1];
-              this.pieChartData1[0].data=this.data1;
-              this.data2=[this.roueDeLaVie.personnelle2,this.roueDeLaVie.sante2,this.roueDeLaVie.famille2
-                ,this.roueDeLaVie.professionnel2,this.roueDeLaVie.social2];
-              this.pieChartData2[0].data=this.data2;
-            }
 
-          );}
+          if (this.roueVie) {
+            this.bndreamService.getResultRoueDeLaVie().subscribe(
+              data => {
+                this.roueDeLaVie = data;
+                this.data1 = [this.roueDeLaVie.personnelle1, this.roueDeLaVie.sante1, this.roueDeLaVie.famille1
+                  , this.roueDeLaVie.professionnel1, this.roueDeLaVie.social1];
+                this.pieChartData1[0].data = this.data1;
+                this.data2 = [this.roueDeLaVie.personnelle2, this.roueDeLaVie.sante2, this.roueDeLaVie.famille2
+                  , this.roueDeLaVie.professionnel2, this.roueDeLaVie.social2];
+                this.pieChartData2[0].data = this.data2;
+              }
+            );
+          }
 
-      },error => {
-        console.log(error);
+        }, error => {
+          console.log(error);
+        });
+          }else {
+            return null;
+          }
+        })
+
       });
-    this.formRoueDeLAvie=this.formBuilder.group({
-      personnelle:['', [Validators.required,Validators.min(0), Validators.max(10)]],
-      sante:['',[Validators.required,Validators.min(0), Validators.max(10)]],
-      famille:['',[Validators.required,Validators.min(0), Validators.max(10)]],
-      social1:['',[Validators.required,Validators.min(0), Validators.max(10)]],
-      professionne:['',[Validators.required,Validators.min(0), Validators.max(10)]],
-      personnelle2:['',[Validators.required,Validators.min(0), Validators.max(10)]],
-      sante2:['',[Validators.required,Validators.min(0), Validators.max(10)]],
-      famille2:['',[Validators.required,Validators.min(0), Validators.max(10)]],
-      social2:['',[Validators.required,Validators.min(0), Validators.max(10)]],
-      professionne2:['',[Validators.required,Validators.min(0), Validators.max(10)]],
-    });
+
+      this.formRoueDeLAvie = this.formBuilder.group({
+        personnelle: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+        sante: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+        famille: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+        social1: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+        professionne: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+        personnelle2: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+        sante2: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+        famille2: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+        social2: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+        professionne2: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+      });
+    }
   }
 
 

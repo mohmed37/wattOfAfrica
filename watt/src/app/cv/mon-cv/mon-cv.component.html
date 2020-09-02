@@ -46,7 +46,8 @@
         <a  *ngIf="!userConnectClient" (click)="modif('nom')" title="Cliquez ici pour modifier"> <h1 [style.color]="colorNewTextNom" [innerHTML]="currentCv.nom" ></h1></a>
         <div *ngIf="userConnectClient"> <h1 [style.color]="colorNewTextNom" >{{nomClient}}&nbsp;{{premomClient}}</h1></div>
 
-        <a (click)="modif('metier')" title="Cliquez ici pour modifier" ><h3 [style.color]="colorNewTextMetier"  [innerHTML]="currentCv.metier" ></h3></a>
+        <a *ngIf="!userConnectClient" (click)="modif('metier')" title="Cliquez ici pour modifier" ><h3 [style.color]="colorNewTextMetier"  [innerHTML]="currentCv.metier" ></h3></a>
+
       </div>
 
       <div class="experiences">

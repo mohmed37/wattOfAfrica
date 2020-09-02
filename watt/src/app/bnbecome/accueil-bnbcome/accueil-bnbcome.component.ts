@@ -23,38 +23,54 @@ export class AccueilBnbcomeComponent implements OnInit {
   public depart:string="assets/img/depart.jpg";
   public progression:number=0;
   public fragment: string;
+  public ListQuestionnaire:any[];
+  public clientConnect:boolean;
 
   constructor(public authService:AuthenticationService,private clientService:ClientService
-    ,private router:Router,private route: ActivatedRoute) {
+    ,private router:Router,private route: ActivatedRoute, private userConnect:AuthenticationService) {
     this.serviceClient=clientService;
+    this.clientConnect=this.authService.userAuthenticated;
+
   }
 
   ngOnInit(): void {
     if(this.authService.userAuthenticated){
-      this.serviceClient. getQuestionnaires()
-        .subscribe(data=>{
-          this.questionnaires=data;
-          this.dicoMetiers=this.questionnaires.dicoMetiers;
-          this.porteFolio=this.questionnaires.porteFolio;
-          this.profilU=this.questionnaires.profilU;
-          this.projetPro=this.questionnaires.projetPro;
+      this.clientService.getQuestionnairesAll().subscribe(list=>{
+        this.ListQuestionnaire=list;
+        this.ListQuestionnaire.forEach(questionnaireUser=>{
+          if (questionnaireUser.user.num==this.userConnect.userAuthenticated.num){
+            this.serviceClient. getQuestionnaires()
+              .subscribe(data=>{
+                this.questionnaires=data;
+                this.dicoMetiers=this.questionnaires.dicoMetiers;
+                this.porteFolio=this.questionnaires.porteFolio;
+                this.profilU=this.questionnaires.profilU;
+                this.projetPro=this.questionnaires.projetPro;
 
-          if (this.dicoMetiers){
-            this.progression=20;
-          }
-          if (this.porteFolio){
-            this.progression=40;
-          }
-          if (this.profilU){
-            this.progression=80;
-          }
-          if (this.projetPro){
-            this.progression=100;
+                if (this.dicoMetiers){
+                  this.progression=20;
+                }
+                if (this.porteFolio){
+                  this.progression=40;
+                }
+                if (this.profilU){
+                  this.progression=80;
+                }
+                if (this.projetPro){
+                  this.progression=100;
+                }
+
+              },error => {
+                console.log(error);
+              });
+
+          }else {
+            return null;
           }
 
-        },error => {
-          console.log(error);
-        });}
+        })
+      });
+    }
   }
 
   ngAfterViewInit() {
@@ -70,9 +86,6 @@ export class AccueilBnbcomeComponent implements OnInit {
         document.querySelector('#' + this.fragment).scrollIntoView();
       }
     } catch (e) { }
-  }
-  tests() {
-    this.testsActif=true;
   }
 
 }

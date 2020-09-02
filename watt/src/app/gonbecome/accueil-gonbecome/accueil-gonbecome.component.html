@@ -1,0 +1,86 @@
+<h1 class="titre" id="haut">Go'n Become</h1>
+<<div class="contexte">
+  <div class="item">
+    <h2>Contexte</h2>
+  </div>
+  <div class="item">
+    <h2>Objectif</h2>
+  </div>
+  <div class="item">
+    <h2>Résultat</h2>
+  </div>
+</div>
+
+
+<div *ngIf="questionnaires" >
+  <div id="debut"></div>
+  <div class="progressTotal" >
+    <img [src]="depart" class="item image" >
+    <div class="item progression">
+      <h2>B'n Beleave</h2>
+      <mat-progress-bar mode="determinate" value="{{progression}}" class="progressBar"></mat-progress-bar><p class="pourcentAttient">{{progression}}%</p>
+      <p class="pourcentMini">0%</p><br><br>
+
+    </div>
+    <img [src]="coupe" class="item image" >
+  </div>
+</div>
+
+<div class="container">
+  <div class="item projet">
+    <p class="numro" *ngIf="!entretien">1</p>
+    <p class="numro numroValide" *ngIf="entretien"><mat-icon>done_outline</mat-icon></p>
+    <p class="test" *ngIf="!entretien">Test à réaliser</p>
+    <p class="test testValide" *ngIf="entretien">Test validé</p>
+    <a class="titreProjet" routerLink="/gonbecome/entretien" fragment="haut">Réussir un entretien d’embauche</a>
+    <div class="time">
+      <mat-icon>access_time</mat-icon>
+      <p>20 minutes</p>
+    </div>
+  </div>
+  <div class="item projet">
+    <p class="numro"*ngIf="!cv">2</p>
+    <p class="numro numroValide" *ngIf="cv"><mat-icon>done_outline</mat-icon></p>
+    <p class="test" *ngIf="!cv">Test à réaliser</p>
+    <p class="test testValide" *ngIf="cv">Test validé</p>
+    <a class="titreProjet" routerLink="/gonbecome/newCv" fragment="haut" >Faire son CV</a>
+    <div class="time">
+      <mat-icon>access_time</mat-icon>
+      <p>20 minutes</p>
+    </div>
+  </div>
+  <div class="item projet">
+    <p class="numro"*ngIf="!organisation">3</p>
+    <p class="numro numroValide" *ngIf="organisation"><mat-icon>done_outline</mat-icon></p>
+    <p class="test" *ngIf="!organisation">Test à réaliser</p>
+    <p class="test testValide" *ngIf="organisation">Test validé</p>
+    <a class="titreProjet" routerLink="/gonbecome/organisation" fragment="haut">S’organiser</a>
+    <div class="time">
+      <mat-icon>access_time</mat-icon>
+      <p>30 minutes</p>
+    </div>
+  </div>
+  <div class="item projet">
+    <p class="numro" *ngIf="!estime">4</p>
+    <p class="numro numroValide" *ngIf="estime"><mat-icon>done_outline</mat-icon></p>
+    <p class="test" *ngIf="!estime">Test à réaliser</p>
+    <p class="test testValide" *ngIf="estime">Test validé</p>
+    <a class="titreProjet" routerLink="/gonbecome/estime" fragment="haut">Exercices estime de soi</a>
+    <div class="time">
+      <mat-icon>access_time</mat-icon>
+      <p>20 minutes</p>
+    </div>
+  </div>
+  <div class="item projet">
+    <p class="numro" *ngIf="!formation">4</p>
+    <p class="numro numroValide" *ngIf="formation"><mat-icon>done_outline</mat-icon></p>
+    <p class="test" *ngIf="!formation">Test à réaliser</p>
+    <p class="test testValide" *ngIf="formation">Test validé</p>
+    <a class="titreProjet" routerLink="/gonbecome/offre" fragment="haut">Offre de formations</a>
+    <div class="time">
+      <mat-icon>access_time</mat-icon>
+      <p>20 minutes</p>
+    </div>
+  </div>
+</div>
+

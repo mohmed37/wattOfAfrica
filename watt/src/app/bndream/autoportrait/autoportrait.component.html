@@ -12,7 +12,7 @@
   </div>
 </div>
 <div class="bouton">
-  <button *ngIf="!testAutoPortrait &&roueDeLaVieValide" mat-raised-button (click)="clicTestAutoPortrait()">Démarrez <mat-icon class="icon">send</mat-icon></button>
+  <button *ngIf="!testAutoPortrait &&roueDeLaVieValide&&clientConnect&&!autoPortraitValide" mat-raised-button (click)="clicTestAutoPortrait()">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
 <div  *ngIf="testAutoPortrait">
   <h2>Qui suis-je vraiment ?</h2>

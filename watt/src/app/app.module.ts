@@ -41,6 +41,7 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {ModalModule} from "ngx-bootstrap/modal";
 import { DialogModalComponent } from './dialog-modal/dialog-modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { AccueilGonbecomeComponent } from './gonbecome/accueil-gonbecome/accueil-gonbecome.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     AccueilCvComponent,
     AccueilBnbcomeComponent,
     DialogModalComponent,
+    AccueilGonbecomeComponent,
 
   ],
   imports: [

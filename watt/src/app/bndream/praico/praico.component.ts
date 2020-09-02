@@ -62,77 +62,96 @@ export class PraicoComponent implements OnInit {
   ,{name:null,value:0}];
   public data: (any | number)[];
   public fragment: string;
+  public ListQuestionnaire:any[];
+  public clientConnect:boolean;
+
+
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
-    this.userId=this.userConnect.userAuthenticated.num;
+    if (userConnect.userAuthenticated){
+    this.clientConnect=this.userConnect.userAuthenticated;
+    this.userId=this.userConnect.userAuthenticated.num;}
   }
+
   ngOnInit(): void {
-    this.formQcm4=new FormGroup({
-      id:new FormControl('',Validators.required),
-      metier:new FormControl('',Validators.required),
-      lettre1:new FormControl('',Validators.required),
-      lettre2:new FormControl('',Validators.required),
-      lettre3:new FormControl('',Validators.required),
+    if (this.userConnect.userAuthenticated) {
+      this.formQcm4 = new FormGroup({
+        id: new FormControl('', Validators.required),
+        metier: new FormControl('', Validators.required),
+        lettre1: new FormControl('', Validators.required),
+        lettre2: new FormControl('', Validators.required),
+        lettre3: new FormControl('', Validators.required),
 
-    });
-    this.serviceClient. getQuestionnaires()
-      .subscribe(data=>{
-        this.questionnaires=data;
-        this.autoPortraitValide=this.questionnaires.autoPortrait;
-        this.qcm1Valide=this.questionnaires.qcm1;
-        this.qcm2Valide=this.questionnaires.qcm2;
-        this.qcm3Valide=this.questionnaires.qcm3;
-        this.qcm4Valide=this.questionnaires.qcm4;
+      });
+      this.serviceClient.getQuestionnairesAll().subscribe(list => {
+        this.ListQuestionnaire = list;
+        this.ListQuestionnaire.forEach(questionnaireUser => {
+          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+            this.serviceClient.getQuestionnaires()
+              .subscribe(data => {
+                this.questionnaires = data;
+                this.autoPortraitValide = this.questionnaires.autoPortrait;
+                this.qcm1Valide = this.questionnaires.qcm1;
+                this.qcm2Valide = this.questionnaires.qcm2;
+                this.qcm3Valide = this.questionnaires.qcm3;
+                this.qcm4Valide = this.questionnaires.qcm4;
 
-        if(this.qcm4Valide){
-        this.bndreamService.getResultPraico().subscribe(
-          data =>{
-            this.resultat=data;
-            this.a=this.resultat.nombreA;
-            this.data = [this.resultat.nombreP,this.resultat.nombreR,this.resultat.nombreA,this.resultat.nombreI
-              ,this.resultat.nombreC,this.resultat.nombreO];
-            this.radarChartData[0].data=this.data;
-            this.list = [
-              { name: "a", value: this.resultat.nombreA },
-              { name: "c", value: this.resultat.nombreC },
-              { name: "o", value: this.resultat.nombreO },
-              { name: "i", value: this.resultat.nombreI },
-              { name: "p", value: this.resultat.nombreP},
-              { name: "r", value: this.resultat.nombreR }
-            ];
-            this.list.sort(function (a, b) {
-              return  b.value-a.value;
-            });
+                if (this.qcm4Valide) {
+                  this.bndreamService.getResultPraico().subscribe(
+                    data => {
+                      this.resultat = data;
+                      this.a = this.resultat.nombreA;
+                      this.data = [this.resultat.nombreP, this.resultat.nombreR, this.resultat.nombreA, this.resultat.nombreI
+                        , this.resultat.nombreC, this.resultat.nombreO];
+                      this.radarChartData[0].data = this.data;
+                      this.list = [
+                        {name: "a", value: this.resultat.nombreA},
+                        {name: "c", value: this.resultat.nombreC},
+                        {name: "o", value: this.resultat.nombreO},
+                        {name: "i", value: this.resultat.nombreI},
+                        {name: "p", value: this.resultat.nombreP},
+                        {name: "r", value: this.resultat.nombreR}
+                      ];
+                      this.list.sort(function (a, b) {
+                        return b.value - a.value;
+                      });
 
+                    }
+                  );
+                }
+
+              }, error => {
+                console.log(error);
+              });
+          }else {
+            return null;
           }
-        );}
+        })
 
-      },error => {
-        console.log(error);
       });
 
-    this.bndreamService.getQustionnaire1(this.qcm1Id).subscribe(
-      data =>{
-        this.questionnaire1=data;
-      }
-    );
-    this.bndreamService.getQustionnaire2(this.qcm1Id).subscribe(
-      data =>{
-        this.questionnaire2=data;
-      }
-    );
-    this.bndreamService.getQustionnaire3(this.qcm1Id).subscribe(
-      data =>{
-        this.questionnaire2=data;
-      }
-    );
-    this.bndreamService.getQustionnaire4().subscribe(
-      data =>{
-        this.qucm4=data;
-      }
-    );
-
+      this.bndreamService.getQustionnaire1(this.qcm1Id).subscribe(
+        data => {
+          this.questionnaire1 = data;
+        }
+      );
+      this.bndreamService.getQustionnaire2(this.qcm1Id).subscribe(
+        data => {
+          this.questionnaire2 = data;
+        }
+      );
+      this.bndreamService.getQustionnaire3(this.qcm1Id).subscribe(
+        data => {
+          this.questionnaire2 = data;
+        }
+      );
+      this.bndreamService.getQustionnaire4().subscribe(
+        data => {
+          this.qucm4 = data;
+        }
+      );
+    }
   }
 
   ngAfterViewInit() {

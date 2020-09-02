@@ -37,10 +37,14 @@ const routes: Routes = [
         path: 'bndream', loadChildren: () => import('./bndream/bndream.module').then(m=>m.BndreamModule)
       },
       {
-        path: 'bnbecome', loadChildren: () => import('./bnbecome/bnbcome.module').then(m=>m.BnbcomeModule)
+        path: 'bnBeleave', loadChildren: () => import('./bnbecome/bnbcome.module').then(m=>m.BnbcomeModule)
       },
       {
         path: 'newCv', loadChildren: () => import('./cv/cv.module').then(m=>m.CvModule)
+      },
+      {
+        path: 'gonbecome', loadChildren: () => import('./gonbecome/gonbecome.module').then(m=>m.GonbecomeModule)
+
       }
 
       ]

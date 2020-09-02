@@ -74,6 +74,11 @@ public class UserController {
         return question;
     }
 
+    @GetMapping(value = "questionnairesUserAll")
+    public  List<Questionnaires> questionnairesUserAll(){
+        return questionRepository.findAll();
+    }
+
     @PostMapping(value = "saveQuestionnaires/{id}")
     public ResponseEntity<Questionnaires>saveQuestionnaires(@PathVariable("id") int id,@RequestBody Questionnaires questionnaires
             , BindingResult bindingResult){
@@ -106,6 +111,10 @@ public class UserController {
         questionnaires.setRoueVie(false);
         questionnaires.setPhotoLangage(false);
         questionnaires.setProfilU(false);
+        questionnaires.setPorteFolio(false);
+        questionnaires.setProjetPro(false);
+        questionnaires.setDicoMetiers(false);
+
 
         Questionnaires saveQusetionnaires=questionRepository.save(questionnaires);
         return new ResponseEntity<Questionnaires>(saveQusetionnaires, HttpStatus.CREATED);
@@ -148,6 +157,9 @@ public class UserController {
             case "porteFolio":
                 questionClient.get().setPorteFolio(true);
                 break;
+            case "projetPro":
+                questionClient.get().setProjetPro(true);
+                break;
             default:
                 break;
         }
@@ -160,7 +172,14 @@ public class UserController {
         if (bindingResult.hasErrors()){
             return null;
         }
+        List<AppUser>listUser=appUserRepository.findAll();
+        for (AppUser userNew:listUser){
+            if (userNew.getEmail().equals(appUser.getEmail())){
+               return null;
+            }
+        }
         appUser.setActive(true);
+        appUser.setUsername(appUser.getEmail());
        appUser.setRoles(Arrays.asList(appRoleRepository.findByRole("ROLE_USER")));
 
         return appUserRepository.save(appUser);

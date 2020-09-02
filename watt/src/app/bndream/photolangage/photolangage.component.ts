@@ -25,13 +25,16 @@ export class PhotolangageComponent implements OnInit {
   public currentClient:any;
   private fragment: string;
   public newTexte=new TexteModel();
+  public ListQuestionnaire:any[];
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient
               ,private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
-    this.userId=this.userConnect.userAuthenticated.num;
-
+    if (userConnect.userAuthenticated){
+    this.clientConnect=this.userConnect.userAuthenticated;
+    this.userId=this.userConnect.userAuthenticated.num;}
 
   }
+
   public userId:number;
 
   base64Data: any;
@@ -100,19 +103,11 @@ export class PhotolangageComponent implements OnInit {
   public contexteValide:boolean=false;
   public objectifValide: boolean=false;
   public processValide: boolean=false;
-
-
+  public userAuthent:boolean;
+  public clientConnect:boolean;
 
   ngOnInit(): void {
 
-    this.currentClient=this.serviceClient.getClientBy(this.userId);
-    this.serviceClient. getQuestionnaires()
-      .subscribe(data=>{
-        this.questionnaires2=data;
-        this.photolangageValide=this.questionnaires2.photoLangage;
-      },error => {
-        console.log(error);
-      });
     this.formPhotoLangage=new FormGroup({
       mot1:new FormControl('',Validators.required),
       mot2:new FormControl('',Validators.required),
@@ -122,30 +117,58 @@ export class PhotolangageComponent implements OnInit {
       mot6:new FormControl('',Validators.required)
 
     });
+    if (this.userConnect.userAuthenticated){
+      this.userAuthent=true;
+      this.currentClient=this.serviceClient.getClientBy(this.userId);
 
-    this.bndreamService.getResultPhotoLangage()
-      .subscribe(data=>{
-        this.resultPhotoLangage=data;
-        this.listPhoto.push(this.resultPhotoLangage.photo1);
-        this.listPhoto.push(this.resultPhotoLangage.photo2);
-        this.listPhoto.push(this.resultPhotoLangage.photo3);
-        this.listPhoto.push(this.resultPhotoLangage.photo4);
-        this.listPhoto.push(this.resultPhotoLangage.photo5);
-        this.listPhoto.push(this.resultPhotoLangage.photo6);
-        this.choixMot1=this.resultPhotoLangage.mot1;
-        this.choixMot2=this.resultPhotoLangage.mot2;
-        this.choixMot3=this.resultPhotoLangage.mot3;
-        this.choixMot4=this.resultPhotoLangage.mot4;
-        this.choixMot5=this.resultPhotoLangage.mot5;
-        this.choixMot6=this.resultPhotoLangage.mot6;
-        this.texte=this.resultPhotoLangage.expression;
+      this.serviceClient.getQuestionnairesAll().subscribe(list => {
+        this.ListQuestionnaire = list;
+        this.ListQuestionnaire.forEach(questionnaireUser => {
+          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+            this.serviceClient. getQuestionnaires()
+              .subscribe(data=>{
+                this.questionnaires2=data;
+                this.photolangageValide=this.questionnaires2.photoLangage;
+                if (this.photolangageValide){
+                this.bndreamService.getResultPhotoLangage()
+                  .subscribe(data=>{
+                    this.resultPhotoLangage=data;
+                    this.listPhoto.push(this.resultPhotoLangage.photo1);
+                    this.listPhoto.push(this.resultPhotoLangage.photo2);
+                    this.listPhoto.push(this.resultPhotoLangage.photo3);
+                    this.listPhoto.push(this.resultPhotoLangage.photo4);
+                    this.listPhoto.push(this.resultPhotoLangage.photo5);
+                    this.listPhoto.push(this.resultPhotoLangage.photo6);
+                    this.choixMot1=this.resultPhotoLangage.mot1;
+                    this.choixMot2=this.resultPhotoLangage.mot2;
+                    this.choixMot3=this.resultPhotoLangage.mot3;
+                    this.choixMot4=this.resultPhotoLangage.mot4;
+                    this.choixMot5=this.resultPhotoLangage.mot5;
+                    this.choixMot6=this.resultPhotoLangage.mot6;
+                    this.texte=this.resultPhotoLangage.expression;
 
-        for (let i = 0; i < this.listPhoto.length; i++){
-          this.photoClientChoix(this.listPhoto[i],i+1)
-        }
-        },error => {
-        console.log(error);
-      } );
+                    for (let i = 0; i < this.listPhoto.length; i++){
+                      this.photoClientChoix(this.listPhoto[i],i+1)
+                    }
+                  },error => {
+                    console.log(error);
+                  } );}
+
+
+              },error => {
+                console.log(error);
+              });
+
+
+
+          }else {
+            return null;
+          }
+        })
+
+      });
+
+    }
   }
 
   ngAfterViewInit() {
@@ -390,7 +413,6 @@ export class PhotolangageComponent implements OnInit {
     this.photoLangage.mot6=this.formPhotoLangage.value.mot6;
     this.photoLangage.client=this.userId;
     this.questionnaires.photoLangage=true;
-    console.log(this.photoLangage)
     this.bndreamService.savePhotLangage(this.hostTest+ "/saveResultPhotoLangage/",this.photoLangage)
       .subscribe(res=>{
         this.serviceClient.putQuestionnaires("photolangage");

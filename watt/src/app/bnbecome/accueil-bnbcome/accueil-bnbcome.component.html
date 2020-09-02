@@ -1,4 +1,4 @@
-<h1 class="titre" id="haut">B'N'Become</h1>
+<h1 class="titre" id="haut">B'n Beleave</h1>
 <div class="bndream">
   <div class="item">
     <h2>Contexte</h2>
@@ -10,16 +10,13 @@
     <h2>Résultat</h2>
   </div>
 </div>
-<div class="bouton" *ngIf="authService.userAuthenticated &&!questionnaires">
-  <button mat-raised-button (click)="tests()" >Démarrez <mat-icon class="icon">send</mat-icon></button>
-</div>
 
 <div *ngIf="questionnaires" >
   <div id="debut"></div>
   <div class="progressTotal" >
     <img [src]="depart" class="item image" >
     <div class="item progression">
-      <h2>B'N'Become</h2>
+      <h2>B'n Beleave</h2>
       <mat-progress-bar mode="determinate" value="{{progression}}" class="progressBar"></mat-progress-bar><p class="pourcentAttient">{{progression}}%</p>
       <p class="pourcentMini">0%</p><br><br>
 
@@ -34,7 +31,7 @@
     <p class="numro numroValide" *ngIf="dicoMetiers"><mat-icon>done_outline</mat-icon></p>
     <p class="test" *ngIf="!dicoMetiers">Test à réaliser</p>
     <p class="test testValide" *ngIf="dicoMetiers">Test validé</p>
-    <a class="titreProjet" routerLink="/bnbecome/dicoMetiers" fragment="haut">Dico-Métiers</a>
+    <a class="titreProjet" routerLink="/bnBeleave/dicoMetiers" fragment="haut">Dico-Métiers</a>
     <div class="time">
       <mat-icon>access_time</mat-icon>
       <p>20 minutes</p>
@@ -45,7 +42,7 @@
     <p class="numro numroValide" *ngIf="porteFolio"><mat-icon>done_outline</mat-icon></p>
     <p class="test" *ngIf="!porteFolio">Test à réaliser</p>
     <p class="test testValide" *ngIf="porteFolio">Test validé</p>
-    <a class="titreProjet" routerLink="/bnbecome/porteFolio" fragment="haut" >Porte Folio</a>
+    <a class="titreProjet" routerLink="/bnBeleave/porteFolio" fragment="haut" >PorteFolio</a>
     <div class="time">
       <mat-icon>access_time</mat-icon>
       <p>20 minutes</p>
@@ -56,7 +53,7 @@
     <p class="numro numroValide" *ngIf="profilU"><mat-icon>done_outline</mat-icon></p>
     <p class="test" *ngIf="!profilU">Test à réaliser</p>
     <p class="test testValide" *ngIf="profilU">Test validé</p>
-    <a class="titreProjet" routerLink="/bnbecome/profilU" fragment="haut">Profil-U</a>
+    <a class="titreProjet" routerLink="/bnBeleave/profilU" fragment="haut">Profil-U</a>
     <div class="time">
       <mat-icon>access_time</mat-icon>
       <p>30 minutes</p>
@@ -67,7 +64,7 @@
     <p class="numro numroValide" *ngIf="projetPro"><mat-icon>done_outline</mat-icon></p>
     <p class="test" *ngIf="!projetPro">Test à réaliser</p>
     <p class="test testValide" *ngIf="projetPro">Test validé</p>
-    <a class="titreProjet" routerLink="/bnbecome/projetPro" fragment="haut">Projet Professionnel</a>
+    <a class="titreProjet" routerLink="/bnBeleave/projetPro" fragment="haut">Projet Professionnel</a>
     <div class="time">
       <mat-icon>access_time</mat-icon>
       <p>20 minutes</p>

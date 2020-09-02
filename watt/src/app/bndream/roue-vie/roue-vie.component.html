@@ -1,5 +1,4 @@
 <h1 class="titre" id="haut">Roue de la vie</h1>
-<div *ngIf="!roueVie">
   <div class="container" id="contexte">
     <p><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
     <div class="item" *ngIf="contexteValide"  >
@@ -98,11 +97,11 @@
 
       <p><a routerLink="/bndream/roue-de-la-vie" fragment="haut" >Haut de page</a></p>
     </div>
-    <div class="bouton">
-      <button mat-raised-button (click)="rouedelavieStart()" *ngIf="photolangage&&!roueVieStart"
-      >Démarrez <mat-icon class="icon">send</mat-icon></button>
-    </div>
   </div>
+<div class="bouton">
+  <button mat-raised-button (click)="rouedelavieStart()" *ngIf="photolangage&&!roueVieStart&&clientConnect&&!roueVie"
+  >Démarrez <mat-icon class="icon">send</mat-icon></button>
+</div>
 
   <div *ngIf="photolangage &&roueVieStart">
     <form  [formGroup]="formRoueDeLAvie" >
@@ -193,7 +192,7 @@
       </div>
     </form>
   </div>
-</div>
+
 
 <div  *ngIf="roueVie">
   <h2>Votre roue de la vie actuelle :</h2>

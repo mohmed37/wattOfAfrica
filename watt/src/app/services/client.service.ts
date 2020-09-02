@@ -40,7 +40,6 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
        token:null
      });
    }
-   console.log(this.jwtToken.value)
   }
 
   public getClient(page: number, size: number) {
@@ -107,6 +106,10 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
 
   public getQuestionnaires():Observable<QuestionnairesModel>  {
     return this.htttpClient.get<QuestionnairesModel>(this.hostUser + "/questionnairesUser/"+this.userConnect.userAuthenticated.num);
+  }
+
+  public getQuestionnairesAll():Observable<QuestionnairesModel[]>  {
+    return this.htttpClient.get<QuestionnairesModel[]>(this.hostUser + "/questionnairesUserAll/");
   }
 
   public putQuestionnaires(typeQuetionnaire:string){

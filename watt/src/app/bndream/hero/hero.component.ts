@@ -32,40 +32,59 @@ export class HeroComponent implements OnInit {
   message: string;
   public hero: boolean=false;
   public fragment: string;
+  public nbValeur:number=0;
+  public ListQuestionnaire:any[];
+  public clientConnect:boolean;
+
 
   constructor(private bndreamService: BndreamService, private router: Router, private httpClient: HttpClient,
               private serviceClient: ClientService, private userConnect: AuthenticationService,private route: ActivatedRoute) {
-    this.userId = this.userConnect.userAuthenticated.num;
+    if (userConnect.userAuthenticated){
+    this.clientConnect=this.userConnect.userAuthenticated;
+    this.userId = this.userConnect.userAuthenticated.num;}
   }
 
 
   ngOnInit(): void {
-    this.fragment="haut";
+    if (this.userConnect.userAuthenticated) {
 
-    this.formHero = new FormGroup({
-      hero: new FormControl('', Validators.required),
-    });
-
-    this.serviceClient.getQuestionnaires()
-      .subscribe(data => {
-        this.questionnaires = data;
-        this.qcm4Valide = this.questionnaires.qcm4;
-        this.heroValide = this.questionnaires.hero;
-
-        if( this.heroValide){
-        this.bndreamService.getResultHero().subscribe(
-          data =>{
-            this.resultatHero=data;
-          }
-        );}
-
-      }, error => {
-        console.log(error);
+      this.fragment = "haut";
+      this.formHero = new FormGroup({
+        hero: new FormControl('', Validators.required),
       });
-    this.bndreamService.getListHero()
-      .subscribe(data => {
-        this.listValeurHero = data;
-      }); }
+
+      this.serviceClient.getQuestionnairesAll().subscribe(list => {
+        this.ListQuestionnaire = list;
+        this.ListQuestionnaire.forEach(questionnaireUser => {
+          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+            this.serviceClient.getQuestionnaires()
+              .subscribe(data => {
+                this.questionnaires = data;
+                this.qcm4Valide = this.questionnaires.qcm4;
+                this.heroValide = this.questionnaires.hero;
+
+                if (this.heroValide) {
+                  this.bndreamService.getResultHero().subscribe(
+                    data => {
+                      this.resultatHero = data;
+                    }
+                  );
+                }
+
+              }, error => {
+                console.log(error);
+              });
+          }else {
+            return null;
+          }
+        })
+      });
+      this.bndreamService.getListHero()
+        .subscribe(data => {
+          this.listValeurHero = data;
+        });
+    }
+  }
 
   ngAfterViewInit() {
     this.route.fragment.subscribe(fragment => {
@@ -84,9 +103,11 @@ export class HeroComponent implements OnInit {
 
   onChange(event: MatCheckboxChange) {
     if (event.source.checked) {
+      this.nbValeur=this.nbValeur+1;
       this.listValeurClient.push(event.source.value);
     }
     if (!event.source.checked) {
+      this.nbValeur=this.nbValeur-1;
       for (let i = 0; i < this.listValeurClient.length; i++) {
         if (this.listValeurClient[i] == event.source.value) {
           this.listValeurClient = this.listValeurClient.filter(item => item !== event.source.value);

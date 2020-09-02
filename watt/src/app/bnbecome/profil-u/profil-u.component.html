@@ -1,5 +1,5 @@
 <h1 class="titre" id="haut">Profil-U</h1>
-<div class="container">
+<div class="container" *ngIf="!profilUvalide">
   <div class="item">
     <h2>Contexte</h2>
   </div>
@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<div class="questionnaire" *ngIf="!profilUvalide">
+<div class="questionnaire" *ngIf="!profilUvalide&&porteFolio">
    <div class="question">
   <p>{{question}}</p>
    </div>

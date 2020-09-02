@@ -11,9 +11,6 @@
     <h2>Résultat</h2>
   </div>
 </div>
-<div class="bouton" *ngIf="authService.userAuthenticated &&!questionnaires">
-<button mat-raised-button (click)="tests()" >Démarrez <mat-icon class="icon">send</mat-icon></button>
-  </div>
 
 <div *ngIf="questionnaires" >
   <div id="debut"></div>

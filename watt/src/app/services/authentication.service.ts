@@ -21,13 +21,17 @@ export class AuthenticationService {
   public isUserUser: boolean=false;
 
   public clientConnect(user){
+
     return  this.htttpClient.post<Client>(this.hostUser +"/authUser",user).subscribe(userConnect=>{
 
       this.token= btoa(JSON.stringify({
         username:userConnect.email,
         roles:userConnect.roles[0].role,
-        num:userConnect.num
+        num:userConnect.num,
+        nom:userConnect.nom,
+        prenom:userConnect.prenom
       }));
+
 
       if (userConnect){
         this.isAuthenticated=true;
@@ -44,6 +48,7 @@ export class AuthenticationService {
         this.userAuthenticated=undefined;
       }
     });
+
   }
 
 

@@ -1,0 +1,150 @@
+.titre{
+  margin: 50px;
+  text-align: center;
+  color: #3498db;
+  font-size: 40px;
+  font-family: 'Poiret One', cursive;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.contexte{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+
+}
+.bndream{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.item{
+  border: solid 1px #3498db;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.bouton{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+
+}
+button{
+  background-color:#3498db;
+  color: white;
+  font-size: 20px;
+}
+.icon{
+  margin-left: 20px;
+  color: white;
+}
+
+.progressTotal{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  margin: 50px;
+}
+.image{
+  width: 10%;
+  height: auto;
+}
+.item{
+  border: solid 1px grey ;
+
+}
+
+.progressBar{
+  width: 700px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.progression{
+  padding-left: 10px;
+  padding-right: 20px;
+
+}
+.date{
+  padding: 10px;
+}
+.pourcentAttient{
+  float: right;
+  color:#3498db;
+  font-size: 20px;
+  margin-top: 5px;
+}
+.pourcentMini{
+  float: left;
+  color:#3498db;
+  font-size: 20px;
+  margin-top: 5px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.numro{
+  border-radius: 25px;
+  background-color:#3498db;
+  width: 50px;
+  height:50px;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  float: left;
+  padding-top: 15px;
+  margin-left: 5px;
+}
+
+.test{
+  color: #3498db;
+  float: left;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+a.titreProjet{
+  text-decoration:none;
+  color: black;
+  font-size: 20px;
+  margin-right: 20px;
+
+}
+a.titreProjet:hover{
+  color: #3498db;
+}
+
+.time{
+  float: right;
+  color: #3498db;
+  margin-right: 20px;
+}
+
+.projet{
+  padding-top: 20px;
+}
+.testValide{
+  color: green;
+}
+.testCours{
+  color: orange;
+}
+
+.numroValide{
+  background-color:green;
+}
+.numroCours{
+  background-color: orange;
+}

@@ -12,7 +12,7 @@
   </div>
 </div>
 <div class="bouton">
-  <button mat-raised-button *ngIf="qcm4Valide&&!hero" (click)="heroStart()">Démarrez <mat-icon class="icon">send</mat-icon></button>
+  <button mat-raised-button *ngIf="qcm4Valide&&!hero&&clientConnect" (click)="heroStart()">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
   <div *ngIf="hero">
 <h2>HERO/HEROÏNE</h2>
@@ -36,7 +36,7 @@
   </mat-radio-group>
 </div>
     <div class="bouton" >
-    <button class="btn btn-success" (click)="saveHero()">Valider</button>
+    <button class="btn btn-success" (click)="saveHero()" *ngIf="nbValeur==3">Valider</button>
     <p>{{message}}</p>
     </div>
 </div>

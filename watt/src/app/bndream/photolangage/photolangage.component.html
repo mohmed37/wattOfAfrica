@@ -132,7 +132,7 @@
     </div>
   </div>
 
-<div class="bouton" *ngIf="!dedutTestPhotolangage">
+<div class="bouton" *ngIf="!dedutTestPhotolangage&&userAuthent">
   <button mat-raised-button (click)="getImageList(2) ; testPhotolangage() " >Démarrer<mat-icon class="icon">send</mat-icon></button>
 </div>
 

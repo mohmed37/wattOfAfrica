@@ -4,3 +4,15 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+.titre{
+  margin: 50px;
+  text-align: center;
+  color: #3498db;
+  font-size: 40px;
+  font-family: 'Poiret One', cursive;
+}
+.item{
+  border: solid 1px #3498db;
+  padding: 20px;
+  border-radius: 10px;
+}

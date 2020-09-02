@@ -30,6 +30,7 @@ export class FicheMetierComponent implements OnInit {
   public texte:string;
   public code:string;
   public newTexte=new TexteModel();
+  public ListQuestionnaire:any[];
 
   constructor(private httpClient: HttpClient, private router: Router,private serviceBnDream:BndreamService,private ficheMetierService:FicheMetierService) {
   }

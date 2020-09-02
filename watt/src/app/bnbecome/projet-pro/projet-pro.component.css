@@ -1,0 +1,92 @@
+p,b{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 20px;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.titre{
+  margin: 50px;
+  text-align: center;
+  color: #3498db;
+  font-size: 40px;
+  font-family: 'Poiret One', cursive;
+}
+.item{
+  border: solid 1px #3498db;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.tableau{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.tableau th{
+  color: #3498db;
+  font-size: 20px;
+  font-family: 'Poiret One', cursive;
+}
+.photoFicheMetier{
+  width: 40%;
+  height: auto;
+}
+.photoMetierSelect{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+ul{
+  list-style: none;
+  margin-top: 20px;
+  counter-reset: li;
+  line-height : 2
+}
+li::before {content: counter(li); color: #3498db;
+  display: inline-block; width: 2em;
+  margin-left: -1em}
+
+.textePro{
+  margin: 20px;
+}
+.imagePro{
+  margin-left: 20%;
+}
+h1{
+  color: orange;
+}
+h3, h4 {
+  color: #3498db;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin-bottom:20px;
+}
+.lien{
+  margin-bottom: 10px;
+  margin-left: 40%;
+  width: 10%;
+  height: auto;
+  align-items: center;
+}
+
+.lien :hover{
+  width: 15%;
+  height: auto;
+}
+.metierNew{
+  color: #3498db;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin-bottom:20px;
+}
+.felicitation{
+ text-align: center;
+  margin-top: 20px;
+}

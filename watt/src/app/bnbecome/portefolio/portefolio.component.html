@@ -1,5 +1,5 @@
-<h1 class="titre" id="haut">Porte-Folio</h1>
-<div class="container">
+<h1 class="titre" id="haut">PorteFolio</h1>
+<div class="container" *ngIf="!porteFolioValide">
   <div class="item">
     <h2>Contexte</h2>
   </div>
@@ -43,6 +43,15 @@
     <p >{{message}}</p>
   </div>
 </form>-->
+<div *ngIf="dicoMetier">
+<h3>Evaluer vos compétences et découvrez vos talents</h3>
+<p>Vous avez capitalisé des compétences tout au long de votre parcours scolaire et / ou professionnel,
+  faîtes le point sur vos talents :</p>
+<p>Sur la base d’une liste de domaines de compétences, vous allez vous autoévaluer en sélectionnant les compétences
+  que vous avez mobilisé durant votre parcours scolaire et professionnel.
+  Puis vous devrez vous positionner en évaluant votre degré de maîtrise pour cette compétence et votre degré d’intérêt
+  sur une échelle de 0 à 4.
+</p>
 <form class="form">
   <mat-form-field appearance="fill">
     <mat-label>Compétences:</mat-label>
@@ -53,7 +62,7 @@
     </mat-select>
   </mat-form-field>
 </form>
-
+</div>
 <a (click)="closeList2()"> <h3 *ngIf="selectCompetence">{{selectedValue}}</h3></a>
 <table class="table table-striped" *ngIf="selectCompetence">
   <thead>

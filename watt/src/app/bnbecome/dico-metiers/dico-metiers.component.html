@@ -1,5 +1,5 @@
 <h1 class="titre" id="haut">Dico-Métiers</h1>
-  <div class="container">
+  <div class="container" *ngIf="!dicoMetiersValide">
     <div class="item">
       <h2>Contexte</h2>
     </div>
@@ -10,15 +10,18 @@
       <h2>Résultat</h2>
     </div>
   </div>
-<div class="explication">
+<div class="bouton">
+  <button *ngIf="!dicoMetiersValide&&heroValide&&clientConnect" mat-raised-button (click)="listFicheMetierClient()">Démarrez <mat-icon class="icon">send</mat-icon></button>
+</div>
+
+<div class="explication" *ngIf="clientConnect&&dicoMetiersValide">
   <h3>DICO-METIERS : EXPLORATION DES METIERS </h3>
   <p>Vous allez explorer la liste de métiers ressortie du test PRAICO.</p>
   <p>Le Dico-Métiers se présentent par domaines professionnels.</p>
   <p>Découvrez pour quels métiers vous êtes fait.</p>
+  <p>Mettez un cœur rose devant le métier que vous aimez.</p>
 </div>
-  <div class="bouton">
-    <button *ngIf="!dicoMetiersValide" mat-raised-button (click)="listFicheMetierClient()">Démarrez <mat-icon class="icon">send</mat-icon></button>
-  </div>
+
 
 
    <div class="carousel slide" data-ride="carousel" *ngIf="dicoMetiersValide" >

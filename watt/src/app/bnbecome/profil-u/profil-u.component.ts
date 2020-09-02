@@ -41,39 +41,49 @@ export class ProfilUComponent implements OnInit {
   public resulta: boolean;
   public profilUvalide: boolean;
   public resutatQcmnumber=0;
-
-
-
-
+  public porteFolio: boolean;
+  public ListQuestionnaire:any[];
+  public clientConnect:boolean;
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute
     ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome,public dialog: MatDialog) {
-    this.userId=this.userConnect.userAuthenticated.num;
+    if (userConnect.userAuthenticated){
+      this.clientConnect=this.userConnect.userAuthenticated;
+    this.userId=this.userConnect.userAuthenticated.num;}
   }
 
   ngOnInit(): void {
-    this.serviceClient. getQuestionnaires()
-      .subscribe(data=>{
-        this.questionnaires2=data;
-        this.dicoMetiersValide=this.questionnaires2.dicoMetiers;
-        this.profilUvalide=this.questionnaires2.profilU;
-        if(this.profilUvalide){
-          this. getRestitusion();
-        }
-      },error => {
-        console.log(error);
+    if (this.userConnect.userAuthenticated) {
+      this.serviceClient.getQuestionnairesAll().subscribe(list => {
+        this.ListQuestionnaire = list;
+        this.ListQuestionnaire.forEach(questionnaireUser => {
+          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+            this.serviceClient.getQuestionnaires()
+              .subscribe(data => {
+                this.questionnaires2 = data;
+                this.dicoMetiersValide = this.questionnaires2.dicoMetiers;
+                this.profilUvalide = this.questionnaires2.profilU;
+                this.porteFolio = this.questionnaires2.porteFolio;
+                if (this.profilUvalide) {
+                  this.getRestitusion();
+                }
+              }, error => {
+                console.log(error);
+              });
+          }else {
+            return null;
+          }
+        })
       });
-    this.getQuestionnaireProfilU();
-
+      this.getQuestionnaireProfilU();
+    }
   }
 
   openDialog(item:string): void {
     this.getDimention(item);
     this.bnbecome.getRestitusionProfilUByPosAndDim(item,this.resutatQcmnumber).subscribe(data=>{
       this.getrestitusionProfilU=data;
-      console.log(this.getrestitusionProfilU);
-      console.log(this.resutatQcmnumber);
       const dialogRef = this.dialog.open(DialogModalComponent, {
         width: '50%', height: 'auto',
         data: {titre: this.getrestitusionProfilU.titre, restitution: this.getrestitusionProfilU.restitution}
@@ -304,7 +314,7 @@ export class ProfilUComponent implements OnInit {
       saveProfilU(){
     this.resultRa.idclient=this.userId;
     this.bnbecome.saveProfilU(this.resultRa).subscribe(data=>{
-      this.router.navigateByUrl("/bnbecome");
+      this.router.navigateByUrl("/bnBeleave");
       this.serviceClient.putQuestionnaires("profilU");
       this.getResultatProfilU();
       },error => {

@@ -5,6 +5,9 @@ import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import {HttpClient,HttpEventType} from "@angular/common/http";
 import {ClientService} from "../../services/client.service";
 import {AuthenticationService} from "../../services/authentication.service";
+import {ListMetierClientModel} from "../../model/listMetierClient.model";
+import {Bnbecome} from "../../services/bnbecome.service";
+import {FicheMetier} from "../../model/ficheMetier.model";
 
 @Component({
   selector: 'app-mon-cv',
@@ -83,9 +86,16 @@ fileToUpload : File= null;
   public colorBotton2: string="#bdc3c7";
   public colorBotton1: string="#bdc3c7";
   public userConnectClient:boolean;
+  public ficheClient:ListMetierClientModel;
+  public metierValide:any[]=[];
+  listByMetierSelect:FicheMetier[]=[];
+  public metier:any[]=[];
 
-  constructor(private http: HttpClient,private clientService:ClientService, private userConnect:AuthenticationService) {
-    this.userConnectClient=userConnect.userAuthenticated;
+
+  constructor(private http: HttpClient,private clientService:ClientService, private userConnect:AuthenticationService
+              ,private bnbecome:Bnbecome) {
+    if (userConnect.userAuthenticated){
+    this.userConnectClient=userConnect.userAuthenticated;}
   }
   public Editor = ClassicEditor;
   public nomClient2;
@@ -93,8 +103,10 @@ fileToUpload : File= null;
  public premomClient:string;
 
   ngOnInit(): void {
+    if (this.userConnect.userAuthenticated){
    this.nomClient=this.userConnect.userAuthenticated.nom;
    this.premomClient=this.userConnect.userAuthenticated.prenom;
+    this.listFicheMetierClient();}
 
   }
   public onReady( editor ) {
@@ -271,4 +283,43 @@ selectedFile=null;
         this.colorNewTextMetier = "#ffffff";
     }
   }
+
+  listFicheMetierClient(){
+    this.bnbecome.getFicheMetierClient().subscribe(
+      data=>{
+        this.ficheClient=data;
+        this.ficheClient.valide.forEach(ficheMetierValide=>{
+          if(ficheMetierValide.etat==true){
+            this.metierValide.push(ficheMetierValide)
+          }
+        });
+        this.ficheClient.ficheMetiers.forEach(ficheMetier=>{
+          let id=ficheMetier.id;
+          this.metierValide.forEach(ficheMetierNewValide=>{
+            if (ficheMetierNewValide.id==id){
+              this.metier.push(ficheMetier);
+
+            }
+          });
+        });
+        this.getMetierSelection(this.metierValide,this.ficheClient);
+
+      },error => {
+        console.log(error);
+      });
+
+  }
+  getMetierSelection(metierValide: any[], ficheClient: ListMetierClientModel){
+    metierValide.forEach(ficheMetierValide=>{
+      if(ficheMetierValide.selection==true){
+        ficheClient.ficheMetiers.forEach(ficheMetier=>{
+          if (ficheMetier.id==ficheMetierValide.id){
+            this.listByMetierSelect.push(ficheMetier);
+          }
+        })
+      }
+    });
+  }
+
+
 }

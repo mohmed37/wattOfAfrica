@@ -62,31 +62,48 @@ export class AutoportraitComponent implements OnInit {
   private dicoMetierValide: boolean=false;
   public fragment: string;
   public newTexte=new TexteModel();
+  public ListQuestionnaire:any[];
+  public clientConnect:boolean;
 
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
-    this.userId=this.userConnect.userAuthenticated.num;
+    if (userConnect.userAuthenticated){
+    this.clientConnect=this.userConnect.userAuthenticated;
+    this.userId=this.userConnect.userAuthenticated.num;}
   }
 
   ngOnInit(): void {
-    this.serviceClient. getQuestionnaires()
-      .subscribe(data=>{
-        this.questionnaires2=data;
-        this.roueDeLaVieValide=this.questionnaires2.roueVie;
-        this.autoPortraitValide=this.questionnaires2.autoPortrait;
+    if (this.userConnect.userAuthenticated) {
+      this.serviceClient.getQuestionnairesAll().subscribe(list => {
+        this.ListQuestionnaire = list;
+        this.ListQuestionnaire.forEach(questionnaireUser => {
+          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+      this.serviceClient.getQuestionnaires()
+        .subscribe(data => {
+          this.questionnaires2 = data;
+          this.roueDeLaVieValide = this.questionnaires2.roueVie;
+          this.autoPortraitValide = this.questionnaires2.autoPortrait;
 
-        if(this.autoPortraitValide){
-        this.bndreamService.getResultAutoPortrait().subscribe(
-          data =>{
-            this.resultAutoPortrait=data;
+          if (this.autoPortraitValide) {
+            this.bndreamService.getResultAutoPortrait().subscribe(
+              data => {
+                this.resultAutoPortrait = data;
+              }
+            );
           }
-        );}
 
-      },error => {
-        console.log(error);
+        }, error => {
+          console.log(error);
+        });
+          }else {
+            return null;
+          }
+        })
+
       });
-    this.getTraitList(2);
+      this.getTraitList(2);
+    }
   }
 
   ngAfterViewInit() {

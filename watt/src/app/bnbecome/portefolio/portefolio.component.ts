@@ -43,43 +43,62 @@ export class PortefolioComponent implements OnInit {
   public porteFolioValide: boolean;
   public nbFaire:number;
   public nbSavoir:number;
-
+  public dicoMetier: boolean;
+  public ListQuestionnaire:any[];
+  public clientConnect:boolean;
   constructor(private serviceClient:ClientService, private userConnect:AuthenticationService,private bnbecome:Bnbecome) {
-    this.userId=this.userConnect.userAuthenticated.num;
+    if (userConnect.userAuthenticated){
+    this.clientConnect=this.userConnect.userAuthenticated;
+    this.userId=this.userConnect.userAuthenticated.num;}
   }
 
   ngOnInit(): void {
-    this.serviceClient. getQuestionnaires()
-      .subscribe(data=>{
-        this.questionnaires2=data;
-        this.profilUvalide=this.questionnaires2.profilU;
-        this.porteFolioValide=this.questionnaires2.porteFolio;
-        if(this.porteFolioValide){
-          this.getCompetencesClient();
-        }
-      },error => {
-        console.log(error);
-      });
-    this.formCompetence=new FormGroup({
-      competence:new FormControl('',Validators.required),
-      faire1:new FormControl('',Validators.required),
-      faire2:new FormControl('',Validators.required),
-      faire3:new FormControl('',Validators.required),
-      faire4:new FormControl('',Validators.required),
-      faire5:new FormControl('',Validators.required),
-      faire6:new FormControl('',Validators.required),
-      savoir1:new FormControl('',Validators.required),
-      savoir2:new FormControl('',Validators.required),
-      savoir3:new FormControl('',Validators.required),
-      savoir4:new FormControl('',Validators.required),
-      savoir5:new FormControl('',Validators.required),
+    if (this.userConnect.userAuthenticated) {
+      this.serviceClient.getQuestionnairesAll().subscribe(list => {
+        this.ListQuestionnaire = list;
+        this.ListQuestionnaire.forEach(questionnaireUser => {
+          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+            this.serviceClient.getQuestionnaires()
+              .subscribe(data => {
+                this.questionnaires2 = data;
+                this.profilUvalide = this.questionnaires2.profilU;
+                this.porteFolioValide = this.questionnaires2.porteFolio;
+                this.dicoMetier = this.questionnaires2.dicoMetiers;
+                if (this.porteFolioValide) {
+                  this.getCompetencesClient();
+                }
+              }, error => {
+                console.log(error);
+              });
+          } else {
+            return null;
+          }
+        })
 
-    });
-    if(this.porteFolioValide){
-    this.getCompetencesClient();
+      });
+
+      this.formCompetence = new FormGroup({
+        competence: new FormControl('', Validators.required),
+        faire1: new FormControl('', Validators.required),
+        faire2: new FormControl('', Validators.required),
+        faire3: new FormControl('', Validators.required),
+        faire4: new FormControl('', Validators.required),
+        faire5: new FormControl('', Validators.required),
+        faire6: new FormControl('', Validators.required),
+        savoir1: new FormControl('', Validators.required),
+        savoir2: new FormControl('', Validators.required),
+        savoir3: new FormControl('', Validators.required),
+        savoir4: new FormControl('', Validators.required),
+        savoir5: new FormControl('', Validators.required),
+
+      });
+      if (this.porteFolioValide) {
+        this.getCompetencesClient();
+      }
+      this.getListCompetences();
     }
-    this.getListCompetences();
   }
+
 
   saveCompetence(){
     this.competence.competence=this.formCompetence.value.competence;
@@ -161,7 +180,7 @@ getListCompetences(){
     return phrase.split("+");
   }
 savecompetencesClient(competencesClient){
-  console.log(competencesClient);
+
   for (let i=0;i< competencesClient.length;i++){
 
     if ( competencesClient[i][5]=='maitrise'){
@@ -172,7 +191,7 @@ savecompetencesClient(competencesClient){
       competencesClient[i][1]='0';
     }
   }
-  console.log(competencesClient);
+
  this.competencesClient.competence=this.selectedValue;
  this.competencesClient.idclient=this.userId;
 for (let i=0;i<this.savoirCLient.length;i++){
@@ -190,6 +209,8 @@ this.competencesClient.listCompetence=this.savoirCLient;
 this.bnbecome.saveCompetenceClient(this.competencesClient).subscribe(data=>{
  this.message="Enregistrement effectué";
  this.serviceClient.putQuestionnaires("porteFolio");
+  this.selectCompetence=false;
+  this.getCompetencesClient();
 },error => {
  this.message="Enregistrement à échoué";
  console.log(error);

@@ -64,7 +64,6 @@ export class Bnbecome{
   }
 
   public saveCompetenceClient(data):Observable<ListCompetencesClientModel>{
-    console.log(data.valueOf());
     return this.htttpClient.post<ListCompetencesClientModel>(this.hostTest + "/saveListCompetencesClient/",data.valueOf());
   }
 

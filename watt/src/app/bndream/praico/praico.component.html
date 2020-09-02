@@ -12,7 +12,7 @@
   </div>
 </div>
 <div class="bouton">
-  <button *ngIf="!qcmRun&&!qcm1Valide&&autoPortraitValide" (click)="qcm()" mat-raised-button >Démarrez <mat-icon class="icon">send</mat-icon></button>
+  <button *ngIf="!qcmRun&&!qcm1Valide&&autoPortraitValide&&clientConnect" (click)="qcm()" mat-raised-button >Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
 
 <div class="container">
@@ -52,8 +52,8 @@
 
   </div>
   <div *ngIf="(qcm3ValideLocal||qcm3Valide)&&!qcm4Valide">
-    <h2>Questionnaire n°3 – Quels sont vos loisirs ? (7 minutes)</h2>
-    <p>Sélectionnez par oui ou par non les loisirs qui vous correspondent le plus ?</p>
+    <h2>Questionnaire n°4 – Quels métiers vous attirent ? (3 minutes)</h2>
+    <p>Parmi la liste des différents métiers présentés, cochez les 5 que vous pratiquez ou aimez.</p>
   <table class="table table-striped">
 
     <thead>

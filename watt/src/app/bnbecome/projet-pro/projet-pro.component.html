@@ -1,1 +1,118 @@
-<p>porjet-pro works!</p>
+<h1 class="titre" id="haut">Votre projet professionel</h1>
+<div class="container"*ngIf="!projetProValide">
+  <div class="item">
+    <h2>Contexte</h2>
+  </div>
+  <div class="item">
+    <h2>Objectif</h2>
+  </div>
+  <div class="item">
+    <h2>Résultat</h2>
+  </div>
+</div>
+<div  class="textePro" *ngIf="!metierValideBySelction&&clientConnect&&profilUvalide">
+
+  <h1>A - Métiers et débouchés :</h1>
+  <p>Pour vérifier la viabilité de votre projet professionnel, vous allez vous renseigner sur les opportunités économiques
+    / les débouchés en lien avec les projets que vous avez identifiés.</p>
+  <img [src]="photo1" class="imagePro">
+  <h3>1 - Vérifier la faisabilité de votre projet au regard du marché de l’emploi :</h3>
+  <p>Chaque année, Pôle emploi adresse un questionnaire aux entreprises afin de connaître leurs besoins en recrutement
+    par secteur d’activité et par bassin d’emploi.</p>
+    <p>Nous vous invitons donc à vous rendre sur le lien pôle emploi et vous accéderez aux données via une recherche par
+      zone géographique, par métier et par secteur d’activité.</p>
+  <a href="https://statistiques.pole-emploi.org/bmo" target="_blank"><img [src]="poleEmploi" class="lien"></a>
+  <h3>2 - Réaliser des enquêtes métiers auprès de professionnels :</h3>
+  <img [src]="photo3" class="imagePro">
+  <p>Il est maintenant important d’aller à la rencontre de professionnels pour se renseigner sur le terrain sur les
+    secteurs d’activité et les métiers dans lesquels vous envisagez de travailler. </p>
+  <h4>Comment vous y prendre :</h4>
+  <p>Contacter des professionnels en lien avec vos projets et les interroger pour comprendre en quoi consiste le métier,
+    les conditions d’accès, les formations nécessaires et ainsi identifier les avantages et inconvénients du métier,
+    de l’environnement de travail pour vous aider à faire les bons choix professionnels.</p>
+  <h4>Comment contacter des professionnels :</h4>
+  <p>En fonction des projets sélectionnés, vous allez identifier des entreprises et leurs coordonnées puis préparer
+    les questions à leur poser. </p>
+  <b>Pour entrer en relation avec les professionnels, vous pouvez :</b>
+  <ul>
+    <li>Consulter les annuaires professionnels (CCI, KOMPAS, CMA…);</li>
+    <li>Solliciter votre réseau personnel et professionnel pour vous faciliter la mise en lien;</li>
+    <li>Vous inscrire sur les réseaux sociaux professionnels comme Linkedin pour entrer en contact avec des professionnels;</li>
+    <li>Consulter les sites internet, les blogs de professionnels, les forums de discussion spécialisées;</li>
+    <li>Se rendre sur les forums pour l’emploi, journées découverte des métiers et salons professionnels pour échanger avec des experts du secteur;</li>
+    <li>Contacter directement les professionnels et leur demander de vous accorder un moment pour échanger sur le métier;</li>
+  </ul>
+  <h4>Préparer les bonnes questions à poser pour assurer votre enquête métier :</h4>
+  <p>Prenez-le temps de préparer un questionnaire avec les questions que vous souhaitez poser !</p>
+  <p>Voici une liste de questions à poser aux professionnels que vous rencontrerez :</p>
+  <ul>
+    <li>Pouvez-vous me décrire votre métier ?  Vos principales missions ?</li>
+    <li>Quelles sont les tâches principales de ce métier ?</li>
+    <li>Comment se déroule une semaine de travail « type » ?</li>
+    <li>Selon vous, quels sont les avantages de votre métier ?</li>
+    <li>Qu’aimez-le-vous plus dans ce métier ?</li>
+    <li>Quel type de formation est demandé pour exercer ce métier ?</li>
+    <li>Quelle sont les qualités et aptitudes demandées ?</li>
+    <li>Quelles sont les conditions de travail (horaires, déplacement, rythme…)</li>
+    <li>Quelle est la rémunération ?</li>
+    <li>Pensez vous qu’il y a des débouchés dans ce secteur d’activité ?</li>
+    <li>Comment recrutez-vous ?</li>
+    <li>Quels conseils pourrez-vous me donner pour réussir dans ce métier ?</li>
+  </ul>
+  <p>Let’s go !</p>
+  <p>Vous souhaitez obtenir des conseils personnalisés pour réaliser votre enquête métier ? Contactez-nous !</p>
+  <h1>B - Ça y est ! Vous êtes fin prêt pour découvrir les projets qui vous collent le mieux à la peau ! </h1>
+  <img [src]="photo2" class="imagePro">
+<p><b>Faites le bilan en vous appuyant sur les résultats de votre profil général et des informations collectées lors de vos
+  enquêtes professionnelles en vous référant aux modules B’n Dream et B’n Beleave ! </b></p>
+  <p>EXERCICE D’AUTOEVALUATION :</p>
+
+  <P>Après avoir pris connaissance des métiers qui vous intéressent, nous vous proposons de sélectionner les métiers
+    qui correspondent à votre profil général en tenant compte de vos compétences, intérêts, personnalité et capacités.</P>
+  <P><span>Sélection métiers :</span> Maintenant que vous avez identifié vos forces (intérêts, personnalité, capacités…), vous allez
+  sélectionner vos 2 ou 3 métiers qui vous semblent réalistes et réalisables.</P>
+</div>
+
+<div *ngIf="!metierValideBySelction&&clientConnect">
+
+  <table class="tableau table table-striped" *ngIf="profilUvalide">
+    <thead>
+    <tr>
+      <th scope="col">Métier</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let m of metier">
+      <th scope="row">{{m.metier}}</th>
+      <th>
+        <mat-checkbox value="{{m.id}}" (change)="clic($event)"></mat-checkbox>
+      </th>
+    </tr>
+    </tbody>
+    <button *ngIf="nbSelect>=1&&nbSelect<=3" class="btn btn-success" (click)="valideSelec()">Valider ma selection</button>
+  </table>
+</div>
+<div *ngIf="metierValideBySelction&&clientConnect" class="felicitation">
+<table class="tableau table table-striped" >
+  <thead>
+  <tr>
+    <th scope="col">Métiers sélectionnés</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr  *ngFor="let list of listByMetierSelect">
+    <th scope="row">{{list.metier}}</th>
+    <th>
+
+    </th>
+  </tr>
+  </tbody>
+</table>
+  <h1>MES FELICITATIONS !</h1>
+  <h1>VOUS AVEZ REUSSI LA 2ème ETAPE DE WATT</h1>
+  <h1>B’NBECOME VOUS A PERMIS DE DEFINIR VOTRE PROJET PROFESSIONNEL EN LIEN AVEC</h1>
+  <h1>QUI VOUS ËTES</h1>
+  <h1>YES YOU ARE !</h1>
+  <h1>MAINTENANT IL EST TEMSP DE METTRE DE REALISER VOTRE PROJET AVEC B’N BECOME!</h1>
+  <h1>YES YOU CAN !</h1>
+</div>

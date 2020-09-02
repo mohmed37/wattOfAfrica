@@ -1,3 +1,6 @@
 clickable{
   cursor: pointer;
 }
+.message,.messagePass{
+  color: #e52d27;
+}

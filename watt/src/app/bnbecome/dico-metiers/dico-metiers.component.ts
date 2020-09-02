@@ -60,28 +60,46 @@ export class DicoMetiersComponent implements OnInit {
   public hostTest: string = "http://localhost:9004/microservice-tests";
   message: string;
   public profilUvalide: boolean;
-
+  public heroValide: boolean;
+  public ListQuestionnaire:any[];
+  public clientConnect:boolean;
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute
     ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome) {
+    if (userConnect.userAuthenticated){
     this.userId=this.userConnect.userAuthenticated.num;
+      this.clientConnect=this.userConnect.userAuthenticated;
+    }
+
   }
 
   ngOnInit(): void {
+      if (this.userConnect.userAuthenticated) {
+        this.serviceClient.getQuestionnairesAll().subscribe(list => {
+          this.ListQuestionnaire = list;
+          this.ListQuestionnaire.forEach(questionnaireUser => {
+            if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+              this.serviceClient.getQuestionnaires()
+                .subscribe(data => {
+                  this.questionnaires2 = data;
+                  this.dicoMetiersValide = this.questionnaires2.dicoMetiers;
+                  this.heroValide = this.questionnaires2.hero;
+                  this.profilUvalide = this.questionnaires2.profilU;
+                  if (this.dicoMetiersValide) {
+                    this.getFicheClient();
+                  }
+                }, error => {
+                  console.log(error);
+                });
+            }else {
+              return null;
+            }
+          })
 
-    this.serviceClient. getQuestionnaires()
-      .subscribe(data=>{
-        this.questionnaires2=data;
-        this.dicoMetiersValide=this.questionnaires2.dicoMetiers;
-        this.profilUvalide=this.questionnaires2.profilU;
-        if(this.dicoMetiersValide){
-          this.getFicheClient();
-        }
-      },error => {
-        console.log(error);
-      });
-
+        });
+      }
   }
+
 
   getFicheClient(){
     this.bnbecome.getFicheMetierClient().subscribe(
@@ -215,15 +233,15 @@ export class DicoMetiersComponent implements OnInit {
 
   onSaveListMetierClient(ficheClient: FicheMetier[]) {
     for(let j = 0; j <this.ficheClient.length; j++){
-      this.listMetierDicoValide.push({id:this.ficheClient[j].id,etat:false});
+      this.listMetierDicoValide.push({id:this.ficheClient[j].id,etat:false,selection:false});
     }
     this.listFicheMetier.valide=this.listMetierDicoValide;
-    console.log(this.listFicheMetier.valide);
     this.listFicheMetier.ficheMetiers=ficheClient;
     this.listFicheMetier.client=this.userId;
     this.bnbecome.saveListMetierClient(this.hostTest+ "/saveMetierByClient/",this.listFicheMetier)
       .subscribe(res=>{
         this.message = 'Enregistré avec succès';
+        this.ngOnInit();
       }, error => {
         this.message = "l'enregistrement à échoué!";
         console.log(error)
