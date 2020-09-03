@@ -64,6 +64,9 @@ export class PraicoComponent implements OnInit {
   public fragment: string;
   public ListQuestionnaire:any[];
   public clientConnect:boolean;
+  public contexteValide:boolean=false;
+  public objectifValide: boolean=false;
+  public processValide: boolean=false;
 
 
 
@@ -412,6 +415,38 @@ savePreco(){
           console.log(error)
         });
     }
+
+  contexte() {
+    if(!this.contexteValide){
+      this.contexteValide=true;
+      this.router.navigate(['/bndream/praico'], { fragment: 'contexte' });
+    }else {
+      this.contexteValide=false;
+      this.router.navigate(['/bndream/praico'], { fragment: 'haut' });
+    }
+  }
+
+  objectif() {
+    if(!this.objectifValide){
+      this.objectifValide=true;
+      this.router.navigate(['/bndream/praico'], { fragment: 'objectif' });
+    }else {
+      this.objectifValide=false;
+      this.router.navigate(['/bndream/praico'], { fragment: 'haut' });
+
+    }
+  }
+  process() {
+    if(!this.processValide){
+      this.processValide=true;
+      this.router.navigate(['/bndream/praico'], { fragment: 'process' });
+    }else {
+      this.processValide=false;
+      this.router.navigate(['/bndream/praico'], { fragment: 'haut' });
+    }
+  }
+
+
 
 
 

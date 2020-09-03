@@ -1,15 +1,136 @@
-<h1 class="titre" id="haut">PRAICO</h1>
 <div *ngIf="!qcm4Valide">
-<div class="container">
-  <div class="item">
-    <h2>Contexte</h2>
-  </div>
-  <div class="item">
-    <h2>Objectif</h2>
-  </div>
-  <div class="item">
-    <h2>Résultat</h2>
-  </div>
+  <h1 class="titre" id="haut">PRAICO</h1>
+  <div class="container" >
+    <p><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+    <div class="item" *ngIf="contexteValide"  id="contexte">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="contexte()" >
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2  >Contexte</h2 >
+      <b>Bienvenue dans Praico et découvrez votre ADN Vocationnel</b>
+
+      <p>La <b>méthode Photolangage</b> est utilisé dans des approches différentes de l’action humaine
+        et du travail d’accompagnement : animation, éducation, formation, aide, soin et thérapie.
+        Mobilisant l’imaginaire, les photographies présentées vont faciliter la prise de conscience par chacun d’entre vous.
+        Elles sont choisies pour leur puissance suggestive, leur qualité esthétique et leur valeur symbolique.
+        Alors que la majorité d’entre elles renvoient à des situations de la vie quotidienne où se jouent les différentes
+        composantes de notre vie, d’autres photographies plus symboliques peuvent permettre d’exprimer par association
+        ou par métaphore différents aspects de l’expérience de chacun.
+      </p>
+
+    </div>
+    <div class="item" *ngIf="objectifValide"  id="objectif">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="objectif()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2  >Objectifs</h2>
+      <p>Dans le cadre de votre bilan et votre réflexion sur votre état d’être, nous vous proposons de réaliser un
+        exercice de photolangage qui va vous permettre de vous exprimer avec un autre moyen que la parole sur votre
+        ressenti actuel et sur ce vers quoi vous aspirez. La méthode Photolangage cherche à favoriser les processus
+        associatifs, c’est-à-dire la mise en marche de l’activité de liaison et de symbolisation. C’est un moyen de
+        passer au dessus des phrases déjà toutes construites pour y intégrer du symbolique et du « ressenti » dans le message.</p>
+      <p>La photographie est ici un objet médiateur, qui invite votre imaginaire et vous permet de vous projeter sur la
+        suite de votre parcours de manière positive pour réaliser le meilleur choix en phase avec votre état d’être projectif. </p>
+    </div>
+    <div class="item"   *ngIf="processValide"  id="process">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="process()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2 >Process</h2>
+      <h4>1ère étape :</h4>
+      <p>Il s’agit de choisir <b>3 images qui représentent la situation actuelle</b> pour vous parmi la liste des photos qui
+        défileront sous vos yeux. Les 3 photos sélectionnées s’afficheront en dessous automatiquement.</p>
+      <p>Prenez au moins 10 minutes environ pour faire cet exercice.</p>
+      <h4>2ème étape :</h4>
+      <p>Il s’agit de choisir à nouveau <b>3 images sur votre situation future</b>, votre situation idéale
+        (personnelle et professionnelle). Vous allez faire défiler la liste des photos avant de sélectionner celles qui
+        vous correspondent le mieux. Les 3 photos sélectionnées s’afficheront automatiquement.</p>
+      <h4>3ème étape :</h4>
+      <p>Pour chacune des photos choisies, vous donnerez <b>un titre</b> et <b>expliquerez pourquoi vous l’avez choisi</b>.
+        Qu’est-ce que vous voyez sur cette image, quelle interprétation vous lui donnez et quel sens cela prend dans
+        votre vie. </p>
+      <p>Voici <b>quelques exemples d’images avec leurs analyses</b> pour vous donner une idée de la manière d’exploiter
+        / interpréter les photos choisies</p>
+      <h4>Par exemple sur la situation actuelle :</h4>
+
+      <div class="depart">
+        <img [src]="" class="image1">
+        <p>Titre : « Nouveau départ »</p>
+        <p>Mots associés : « Changements, questionnements »</p>
+        <p>Sur cette image, on observe un homme de dos et de face sur deux plans. Les deux plans se confondent. Sur l’un
+          d’eux, l’homme de dos, regarde le ciel, tout est épuré, tandis que sur l’autre plan, le même homme est de face
+          et il avance sur un rail de chemin de fer et semble quitter la ville et sa pollution. M. X se retrouve dans cette
+          photographie et dans ce personnage. Il ressent aujourd’hui l’envie d’avancer, de s’enrichir personnellement et
+          professionnellement. L’homme de dos évoque le questionnement, il regarde les nuages, comme s’il rêvait à autre
+          chose. Il peut ressentir des doutes mais il regarde l’avenir et vers son rêve. L’homme de face est en action,
+          il marche vers son rêve et il quitte un lieu sans couleur et pollué. Symboliquement, cette photographie représente
+          le passage dans lequel est M. X. Il se questionne et regarde vers l’avenir et souhaite faire le choix d’avancer
+          et d’initier du changement dans sa vie.</p>
+      </div>
+
+      <h4>Ou encore :</h4>
+      <div class="entendre">
+        <img [src]="" class="image2">
+        <p>Titre : « Ne plus entendre» </p>
+        <p>Mots associés : Fatigue morale »</p>
+        <p>On retrouve sur cette image une femme, visiblement dans un environnement professionnel, qui ferme les yeux et
+          se bouchent les oreilles. Elle coupe tout moyen d’entrer en communication avec elle et toute entrée d’information.
+          Ce qu’a voulu mettre en avant Mme A sur cette image est un ressenti sur son travail. Elle exprime le désir de se
+          couper, de ne plus entendre toutes les situations difficiles exposées par les jeunes. Etre effectivement en
+          permanence confronté à des problèmes et cas difficiles est difficile à gérer. Pour agir, il faut se sentir solide
+          et armé. Mme A se questionne sur cela car elle a la sensation d’être impactée par les ressentis des jeunes et
+          quand elle finit sa journée, elle peut encore ressentir de la préoccupation.</p>
+      </div>
+
+      <h4>Et ensuite, sur la situation future, par exemple :</h4>
+
+      <div class="ancrage">
+        <img [src]="" class="image1">
+        <img [src]="" class="image1">
+        <p>Titre : « Ancrage»</p>
+        <p>Mots associés : Fatigue morale »</p>
+        <p>La première photographie représente une jeune femme, les bras ouvert, en parfaite harmonie et en bien-être total.
+          C’est ce vers quoi tend Mme B, renouer avec du sens sur son lieu de travail et être dans un bien-être. La deuxième
+          photographie, intéressante à placer à côté de la première représente un arbre, sculpté, mais lui aussi avec cette
+          sensation qu’il tend les bras, ouverts, et il respire. Les deux positions du corps se ressemblent. L’idée de ce
+          mouvement est la liberté, le bien-être, le lâcher prise. L’arbre représente la force, la solidité de l’ancrage.
+          Même s’il se met en mouvement, ses bases sont solides. Mme B métaphorise donc le fait qu’elle souhaite se mettre
+          en marche, qu’elle ressent la force à l’intérieur d’elle pour initier le changement, mais qu’elle doit aussi
+          solidifier sa force et son projet pour le mener à terme.</p>
+      </div>
+
+      <div class="envie">
+        <img [src]="" class="image5">
+        <p>Titre : « L’envie »</p>
+        <p>Mots associés : «Réussite au travail ».</p>
+        <p>Sur cette photographie on observe une femme, visiblement sur son lieu de travail, qui regarde vers le bas d’une
+          balustrade. Elle sourit. Mme X aspire à ce sentiment de satisfaction. Le fait que la jeune femme regarde vers le bas
+          symbolise pour Mme X le fait de regarder tout son parcours et d’être fière de tout ce qu’elle a accompli. La jeune femme
+          regarde également vers le futur, comme Mme X, qui a toujours cette envie d’apprendre d’avantage et de progresser.
+          La femme est fière de ce qu’elle a fait et Mme X a également envie d’être fière de qu’elle fera. Elle aspire à avoir
+          ce regard bienveillant et fier sur son parcours. </p>
+      </div>
+
+      <div class="envol">
+        <img [src]="" class="image6">
+        <p>Titre : « L’envol»</p>
+        <p>Mots associés : « Sereine et confiante ».</p>
+        <p>Cette photographie représente une femme, qui se tient en équilibre, en haut d’une montagne, face à la nature.
+          Ce qui émane de cette photographie est la sérénité, ce paysage infini qui rassure.  Tout est ouvert devant elle,
+          elle n’a qu’à s’élancer et elle pourra s’envoler. On sent le personnage léger et libre. Mme A explique que même si on
+          ne voit pas son visage, elle la visualise avec les yeux fermés, très libre, ne faisant qu’un avec la nature.
+          Elle précise aussi que tout est épuré, elle a la sensation que tout ce qui pourrait venir parasiter cet état de
+          bien-être a disparu. Mme A exprime que pour en arriver à cette sérénité, il faut avoir lâché un certain nombre de
+          craintes. Sur cette image tout est ouvert, il y a de très belles perspectives.</p>
+      </div>
+      <p><a routerLink="/bndream/photolangage" fragment="haut" >Haut de page</a></p>
+    </div>
 </div>
 <div class="bouton">
   <button *ngIf="!qcmRun&&!qcm1Valide&&autoPortraitValide&&clientConnect" (click)="qcm()" mat-raised-button >Démarrez <mat-icon class="icon">send</mat-icon></button>
