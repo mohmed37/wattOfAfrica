@@ -397,6 +397,7 @@ savePreco(){
   action: string="assets/img/action.jpg";
   organisation: string="assets/img/organisation.jpg";
 
+
   onSaveQcm4() {
     this.questionnaire4.metier=this.formQcm4.value.metier;
     this.questionnaire4.lettres.push(this.formQcm4.value.lettre1);
@@ -419,6 +420,8 @@ savePreco(){
   contexte() {
     if(!this.contexteValide){
       this.contexteValide=true;
+      this.objectifValide=false;
+      this.processValide=false;
       this.router.navigate(['/bndream/praico'], { fragment: 'contexte' });
     }else {
       this.contexteValide=false;
@@ -429,6 +432,8 @@ savePreco(){
   objectif() {
     if(!this.objectifValide){
       this.objectifValide=true;
+      this.contexteValide=false;
+      this.processValide=false;
       this.router.navigate(['/bndream/praico'], { fragment: 'objectif' });
     }else {
       this.objectifValide=false;
@@ -439,6 +444,8 @@ savePreco(){
   process() {
     if(!this.processValide){
       this.processValide=true;
+      this.objectifValide=false;
+      this.contexteValide=false
       this.router.navigate(['/bndream/praico'], { fragment: 'process' });
     }else {
       this.processValide=false;

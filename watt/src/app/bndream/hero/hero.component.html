@@ -1,21 +1,79 @@
-<h1 class="titre" id="haut">Héro Héroïne</h1>
+<h1 class="titre" id="haut">Héros Héroïne</h1>
 <div *ngIf="!heroValide">
-<div class="container">
-  <div class="item">
-    <h2>Contexte</h2>
+  <div class="container" >
+    <p><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+    <div class="item" *ngIf="contexteValide"  id="contexte">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="contexte()" >
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2  >Contexte</h2 >
+      <p><b>Quel héro, quelle héroïne êtes-vous ?</b></p>
+
+      <p>La connaissance de soi est la base de votre démarche d’orientation. Explorer qui vous êtes, c’est apprendre à
+        considérer toutes les facettes de votre personnalité dans le but de choisir les meilleures options possibles pour
+        vous. La connaissance de soi, c’est aussi aller vers une meilleure compréhension de soi. Elle peut vous aider à
+        comprendre davantage ce qui vous motive, pourquoi vous agissez de telle ou telle façon. Ainsi, la connaissance
+        de soi vous permet de donner une direction plus précise à votre vie.</p>
+      <p>Pour bien se connaître, il est essentiel de savoir ce qui est important pour vous dans la vie. Les valeurs
+        donnent un sens à ce que l’on fait ; elles proviennent des croyances les plus fondamentales.</p>
+      <p>Cette étape va pour permettre de découvrir vos valeurs, celles qui vous donnent envies de vous lever tous les
+        matins et qui vous font vibrer !</p>
+
+    </div>
+
+    <div class="item" *ngIf="objectifValide"  id="objectif">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="objectif()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2  >Objectifs</h2>
+      <ul class="liObjectif">
+        <li>Discerner les valeurs que l’on trouve importantes d’actualiser dans sa vie personnelle et professionnelle.</li>
+        <li>Etablir des priorités, fixer des objectifs, déterminer des buts individuels et orienter son projet de vie.</li>
+        <li>Mieux comprendre et entreprendre les bonnes actions en lien avec vos valeurs.</li>
+      </ul>
+    </div>
+    <div class="item"   *ngIf="processValide"  id="process">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="process()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2 >Process</h2>
+
+      <p><b>1ère phase : AUTOPORTRAIT</b></p>
+      <p><b>Dans un premier temps</b>, vous allez définir le héros ou l’héroïne que vous souhaiteriez être.  Vous pourrez vous
+        inspirer de personnalités qui ont marqué l’histoire de l’humanité, de personnages de films, de dessins animés,
+        de mangas, de jeux vidéos… Alors qui est-ce que vous admirez ?</p>
+
+      <p><b>Dans un second temps</b>, vous allez identifier les trois valeurs qui ont motivées le choix de ce héros / cette héroïne
+        et identifier ce qui vous semble important voire essentielle pour votre équilibre de vie.</p>
+      <p>Quelles sont les valeurs qui ont motivées ce choix ? Qu’est ce qui est important pour vous dans la vie ?</p>
+      <p>Vous allez pouvoir vous inspirer au travers d’une liste de valeurs que vous pourrez sélectionner
+        (sagesse, loyauté, bienveillance…).</p>
+      <p><b>Dans un troisième temps</b>, écrivez l’histoire que vous voulez vivre en étant le personnage principal de
+        l’histoire. Installez vous dans un endroit calme et prenez le temps à la réflexion.</p>
+      <p>Posez-vous la question : Quelle réalité voulez-vous créer ?</p>
+
+      <p>Indiquez tous les détails possibles. Ecrivez vos buts et objectifs pour améliorer votre quotidien. Mettez en
+        musique votre réalité actuelle de manière différente de façon qu’elle soit meilleur et convienne à votre souhait
+        d’évolution.</p>
+
+      <p>Vous avez toujours désiré être le héros ou l’héroïne de votre vie, alors qu’attendez-vous ?
+        C’est partie !</p>
+      <p><b>Il était une fois…</b></p>
+
+      <p><a routerLink="/bndream/heros" fragment="haut" >Haut de page</a></p>
+    </div>
   </div>
-  <div class="item">
-    <h2>Objectif</h2>
-  </div>
-  <div class="item">
-    <h2>Résultat</h2>
-  </div>
-</div>
 <div class="bouton">
   <button mat-raised-button *ngIf="qcm4Valide&&!hero&&clientConnect" (click)="heroStart()">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
   <div *ngIf="hero">
-<h2>HERO/HEROÏNE</h2>
+<h2>HEROS/HEROÏNE</h2>
 <p>Découvrez vos valeurs, celles qui vous donnent envies de vous lever tous les matins et qui vous font vibrer !</p>
 
 <div class="container">
@@ -25,7 +83,7 @@
   de livres, de mangas…</p>
 <div class="container">
   <p  [formGroup]="formHero" >
-       <label class="motHero">Héro-Héroîne</label>
+       <label class="motHero">Héros-Héroîne</label>
       <input matInput type="text" formControlName="hero" class="form-control" placeholder="Qui seriez-vous ? ">
   </p>
 </div>

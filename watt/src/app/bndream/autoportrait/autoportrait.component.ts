@@ -64,6 +64,10 @@ export class AutoportraitComponent implements OnInit {
   public newTexte=new TexteModel();
   public ListQuestionnaire:any[];
   public clientConnect:boolean;
+  public contexteValide:boolean=false;
+  public objectifValide: boolean=false;
+  public processValide: boolean=false;
+
 
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
@@ -233,8 +237,10 @@ export class AutoportraitComponent implements OnInit {
 
   resultList(list:string) {
     if(list=="list1"){
+      this.router.navigate(['/bndream/autoPortrait'], { fragment: 'etape2' });
     this.list1=true;}
     if(list=="list2"){
+      this.router.navigate(['/bndream/autoPortrait'], { fragment: 'constat' });
       this.list2 =true;}
   }
 
@@ -243,12 +249,12 @@ export class AutoportraitComponent implements OnInit {
 
     if (list==1){
       if( this.resultAutoPortrait.list1[position]!="?"){
-      this.resultAutoPortrait.list1[position]="?"
+      this.resultAutoPortrait.list1[position]="?";
       this.choixList1=this.choixList1-1;}
     }
     if (list==2){
       if( this.resultAutoPortrait.list2[position]!="?"){
-      this.resultAutoPortrait.list2[position]="?"
+      this.resultAutoPortrait.list2[position]="?";
       this.choixList2=this.choixList2-1;}
     }
 
@@ -270,4 +276,42 @@ export class AutoportraitComponent implements OnInit {
         console.log(error)
       })
   }
+
+  contexte() {
+    if(!this.contexteValide){
+      this.contexteValide=true;
+      this.objectifValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bndream/autoPortrait'], { fragment: 'contexte' });
+    }else {
+      this.contexteValide=false;
+      this.router.navigate(['/bndream/autoPortrait'], { fragment: 'haut' });
+    }
+  }
+
+  objectif() {
+    if(!this.objectifValide){
+      this.objectifValide=true;
+      this.contexteValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bndream/autoPortrait'], { fragment: 'objectif' });
+    }else {
+      this.objectifValide=false;
+      this.router.navigate(['/bndream/autoPortrait'], { fragment: 'haut' });
+
+    }
+  }
+  process() {
+    if(!this.processValide){
+      this.processValide=true;
+      this.objectifValide=false;
+      this.contexteValide=false
+      this.router.navigate(['/bndream/autoPortrait'], { fragment: 'process' });
+    }else {
+      this.processValide=false;
+      this.router.navigate(['/bndream/autoPortrait'], { fragment: 'haut' });
+    }
+  }
+
+
 }

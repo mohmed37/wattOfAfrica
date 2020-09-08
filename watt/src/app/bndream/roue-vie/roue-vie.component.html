@@ -9,8 +9,8 @@
       </div>
       <h2  >Contexte</h2 >
       <p>La <b>roue de la vie</b> est la roue de l’équilibre de vie. C’est un moyen efficace et très instructif sur soi pour faire
-        un premier bilan sur les différentes sphères qui composent notre vie. Elle permet de prendre conscience des zones
-        de notre vie qui nous rendent heureux et d’autres qui ne nous satisfont pas. Cette prise de conscience va nous
+        un premier bilan sur les différentes sphères qui composent notre vie.</p><p> Elle permet de prendre conscience des zones
+      de notre vie qui nous rendent heureux et d’autres qui ne nous satisfont pas.</p><p> Cette prise de conscience va nous
         permettre de nous projeter et nous amener à une réflexion sur ce que l’on souhaite <b>VRAIMENT</b> et qui soit <b>JUSTE</b>
         pour soi à la fois au niveau de sa vie professionnelle que de sa vie personnelle.</p>
     </div>
@@ -122,7 +122,7 @@
 
       </div>
       <div *ngIf="roueVie1 &&!roueVie2" >
-        <h2>2ème étape : Votre roue de la vie souhaitée :</h2>
+        <h2 id="rouedelavie2">2ème étape : Votre roue de la vie souhaitée :</h2>
         <p>Imaginons, maintenant que vous ayez le pouvoir d’améliorer certains des domaines de votre roue de la vie.
           Sur cette 2ème roue, pour chacun des domaines, indiquez un score entre 0 et 10 dans chacune des catégories qui
           correspondraient à votre indice de satisfaction que vous aimeriez atteindre pour mieux équilibrer votre vie.</p>
@@ -176,17 +176,17 @@
       </div>
 
       <div class="container editor"  *ngIf="roueVie2">
-        <h2>Autodiagnostic : Réfléchissez et agissez. </h2>
+        <h2 id="Autodiagnostic">Autodiagnostic : Réfléchissez et agissez. </h2>
         <h3>« La différence entre le possible et l'impossible réside dans la détermination » GANDHI</h3>
         <img [src]="guandhi" class="image">
         <P>Face à ce diagnostic, vous pouvez agir pour arriver à un meilleur équilibre dans votre vie :</P>
 
         <div  class="contenu" >
-          <P  *ngIf="!texte1Valide">1 - Ce qu’il faudrait modifier :</P>
+          <P  *ngIf="!texte1Valide">1 - Ce qu’il faudrait <span style="color:#3498db ">modifier</span> :</P>
           <app-ardoise *ngIf="!texte1Valide" (pick)="getTexte1($event)"></app-ardoise>
-          <P *ngIf="!texte2Valide && texte1Valide ">2 - Ce qu’il faudrait arrêter :</P>
+          <P *ngIf="!texte2Valide && texte1Valide ">2 - Ce qu’il faudrait <span style="color: #6441A5">arrêter</span> :</P>
           <app-ardoise *ngIf="!texte2Valide && texte1Valide" (pick)="getTexte2($event)"></app-ardoise>
-          <P *ngIf="!texte3Valide&&texte2Valide">3 - Ce qu’il faudrait prioriser :</P>
+          <P *ngIf="!texte3Valide&&texte2Valide">3 - Ce qu’il faudrait <span style="color: green">prioriser</span> :</P>
           <app-ardoise *ngIf="!texte3Valide&&texte2Valide" (pick)="getTexte3($event)"></app-ardoise>
         </div>
       </div>
@@ -224,9 +224,9 @@
     </div>
   </div>
   <div class="container choix">
-    <div class="item"><p>Ce qu’il faudrait modifier :</p><p [innerHTML]="roueDeLaVie.qcm1" ></p> </div>
-    <div class="item"><p>Ce qu’il faudrait arrêter :</p><p [innerHTML]="roueDeLaVie.qcm2" ></p> </div>
-    <div class="item"><p>Ce qu’il faudrait prioriser :</p><p [innerHTML]="roueDeLaVie.qcm3"></p></div>
+    <div class="item"><p>Ce qu’il faudrait <span style="color:#3498db ">modifier</span> :</p><p [innerHTML]="roueDeLaVie.qcm1" ></p> </div>
+    <div class="item"><p>Ce qu’il faudrait <span style="color: #6441A5">arrêter</span> :</p><p [innerHTML]="roueDeLaVie.qcm2" ></p> </div>
+    <div class="item"><p>Ce qu’il faudrait <span style="color: green">prioriser</span> :</p><p [innerHTML]="roueDeLaVie.qcm3"></p></div>
   </div>
 </div>
 

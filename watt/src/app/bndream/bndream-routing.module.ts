@@ -53,9 +53,9 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'hero',
+        path: 'heros',
         data: {
-          breadcrumb: 'Hero'
+          breadcrumb: 'Heros'
         },
         children: [
           {

@@ -1,16 +1,72 @@
 <h1 class="titre" id="haut">Auto-Portrait</h1>
 <div *ngIf="!autoPortraitValide">
-<div class="container">
-  <div class="item">
-    <h2>Contexte</h2>
+  <div class="container" >
+    <p><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+    <div class="item" *ngIf="contexteValide"  id="contexte">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="contexte()" >
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2  >Contexte</h2 >
+      <p><b>Bienvenue dans Praico et découvrez votre ADN Vocationnel</b></p>
+
+      <p>L’autoportrait permet d’évaluer vos traits de personnalité, aptitudes et comportements grâce à une liste prédéfinie.</p>
+      <p> Le but de cette évaluation est d’une part de se positionner à partir d’une liste de qualificatifs et d’autre part,
+        de mettre à contribution votre entourage (amis, famille, collègues).</p><p> Vous bénéficierez de leurs points de vue et
+        ainsi mettrez en exergue les divergences de perception entre ce que votre entourage pense de vous et la façon
+        dont vous percevez.
+      </p>
+
+    </div>
+
+    <div class="item" *ngIf="objectifValide"  id="objectif">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="objectif()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2  >Objectifs</h2>
+      <ul class="liObjectif">
+        <li>Identifier vos principaux traits de caractères,</li>
+        <li>Cerner vos points forts et vos points faibles,</li>
+        <li>Mieux vous connaître,</li>
+        <li>Identifier les axes d’amélioration en vue de mettre en place un plan d’actions pour améliorer votre
+          quotidien et votre relation à l’autre.</li>
+      </ul>
+    </div>
+    <div class="item"   *ngIf="processValide"  id="process">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="process()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2 >Process</h2>
+
+
+      <h4><b>1ère phase : AUTOPORTRAIT</b></h4>
+      <p>Une liste de qualificatifs vous est proposée. Vous allez sélectionner les cinq traits de personnalité qui vous
+        correspondent le plus.</p>
+      <p>Parmi ces cinq choix, vous choisirez les trois qui vous rendent le ou la plus fier / fière et deux autres qui
+        vous desservent et sur lesquels vous dites qu’il est important que je travaille dessus pour faciliter votre quotidien.</p>
+
+      <h4><b>2ème phase : DECOUVREZ CE QUE LES AUTRES PENSENT DE VOUS </b></h4>
+      <p><b>Vous croyez vous connaître, mais qu’en pensent vos proches ?</b></p>
+      <p>Vous allez demander à trois de vos proches (amis, famille) de citer trois qualités qu’ils apprécient chez vous
+        puis les deux points qui pourraient vous desservir dans votre quotidien ou dans la relation à l’autre.</p>
+      <p><b>Deux moyens d’avoir ces retours d’image :</b></p>
+      <p><b>a/</b> Demandez à trois de vos proches de définir les trois qualités qu’ils apprécient chez vous et les deux
+        qualités qu’ils apprécient un peu moins chez vous.</p>
+      <p><b>b/ Accepter le défi suivant :</b> Passez une soirée entre amis et ><b>profitez de l’occasion pour leur demander
+        ce qu’ils pensent de vous.</b>  Vous pouvez vous aider de la grille de qualificatifs pour les aider dans leur réflexion.</p>
+      <h4><b>3ème phase : EXERCICE DE REFLEXION / PRISE DE HAUTEUR </b></h4>
+      <p>Nous vous proposons une phase d’autoanalyse pour identifier si vos proches ont la même image de vous que vous-même
+        ou s’il y a des divergences de points de vue. C’est l’occasion de prendre du recul sur l’image que chacun renvoie
+        et réfléchir aux axes d’amélioration sur lesquels vous aimeriez travailler et comment.</p>
+
+      <p><a routerLink="/bndream/autoportrait" fragment="haut" >Haut de page</a></p>
+    </div>
   </div>
-  <div class="item">
-    <h2>Objectif</h2>
-  </div>
-  <div class="item">
-    <h2>Résultat</h2>
-  </div>
-</div>
 <div class="bouton">
   <button *ngIf="!testAutoPortrait &&roueDeLaVieValide&&clientConnect&&!autoPortraitValide" mat-raised-button (click)="clicTestAutoPortrait()">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
@@ -18,7 +74,7 @@
   <h2>Qui suis-je vraiment ?</h2>
   <p>Il est temps de mieux vous connaître en identifiant vos qualités ! </p>
   <p  *ngIf="!list1">1ère phase : Selectionnez les 5 traits de personnalité qui vous correspondent le plus.</p>
-  <p *ngIf="list1&&!list2">2ème phase : Passez une soirée entre amis et profitez de l’occasion pour leur demander
+  <p *ngIf="list1&&!list2" id="etape2">2ème phase : Passez une soirée entre amis et profitez de l’occasion pour leur demander
     ce qu’ils pensent de vous.</p>
   <div class="container">
     <div class="item image" *ngIf="!list1">
@@ -81,7 +137,7 @@
       <p [innerHTML]="resultAutoPortrait.reflexion"></p>
     </div>
     <div *ngIf="!autoPortraitValide">
-  <p>Que constatez-vous ? Votre entourage vous perçoit-il comme vous vous percevez ? Avez-vous été surpris par certaines
+  <p id="constat">Que constatez-vous ? Votre entourage vous perçoit-il comme vous vous percevez ? Avez-vous été surpris par certaines
     réponses ?</p>
       <app-ardoise [texte2]="newTexte" (pick)="save($event)"></app-ardoise>
     </div>

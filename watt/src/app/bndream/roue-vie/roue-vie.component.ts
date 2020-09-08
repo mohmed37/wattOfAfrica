@@ -204,7 +204,7 @@ export class RoueVieComponent implements OnInit {
     if (this.formRoueDeLAvie.controls.sante.status=="VALID"&&this.formRoueDeLAvie.controls.personnelle.status=="VALID"
       &&this.formRoueDeLAvie.controls.famille.status=="VALID"&&this.formRoueDeLAvie.controls.social1.status=="VALID"&&
       this.formRoueDeLAvie.controls.professionne.status=="VALID"){
-      this.router.navigate(['/bndream/roue-de-la-vie'], { fragment: 'haut' });
+      this.router.navigate(['/bndream/roue-de-la-vie'], { fragment: 'rouedelavie2' });
       this.roue1Valide=true;
       this.data  = [1,1,1,1,1];
       this.pieChartData[0].data=this.data;
@@ -237,7 +237,7 @@ export class RoueVieComponent implements OnInit {
     if (this.formRoueDeLAvie.controls.sante2.status=="VALID"&&this.formRoueDeLAvie.controls.personnelle2.status=="VALID"
       &&this.formRoueDeLAvie.controls.famille2.status=="VALID"&&this.formRoueDeLAvie.controls.social2.status=="VALID"&&
       this.formRoueDeLAvie.controls.professionne2.status=="VALID"){
-      this.router.navigate(['/bndream/roue-de-la-vie'], { fragment: 'haut' });
+      this.router.navigate(['/bndream/roue-de-la-vie'], { fragment: 'Autodiagnostic' });
       this.roueVie2=true;
       return this.message="";
     }else {
@@ -270,6 +270,8 @@ export class RoueVieComponent implements OnInit {
   }
 
   contexte() {
+    this.objectifValide=false;
+    this.processValide=false;
     if(!this.contexteValide){
       this.contexteValide=true;
       this.router.navigate(['/bndream/roue-de-la-vie'], { fragment: 'contexte' });
@@ -280,6 +282,8 @@ export class RoueVieComponent implements OnInit {
   }
 
   objectif() {
+    this.contexteValide=false;
+    this.processValide=false;
     if(!this.objectifValide){
       this.objectifValide=true;
       this.router.navigate(['/bndream/roue-de-la-vie'], { fragment: 'objectif' });
@@ -290,6 +294,8 @@ export class RoueVieComponent implements OnInit {
     }
   }
   process() {
+    this.contexteValide=false;
+    this.objectifValide=false;
     if(!this.processValide){
       this.processValide=true;
       this.router.navigate(['/bndream/roue-de-la-vie'], { fragment: 'process' });

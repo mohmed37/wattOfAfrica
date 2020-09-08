@@ -3,7 +3,7 @@ package com.tests.proxy;
 
 
 
-import com.microserviceuser.entities.AppUser;
+
 import com.tests.bean.QuestionnairesBean;
 import com.tests.bean.UserBean;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;

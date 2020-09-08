@@ -373,6 +373,8 @@ export class PhotolangageComponent implements OnInit {
   }
 
   contexte() {
+    this.objectifValide=false;
+    this.processValide=false;
     if(!this.contexteValide){
       this.contexteValide=true;
       this.router.navigate(['/bndream/photolangage'], { fragment: 'contexte' });
@@ -383,6 +385,8 @@ export class PhotolangageComponent implements OnInit {
   }
 
   objectif() {
+    this.contexteValide=false;
+    this.processValide=false;
     if(!this.objectifValide){
       this.objectifValide=true;
       this.router.navigate(['/bndream/photolangage'], { fragment: 'objectif' });
@@ -393,6 +397,8 @@ export class PhotolangageComponent implements OnInit {
     }
   }
   process() {
+    this.contexteValide=false;
+    this.objectifValide=false;
     if(!this.processValide){
       this.processValide=true;
       this.router.navigate(['/bndream/photolangage'], { fragment: 'process' });

@@ -1,7 +1,6 @@
 package com.tests.entity.ndream;
 
-import com.microserviceuser.entities.AppUser;
-import com.tests.bean.UserBean;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

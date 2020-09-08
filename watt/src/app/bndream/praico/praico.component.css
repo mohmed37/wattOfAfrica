@@ -16,6 +16,8 @@
   border: solid 1px #3498db;
   padding: 20px;
   border-radius: 10px;
+  width: 90%;
+
 }
 
 .bouton{
@@ -38,9 +40,11 @@ button{
   background-color: #dfd5ce;
   width: 600px;
   margin-top: 20px;
+  margin-left: 50px;
+
 }
 
-.item li{
+.item .question,.reponse{
   border: 1px solid #3498db;
   text-align: center;
   list-style-type: none;
@@ -70,7 +74,7 @@ button{
   font-size: 30px;
   float: left;
   padding-top: 15px;
-  margin-left: 10px;
+  margin-left: 50px;
   margin-bottom: 10px;
   margin-right: 10px;
 }
@@ -99,7 +103,6 @@ h2{
   margin-top: 40px;
   font-family: 'Poiret One', cursive;
   font-size: 30px;
-
 }
 
 p{
@@ -115,9 +118,8 @@ p{
 }
 h3{
   color:  darkviolet;
-  margin-top: 40px;
   font-family: 'Poiret One', cursive;
-  font-size: 30px;
+  font-size: 20px;
   margin-left: 50px;
 }
 .photo{
@@ -130,9 +132,58 @@ h4{
   margin-left: 50px;
   font-family: 'Poiret One', cursive;
   font-size: 20px;
+  margin-top: 30px;
 }
 ul{
   list-style-type: none;
   font-family: 'Poiret One', cursive;
   font-size: 20px;
+}
+.lettrePraico{
+  color:  #3498db;
+}
+ol{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  line-height: 2em;
+}
+h5{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  border: 1px solid black;
+  padding: 10px;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+.testSouligne{
+  text-decoration: underline darkviolet;
+  color: darkviolet;
+}
+.image1{
+  float: right;
+}
+.dimentionRefexion{
+  text-decoration: underline green;
+  color: green;
+}
+.dimention{
+  margin-top: 50px;
+}
+.dimentionInvention{
+  text-decoration: underline yellow;
+  color: yellow;
+}
+.dimentionCooperation{
+  text-decoration: underline darkviolet;
+  color: darkviolet;
+}
+
+.dimentionAction{
+  text-decoration: underline gray;
+  color:gray;
+}
+
+.dimentionOrganisation{
+  text-decoration: underline brown;
+  color:brown;
 }

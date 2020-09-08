@@ -82,7 +82,7 @@ p{
   width: 20%;
   height: auto;
 }
-.item li{
+.select li{
   border: 1px solid #3498db;
   text-align: center;
   list-style-type: none;
@@ -93,10 +93,22 @@ p{
   cursor: pointer;
   border-radius: 20px;
 }
-.item li:hover{
+.resultat li,.selection li,.select li{
+  border: 1px solid #3498db;
+  text-align: center;
+  list-style-type: none;
+  margin: 10px;
+  padding: 10px;
+  font-size: 20px;
+  font-family: 'Poiret One', cursive;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.resultat li:hover,.select li:hover,.selection li:hover{
   background-color: #3498db;
   color: white;
 }
+
 .item .valide{
   margin-top: 30px;
   background-color: green;
@@ -132,4 +144,9 @@ float: left;
   color: #3498db;
   font-size: 20px;
   font-family: 'Poiret One', cursive;
+}
+.liObjectif li{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  line-height: 2em;
 }
