@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="profilu@localhost" uuid="d974e24d-f403-4673-86c7-98f2c7eb18c7">
+    <data-source source="LOCAL" name="wattsucces" uuid="edfdd4cb-2e23-403f-97bc-ed9b99cddf72">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/profilu</jdbc-url>
+      <jdbc-url>jdbc:postgresql://212.47.254.13:5432/postgres</jdbc-url>
     </data-source>
   </component>
 </project>
