@@ -48,7 +48,7 @@
 
 
 
-<div class="container" >
+<!--<div class="container" >
 <div class="col-md-6 col-sm-9 col col-xs-12">
 <div class="panel panel-default">
   <div class="panel-heading">Nouveau client</div>
@@ -86,8 +86,9 @@
       <button class="btn btn-success" type="submit">Enregistrer</button>
       <button  style="float: right;" class="btn btn-success" (click)="ofNewClientAfficher()">Annuler</button>
     </form>
-    </div>
- <!-- <form  (ngSubmit)="onFormSubmit()">
+    </div>-->
+<div class="container from">
+  <form  (ngSubmit)="onFormSubmit()">
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Entrer votre nom</mat-label>
@@ -98,7 +99,7 @@
     </p>
     <p>
       <mat-form-field appearance="outline">
-        <mat-label>Entrer votre nom</mat-label>
+        <mat-label>Entrer votre Prénom</mat-label>
         <input matInput [formControl]="prenom" >
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>Prénom</mat-hint>
@@ -113,46 +114,51 @@
         </button>
         <mat-hint>Mot de passe</mat-hint>
       </mat-form-field>
+
     </p>
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Entrer à nouveau votre mot de passe</mat-label>
+
         <input matInput [formControl]="matchingPassword"   [type]="hide2 ? 'password' : 'text'" >
         <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
           <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         <mat-hint>Confirmation du mot de passe</mat-hint>
-        <mat-label *ngIf="passError">{{messagePass}}</mat-label>
       </mat-form-field>
-
+      <span >{{passError}}</span>
     </p>
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Entrer votre adresse mail</mat-label>
         <input matInput [formControl]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" >
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Mail</mat-hint>
+        <mat-icon matSuffix>alternate_email</mat-icon>
+        <mat-hint >Mail</mat-hint>
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
+      <span style="color: red">{{message}}</span>
     </p>
+
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Entrer votre numéro de téléphone</mat-label>
-        <input matInput [formControl]="phone" >
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <input matInput [formControl]="phone"  type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))
+        (-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" >
+        <mat-icon matSuffix>phone</mat-icon>
         <mat-hint>Téléphone</mat-hint>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Entrer votre date de naissance</mat-label>
-        <input matInput [formControl]="date" >
+        <input matInput [formControl]="date" type="date">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>Date de naissance</mat-hint>
       </mat-form-field>
     </p>
     <button class="btn btn-success" type="submit">Valider</button>
-  </form>-->
+  </form>
+</div>
   <!--<div class="panel-body" *ngIf="mode==2">
   <div class="form-group">
  <label>Nom: </label>
@@ -169,8 +175,9 @@
   </div>
     <button class="btn btn-success" (click)="onNewClient()">Nouveau Client</button>
 
-  </div>
-  </div>
+  </div>-->
+
+ <!-- </div>
 </div>
 </div>
 
@@ -196,8 +203,8 @@
           <input class="form-control" type="number" name="phone" ngModel [(ngModel)]="currentClient.phone">
         </div>
         <button class="btn btn-success" type="submit" (click)="modifOk()">Modification</button>
-      </form>-->
+      </form>
     </div>
   </div>
 </div>
-
+-->

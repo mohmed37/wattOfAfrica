@@ -10,12 +10,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+
 }
 .bndream{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+
 }
 
 .item{
@@ -23,6 +25,14 @@
   padding: 20px;
   border-radius: 10px;
 }
+
+.bndream .item{
+  border: solid 1px #3498db;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+}
+
 
 .bouton{
   display: flex;
@@ -140,3 +150,28 @@ a.titreProjet:hover{
 .numroCours{
   background-color: orange;
 }
+
+.bndream p{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;}
+
+.bndream h2{
+  text-align: center;
+  color:  #3498db;
+  margin-top: 40px;
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
+}
+
+.liObjectif li{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  line-height: 2em;
+}
+.bndream h4{
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;}
+

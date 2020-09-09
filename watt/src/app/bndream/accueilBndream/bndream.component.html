@@ -1,15 +1,76 @@
 
 <h1 class="titre" id="haut">B' n Dream</h1>
-<div class="bndream">
-  <div class="item">
-    <h2>Contexte</h2>
-  </div>
-  <div class="item">
-    <h2>Objectif</h2>
-  </div>
-  <div class="item">
-    <h2>Résultat</h2>
-  </div>
+
+  <div class="bndream" >
+    <p><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+    <div class="item" *ngIf="contexteValide"  id="contexte">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="contexte()" >
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2  >Contexte</h2 >
+      <p><b>IMAGINEZ VOTRE FUTUR</b></p>
+
+      <p>Choisissez un METIER QUE VOUS AIMEZ et vous n’aurez jamais l’impression de travailler !</p>
+      <p>Vous vous sentez perdu dans votre scolarité, votre emploi ne vous satisfait plus et les perspectives que l’on
+        vous propose ne vous réjouissent pas du tout.</p>
+      <p>Ça c’était hier – Aujourd’hui est un autre jour avec des solutions à porter de celui ou celle qui <b>ose vivre sa vie.</b></p>
+      <p>Nous allons vous accompagner en parcourant trois étapes : <b>B’n Dream, B’n Beleave et Go’n Become.</b></p>
+      <p><b>Alors commençons par le commencement !</b></p>
+      <p><b>B’n DREAM :</b></p>
+      <p>Cette première étape de votre bilan va vous permettre de découvrir votre ADN vocationnel et mieux vous connaitre
+        pour mieux vous reconnecter à qui vous êtes.</p>
+      <p><b>Nous avons une vie alors autant la vivre pleinement !</b></p>
+      <p>Nous vous invitons grâce à B’N Dream à vous découvrir : vos priorités, vos sphères de vie, vos qualités,
+        vos aspirations, vos centres d’intérêts, vos valeurs pour révéler votre potentiel et ainsi entrevoir les métiers
+        qui vous correspondent.</p>
+      <p>Cette étape vous ouvre tous les champs des possibles. Alors ne vous mettez pas de freins et
+        <b>goûter au plaisir de l’infiniment possible.</b></p>
+    </div>
+
+    <div class="item" *ngIf="objectifValide"  id="objectif">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="objectif()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2 >Objectifs</h2>
+      <ul class="liObjectif">
+        <li>Mieux connaître ses potentialités, ses atouts, ses aspirations</li>
+        <li>Se reconnecter à ses besoins au niveau de sa sphère privée, sociale et professionnelle</li>
+        <li>Identifier les valeurs qui vous animent</li>
+        <li>Découvrir ses intérêts professionnels et les métiers qui ressortent</li>
+      </ul>
+    </div>
+
+    <div class="item"   *ngIf="processValide"  id="process">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="process()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2 >Process</h2>
+
+      <p>Durant ce premier parcours, vous allez vous découvrir en passant par 5 étapes.</p>
+
+      <p><b>1er étape : Photolangage</b> pour faire un point sur sa situation actuelle et sa situation désirée au travers
+        d’une cinquantaine de photographies.</p>
+
+      <p><b>2ème étape : La roue de la vie</b>va vous permettre d’évaluer vos 5 domaines de vie et identifier quelle
+        est votre vision de votre avenir. </p>
+
+      <p><b>3ème étape : L’autoportrait</b>va vous aider à identifier vos qualités et vos défauts.</p>
+
+      <p><b>4ème étape : Le test PRAICO</b>va vous permettre de découvrir votre ADN Vocationnel, vos aspirations
+        professionnelles et ainsi vous aider à identifier les métiers qui correspondent à votre profil d’intérêt. </p>
+
+      <p><b>5ème étape : Quel.le Héros / Héroïne êtes-vous ?</b>Vous allez découvrir les valeurs qui vous animent,
+        celles qui vous donnent envies de vous lever tous les matins.</p>
+
+      <h4><b>Ces 5 étapes vous ont permis de mieux vous connaître et d’identifier des pistes de métiers.</b></h4>
+      <h4><b>Cette phase est incontournable avant de passer à la 2ème étape B’N Beleave !</b></h4>
+    </div>
 </div>
 
 <div *ngIf="questionnaires" >

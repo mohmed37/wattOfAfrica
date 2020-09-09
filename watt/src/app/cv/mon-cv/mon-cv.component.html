@@ -1,6 +1,10 @@
 <div class="container">
   <button type="button" class="btn btn-success" [style.backgroundColor]="colorBotton1"  (click)="changeColor()">new color</button>
   <button type="button" class="btn btn-success" [style.backgroundColor]="colorBotton2"   (click)="changeColor2()">new color</button>
+  <!--<div>
+    <input type = "button"  value = "CPTURE"  (click) = "captureScreen ()" />
+  </div>-->
+  <div id="pdf">
   <P>{{nomClient2?.nom}}</P>
   <div class="row" >
     <div class="competences col-lg-4" [style.backgroundColor]="colorNew" [style.color]="colorNewText" >
@@ -46,7 +50,7 @@
         <a  *ngIf="!userConnectClient" (click)="modif('nom')" title="Cliquez ici pour modifier"> <h1 [style.color]="colorNewTextNom" [innerHTML]="currentCv.nom" ></h1></a>
         <div *ngIf="userConnectClient"> <h1 [style.color]="colorNewTextNom" >{{nomClient}}&nbsp;{{premomClient}}</h1></div>
 
-        <a *ngIf="!userConnectClient" (click)="modif('metier')" title="Cliquez ici pour modifier" ><h3 [style.color]="colorNewTextMetier"  [innerHTML]="currentCv.metier" ></h3></a>
+        <a (click)="modif('metier')" title="Cliquez ici pour modifier" ><h3 [style.color]="colorNewTextMetier"  [innerHTML]="currentCv.metier" ></h3></a>
 
       </div>
 
@@ -66,6 +70,8 @@
 
     <div class="basPage col-lg-12" [style.backgroundColor]="colorNew2"></div>
 </div>
+</div>
+  <div class="elementH"></div>
 </div>
 
 

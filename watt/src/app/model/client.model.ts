@@ -4,5 +4,8 @@ export class Client {
   public nom:string;
   public email:string;
   public phone:string;
+  public password:string;
+  public matchingPassword:string;
+  public date:Date;
   public roles;
 }

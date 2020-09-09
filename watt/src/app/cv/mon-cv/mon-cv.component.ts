@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {CvModel} from "../../model/cv.model";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
@@ -8,6 +8,11 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {ListMetierClientModel} from "../../model/listMetierClient.model";
 import {Bnbecome} from "../../services/bnbecome.service";
 import {FicheMetier} from "../../model/ficheMetier.model";
+import * as jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
+
+
 
 @Component({
   selector: 'app-mon-cv',
@@ -15,7 +20,7 @@ import {FicheMetier} from "../../model/ficheMetier.model";
   styleUrls: ['./mon-cv.component.css']
 })
 export class MonCvComponent implements OnInit {
-public currentCv:CvModel=new CvModel("LAURA MONTREUIL"," ASSISTANTE DE DIRECTION","<h4>Accueil et communication :</h4>"+
+public currentCv:CvModel=new CvModel("LAURA MONTREUIL","ASSISTANTE DE DIRECTION","<h4>Accueil et communication :</h4>"+
   "<ul><li>Accueil téléphonique et physique de la clientèle</li>"+
   "<li>Traiter l'information et orienter les clients vers le bon interlocuteur</li>" +
   "<li>Relance client et gestion de la relation SAV</li>"+
@@ -207,6 +212,7 @@ selectedFile=null;
   public colorNewText:string="#1f46c1";
   public colorNewTextNom:string= "pink";
   public colorNewTextMetier:string= "#ffffff";
+  private xepOnline: any;
 
   onFileSelected(event) {
     console.log(event);
@@ -322,4 +328,14 @@ selectedFile=null;
   }
 
 
+  captureScreen() {
+ /*   let element = document.getElementById('pdf');
+    html2canvas(element).then((canvas)=>{
+      console.log(canvas);
+      let imgData = canvas.toDataURL('image/png');
+      let doc = new jsPDF();
+      doc.addImage(imgData,0,0,208,500);
+      doc.save("cv.pdf");
+    })*/
+  }
 }

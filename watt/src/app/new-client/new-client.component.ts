@@ -28,7 +28,8 @@ export class NewClientComponent implements OnInit {
   public userForm:FormGroup;
   hide = true;
   hide2 = true;
-  public passError: boolean;
+  public passError: string='';
+  public newClient:Client=new Client();
 
   constructor(private clientService:ClientService, private router:Router,private activatedRoute:ActivatedRoute,
               private userConnect:AuthenticationService) {
@@ -134,7 +135,7 @@ click(){
           this.message="Cette adresse mail existe déjà!"
           return null;
         }
-        console.log(res);
+
         this.currentClient=res;
         this.router.navigateByUrl("/login");
         this.mode=2;
@@ -175,14 +176,33 @@ click(){
   }
 
   onFormSubmit() {
-
+    this.passError="";
+    this.message="";
     if (this.password.value!=this.matchingPassword.value){
-      this.messagePass="le mot de passe n'est identique"
-      this.passError=true;
+      this.passError="Les mots de passe saisis ne sont pas identiques.";
       console.log(this.passError);
-
+      return null;
     }
 
-
+      this.newClient.prenom=this.prenom.value;
+      this.newClient.nom=this.nom.value;
+      this.newClient.email=this.email.value;
+      this.newClient.phone=this.phone.value;
+      this.newClient.password=this.password.value;
+      this.newClient.matchingPassword=this.matchingPassword.value;
+      this.newClient.date=this.date.value;
+      this.clientService.saveResource(this.clientService.hostUser+"/saveUser",this.newClient)
+        .subscribe(res=>{
+          console.log(res);
+          if(res==null){
+            this.message="Cette adresse mail existe déjà!";
+            return null;
+          }
+          this.currentClient=res;
+          this.router.navigateByUrl("/login");
+          this.mode=2;
+        },error => {
+          console.log(error)
+        });
   }
 }

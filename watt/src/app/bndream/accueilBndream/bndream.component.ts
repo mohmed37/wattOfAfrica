@@ -28,6 +28,9 @@ export class BndreamComponent implements OnInit {
   public progression:number=0;
   public fragment: string;
   public ListQuestionnaire:any[];
+  public contexteValide:boolean=false;
+  public objectifValide: boolean=false;
+  public processValide: boolean=false;
   constructor(public authService:AuthenticationService,private clientService:ClientService
               ,private bndreamService:BndreamService,private router:Router,private route: ActivatedRoute
               , private userConnect:AuthenticationService) {
@@ -103,6 +106,43 @@ export class BndreamComponent implements OnInit {
       }
     } catch (e) { }
   }
+
+  contexte() {
+    if(!this.contexteValide){
+      this.contexteValide=true;
+      this.objectifValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bndream'], { fragment: 'contexte' });
+    }else {
+      this.contexteValide=false;
+      this.router.navigate(['/bndream'], { fragment: 'haut' });
+    }
+  }
+
+  objectif() {
+    if(!this.objectifValide){
+      this.objectifValide=true;
+      this.contexteValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bndream'], { fragment: 'objectif' });
+    }else {
+      this.objectifValide=false;
+      this.router.navigate(['/bndream'], { fragment: 'haut' });
+
+    }
+  }
+  process() {
+    if(!this.processValide){
+      this.processValide=true;
+      this.objectifValide=false;
+      this.contexteValide=false;
+      this.router.navigate(['/bndream'], { fragment: 'process' });
+    }else {
+      this.processValide=false;
+      this.router.navigate(['/bndream'], { fragment: 'haut' });
+    }
+  }
+
 
 
 

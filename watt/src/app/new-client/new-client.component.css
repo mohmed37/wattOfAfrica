@@ -1,6 +1,24 @@
 clickable{
   cursor: pointer;
 }
-.message,.messagePass{
-  color: #e52d27;
+
+span{
+  color: red;
+  margin-left: 10px;
+}
+mat-form-field{
+  width: 50%;
+  margin-left: 20%;
+}
+.from{
+  margin-top: 50px;
+}
+
+mat-icon, mat-hint{
+  color:#3498db;
+  font-size: 15px;
+}
+button{
+  margin-left: 20%;
+  margin-top: 10px;
 }

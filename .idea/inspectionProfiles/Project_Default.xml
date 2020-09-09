@@ -37,7 +37,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="19">
+          <list size="20">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -57,11 +57,13 @@
             <item index="16" class="java.lang.String" itemvalue="mdb-breadcrumb-item" />
             <item index="17" class="java.lang.String" itemvalue="igx-carousel" />
             <item index="18" class="java.lang.String" itemvalue="igx-slide" />
+            <item index="19" class="java.lang.String" itemvalue="example-tel-input" />
           </list>
         </value>
       </option>
       <option name="myCustomValuesEnabled" value="true" />
     </inspection_tool>
+    <inspection_tool class="TypeScriptConfig" enabled="true" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="TypeScriptLibrary" enabled="true" level="ERROR" enabled_by_default="false" />
   </profile>
 </component>
