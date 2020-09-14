@@ -13,18 +13,22 @@ import {Questionnaire2Model} from "../model/questionnaire2.model";
 import {Questionnaire4Model} from "../model/questionnaire4.model";
 import {ListHeroModel} from "../model/listHero.model";
 import {ResultatHeroModel} from "../model/resultatHero.model";
+import {FicheMetierService} from "./fiche-metier.service";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BndreamService {
   @Input() private allPhotoFicheMetier:any;
-  public hostTest: string = "http://localhost:9004/microservice-tests";
+  public hostTest: string;
   base64Data: any;
   retrieveResonse1: any;
   public resultroueDeLaVie: RoueDeLaVieModel;
 
-  constructor(private htttpClient: HttpClient,private userConnect:AuthenticationService) { }
+  constructor(private htttpClient: HttpClient,private userConnect:AuthenticationService,private hostTestService:ApiService ) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
+  }
 
 
 public getPhoto() {

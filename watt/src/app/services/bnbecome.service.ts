@@ -8,14 +8,16 @@ import {ResultatRaModel} from "../model/resultatRa.model";
 import {RestitutionProfilUModel} from "../model/restitutionProfilU.model";
 import {ListCompetencesModel} from "../model/listCompetences.model";
 import {ListCompetencesClientModel} from "../model/listCompetencesClient.model";
+import {FicheMetierService} from "./fiche-metier.service";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class Bnbecome{
-  public hostTest: string = "http://localhost:9004/microservice-tests";
-  constructor(private htttpClient: HttpClient,private userConnect:AuthenticationService) {
-
+  public hostTest: string;
+  constructor(private htttpClient: HttpClient,private userConnect:AuthenticationService,private hostTestService:ApiService) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
   }
   public saveListMetierClient(url,data):Observable<ListMetierClientModel>{
     return this.htttpClient.post<ListMetierClientModel>(url,data.valueOf());

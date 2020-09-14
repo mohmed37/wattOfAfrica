@@ -11,6 +11,7 @@ import {any} from "codelyzer/util/function";
 import {unique} from "@progress/kendo-angular-editor/dist/es2015/util";
 import {Bnbecome} from "../../services/bnbecome.service";
 import {ListMetierClientModel} from "../../model/listMetierClient.model";
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-dico-metiers',
@@ -57,7 +58,7 @@ export class DicoMetiersComponent implements OnInit {
   public selectFicheMetierValide: boolean;
   colorNewText: string="#a59b95";
   colorNewText2:string="#c12b78";
-  public hostTest: string = "http://localhost:9004/microservice-tests";
+  public hostTest: string;
   message: string;
   public profilUvalide: boolean;
   public heroValide: boolean;
@@ -65,8 +66,10 @@ export class DicoMetiersComponent implements OnInit {
   public clientConnect:boolean;
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute
-    ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome) {
+    ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome,private hostTestService:ApiService ) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
+
     this.userId=this.userConnect.userAuthenticated.num;
       this.clientConnect=this.userConnect.userAuthenticated;
     }

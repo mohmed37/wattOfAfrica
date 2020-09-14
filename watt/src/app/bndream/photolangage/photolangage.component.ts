@@ -12,6 +12,8 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {Client} from "../../model/client.model";
 import {Observable} from "rxjs";
 import {TexteModel} from "../../model/texte.model";
+import {FicheMetierService} from "../../services/fiche-metier.service";
+import {ApiService} from "../../services/api.service";
 @Component({
   selector: 'app-photolangage',
   templateUrl: './photolangage.component.html',
@@ -19,7 +21,7 @@ import {TexteModel} from "../../model/texte.model";
 })
 export class PhotolangageComponent implements OnInit {
 
-  public hostTest: string = "http://localhost:9004/microservice-tests";
+  public hostTest: string;
   public retrieveResonseAll: any;
   public dedutTestPhotolangage: boolean=false;
   public currentClient:any;
@@ -28,7 +30,8 @@ export class PhotolangageComponent implements OnInit {
   public ListQuestionnaire:any[];
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient
-              ,private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
+              ,private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute,private hostTestService:ApiService) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.userAuthenticated;
     this.userId=this.userConnect.userAuthenticated.num;}

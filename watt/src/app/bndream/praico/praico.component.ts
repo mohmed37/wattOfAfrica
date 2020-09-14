@@ -14,6 +14,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {ChartDataSets, ChartOptions, ChartType, RadialChartOptions, RadialLinearScale} from "chart.js";
 import {Label} from "ng2-charts";
+import {FicheMetierService} from "../../services/fiche-metier.service";
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-praico',
@@ -34,7 +36,7 @@ export class PraicoComponent implements OnInit {
   public qcm4Valide: boolean=false;
   public questionnaires:QuestionnairesModel;
   public resultatPraico=new ResultatPraicoModel(0,0,0,0,0,0);
-  public hostTest: string = "http://localhost:9004/microservice-tests";
+  public hostTest: string;
   public qcm1Id: number=1;
   public qcmRun: boolean=false;
   public message: string;
@@ -71,7 +73,8 @@ export class PraicoComponent implements OnInit {
 
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
-              private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
+              private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute,private hostTestService:ApiService ) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.userAuthenticated;
     this.userId=this.userConnect.userAuthenticated.num;}

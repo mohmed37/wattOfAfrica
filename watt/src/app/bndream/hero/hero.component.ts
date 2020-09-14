@@ -9,6 +9,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ListHeroModel} from "../../model/listHero.model";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {ResultatHeroModel} from "../../model/resultatHero.model";
+import {FicheMetierService} from "../../services/fiche-metier.service";
+import {ApiService} from "../../services/api.service";
 
 
 
@@ -28,7 +30,7 @@ export class HeroComponent implements OnInit {
   formHero: FormGroup;
   listValeurClient: string[] = [];
   public resultatHero=new ResultatHeroModel();
-  public hostTest: string = "http://localhost:9004/microservice-tests";
+  public hostTest: string;
   message: string;
   public hero: boolean=false;
   public fragment: string;
@@ -41,7 +43,8 @@ export class HeroComponent implements OnInit {
 
 
   constructor(private bndreamService: BndreamService, private router: Router, private httpClient: HttpClient,
-              private serviceClient: ClientService, private userConnect: AuthenticationService,private route: ActivatedRoute) {
+              private serviceClient: ClientService, private userConnect: AuthenticationService,private route: ActivatedRoute,private hostTestService:ApiService) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.userAuthenticated;
     this.userId = this.userConnect.userAuthenticated.num;}

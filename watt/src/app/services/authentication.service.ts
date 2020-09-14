@@ -3,6 +3,8 @@ import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Client} from "../model/client.model";
+import {FicheMetierService} from "./fiche-metier.service";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +12,15 @@ import {Client} from "../model/client.model";
 export class AuthenticationService {
 
 
-  constructor(private htttpClient: HttpClient) { }
+  constructor(private htttpClient: HttpClient,private hostTestService:ApiService ) {
+    this.hostUser=hostTestService.USERS_MICRO_APP;
+
+  }
 
   public isAuthenticated:boolean;
   public userAuthenticated;
   public token:string;
-  public hostUser: string = "http://localhost:9004/microservice-utilisateur";
+  public hostUser: string;
   public currentClient=new Client();
   public isUserAdmin:boolean=false;
   public isUserUser: boolean=false;

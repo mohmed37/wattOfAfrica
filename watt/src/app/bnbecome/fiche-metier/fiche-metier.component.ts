@@ -5,6 +5,8 @@ import {BndreamService} from "../../services/bndream.service";
 import {TexteModel} from "../../model/texte.model";
 import {FicheMetierService} from "../../services/fiche-metier.service";
 import {FicheMetier} from "../../model/ficheMetier.model";
+import {Bnbecome} from "../../services/bnbecome.service";
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-fiche-metier',
@@ -12,7 +14,7 @@ import {FicheMetier} from "../../model/ficheMetier.model";
   styleUrls: ['./fiche-metier.component.css']
 })
 export class FicheMetierComponent implements OnInit {
-  public hostTest: string = "http://localhost:9004/microservice-tests";
+  public hostTest: string;
   imageId: number;
   retrieveResonse: any;
   base64Data: any;
@@ -32,7 +34,8 @@ export class FicheMetierComponent implements OnInit {
   public newTexte=new TexteModel();
   public ListQuestionnaire:any[];
 
-  constructor(private httpClient: HttpClient, private router: Router,private serviceBnDream:BndreamService,private ficheMetierService:FicheMetierService) {
+  constructor(private httpClient: HttpClient, private router: Router,private serviceBnDream:BndreamService,private ficheMetierService:FicheMetierService,private hostTestService:ApiService ) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
   }
   @Output() public pick:EventEmitter<number>=new EventEmitter<number>();
   public idCarrousel:number=1;

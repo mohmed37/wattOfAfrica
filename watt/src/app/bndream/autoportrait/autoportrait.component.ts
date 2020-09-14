@@ -10,6 +10,8 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {ChangeEvent, CKEditor5} from "@ckeditor/ckeditor5-angular";
 import {QuestionnairesModel} from "../../model/questionnaires.model";
 import {TexteModel} from "../../model/texte.model";
+import {FicheMetierService} from "../../services/fiche-metier.service";
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-autoportrait',
@@ -17,7 +19,7 @@ import {TexteModel} from "../../model/texte.model";
   styleUrls: ['./autoportrait.component.css']
 })
 export class AutoportraitComponent implements OnInit {
-  public hostTest: string = "http://localhost:9004/microservice-tests";
+  public hostTest: string;
   traitId1: number=1;
   traitId2: number=2;
   traitId3: number=3;
@@ -71,7 +73,8 @@ export class AutoportraitComponent implements OnInit {
 
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
-              private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
+              private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute,private hostTestService:ApiService) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.userAuthenticated;
     this.userId=this.userConnect.userAuthenticated.num;}

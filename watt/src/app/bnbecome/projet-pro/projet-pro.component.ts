@@ -9,6 +9,7 @@ import {MatCheckboxChange} from "@angular/material/checkbox";
 import {AuthenticationService} from "../../services/authentication.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BndreamService} from "../../services/bndream.service";
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-projet-pro',
@@ -22,7 +23,7 @@ export class ProjetProComponent implements OnInit {
   public metierValide:any[]=[];
   public metier:any[]=[];
   public ficheClientNew:ListMetierClientModel;
-  public hostTest: string = "http://localhost:9004/microservice-tests";
+  public hostTest: string;;
   public message: string;
   retrieveResonse: any;
   base64Data: any;
@@ -42,7 +43,8 @@ export class ProjetProComponent implements OnInit {
   public clientConnect:boolean;
 
   constructor(private serviceClient:ClientService,private fichemettierService:FicheMetierService,
-              private bnbecome:Bnbecome, private router:Router, private userConnect:AuthenticationService) {
+              private bnbecome:Bnbecome, private router:Router, private userConnect:AuthenticationService,private hostTestService:ApiService) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
       this.clientConnect=this.userConnect.userAuthenticated;
       this.userId=this.userConnect.userAuthenticated.num;}

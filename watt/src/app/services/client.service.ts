@@ -6,6 +6,7 @@ import {tap} from "rxjs/operators";
 import {JwtTokenModel} from "../model/jwt-token.model";
 import {AuthenticationService} from "./authentication.service";
 import {QuestionnairesModel} from "../model/questionnaires.model";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,11 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   nom:Client;
 
 
-  public hostUser: string = "http://localhost:9004/microservice-utilisateur";
+  public hostUser: string;
   public  modeClient:number=0;
 
-  constructor(private htttpClient: HttpClient, private userConnect:AuthenticationService) {
+  constructor(private htttpClient: HttpClient, private userConnect:AuthenticationService,private hostTestService:ApiService) {
+    this.hostUser=hostTestService.USERS_MICRO_APP;
     this.initToken();
   }
 

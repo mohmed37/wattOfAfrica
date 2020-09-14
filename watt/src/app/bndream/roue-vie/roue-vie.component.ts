@@ -11,6 +11,8 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {BndreamService} from "../../services/bndream.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {FicheMetierService} from "../../services/fiche-metier.service";
+import {ApiService} from "../../services/api.service";
 
 
 
@@ -25,7 +27,8 @@ export class RoueVieComponent implements OnInit {
   public clientConnect:boolean;
 
   constructor(private formBuilder: FormBuilder, private router:Router,private clientService:ClientService,
-              private userConnect:AuthenticationService,private bndreamService:BndreamService,private route: ActivatedRoute) {
+              private userConnect:AuthenticationService,private bndreamService:BndreamService,private route: ActivatedRoute,private hostTestService:ApiService) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.userAuthenticated;
     this.userId=this.userConnect.userAuthenticated.num;}
@@ -59,7 +62,7 @@ export class RoueVieComponent implements OnInit {
   public modifier: boolean=false;
   public arret:  boolean=false;
   public   prioriser: boolean=false;
-  public hostTest: string = "http://localhost:9004/microservice-tests";
+  public hostTest: string;
   public fragment: string;
   public texte1Valide:boolean=false;
   public texte2Valide:boolean=false;

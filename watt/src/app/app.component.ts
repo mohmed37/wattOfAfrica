@@ -3,6 +3,7 @@ import {ClientService} from "./services/client.service";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./services/authentication.service";
 import {formatDate} from "@angular/common";
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import {formatDate} from "@angular/common";
 })
 export class AppComponent implements OnInit{
   title = 'watt of Africa';
+  env = environment;
 
   constructor(private clientService:ClientService, private router:Router,public authService:AuthenticationService) { }
 @HostListener('click')

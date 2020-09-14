@@ -5,15 +5,18 @@ import {Observable} from "rxjs";
 import {QuestionnairesModel} from "../model/questionnaires.model";
 import {RoueDeLaVieModel} from "../model/roueDeLaVie.model";
 import {FicheMetier} from "../model/ficheMetier.model";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FicheMetierService {
 
-  constructor(private htttpClient: HttpClient,private userConnect:AuthenticationService) { }
+  constructor(private htttpClient: HttpClient,private userConnect:AuthenticationService,private hostTestService:ApiService) {
+    this.hostTest=hostTestService.TEST_MICRO_APP;
+  }
 
-  public hostTest: string = "http://localhost:9004/microservice-tests";
+  public hostTest: string;
 
   ficheMetier(id:number):Observable<FicheMetier>{
     return this.htttpClient.get<FicheMetier>(this.hostTest + "/getFicheMetier/"+id);
