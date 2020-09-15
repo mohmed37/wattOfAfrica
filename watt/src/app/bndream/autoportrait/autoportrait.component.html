@@ -23,10 +23,7 @@
         dont vous percevez.
       </p>
     </div>
-    <div class="label" *ngIf="objectifValide">
-      <img [src]="objectifImg" class="imgcontexte">
-      <h2>Objectifs</h2>
-    </div>
+    
 
     <div class="item" *ngIf="objectifValide"  id="objectif">
       <div class="button-container">
@@ -34,6 +31,7 @@
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
+      <h2  >Objectifs</h2>
       <ul class="liObjectif">
         <li>Identifier vos principaux traits de caractères,</li>
         <li>Cerner vos points forts et vos points faibles,</li>
@@ -42,16 +40,15 @@
           quotidien et votre relation à l’autre.</li>
       </ul>
     </div>
-    <div class="label" *ngIf="processValide">
-      <img [src]="processImg" class="imgcontexte">
-      <h2>Process</h2>
-    </div>
     <div class="item"   *ngIf="processValide"  id="process">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
+      <h2 >Process</h2>
+
+
       <h4><b>1ère phase : AUTOPORTRAIT</b></h4>
       <p>Une liste de qualificatifs vous est proposée. Vous allez sélectionner les cinq traits de personnalité qui vous
         correspondent le plus.</p>
