@@ -1,15 +1,18 @@
 
 <h1 class="titre" id="haut">B' n Dream</h1>
-
+<p class="selection"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
   <div class="bndream" >
-    <p><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+   <div class="label" *ngIf="contexteValide">
+    <img [src]="contexteImg" class="imgcontexte">
+    <h2>Contexte</h2>
+  </div>
+
     <div class="item" *ngIf="contexteValide"  id="contexte">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2  >Contexte</h2 >
       <p><b>IMAGINEZ VOTRE FUTUR</b></p>
 
       <p>Choisissez un METIER QUE VOUS AIMEZ et vous n’aurez jamais l’impression de travailler !</p>
@@ -29,13 +32,16 @@
         <b>goûter au plaisir de l’infiniment possible.</b></p>
     </div>
 
+    <div class="label" *ngIf="objectifValide">
+      <img [src]="objectifImg" class="imgcontexte">
+      <h2>Objectifs</h2>
+    </div>
     <div class="item" *ngIf="objectifValide"  id="objectif">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2 >Objectifs</h2>
       <ul class="liObjectif">
         <li>Mieux connaître ses potentialités, ses atouts, ses aspirations</li>
         <li>Se reconnecter à ses besoins au niveau de sa sphère privée, sociale et professionnelle</li>
@@ -44,13 +50,16 @@
       </ul>
     </div>
 
+    <div class="label" *ngIf="processValide">
+      <img [src]="processImg" class="imgcontexte">
+      <h2>Process</h2>
+    </div>
     <div class="item"   *ngIf="processValide"  id="process">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2 >Process</h2>
 
       <p>Durant ce premier parcours, vous allez vous découvrir en passant par 5 étapes.</p>
 

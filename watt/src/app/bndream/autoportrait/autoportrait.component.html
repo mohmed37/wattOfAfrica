@@ -1,14 +1,19 @@
 <h1 class="titre" id="haut">Auto-Portrait</h1>
 <div *ngIf="!autoPortraitValide">
+  <p class="selectionTheme"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
   <div class="container" >
-    <p><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+  <div class="label" *ngIf="contexteValide">
+    <img [src]="contexteImg" class="imgcontexte">
+    <h2>Contexte</h2>
+  </div>
+
     <div class="item" *ngIf="contexteValide"  id="contexte">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2  >Contexte</h2 >
+
       <p><b>Bienvenue dans Praico et découvrez votre ADN Vocationnel</b></p>
 
       <p>L’autoportrait permet d’évaluer vos traits de personnalité, aptitudes et comportements grâce à une liste prédéfinie.</p>
@@ -17,8 +22,8 @@
         ainsi mettrez en exergue les divergences de perception entre ce que votre entourage pense de vous et la façon
         dont vous percevez.
       </p>
-
     </div>
+    
 
     <div class="item" *ngIf="objectifValide"  id="objectif">
       <div class="button-container">

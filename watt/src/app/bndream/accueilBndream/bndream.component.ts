@@ -14,6 +14,9 @@ export class BndreamComponent implements OnInit {
   public testsActif: boolean=false;
   public coupe:string="assets/img/coupe.jpg";
   public depart:string="assets/img/depart.jpg";
+  public contexteImg:string="assets/img/contexte.jpg";
+  public objectifImg:string="assets/img/objectuf.jpg";
+  public processImg:string="assets/img/consigne.jpg";
   public serviceBream;
   public serviceClient;
   public questionnaires:QuestionnairesModel;
