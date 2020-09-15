@@ -56,9 +56,6 @@ export class AutoportraitComponent implements OnInit {
   public Editor = ClassicEditor;
   public photo:string="assets/img/autoPortrait.jpg";
   public photo2:string="assets/img/autoPortrait2.jpg";
-  public contexteImg:string="assets/img/contexte.jpg";
-  public objectifImg:string="assets/img/objectuf.jpg";
-  public processImg:string="assets/img/consigne.jpg";
   public userId: number | any;
   public saveAutoPortrait: boolean=false;
   public testAutoPortrait: boolean=false;

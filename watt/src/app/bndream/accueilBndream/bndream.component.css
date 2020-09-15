@@ -16,7 +16,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
+
 }
 
 .item{
@@ -26,10 +27,10 @@
 }
 
 .bndream .item{
-  border: solid 1px green;
+  border: solid 1px #3498db;
   padding: 20px;
   border-radius: 10px;
-  width: 50%;
+  width: 80%;
 }
 
 
@@ -150,12 +151,18 @@ a.titreProjet:hover{
   background-color: orange;
 }
 
-
 .bndream p{
   font-family: 'Poiret One', cursive;
   font-size: 20px;
   margin: 30px 50px;}
 
+.bndream h2{
+  text-align: center;
+  color:  #3498db;
+  margin-top: 40px;
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
+}
 
 .liObjectif li{
   font-family: 'Poiret One', cursive;
@@ -168,23 +175,3 @@ a.titreProjet:hover{
   font-size: 20px;
   margin: 30px 50px;}
 
-.imgcontexte{
-  float: left;
-  height: 20%;
-}
-.label{
-  display: flex;
-  flex-direction: column;
-}
-
-.label h2{
-  font-family: 'Poiret One', cursive;
-  font-size: 30px;
-  color: black;
-}
-.selection{
-  font-family: 'Poiret One', cursive;
-  font-size: 20px;
-  margin: 30px 50px;
-  text-align: center;
-}
