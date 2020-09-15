@@ -1,12 +1,13 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BndreamService} from "../../services/bndream.service";
 import {TexteModel} from "../../model/texte.model";
 import {FicheMetierService} from "../../services/fiche-metier.service";
 import {FicheMetier} from "../../model/ficheMetier.model";
 import {Bnbecome} from "../../services/bnbecome.service";
 import {ApiService} from "../../services/api.service";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-fiche-metier',
@@ -34,7 +35,8 @@ export class FicheMetierComponent implements OnInit {
   public newTexte=new TexteModel();
   public ListQuestionnaire:any[];
 
-  constructor(private httpClient: HttpClient, private router: Router,private serviceBnDream:BndreamService,private ficheMetierService:FicheMetierService,private hostTestService:ApiService ) {
+  constructor(private httpClient: HttpClient, private router: Router,private serviceBnDream:BndreamService,
+              private ficheMetierService:FicheMetierService,private hostTestService:ApiService ,private route: ActivatedRoute) {
     this.hostTest=hostTestService.TEST_MICRO_APP;
   }
   @Output() public pick:EventEmitter<number>=new EventEmitter<number>();
@@ -47,12 +49,29 @@ export class FicheMetierComponent implements OnInit {
   public listMetierDico=[];
   public ficheCaroussel:FicheMetier[];
   public fichedetail: boolean;
+  public fragment: string;
 
   ngOnInit(): void {
 
     this.getAllFicheMetier();
 
   }
+
+  ngAfterViewInit() {
+    this.route.fragment.subscribe(fragment => {
+      this.fragment = fragment;
+      setTimeout(() => this.scrollToAnchor(), 10);
+    });
+  }
+
+  scrollToAnchor(): void {
+    try {
+      if (this.fragment) {
+        document.querySelector('#' + this.fragment).scrollIntoView();
+      }
+    } catch (e) { }
+  }
+
 
 
   getImageFicheMeier(idCarrousel) {
@@ -132,6 +151,7 @@ split(phrase:string){
   }
 
   selectFicheMetier(id: any) {
+    this.router.navigate(['/bnBeleave/fichesMetiers'], { fragment: '' });
     this.ficheMetierService.ficheMetier(id)
       .subscribe(
         res => {
@@ -139,6 +159,7 @@ split(phrase:string){
           this.competences=this.split(this.FicheMetier.competence);
           this.qualites=this.split(this.FicheMetier.qualite);
           this.fichedetail=true;
+          this.router.navigate(['/bnBeleave/fichesMetiers'], { fragment: 'ficheMetier' });
         })
   }
 }

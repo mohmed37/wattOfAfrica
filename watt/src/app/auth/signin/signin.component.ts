@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ClientService} from "../../services/client.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../services/authentication.service";
 import {Client} from "../../model/client.model";
 
@@ -14,9 +14,10 @@ export class SigninComponent implements OnInit {
   public form: FormGroup;
   public error:string;
   public currentClient : Client;
+  public fragment: string;
 
   constructor(private fb: FormBuilder,private clientService: ClientService, private router: Router
-              ,private autheService:AuthenticationService) { }
+              ,private autheService:AuthenticationService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.form = this.fb.group(
@@ -26,6 +27,24 @@ export class SigninComponent implements OnInit {
       }
     );
   }
+
+  ngAfterViewInit() {
+    this.route.fragment.subscribe(fragment => {
+      this.fragment = fragment;
+      setTimeout(() => this.scrollToAnchor(), 10);
+    });
+  }
+
+  scrollToAnchor(): void {
+    try {
+      if (this.fragment) {
+        document.querySelector('#' + this.fragment).scrollIntoView();
+      }
+    } catch (e) { }
+  }
+
+
+
   public subnit(){
    this.clientService.signin(this.form.value).subscribe(()=>{
 

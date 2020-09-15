@@ -4,11 +4,11 @@
     <div class="header-logo"><a ><img [src]="logo" alt=""></a></div>
     <nav class="header-menu">
       <a  routerLink="/admin" *ngIf="authService.isUserAdmin"  >Administrateur</a>
-      <a *ngIf="authService.isAuthenticated"  routerLink="/bnBeleave/fichesMetiers">Fiches métier</a>
+      <a *ngIf="authService.isAuthenticated"  routerLink="/bnBeleave/fichesMetiers"  fragment="haut" >Fiches métier</a>
       <a routerLink="/">Accueil</a>
       <a (click)="onLogout()" *ngIf="!authService.isAuthenticated"><i class="fas fa-external-link-square-alt"></i> Connexion</a>
       <a *ngIf="authService.isAuthenticated"  (click)="onLogout()"><i class="fas fa-external-link-square-alt"></i> Déconnection</a>
-      <a routerLink="/new-client" *ngIf="!authService.isAuthenticated">Inscription</a>
+      <a routerLink="/new-client" fragment="haut" *ngIf="!authService.isAuthenticated">Inscription</a>
     </nav>
     <div class="textCentre">
       <h1 >TROUVEZ VOTRE VOIE – CHANGEZ DE METIER – BOOSTEZ VOTRE CARRIERE – DEVENEZ ENTREPRENEUR</h1>

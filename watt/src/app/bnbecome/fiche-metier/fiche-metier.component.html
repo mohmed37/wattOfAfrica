@@ -1,4 +1,4 @@
-<div class="carousel slide" data-ride="carousel" >
+<div class="carousel slide" data-ride="carousel" id="haut">
   <div class="carousel-inner " >
     <a class="active" (click)="clic(idCarrousel)">
       <img class="photoFicheMetier1" [src]="photoCarrousel" >
@@ -38,9 +38,8 @@
     <label></label>
 </div>
 </div>-->
-  <div class="container" *ngIf=fichedetail >
-
-    <div class="item photo">
+  <div class="container" *ngIf="fichedetail"  >
+    <div class="item photo" id="ficheMetier">
       <img class="photoFicheMetier" [src]="photoCarrousel">
     <h1 class="metier">{{FicheMetier.metier}}</h1>
     </div>

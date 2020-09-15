@@ -30,9 +30,10 @@ export class NewClientComponent implements OnInit {
   hide2 = true;
   public passError: string='';
   public newClient:Client=new Client();
+  public fragment: string;
 
   constructor(private clientService:ClientService, private router:Router,private activatedRoute:ActivatedRoute,
-              private userConnect:AuthenticationService) {
+              private userConnect:AuthenticationService,private route: ActivatedRoute) {
     this.userConnectClient=userConnect.userAuthenticated;
   }
 @HostListener('click')
@@ -44,6 +45,24 @@ click(){
     this.onGetClient();
 
   }
+
+  ngAfterViewInit() {
+    this.route.fragment.subscribe(fragment => {
+      this.fragment = fragment;
+      setTimeout(() => this.scrollToAnchor(), 10);
+    });
+  }
+
+  scrollToAnchor(): void {
+    try {
+      if (this.fragment) {
+        document.querySelector('#' + this.fragment).scrollIntoView();
+      }
+    } catch (e) { }
+  }
+
+
+
 
   prenom=new FormControl('',Validators.required);
   password=new FormControl('',Validators.required);
