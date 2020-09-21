@@ -34,6 +34,10 @@ export class BndreamComponent implements OnInit {
   public contexteValide:boolean=false;
   public objectifValide: boolean=false;
   public processValide: boolean=false;
+  public colorNewQcm1: string="orange";
+  public colorNewQcm2: string="orange";
+  public colorNewQcm3: string="orange";
+  public colorNewQcm4: string="orange";
   constructor(public authService:AuthenticationService,private clientService:ClientService
               ,private bndreamService:BndreamService,private router:Router,private route: ActivatedRoute
               , private userConnect:AuthenticationService) {
@@ -54,9 +58,13 @@ export class BndreamComponent implements OnInit {
                   this.roueVie = this.questionnaires.roueVie;
                   this.autoportrait = this.questionnaires.autoPortrait;
                   this.qcm1 = this.questionnaires.qcm1;
+                  if (this.qcm1){this.colorNewQcm1="green";}
                   this.qcm2 = this.questionnaires.qcm2;
+                  if (this.qcm2){this.colorNewQcm2="green";}
                   this.qcm3 = this.questionnaires.qcm3;
+                  if (this.qcm3){this.colorNewQcm3="green";}
                   this.qcm4 = this.questionnaires.qcm4;
+                  if (this.qcm4){this.colorNewQcm4="green";}
                   this.hero = this.questionnaires.hero;
 
                   if (this.photolangage) {

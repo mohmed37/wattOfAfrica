@@ -61,14 +61,19 @@ p{
   margin-left: 16px;
 }
 ul{
-  margin-left: 50px;
+  list-style-type: none;
+  margin-bottom: 50px;
+
 }
 .resultaHero{
-  margin-left: 50px;
+  text-align: center;
 }
 li{
   font-family: 'Poiret One', cursive;
   font-size: 20px;
   line-height: 2em;
+}
+h1{
+  color: orange;
 }
 

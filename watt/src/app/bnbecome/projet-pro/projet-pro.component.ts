@@ -23,7 +23,7 @@ export class ProjetProComponent implements OnInit {
   public metierValide:any[]=[];
   public metier:any[]=[];
   public ficheClientNew:ListMetierClientModel;
-  public hostTest: string;;
+  public hostTest: string;
   public message: string;
   retrieveResonse: any;
   base64Data: any;
@@ -84,15 +84,15 @@ export class ProjetProComponent implements OnInit {
       data=>{
         this.ficheClient=data;
         this.ficheClient.valide.forEach(ficheMetierValide=>{
-         if(ficheMetierValide.etat==true){
            this.metierValide.push(ficheMetierValide)
-         }
+
         });
         this.ficheClient.ficheMetiers.forEach(ficheMetier=>{
          let id=ficheMetier.id;
           this.metierValide.forEach(ficheMetierNewValide=>{
             if (ficheMetierNewValide.id==id){
-              this.metier.push(ficheMetier);
+
+              this.metier.push({ficheMetier:ficheMetier,etat:ficheMetierNewValide.etat});
 
             }
           });

@@ -26,4 +26,5 @@ public class ListCompetencesClient {
     String competence;
     @Column(name = "listCompetence")
     ArrayList<Object> listCompetence;
+
 }

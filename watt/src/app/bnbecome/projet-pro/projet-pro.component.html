@@ -1,5 +1,5 @@
 <h1 class="titre" id="haut">Votre projet professionel</h1>
-<div class="container"*ngIf="!projetProValide">
+<div class="container" *ngIf="!projetProValide">
   <div class="item">
     <h2>Contexte</h2>
   </div>
@@ -83,9 +83,10 @@
     </thead>
     <tbody>
     <tr *ngFor="let m of metier">
-      <th scope="row">{{m.metier}}</th>
+      <th scope="row" *ngIf="!m.etat">{{m.ficheMetier.metier}}</th>
+      <th  style="color: #c12b78" scope="row" *ngIf="m.etat"><mat-icon class="icon">favorite</mat-icon> {{m.ficheMetier.metier}}</th>
       <th>
-        <mat-checkbox value="{{m.id}}" (change)="clic($event)"></mat-checkbox>
+        <mat-checkbox value="{{m.ficheMetier.id}}" (change)="clic($event)"></mat-checkbox>
       </th>
     </tr>
     </tbody>
@@ -113,6 +114,7 @@
   <h1>B’NBECOME VOUS A PERMIS DE DEFINIR VOTRE PROJET PROFESSIONNEL EN LIEN AVEC</h1>
   <h1>QUI VOUS ËTES</h1>
   <h1>YES YOU ARE !</h1>
-  <h1>MAINTENANT IL EST TEMSP DE METTRE DE REALISER VOTRE PROJET AVEC B’N BECOME!</h1>
+  <h1>MAINTENANT IL EST TEMSP DE METTRE DE REALISER VOTRE PROJET AVEC Go’N BECOME!</h1>
   <h1>YES YOU CAN !</h1>
+  <button class="btn btn-success" routerLink="/gonbecome" fragment= "haut" >Go'n Become</button>
 </div>

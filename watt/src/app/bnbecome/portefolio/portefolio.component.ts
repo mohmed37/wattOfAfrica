@@ -46,6 +46,9 @@ export class PortefolioComponent implements OnInit {
   public dicoMetier: boolean;
   public ListQuestionnaire:any[];
   public clientConnect:boolean;
+  public afficherSelection: boolean=false;
+  public metier:string="";
+  public index:number=0;
   constructor(private serviceClient:ClientService, private userConnect:AuthenticationService,private bnbecome:Bnbecome) {
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.userAuthenticated;
@@ -64,8 +67,10 @@ export class PortefolioComponent implements OnInit {
                 this.profilUvalide = this.questionnaires2.profilU;
                 this.porteFolioValide = this.questionnaires2.porteFolio;
                 this.dicoMetier = this.questionnaires2.dicoMetiers;
+
                 if (this.porteFolioValide) {
                   this.getCompetencesClient();
+
                 }
               }, error => {
                 console.log(error);
@@ -108,7 +113,7 @@ export class PortefolioComponent implements OnInit {
       this.formCompetence.value.savoir3,this.formCompetence.value.savoir4,this.formCompetence.value.savoir5];
     this.bnbecome.saveCompetence(this.competence).subscribe(data=>{
       this.message="Enregistrement effectué";
-      this.getListCompetences();
+
       this.formCompetence.reset();
 
     },error => {
@@ -121,10 +126,24 @@ export class PortefolioComponent implements OnInit {
 getListCompetences(){
   this.bnbecome.getCompetence().subscribe(data=>{
    this.listCompetences=data;
+   if (this.porteFolioValide) {
+     this.bnbecome.getCompetenceClient().subscribe(data => {
+       this.ListCompetenceClient = data;
+       for (let i = 0; i < this.listCompetences.length; i++) {
 
-  },error => {
-    console.log(error);
-  });
+         this.ListCompetenceClient.listCompetence.forEach(listMetier => {
+           if (listMetier[0][2] == this.listCompetences[i].competence) {
+             this.listCompetences.splice(i, 1);
+           }
+         })
+       }
+     })
+   }
+
+    },error => {
+      console.log(error);
+    });
+
 }
 
   startQuestionnaire() {
@@ -136,6 +155,7 @@ getListCompetences(){
     this.bnbecome.getCompetenceById(id).subscribe(data=>{
       this.competenceSelected=data;
       this.selectCompetence=true;
+      this.afficherSelection=false;
       this.selecvalide=false;
       this.listCompetence=[];
       this.competences=[];
@@ -211,6 +231,9 @@ this.bnbecome.saveCompetenceClient(this.competencesClient).subscribe(data=>{
  this.serviceClient.putQuestionnaires("porteFolio");
   this.selectCompetence=false;
   this.getCompetencesClient();
+  this.clicCompetencesClient(competencesClient,this.index);
+  this.getListCompetences();
+  this.ngOnInit();
 },error => {
  this.message="Enregistrement à échoué";
  console.log(error);
@@ -234,9 +257,13 @@ this.bnbecome.getCompetenceClient().subscribe(data=>{
 }
 
 
-clicCompetencesClient(competence:any) {
+clicCompetencesClient(competence:any,index:number) {
+
+this.index=index;
+this.metier=competence[0][2];
 this.listFaireClient=[];
  this.listSavoirClient=[];
+  this.selectCompetence=false;
 
  for (let i=0;i<competence.length;i++){
      if(competence[i][4]=='faire'){
@@ -246,13 +273,26 @@ this.listFaireClient=[];
        this.listSavoirClient.push(competence[i]);
      }
  }
+  this.afficherSelection=true;
 }
 
   closeList() {
-    this.selectedValueClient=null;
+    this.afficherSelection=false;
   }
 
   closeList2() {
     this.selectCompetence=null;
+  }
+
+  deleteFicheMetierClient() {
+    this.ListCompetenceClient.listCompetence.splice(this.index,1);
+    this.bnbecome.saveCompetenceClient( this.ListCompetenceClient).subscribe(data=>{
+      this.getListCompetences();
+      this.getCompetencesClient();
+      this.afficherSelection=false;
+    },error => {
+      this.message="Enregistrement à échoué";
+      console.log(error);
+    });
   }
 }

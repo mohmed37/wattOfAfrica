@@ -134,6 +134,12 @@ public class FicheMetierControler {
     public ListMetierClient saveMetierByClient(@RequestBody ListMetierClient ficheMetier, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return null;        }
+        List<ListMetierClient>list=metierClientReposirories.findAll();
+        for(ListMetierClient listMetier:list){
+            if (ficheMetier.getClient()==listMetier.getClient()){
+                return null;
+            }
+        }
         return  metierClientReposirories.save(ficheMetier);
     }
 

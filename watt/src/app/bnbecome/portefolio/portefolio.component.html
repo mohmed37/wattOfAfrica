@@ -52,6 +52,7 @@
   Puis vous devrez vous positionner en évaluant votre degré de maîtrise pour cette compétence et votre degré d’intérêt
   sur une échelle de 0 à 4.
 </p>
+  <div class="container">
 <form class="form">
   <mat-form-field appearance="fill">
     <mat-label>Compétences:</mat-label>
@@ -62,8 +63,22 @@
     </mat-select>
   </mat-form-field>
 </form>
+  <form class="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Votre portefeuille de compétences:</mat-label>
+      <mat-select [(ngModel)]="selectedValueClient" name="food">
+        <mat-option *ngFor="let competence of dtailCompetence  let index = index" [value]="competence[0][2]" (click)="clicCompetencesClient(competence,index)">
+
+          {{competence[0][2]}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  </div>
 </div>
 <a (click)="closeList2()"> <h3 *ngIf="selectCompetence">{{selectedValue}}</h3></a>
+<div class="ficheCompetence">
+
 <table class="table table-striped" *ngIf="selectCompetence">
   <thead>
   <tr>
@@ -114,26 +129,20 @@
       </mat-radio-group>
     </td>
   </tr>
-
   </tbody>
   <button class="btn btn-success " *ngIf="!selecvalide" (click)="selecSavoir()">Je valide</button>
-
 </table>
-<form *ngIf="porteFolioValide" class="form">
-  <mat-form-field appearance="fill">
-    <mat-label>Votre portefeuille de compétences:</mat-label>
-    <mat-select [(ngModel)]="selectedValueClient" name="food">
-      <mat-option *ngFor="let competence of dtailCompetence  let index = index" [value]="competence[0][2]" (click)="clicCompetencesClient(competence)">
+</div>
 
-        {{competence[0][2]}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</form>
 
-<div *ngIf="selectedValueClient">
-  <a (click)="closeList()"> <h3 *ngIf="selectedValueClient">{{selectedValueClient}}</h3></a>
+<div *ngIf="afficherSelection" class="ficheCompetence">
+  <button class="button btn-warning" (click)="deleteFicheMetierClient()">Supprimer cette fiche</button>
+  <h3>{{metier}}</h3>
+  <button mat-mini-fab color="warn" (click)="closeList()">
+    <mat-icon>filter_list</mat-icon>
+  </button>
 <table class="table table-striped">
+
   <thead>
   <tr>
     <td class="colone">Compétences</td>

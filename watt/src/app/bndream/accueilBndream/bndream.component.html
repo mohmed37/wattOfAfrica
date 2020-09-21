@@ -137,11 +137,18 @@
       <p class="test" *ngIf="!qcm1">Test à réaliser</p>
       <p class="test testCours" *ngIf="qcm1&&!qcm4">Test en cours </p>
       <p class="test testValide" *ngIf="qcm4">Test validé</p>
-      <a class="titreProjet" routerLink="/bndream/praico" fragment="haut">Test d’intérêt professionnel PRAICO</a>
-      <div class="time">
+      <a class="titreProjet" routerLink="/bndream/praico" fragment="haut">Test d’intérêt PRAICO</a>
+      <div class="time ">
         <mat-icon>access_time</mat-icon>
         <p>20 minutes</p>
       </div>
+      <div class="qcm">
+      <p [style.color]="colorNewQcm1"><mat-icon *ngIf="qcm1">done</mat-icon>Questionnaire n°1 – Comment vous décririez-vous ? (5 minutes)</p>
+      <p [style.color]="colorNewQcm2" ><mat-icon *ngIf="qcm2">done</mat-icon>Questionnaire n°2 – Quelles activités et environnements préférez-vous ? (7 minutes)</p>
+      <p [style.color]="colorNewQcm3"><mat-icon *ngIf="qcm3">done</mat-icon>Questionnaire n°3 – Quels sont vos loisirs ? (7 minutes)</p>
+      <P [style.color]="colorNewQcm4"><mat-icon *ngIf="qcm4">done</mat-icon>Questionnaire n°4 – Quels métiers vous attirent ? (3 minutes)</P>
+      </div>
+
     </div>
     <div class="item projet">
       <p class="numro" *ngIf="!hero">5</p>

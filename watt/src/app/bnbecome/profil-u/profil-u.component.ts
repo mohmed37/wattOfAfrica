@@ -66,7 +66,8 @@ export class ProfilUComponent implements OnInit {
                 this.profilUvalide = this.questionnaires2.profilU;
                 this.porteFolio = this.questionnaires2.porteFolio;
                 if (this.profilUvalide) {
-                  this.getRestitusion();
+                  this.getResultatProfilU();
+                  this.resulta=true;
                 }
               }, error => {
                 console.log(error);
@@ -156,7 +157,8 @@ export class ProfilUComponent implements OnInit {
         }
         case "strategie":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.authenticite=this.resultRa.authenticite+(Rb/5);
+          this.resultRa.authenticite=10-(this.resultRa.authenticite+(Rb/5));
+
           break;
         }
         case "tenacite":{
@@ -167,7 +169,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "flexibilite":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.tenacite=this.resultRa.tenacite+(Rb/5);
+          this.resultRa.tenacite=10-(this.resultRa.tenacite+(Rb/5));
           break;
         }
         case "reactivite":{
@@ -178,7 +180,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "stabilite":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.reactivite=this.resultRa.reactivite+(Rb/5);
+          this.resultRa.reactivite=10-(this.resultRa.reactivite+(Rb/5));
           break;
         }
         case "introversion":{
@@ -189,7 +191,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "extraversion":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.introversion=this.resultRa.introversion+(Rb/5);
+          this.resultRa.introversion=10-(this.resultRa.introversion+(Rb/5));
           break;
         }
         case "methode":{
@@ -200,7 +202,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "improvisation":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.methode=this.resultRa.methode+(Rb/5);
+          this.resultRa.methode=10-(this.resultRa.methode+(Rb/5));
           break;
         }
         case "intuition":{
@@ -211,7 +213,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "rationalisme":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.intuition=this.resultRa.intuition+(Rb/5);
+          this.resultRa.intuition=10-(this.resultRa.intuition+(Rb/5));
           break;
         }
         case "nonConformisme":{
@@ -222,7 +224,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "droiture":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.nonConformisme=this.resultRa.nonConformisme+(Rb/5);
+          this.resultRa.nonConformisme=10-(this.resultRa.nonConformisme+(Rb/5));
           break;
         }
         case "personnelle":{
@@ -233,7 +235,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "professionnelle":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.personnelle=this.resultRa.personnelle+(Rb/5);
+          this.resultRa.personnelle=10-(this.resultRa.personnelle+(Rb/5));
           break;
         }
         case "directive":{
@@ -244,7 +246,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "pouvoir":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.directive=this.resultRa.directive+(Rb/5);
+          this.resultRa.directive=10-(this.resultRa.directive+(Rb/5));
           break;
         }
 
@@ -256,7 +258,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "competition":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.prudence=this.resultRa.prudence+(Rb/5);
+          this.resultRa.prudence=10-(this.resultRa.prudence+(Rb/5));
           break;
         }
 
@@ -268,7 +270,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "autonomie":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.gregarite=this.resultRa.gregarite+(Rb/5);
+          this.resultRa.gregarite=10-(this.resultRa.gregarite+(Rb/5));
           break;
         }
         case "individualisme":{
@@ -279,7 +281,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "altruisme":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.individualisme=this.resultRa.individualisme+(Rb/5);
+          this.resultRa.individualisme=10-(this.resultRa.individualisme+(Rb/5));
           break;
         }
         case "traditionnel":{
@@ -290,7 +292,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "exploration":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.traditionnel=this.resultRa.traditionnel+(Rb/5);
+          this.resultRa.traditionnel=10-(this.resultRa.traditionnel+(Rb/5));
           break;
         }
         case "reflexion":{
@@ -301,7 +303,7 @@ export class ProfilUComponent implements OnInit {
         }
         case "action":{
           const Rb:number=resultatProfilU[i].point;
-          this.resultRa.reflexion=this.resultRa.reflexion+(Rb/5);
+          this.resultRa.reflexion=10-(this.resultRa.reflexion+(Rb/5));
           break;
         }
 
@@ -314,9 +316,10 @@ export class ProfilUComponent implements OnInit {
       saveProfilU(){
     this.resultRa.idclient=this.userId;
     this.bnbecome.saveProfilU(this.resultRa).subscribe(data=>{
-      this.router.navigateByUrl("/bnBeleave");
+      /*  this.router.navigateByUrl("/bnBeleave");*/
       this.serviceClient.putQuestionnaires("profilU");
       this.getResultatProfilU();
+      this.ngOnInit();
       },error => {
   console.log(error);
 });
@@ -342,117 +345,117 @@ export class ProfilUComponent implements OnInit {
   getDimention(dimention:string){
     switch (dimention) {
       case "authenticite":{
-        if (this.getResulta.authenticite<=3){
+        if (this.getResulta.authenticite<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.authenticite>=4&&this.getResulta.authenticite<=7){
+        if (this.getResulta.authenticite>=5&&this.getResulta.authenticite<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.authenticite>7){
+        if (this.getResulta.authenticite>=7){
           this.resutatQcmnumber=3;}
         break;
       }
       case "Ténacité":{
-        if (this.getResulta.tenacite<=3){
+        if (this.getResulta.tenacite<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.tenacite>=4&&this.getResulta.tenacite<=7){
+        if (this.getResulta.tenacite>=5&&this.getResulta.tenacite<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.tenacite>7){
+        if (this.getResulta.tenacite>=7){
           this.resutatQcmnumber=3;}
         break;}
 
       case "Réactivité":{
-        if (this.getResulta.reactivite<=3){
+        if (this.getResulta.reactivite<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.reactivite>=4&&this.getResulta.reactivite<=7){
+        if (this.getResulta.reactivite>=5&&this.getResulta.reactivite<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.reactivite>7){
+        if (this.getResulta.reactivite>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Introversion":{
-        if (this.getResulta.introversion<=3){
+        if (this.getResulta.introversion<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.introversion>=4&&this.getResulta.introversion<=7){
+        if (this.getResulta.introversion>=5&&this.getResulta.introversion<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.introversion>7){
+        if (this.getResulta.introversion>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Méthode":{
-        if (this.getResulta.methode<=3){
+        if (this.getResulta.methode<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.methode>=4&&this.getResulta.methode<=7){
+        if (this.getResulta.methode>=5&&this.getResulta.methode<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.methode>7){
+        if (this.getResulta.methode>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Intuition":{
-        if (this.getResulta.intuition<=3){
+        if (this.getResulta.intuition<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.intuition>=4&&this.getResulta.intuition<=7){
+        if (this.getResulta.intuition>=5&&this.getResulta.intuition<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.intuition>7){
+        if (this.getResulta.intuition>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Non conformisme":{
-        if (this.getResulta.nonConformisme<=3){
+        if (this.getResulta.nonConformisme<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.nonConformisme>=4&&this.getResulta.nonConformisme<=7){
+        if (this.getResulta.nonConformisme>=5&&this.getResulta.nonConformisme<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.nonConformisme>7){
+        if (this.getResulta.nonConformisme>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Equilibre vie personnelle":{
-        if (this.getResulta.personnelle<=3){
+        if (this.getResulta.personnelle<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.personnelle>=4&&this.getResulta.personnelle<=7){
+        if (this.getResulta.personnelle>=5&&this.getResulta.personnelle<=4){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.personnelle>7){
+        if (this.getResulta.personnelle>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Directive":{
-        if (this.getResulta.directive<=3){
+        if (this.getResulta.directive<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.directive>=4&&this.getResulta.directive<=7){
+        if (this.getResulta.directive>=5&&this.getResulta.directive<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.directive>7){
+        if (this.getResulta.directive>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Prudence":{
-        if (this.getResulta.prudence<=3){
+        if (this.getResulta.prudence<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.prudence>=4&&this.getResulta.prudence<=7){
+        if (this.getResulta.prudence>=5&&this.getResulta.prudence<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.prudence>7){
+        if (this.getResulta.prudence>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Grégarité":{
-        if (this.getResulta.gregarite<=3){
+        if (this.getResulta.gregarite<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.gregarite>=4&&this.getResulta.gregarite<=7){
+        if (this.getResulta.gregarite>=5&&this.getResulta.gregarite<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.gregarite>7){
+        if (this.getResulta.gregarite>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Individualisme":{
-        if (this.getResulta.individualisme<=3){
+        if (this.getResulta.individualisme<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.individualisme>=4&&this.getResulta.individualisme<=7){
+        if (this.getResulta.individualisme>=5&&this.getResulta.individualisme<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.individualisme>7){
+        if (this.getResulta.individualisme>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Traditionnel":{
-        if (this.getResulta.traditionnel<=3){
+        if (this.getResulta.traditionnel<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.traditionnel>=4&&this.getResulta.traditionnel<=7){
+        if (this.getResulta.traditionnel>=5&&this.getResulta.traditionnel<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.traditionnel>7){
+        if (this.getResulta.traditionnel>=7){
           this.resutatQcmnumber=3;}
         break;}
       case "Réflexion":{
-        if (this.getResulta.reflexion<=3){
+        if (this.getResulta.reflexion<=4){
         this.resutatQcmnumber=1;}
-        if (this.getResulta.reflexion>=4&&this.getResulta.reflexion<=7){
+        if (this.getResulta.reflexion>=5&&this.getResulta.reflexion<=6){
           this.resutatQcmnumber=2;}
-        if (this.getResulta.reflexion>7){
+        if (this.getResulta.reflexion>=7){
           this.resutatQcmnumber=3;}
         break;}
     }

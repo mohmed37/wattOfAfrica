@@ -64,6 +64,7 @@ export class DicoMetiersComponent implements OnInit {
   public heroValide: boolean;
   public ListQuestionnaire:any[];
   public clientConnect:boolean;
+  public select: boolean;
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute
     ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome,private hostTestService:ApiService ) {
@@ -126,9 +127,9 @@ export class DicoMetiersComponent implements OnInit {
   listFicheMetierClient(){
     this.fichemettierService.getFicheMetierClient().subscribe(
       data=>{
+        this.select=true;
         this.ficheClient=data;
         this.onSaveListMetierClient(this.ficheClient);
-        this.serviceClient.putQuestionnaires("dicoMetier");
 
       },error => {
         console.log(error);
@@ -219,6 +220,8 @@ export class DicoMetiersComponent implements OnInit {
     for (let j = 0; j <this.ficheClientNew.ficheMetiers.length; j++) {
       if(this.ficheClientNew.valide[j].id==id){
         this.ficheClientNew.valide[j].etat=!this.ficheClientNew.valide[j].etat;
+        if(!this.dicoMetiersValide){
+        this.serviceClient.putQuestionnaires("dicoMetier");}
 
       }
     }
@@ -244,7 +247,7 @@ export class DicoMetiersComponent implements OnInit {
     this.bnbecome.saveListMetierClient(this.hostTest+ "/saveMetierByClient/",this.listFicheMetier)
       .subscribe(res=>{
         this.message = 'Enregistré avec succès';
-        this.ngOnInit();
+        this.getFicheClient();
       }, error => {
         this.message = "l'enregistrement à échoué!";
         console.log(error)

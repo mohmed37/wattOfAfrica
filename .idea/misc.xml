@@ -15,10 +15,11 @@
         <option value="$PROJECT_DIR$/config_server/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-front/pom.xml" />
-        <option value="$PROJECT_DIR$/microservice-tests/pom.xml" />
         <option value="$PROJECT_DIR$/zuul-server/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-client/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-utilisateur/pom.xml" />
+        <option value="$PROJECT_DIR$/microservice-tests/target/maven-archiver/pom.properties" />
+        <option value="$PROJECT_DIR$/microservice-tests/pom.xml" />
       </list>
     </option>
   </component>

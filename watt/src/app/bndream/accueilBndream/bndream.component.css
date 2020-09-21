@@ -131,6 +131,12 @@ a.titreProjet:hover{
   float: right;
   color: #3498db;
   margin-right: 20px;
+
+}
+.qcm{
+  float: right;
+  margin-right: 50px;
+
 }
 
 .projet{
@@ -188,3 +194,4 @@ a.titreProjet:hover{
   margin: 30px 50px;
   text-align: center;
 }
+

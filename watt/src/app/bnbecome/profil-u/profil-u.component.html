@@ -33,10 +33,10 @@
      <p class="numero" >{{numeroQcm+1}}/140</p>
    </div>
  </div>
- <button *ngIf="!resulta&&profilUvalide " class="btn btn-success" (click)="getResultatProfilU()">Voir le résutat</button>
- <button *ngIf="resulta&&profilUvalide " class="btn btn-warning" (click)="closeResultatProfiliU()">Cacher le résutat</button>
+ <button *ngIf="!resulta&&profilUvalide " class="btn btn-success" (click)="getResultatProfilU()">DECOUVRIR VOS RESULTATS</button>
 
- <div *ngIf="resulta" class="resultat">
+
+ <div *ngIf="resulta&&profilUvalide " class="resultat">
    <div class="responsive-table-line">
      <div class="table-ligne5">
        <p class="text-center">Personnalité et comportement professionnel
@@ -110,7 +110,7 @@
          <td *ngIf="getResulta.tenacite>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<7" class="table-ligne3"></td>
          <td *ngIf="getResulta.tenacite>=8"><mat-icon>done_outline</mat-icon></td>
-         <td *ngIf="getResulta.tenacite<=8"></td>
+         <td *ngIf="getResulta.tenacite<8"></td>
          <td *ngIf="getResulta.tenacite>=9"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.tenacite<9"></td>
          <td *ngIf="getResulta.tenacite>=10"><mat-icon>done_outline</mat-icon></td>
@@ -510,13 +510,13 @@
          <td *ngIf="getResulta.traditionnel<5" class="table-ligne3"></td>
          <td *ngIf="getResulta.traditionnel>=6" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<6" class="table-ligne3"></td>
-         <td *ngIf="getResulta.traditionnel>=7" class="table-ligne3">*</td>
+         <td *ngIf="getResulta.traditionnel>=7" class="table-ligne3"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<7" class="table-ligne3"></td>
-         <td *ngIf="getResulta.traditionnel>=8" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.traditionnel>=8" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<8" class="table-ligne12"></td>
-         <td *ngIf="getResulta.traditionnel>=9" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.traditionnel>=9" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<9" class="table-ligne12"></td>
-         <td *ngIf="getResulta.traditionnel>=10" class="table-ligne12">*</td>
+         <td *ngIf="getResulta.traditionnel>=10" class="table-ligne12"><mat-icon>done_outline</mat-icon></td>
          <td *ngIf="getResulta.traditionnel<10" class="table-ligne12"></td>
          <td  class="table-ligne12" data-title="Valeur binaire"><strong>Attirance pour l’exploration</strong>
            Curieux, créatif, aime expérimenter, la nouveauté
