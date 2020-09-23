@@ -8,8 +8,9 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {ListMetierClientModel} from "../../model/listMetierClient.model";
 import {Bnbecome} from "../../services/bnbecome.service";
 import {FicheMetier} from "../../model/ficheMetier.model";
-import * as jsPDF from "jspdf";
+import * as jspdf from "jspdf";
 import html2canvas from "html2canvas";
+
 
 
 
@@ -329,11 +330,11 @@ selectedFile=null;
 
 
   captureScreen() {
- /*   let element = document.getElementById('pdf');
+   /* let element = document.getElementById('pdf');
     html2canvas(element).then((canvas)=>{
       console.log(canvas);
       let imgData = canvas.toDataURL('image/png');
-      let doc = new jsPDF();
+      let doc = new jspdf();
       doc.addImage(imgData,0,0,208,500);
       doc.save("cv.pdf");
     })*/

@@ -65,9 +65,9 @@ export class ProjetProComponent implements OnInit {
             this.metierValideBySelction = true;
           }
           if(this.profilUvalide){
+            console.log(this.profilUvalide);
             this.listFicheMetierClient();}
 
-          this.getMetierSelection(this.metierValide, this.ficheClient);
         }, error => {
           console.log(error);
         });
@@ -145,7 +145,6 @@ export class ProjetProComponent implements OnInit {
   valideSelec(){
     this.serviceClient.putQuestionnaires("projetPro");
     this.metierValideBySelction=true;
-
    /* this.router.navigateByUrl("/bnBeleave");*/
   }
 

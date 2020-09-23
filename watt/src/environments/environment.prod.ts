@@ -3,5 +3,5 @@ export const environment = {
   name: 'prod',
   version: 'v1.0',
 
-  backendServer:'http://212.47.254.13:8080/zuulservice'
+  backendServer:'http://51.158.67.65:8080/zuulservice'
 };
