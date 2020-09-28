@@ -14,7 +14,7 @@ import org.springframework.web.filter.CorsFilter;
 @SpringBootApplication
 @EnableZuulProxy
 @EnableDiscoveryClient
-public class ZuulServerApplication{
+public class ZuulServerApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ZuulServerApplication.class, args);

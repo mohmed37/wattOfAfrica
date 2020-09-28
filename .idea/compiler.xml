@@ -14,9 +14,14 @@
         <module name="config_server" />
         <module name="microservice-tests" />
       </profile>
+      <profile name="Annotation profile for Unknown" enabled="true">
+        <sourceOutputDir name="../generated-sources/annotations" />
+        <sourceTestOutputDir name="../generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="maven-archiver" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="maven-archiver" target="1.5" />
       <module name="microservice-front" target="1.8" />
     </bytecodeTargetLevel>
   </component>

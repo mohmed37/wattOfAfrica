@@ -12,6 +12,7 @@
 	<artifactId>zuul-server</artifactId>
 	<version>1.0</version>
 	<name>zuul-server</name>
+	<packaging>war</packaging>
 	<description>Watt Of Africa</description>
 
 	<properties>
@@ -38,6 +39,17 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.4.0-b180830.0359</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 			<exclusions>
@@ -62,6 +74,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>zuulservice</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
