@@ -27,6 +27,7 @@ import java.util.*;
 
 
 @RestController
+@CrossOrigin(origins = "*")
 public class UserController {
 
 
