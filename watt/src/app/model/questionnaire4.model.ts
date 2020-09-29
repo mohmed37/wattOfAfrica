@@ -4,7 +4,7 @@ export class Questionnaire4Model {
   public metier:string;
   public lettres:string[];
 
- constructor(id:number,lettres:string[]) {
+ constructor(id:number, lettres:string[]) {
     this.lettres=lettres;this.id=id;
   }
 
