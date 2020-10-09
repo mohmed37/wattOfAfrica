@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.authService.userAuthenticated) {
-      this.authService.loadAuthenticatedUserFromLocalSorage();
+    /*  this.authService.loadAuthenticatedUserFromLocalSorage();*/
       this.clientService.change.subscribe(
         isClient => {
           this.nomClient2 = isClient;

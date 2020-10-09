@@ -18,11 +18,6 @@ public class MicroserviceUserApplication{
 		SpringApplication.run(MicroserviceUserApplication.class, args);
 	}
 	@Bean
-	public BCryptPasswordEncoder getBCPE(){
-		return new BCryptPasswordEncoder();
-	}
-
-	@Bean
 	public Sampler defaultSampler(){
 		return Sampler.ALWAYS_SAMPLE;
 	}

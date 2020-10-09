@@ -34,7 +34,7 @@ export class PhotolangageComponent implements OnInit {
     this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.userAuthenticated;
-    this.userId=this.userConnect.userAuthenticated.num;}
+    this.userId=this.userConnect.userAuthenticated.id;}
 
   }
 
@@ -244,7 +244,7 @@ export class PhotolangageComponent implements OnInit {
     this.objectifValide=false;
     this.processValide=false;
 
-    this.serviceClient. SaveQuestionnaires(this.questionnaires,this.userId)
+    this.serviceClient. SaveQuestionnaires(this.questionnaires)
       .subscribe(data=>{
         this.dedutTestPhotolangage=true;
       },error => {

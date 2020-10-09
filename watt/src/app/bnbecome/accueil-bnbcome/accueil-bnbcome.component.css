@@ -140,3 +140,63 @@ a.titreProjet:hover{
 .numroCours{
   background-color: orange;
 }
+
+/*contexte/objectifs/process*/
+.selection{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;
+  text-align: center;
+}
+.bndream{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.label{
+  display: flex;
+  flex-direction: column;
+}
+
+.imgcontexte{
+  float: left;
+  height: 20%;
+}
+.item{
+  border: solid 1px grey ;
+
+}
+.item{
+  border: solid 1px #3498db;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.bndream .item{
+  border: solid 1px green;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;}
+
+.bndream p{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;}
+
+
+.liObjectif li{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  line-height: 2em;
+}
+.bndream h4{
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;}
+
+.para{
+  color: green;
+}
+/*contexte/objectifs/process*/

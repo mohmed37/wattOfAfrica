@@ -31,7 +31,7 @@ export class RoueVieComponent implements OnInit {
     this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.userAuthenticated;
-    this.userId=this.userConnect.userAuthenticated.num;}
+    this.userId=this.userConnect.userAuthenticated.id;}
   }
 
   public data: (any | number)[];

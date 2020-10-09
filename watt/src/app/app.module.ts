@@ -42,6 +42,7 @@ import {ModalModule} from "ngx-bootstrap/modal";
 import { DialogModalComponent } from './dialog-modal/dialog-modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { AccueilGonbecomeComponent } from './gonbecome/accueil-gonbecome/accueil-gonbecome.component';
+import { ConfirmationComponent } from './auth/confirmation/confirmation.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { AccueilGonbecomeComponent } from './gonbecome/accueil-gonbecome/accueil
     AccueilBnbcomeComponent,
     DialogModalComponent,
     AccueilGonbecomeComponent,
+    ConfirmationComponent,
 
   ],
   imports: [

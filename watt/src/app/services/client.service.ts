@@ -23,10 +23,12 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
 
   public hostUser: string;
   public  modeClient:number=0;
+  public id:string;
 
   constructor(private htttpClient: HttpClient, private userConnect:AuthenticationService,private hostTestService:ApiService) {
     this.hostUser=hostTestService.USERS_MICRO_APP;
     this.initToken();
+   this.id=sessionStorage.getItem('id');
   }
 
   private initToken():void {
@@ -69,8 +71,9 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
     return this.htttpClient.post<Client>(url,data);
   }
 
+
   client(){
-    this.htttpClient.get<Client>(this.hostUser +"/user/"+this.userConnect.userAuthenticated.num).subscribe(
+    this.htttpClient.get<Client>(this.hostUser +"/user/"+this.userConnect.userAuthenticated.id).subscribe(
       client1=>{
         this.nom=client1;
       }
@@ -107,7 +110,7 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   }
 
   public getQuestionnaires():Observable<QuestionnairesModel>  {
-    return this.htttpClient.get<QuestionnairesModel>(this.hostUser + "/questionnairesUser/"+this.userConnect.userAuthenticated.num);
+    return this.htttpClient.get<QuestionnairesModel>(this.hostUser + "/questionnairesUser/"+this.userConnect.userAuthenticated.id);
   }
 
   public getQuestionnairesAll():Observable<QuestionnairesModel[]>  {
@@ -115,7 +118,7 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   }
 
   public putQuestionnaires(typeQuetionnaire:string){
-    return this.htttpClient.put(this.hostUser + "/modifQuestionnaire/"+this.userConnect.userAuthenticated.num,typeQuetionnaire).subscribe(data=>{
+    return this.htttpClient.put(this.hostUser + "/modifQuestionnaire/"+this.userConnect.userAuthenticated.id,typeQuetionnaire).subscribe(data=>{
 
     },error => {
       console.log(error)
@@ -123,7 +126,7 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
 
   }
 
-  public SaveQuestionnaires(data,id) :Observable<QuestionnairesModel> {
-    return this.htttpClient.post<QuestionnairesModel>(this.hostUser + "/saveQuestionnaires/"+id,data);
+  public SaveQuestionnaires(data) :Observable<QuestionnairesModel> {
+    return this.htttpClient.post<QuestionnairesModel>(this.hostUser + "/saveQuestionnaires/"+this.userConnect.userAuthenticated.id,data);
   }
 }

@@ -41,6 +41,12 @@ export class ProjetProComponent implements OnInit {
   public userId: number | any;
   public ListQuestionnaire:any[];
   public clientConnect:boolean;
+  public contexteImg:string="assets/img/contexte.jpg";
+  public objectifImg:string="assets/img/objectuf.jpg";
+  public processImg:string="assets/img/consigne.jpg";
+  public contexteValide:boolean=false;
+  public objectifValide: boolean=false;
+  public processValide: boolean=false;
 
   constructor(private serviceClient:ClientService,private fichemettierService:FicheMetierService,
               private bnbecome:Bnbecome, private router:Router, private userConnect:AuthenticationService,private hostTestService:ApiService) {
@@ -158,5 +164,41 @@ export class ProjetProComponent implements OnInit {
         })
       }
     });
+  }
+
+  contexte() {
+    if(!this.contexteValide){
+      this.contexteValide=true;
+      this.objectifValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'contexte' });
+    }else {
+      this.contexteValide=false;
+      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'haut' });
+    }
+  }
+
+  objectif() {
+    if(!this.objectifValide){
+      this.objectifValide=true;
+      this.contexteValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'objectif' });
+    }else {
+      this.objectifValide=false;
+      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'haut' });
+
+    }
+  }
+  process() {
+    if(!this.processValide){
+      this.processValide=true;
+      this.objectifValide=false;
+      this.contexteValide=false;
+      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'process' });
+    }else {
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'haut' });
+    }
   }
 }

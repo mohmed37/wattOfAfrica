@@ -1,46 +1,24 @@
-.carre {
-  margin-left: 50px;
-  margin-top: 50px;
-  width: 200px;
-  height: 200px;
+.clickable{
+  cursor: pointer;
 }
-.data{
-  margin-left: 50px;
-  margin-top: 50px;
+
+span{
+  color: red;
+  margin-left: 10px;
 }
-.boutton{
-  margin-left: 50px;
-  margin-top: 50px;
+mat-form-field{
+  width: 50%;
+  margin-left: 20%;
 }
-.ngstyle{
-  margin-left: 50px;
+.from{
   margin-top: 50px;
 }
 
-.newCarre{
-  margin-left: 50px;
-  margin-top: 50px;
-  width: 200px;
-  height: 200px;
-
+mat-icon, mat-hint{
+  color:#3498db;
+  font-size: 15px;
 }
-
-.class{
-  width: 200px;
-  height: 200px;
-  background-color: red;
-}
-.newClass{
-  width: 100px;
-  height: 100px;
-  background-color: blue;
-}
-
-.class2{
-  margin-left: 50px;
-  margin-top: 50px;
-}
-.ngFor{
-  margin-left: 50px;
-  margin-top: 50px;
+button{
+  margin-left: 20%;
+  margin-top: 10px;
 }

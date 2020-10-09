@@ -5,6 +5,8 @@ import {HttpClient} from "@angular/common/http";
 import {Client} from "../model/client.model";
 import {FicheMetierService} from "./fiche-metier.service";
 import {ApiService} from "./api.service";
+import {ClientService} from "./client.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ import {ApiService} from "./api.service";
 export class AuthenticationService {
 
 
-  constructor(private htttpClient: HttpClient,private hostTestService:ApiService ) {
+  constructor(private htttpClient: HttpClient,private hostTestService:ApiService, private router: Router ) {
     this.hostUser=hostTestService.USERS_MICRO_APP;
 
   }
@@ -25,41 +27,35 @@ export class AuthenticationService {
   public isUserAdmin:boolean=false;
   public isUserUser: boolean=false;
 
-  public clientConnect(user){
-
-    return  this.htttpClient.post<Client>(this.hostUser +"/authUser",user).subscribe(userConnect=>{
-
-      this.token= btoa(JSON.stringify({
-        username:userConnect.email,
-        roles:userConnect.roles[0].role,
-        num:userConnect.num,
-        nom:userConnect.nom,
-        prenom:userConnect.prenom
-      }));
-
+  public clientConnect(userConnect){
+    sessionStorage.setItem('username',userConnect.username);
+    let tokenStr= 'Bearer '+userConnect.accessToken;
+    sessionStorage.setItem('token', tokenStr);
+    sessionStorage.setItem('id',userConnect.id);
 
       if (userConnect){
+
         this.isAuthenticated=true;
         this.userAuthenticated=userConnect;
         this.currentClient=userConnect;
-        if (this.userAuthenticated.roles[0].role.indexOf('ROLE_ADMIN')>-1){
+        if (this.userAuthenticated.roles[0] == 'ROLE_ADMIN'){
           return this.isUserAdmin=true;
         }
-        if (this.userAuthenticated.roles[0].role.indexOf('ROLE_USER')>-1){
+        if (this.userAuthenticated.roles[0]=='ROLE_ELEVE'){
           return this.isUserUser=true;
         }
       }else {
         this.isAuthenticated=false;
         this.userAuthenticated=undefined;
       }
-    });
 
+  /*  this.saveAuthenticateurUser();*/
   }
 
 
 
 
-  public saveAuthenticateurUser() {
+ /* public saveAuthenticateurUser() {
    if(this.userAuthenticated){
      localStorage.setItem('userToken',this.token);
    }
@@ -78,10 +74,11 @@ export class AuthenticationService {
     this.isAuthenticated=true;
     this.token=tokenNew;
     }
-  }
+  }*/
 
   public removeTokenFromLocalStorage(){
-    localStorage.removeItem('userToken');
+    sessionStorage.removeItem('username')
+   /* localStorage.removeItem('userToken');*/
     this.isAuthenticated=false;
     this.token=undefined;
     this.userAuthenticated=undefined;

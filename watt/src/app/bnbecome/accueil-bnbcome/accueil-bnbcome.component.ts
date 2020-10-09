@@ -25,6 +25,12 @@ export class AccueilBnbcomeComponent implements OnInit {
   public fragment: string;
   public ListQuestionnaire:any[];
   public clientConnect:boolean;
+  public contexteImg:string="assets/img/contexte.jpg";
+  public objectifImg:string="assets/img/objectuf.jpg";
+  public processImg:string="assets/img/consigne.jpg";
+  public contexteValide:boolean=false;
+  public objectifValide: boolean=false;
+  public processValide: boolean=false;
 
   constructor(public authService:AuthenticationService,private clientService:ClientService
     ,private router:Router,private route: ActivatedRoute, private userConnect:AuthenticationService) {
@@ -86,6 +92,42 @@ export class AccueilBnbcomeComponent implements OnInit {
         document.querySelector('#' + this.fragment).scrollIntoView();
       }
     } catch (e) { }
+  }
+
+  contexte() {
+    if(!this.contexteValide){
+      this.contexteValide=true;
+      this.objectifValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave'], { fragment: 'contexte' });
+    }else {
+      this.contexteValide=false;
+      this.router.navigate(['/bnBeleave'], { fragment: 'haut' });
+    }
+  }
+
+  objectif() {
+    if(!this.objectifValide){
+      this.objectifValide=true;
+      this.contexteValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave'], { fragment: 'objectif' });
+    }else {
+      this.objectifValide=false;
+      this.router.navigate(['/bnBeleave'], { fragment: 'haut' });
+
+    }
+  }
+  process() {
+    if(!this.processValide){
+      this.processValide=true;
+      this.objectifValide=false;
+      this.contexteValide=false;
+      this.router.navigate(['/bnBeleave'], { fragment: 'process' });
+    }else {
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave'], { fragment: 'haut' });
+    }
   }
 
 }

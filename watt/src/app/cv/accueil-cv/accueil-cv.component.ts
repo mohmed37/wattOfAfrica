@@ -16,7 +16,7 @@ export class AccueilCvComponent implements OnInit {
     ,private bnbecome:Bnbecome) {
     if (userConnect.userAuthenticated){
       this.clientConnect=this.userConnect.userAuthenticated;
-      this.userId=this.userConnect.userAuthenticated.num;}
+      this.userId=this.userConnect.userAuthenticated.id;}
   }
 
   ngOnInit(): void {

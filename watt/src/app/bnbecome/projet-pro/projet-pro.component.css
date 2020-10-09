@@ -1,7 +1,10 @@
-p,b{
+.textePro p,.textePro b{
   font-family: 'Poiret One', cursive;
   font-size: 20px;
   margin: 30px 20px;
+}
+.projetPro{
+  margin-bottom: 50px;
 }
 
 .container{
@@ -43,13 +46,13 @@ p,b{
   flex-direction: row;
   align-items: center;
 }
-ul{
+.texteProul ul{
   list-style: none;
   margin-top: 20px;
   counter-reset: li;
   line-height : 2
 }
-li::before {content: counter(li); color: #3498db;
+.texteProul li::before {content: counter(li); color: #3498db;
   display: inline-block; width: 2em;
   margin-left: -1em}
 
@@ -90,3 +93,74 @@ h3, h4 {
  text-align: center;
   margin-top: 20px;
 }
+
+/*contexte/objectifs/process*/
+.selection{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;
+  text-align: center;
+}
+.bndream{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.label{
+  display: flex;
+  flex-direction: column;
+}
+
+.imgcontexte{
+  float: left;
+  height: 20%;
+}
+.item{
+  border: solid 1px grey ;
+
+}
+.item{
+  border: solid 1px #3498db;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.bndream .item{
+  border: solid 1px green;
+  padding: 20px;
+  border-radius: 10px;
+  width: 70%;}
+
+.bndream p{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;}
+
+.bndream ul{
+  list-style-type: disc;
+
+}
+
+.bndream li{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  line-height: 2em;
+  margin-left: 30px;
+}
+.bndream h4{
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;}
+
+.para{
+  color: green;
+}
+
+.bndream h2{
+  color:#F8080C;
+  text-align: center;
+  font-size: 50px;
+}
+/*contexte/objectifs/process*/

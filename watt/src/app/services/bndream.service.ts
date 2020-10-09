@@ -65,16 +65,16 @@ public getPhoto() {
   }
 
   getResultPhotoLangage():Observable<PhotoLangageModel>{
-    return this.htttpClient.get<PhotoLangageModel>(this.hostTest + "/getPhotoLangage/"+this.userConnect.userAuthenticated.num);
+    return this.htttpClient.get<PhotoLangageModel>(this.hostTest + "/getPhotoLangage/"+this.userConnect.userAuthenticated.id);
 
   }
   getResultRoueDeLaVie():Observable<RoueDeLaVieModel>{
-    return this.htttpClient.get<RoueDeLaVieModel>(this.hostTest + "/getRoueVieClient/"+this.userConnect.userAuthenticated.num);
+    return this.htttpClient.get<RoueDeLaVieModel>(this.hostTest + "/getRoueVieClient/"+this.userConnect.userAuthenticated.id);
 
   }
 
   getResultAutoPortrait():Observable<ChoixAutoPortraitModel>{
-    return this.htttpClient.get<ChoixAutoPortraitModel>(this.hostTest + "/getResulAutoportrait/"+this.userConnect.userAuthenticated.num);
+    return this.htttpClient.get<ChoixAutoPortraitModel>(this.hostTest + "/getResulAutoportrait/"+this.userConnect.userAuthenticated.id);
 
   }
 
@@ -94,10 +94,10 @@ public getPhoto() {
   }
 
   getResultPraico():Observable<ResultatPraicoModel> {
-    return this.htttpClient.get<ResultatPraicoModel>(this.hostTest + "/praicoIdClient/"+this.userConnect.userAuthenticated.num);
+    return this.htttpClient.get<ResultatPraicoModel>(this.hostTest + "/praicoIdClient/"+this.userConnect.userAuthenticated.id);
   }
   getResultHero():Observable<ResultatHeroModel> {
-    return this.htttpClient.get<ResultatHeroModel>(this.hostTest + "/getResultHeroClient/"+this.userConnect.userAuthenticated.num);
+    return this.htttpClient.get<ResultatHeroModel>(this.hostTest + "/getResultHeroClient/"+this.userConnect.userAuthenticated.id);
   }
 
   getListHero():Observable<ListHeroModel[]> {

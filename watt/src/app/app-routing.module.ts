@@ -8,6 +8,7 @@ import {SignupComponent} from "./auth/signup/signup.component";
 import {SigninComponent} from "./auth/signin/signin.component";
 import {DefinitionComponent} from "./definition/definition.component";
 import {AdministrateurComponent} from "./administrateur/administrateur.component";
+import {ConfirmationComponent} from "./auth/confirmation/confirmation.component";
 
 
 
@@ -24,6 +25,7 @@ const routes: Routes = [
     path: 'EnSavoirPlus',
     component: DefinitionComponent
   },
+
 
 
   {
@@ -49,6 +51,10 @@ const routes: Routes = [
 
       ]
   },
+  {
+    path: "listClient",
+    component: NewClientComponent
+  },
 
   {
     path: "signup",
@@ -67,6 +73,10 @@ const routes: Routes = [
   {
     path:"login", component:SigninComponent
   },
+  {
+    path: 'confirm-account/:token',
+    component: ConfirmationComponent
+  },
 
 
   {
@@ -75,7 +85,7 @@ const routes: Routes = [
   },
   {
     path: "new-client",
-    component: NewClientComponent
+    component: SignupComponent
   },
   {
     path:"flooter",

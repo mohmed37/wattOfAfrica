@@ -1,4 +1,4 @@
-<!--<div class="container"  *ngIf="modeClient==0">
+<div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">Liste des clients</div>
     <div class="panel-body">
@@ -30,162 +30,22 @@
           <td>{{p.phone }}</td>
           <td><a class="btn btn-danger" (click)="onDeleteClient(p)">Supprimer</a></td>
           <td><a class="btn btn-success" (click)="onEditClient(p)">Modifier</a></td>
-
         </tr>
       </table>
-
       <ul *ngIf="pages"  class="nav nav-pills">
         <li class="clickable" [ngClass]="i==currentPage?'active':''" *ngFor="let p of pages; let i=index">
           <a (click)="onPageClient(i)">{{i}}</a>
         </li>
       </ul>
 
-    </div>
-    <button  style="margin-left: 10px;margin-bottom: 10px" class="btn btn-success" (click)="onNewClientAfficher()">Nouveau Client</button>
-  </div>
-
-</div>-->
-
-
-
-<!--<div class="container" >
-<div class="col-md-6 col-sm-9 col col-xs-12">
-<div class="panel panel-default">
-  <div class="panel-heading">Nouveau client</div>
-  <div class="panel-body" >
-    <form #f="ngForm" (ngSubmit)="onSaveClient(f.value)">
-      <div class="form-group">
-      <label class="control-label">Prénom</label>
-      <input class="form-control" type="text" name="prenom" ngModel>
-    </div>
-      <div class="form-group">
-        <label class="control-label">Nom</label>
-        <input class="form-control" type="text" name="nom" ngModel>
-      </div>
-      <div class="form-group">
-        <label class="control-label">Mot de passe</label>
-        <input class="form-control" type="password" name="password" ngModel>
-      </div>
-      <div class="form-group">
-        <label class="control-label">Contrôle mot de passe</label>
-        <input class="form-control" type="password" name="matchingPassword" ngModel>
-      </div>
-      <div class="form-group">
-        <label class="control-label">Email</label>
-        <input class="form-control" type="email" name="email" ngModel>
-        <p class="message">{{message}}</p>
-      </div>
-      <div class="form-group">
-        <label class="control-label">Numéro de téléphone</label>
-        <input class="form-control" type="text" name="phone" ngModel>
-      </div>
-      <div class="form-group">
-        <label class="control-label">Date de naissance</label>
-        <input class="form-control" type="date" name="date" ngModel>
-      </div>
-      <button class="btn btn-success" type="submit">Enregistrer</button>
-      <button  style="float: right;" class="btn btn-success" (click)="ofNewClientAfficher()">Annuler</button>
-    </form>
-    </div>-->
-<div class="container from">
-  <form  (ngSubmit)="onFormSubmit()">
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Entrer votre nom</mat-label>
-        <input matInput [formControl]="nom">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Nom</mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Entrer votre Prénom</mat-label>
-        <input matInput [formControl]="prenom" >
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Prénom</mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Entrer votre mot de passe</mat-label>
-        <input matInput [formControl]="password"  [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-hint>Mot de passe</mat-hint>
-      </mat-form-field>
-
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Entrer à nouveau votre mot de passe</mat-label>
-
-        <input matInput [formControl]="matchingPassword"   [type]="hide2 ? 'password' : 'text'" >
-        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
-          <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-hint>Confirmation du mot de passe</mat-hint>
-      </mat-form-field>
-      <span >{{passError}}</span>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Entrer votre adresse mail</mat-label>
-        <input matInput [formControl]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" >
-        <mat-icon matSuffix>alternate_email</mat-icon>
-        <mat-hint >Mail</mat-hint>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <span style="color: red">{{message}}</span>
-    </p>
-
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Entrer votre numéro de téléphone</mat-label>
-        <input matInput [formControl]="phone"  type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))
-        (-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" >
-        <mat-icon matSuffix>phone</mat-icon>
-        <mat-hint>Téléphone</mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Entrer votre date de naissance</mat-label>
-        <input matInput [formControl]="date" type="date">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Date de naissance</mat-hint>
-      </mat-form-field>
-    </p>
-    <button class="btn btn-success" type="submit">Valider</button>
-  </form>
 </div>
-  <!--<div class="panel-body" *ngIf="mode==2">
-  <div class="form-group">
- <label>Nom: </label>
-    <label>{{currentClient.nom}}</label>
-  </div>
-    <div class="form-group">
-    <label>Prénom: </label><label>{{currentClient.prenom}}</label>
-    </div>
-    <div class="form-group">
-    <label>Mail: </label><label>{{currentClient.email}}</label>
-    </div>
-    <div class="form-group">
-    <label>Téléphone: </label><label>{{currentClient.phone}}</label>
-  </div>
-    <button class="btn btn-success" (click)="onNewClient()">Nouveau Client</button>
 
-  </div>-->
-
- <!-- </div>
-</div>
-</div>
 
 <div class="container" *ngIf="modeClient==2">
   <div class="panel panel-default">
     <div class=" panel panel-heading">Modification Client</div>
     <div class="panel panel-body" *ngIf="currentClient" >
-      <form #f="ngForm" (ngSubmit)="onUpdateProduit(f.value)">
+      <form #f="ngForm"  (ngSubmit)=modifOk(f.value)>
         <div class="form-group">
           <label class="control-label">Prénom</label>
           <input class="form-control" type="text" name="prenom" ngModel [(ngModel)]="currentClient.prenom">
@@ -202,9 +62,14 @@
           <label class="control-label">Numéro de téléphone</label>
           <input class="form-control" type="number" name="phone" ngModel [(ngModel)]="currentClient.phone">
         </div>
-        <button class="btn btn-success" type="submit" (click)="modifOk()">Modification</button>
+        <div class="form-group">
+          <label class="control-label">Validation</label>
+          <input class="form-control" type="boolean" name="active" ngModel [(ngModel)]="currentClient.active">
+        </div>
+        <button class="btn btn-success" type="submit">Modification</button>
       </form>
     </div>
   </div>
 </div>
--->
+  </div>
+</div>

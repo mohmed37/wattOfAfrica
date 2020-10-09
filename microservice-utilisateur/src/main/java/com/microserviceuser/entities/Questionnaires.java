@@ -40,6 +40,6 @@ public class Questionnaires implements Serializable {
     Boolean porteFolio;
     Boolean projetPro;
     @OneToOne
-    AppUser user;
+    User user;
 
 }

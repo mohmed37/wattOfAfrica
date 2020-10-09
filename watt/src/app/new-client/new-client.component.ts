@@ -43,7 +43,15 @@ click(){
 }
   ngOnInit(): void {
     this.onGetClient();
-
+   /* this.userForm = new FormGroup({
+    prenom:new FormControl('',Validators.required),
+    passwor:new FormControl('',Validators.required),
+    matchingPassword:new FormControl('',Validators.required),
+    phone:new FormControl('',Validators.required),
+    date:new FormControl('',Validators.required),
+    nom:new FormControl('',Validators.required),
+    email:new FormControl('', [Validators.required, Validators.email])
+  })*/
   }
 
   ngAfterViewInit() {
@@ -60,25 +68,6 @@ click(){
       }
     } catch (e) { }
   }
-
-
-
-
-  prenom=new FormControl('',Validators.required);
-  password=new FormControl('',Validators.required);
-  matchingPassword=new FormControl('',Validators.required);
-  phone=new FormControl('',Validators.required);
-  date=new FormControl('',Validators.required);
-  nom=new FormControl('',Validators.required);
-  email = new FormControl('', [Validators.required, Validators.email]);
- getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'Vous devez saisir une valeur';
-    }
-    return this.email.hasError('email') ? "Adresse mail n'est valide" : '';
-  }
-
-
 
 
 //CLIENT
@@ -117,7 +106,7 @@ click(){
       })
   }
 
-  /*onDeleteClient(p) {
+  onDeleteClient(p) {
     let conf=confirm("Etes vous sûre?")
     if(conf){
       this.idClient=p.num;
@@ -127,11 +116,8 @@ click(){
 
         },error => {
           console.log(error)
-
         })
     }
-
-
   }
 
   onEditClient(p) {
@@ -140,88 +126,26 @@ click(){
     this.clientService.getClientBy(this.idClient)
       .subscribe(data=>{
         this.currentClient=data;
+        console.log(this.currentClient);
       },error => {
         console.log(error);
       } )
 
-  }*/
-
-
-  onSaveClient(data: any) {
-    this.clientService.saveResource(this.clientService.hostUser+"/saveUser",data)
-      .subscribe(res=>{
-        if(res==null){
-          this.message="Cette adresse mail existe déjà!"
-          return null;
-        }
-
-        this.currentClient=res;
-        this.router.navigateByUrl("/login");
-        this.mode=2;
-      },error => {
-        console.log(error)
-      });
-
-
-  }
-
-  onNewClient() {
-    this.mode=1;
-  }
-
-  onNewClientAfficher() {
-    this.modeClient=1;
-  }
-  ofNewClientAfficher() {
-    this.modeClient=0;
   }
 
   // Modif client
 
-  onUpdateProduit(value: any) {
+
+  modifOk(value: any) {
     this.clientService.updateClientBy(this.clientService.hostUser+"/modifUser/"+this.idClient,value)
       .subscribe(data=>{
-        alert("Mise à jour avec succés")
-        this.router.navigateByUrl("/new-client")
+        alert("Mise à jour avec succés");
+        this.ngOnInit();
 
       },error => {
         console.log(error)
-      })
-
-  }
-
-  modifOk() {
+      });
     this.modeClient=0;
   }
 
-  onFormSubmit() {
-    this.passError="";
-    this.message="";
-    if (this.password.value!=this.matchingPassword.value){
-      this.passError="Les mots de passe saisis ne sont pas identiques.";
-      console.log(this.passError);
-      return null;
-    }
-
-      this.newClient.prenom=this.prenom.value;
-      this.newClient.nom=this.nom.value;
-      this.newClient.email=this.email.value;
-      this.newClient.phone=this.phone.value;
-      this.newClient.password=this.password.value;
-      this.newClient.matchingPassword=this.matchingPassword.value;
-      this.newClient.date=this.date.value;
-      this.clientService.saveResource(this.clientService.hostUser+"/saveUser",this.newClient)
-        .subscribe(res=>{
-          console.log(res);
-          if(res==null){
-            this.message="Cette adresse mail existe déjà!";
-            return null;
-          }
-          this.currentClient=res;
-          this.router.navigateByUrl("/login");
-          this.mode=2;
-        },error => {
-          console.log(error)
-        });
-  }
 }

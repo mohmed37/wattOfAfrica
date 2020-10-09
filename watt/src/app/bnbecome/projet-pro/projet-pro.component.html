@@ -1,13 +1,105 @@
 <h1 class="titre" id="haut">Votre projet professionel</h1>
-<div class="container" *ngIf="!projetProValide">
-  <div class="item">
-    <h2>Contexte</h2>
-  </div>
-  <div class="item">
-    <h2>Objectif</h2>
-  </div>
-  <div class="item">
-    <h2>Résultat</h2>
+<div class="projetPro" *ngIf="!projetProValide">
+  <p class="selection"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+
+  <div class="bndream" >
+    <img [src]="contexteImg" class="imgcontexte"  *ngIf="contexteValide">
+    <div class="item" *ngIf="contexteValide"  id="contexte">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="contexte()" >
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2>Contexte</h2>
+      <p><b>MON PROJET EST-IL VIABLE ?</b></p>
+
+      <p><b>VOUS ALLEZ POUVOIR ENFIN SAVOIR SI VOTRE PROJET EST REALISTE ET REALISABLE !</b></p>
+
+      <p>Une fois que vous avez bien identifié que votre projet correspond bien à votre profil général, il est
+        maintenant temps pour vous d’analyser s’il y a des <b >opportunités d’emploi en termes de débouchés. </b></p>
+
+      <p>Cette étape va vous aider à valider la pertinence de votre projet professionnel en le confrontant aux réalités
+        socio-économiques du marché du travail, en <b>repérant les conditions d’exercice des métiers et comment y accéder
+          (formations, certifications…).</b></p>
+    </div>
+
+    <img [src]="objectifImg" class="imgcontexte" *ngIf="objectifValide">
+
+    <div class="item" *ngIf="objectifValide"  id="objectif">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="objectif()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2>Objectifs</h2>
+      <ul class="liObjectif">
+        <li>Vérifier la faisabilité de votre projet au regard du marché de l’emploi</li>
+        <li>Aller à la rencontre de professionnels et accroître votre réseau professionnel</li>
+        <li>Valider votre projet professionnel</li>
+        <li>Identifier vos besoins en formation</li>
+      </ul>
+    </div>
+
+
+    <img [src]="processImg" class="imgcontexte" *ngIf="processValide">
+    <div class="item"   *ngIf="processValide"  id="process">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="process()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <h2>Process</h2>
+      <p>Pour vérifier la viabilité de votre projet professionnel, vous allez vous renseigner sur les <b>opportunités
+        économiques / les débouchés en lien avec les projets</b> que vous avez identifiés.
+        Vous allez dans un premier temps vérifier la faisabilité de votre projet au regard du marché de l’emploi.
+        Dans ce dessein, vous allez vous appuyer sur le <b>BMO édité par Pôle Emploi qui va vous permettre d’accéder
+          à des données statistiques via une recherche par zone géographique, par métier et par secteur d’activité.</b>
+      </p>
+      <p>Nous vous invitons donc à vous rendre sur le lien suivant :</p>
+
+      <a href="https://statistiques.pole-emploi.org/bmo"><p>https://statistiques.pole-emploi.org/bmo</p></a>
+      <p>Dans un second temps, nous vous invitons à <b>réaliser des enquêtes métiers auprès de professionnels.</b></p>
+
+      <p>Il est maintenant important d’aller à la <b>rencontre de professionnels pour se renseigner sur le terrain sur les
+        secteurs d’activité et les métiers</b> dans lesquels vous envisager de travailler. </p>
+
+      <p><b>Comment vous y prendre :</b></p>
+      <p><b>Contacter des professionnels</b> en lien avec vos projets et les interroger pour comprendre en quoi consiste le
+        métier, les conditions d’accès, les formations nécessaires et ainsi identifier les avantages et inconvénients
+        du métier, de l’environnement de travail pour vous aider à faire les bons choix professionnels.</p>
+      <p><b>Comment contacter des professionnels :</b></p>
+      <p>En fonction des projets sélectionnés, vous allez identifier des entreprises et leurs coordonnées puis préparer
+        les questions à leur poser. </p>
+      <p><b>Pour entrer en relation avec les professionnels, vous pouvez :</b></p>
+      <ul>
+        <li>Consulter les annuaires professionnels (CCI, KOMPAS, CMA…)</li>
+        <li>Solliciter votre réseau personnel et professionnel pour vous faciliter la mise en lien</li>
+        <li>Vous inscrire sur les <b>réseaux sociaux professionnels</b> comme <b>Linkedin</b> pour entrer en contact avec des professionnels</li>
+        <li>Consulter les <b>sites</b> internet, les <b>blogs</b> de professionnels, les <b>forums</b> de discussion spécialisées </li>
+        <li>-	Se rendre sur <b>les forums de l’emploi o de l’orientation,</b> journées découverte des métiers et <b>salons
+          professionnels</b> pour échanger avec des experts du secteur</li>
+        <li>-	Contacter directement les professionnels et leur demander de vous accorder un moment pour échanger sur le métier </li>
+      </ul>
+      <p><b>Préparer les bonnes questions</b> à poser pour assurer <b>votre enquête métier :</b></p>
+      <p>Prenez-le temps de préparer un questionnaire avec les questions que vous souhaitez poser !</p>
+      <p>Voici <b>une liste de questions à poser aux professionnels</b> que vous rencontrerez :</p>
+
+      <ul>
+        <li>Pouvez-vous me décrire votre métier ?  Vos principales missions ?</li>
+        <li>Quelles sont les tâches principales de ce métier ?</li>
+        <li>Comment se déroule une semaine de travail « type » ?</li>
+        <li>Selon vous, quels sont les avantages de votre métier ?</li>
+        <li>Qu’aimez-le-vous plus dans ce métier ?</li>
+        <li>Quel type de formation est demandé pour exercer ce métier ?</li>
+        <li>Quelle sont les qualités et aptitudes demandées ?</li>
+        <li>Quelles sont les conditions de travail (horaires, déplacement, rythme…)</li>
+        <li>Quelle est la rémunération ?</li>
+        <li>Pensez-vous qu’il y a des débouchés dans ce secteur d’activité ?</li>
+        <li>Comment recrutez-vous ?</li>
+        <li>Quels conseils pourrez-vous me donner pour réussir dans ce métier ?</li>
+      </ul>
+      <p><b>LET’S GO !</b></p>
+    </div>
   </div>
 </div>
 <div  class="textePro" *ngIf="!metierValideBySelction&&clientConnect&&profilUvalide">

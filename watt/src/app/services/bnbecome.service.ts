@@ -26,7 +26,7 @@ export class Bnbecome{
     return this.htttpClient.put<ListMetierClientModel>(url,data.valueOf());
   }
   getFicheMetierClient():Observable<ListMetierClientModel>{
-    return this.htttpClient.get<ListMetierClientModel>(this.hostTest + "/getMetierByClient/"+this.userConnect.userAuthenticated.num);
+    return this.htttpClient.get<ListMetierClientModel>(this.hostTest + "/getMetierByClient/"+this.userConnect.userAuthenticated.id);
   }
 
   getQuestionnaireProfileU():Observable<ProfilUModel[]>{
@@ -36,7 +36,7 @@ export class Bnbecome{
     return this.htttpClient.post<ResultatRaModel>(this.hostTest + "/saveClientRa/",data.valueOf());
   }
   getResultatProfileU():Observable<ResultatRaModel>{
-    return this.htttpClient.get<ResultatRaModel>(this.hostTest + "/questionClient/"+this.userConnect.userAuthenticated.num);
+    return this.htttpClient.get<ResultatRaModel>(this.hostTest + "/questionClient/"+this.userConnect.userAuthenticated.id);
   }
 
   getRestitusionProfilU():Observable<RestitutionProfilUModel[]>{
@@ -71,7 +71,7 @@ export class Bnbecome{
 
   getCompetenceClient():Observable<ListCompetencesClientModel>{
 
-    return this.htttpClient.get<ListCompetencesClientModel>(this.hostTest + "/getCompetenceClientByIdClient/"+this.userConnect.userAuthenticated.num);
+    return this.htttpClient.get<ListCompetencesClientModel>(this.hostTest + "/getCompetenceClientByIdClient/"+this.userConnect.userAuthenticated.id);
   }
 
 

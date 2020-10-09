@@ -49,58 +49,69 @@ export class BndreamComponent implements OnInit {
       if(this.authService.userAuthenticated){
         this.clientService.getQuestionnairesAll().subscribe(list=>{
           this.ListQuestionnaire=list;
-          this.ListQuestionnaire.forEach(questionnaireUser=> {
-            if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
-              this.serviceClient.getQuestionnaires()
-                .subscribe(data => {
-                  this.questionnaires = data;
-                  this.photolangage = this.questionnaires.photoLangage;
-                  this.roueVie = this.questionnaires.roueVie;
-                  this.autoportrait = this.questionnaires.autoPortrait;
-                  this.qcm1 = this.questionnaires.qcm1;
-                  if (this.qcm1){this.colorNewQcm1="green";}
-                  this.qcm2 = this.questionnaires.qcm2;
-                  if (this.qcm2){this.colorNewQcm2="green";}
-                  this.qcm3 = this.questionnaires.qcm3;
-                  if (this.qcm3){this.colorNewQcm3="green";}
-                  this.qcm4 = this.questionnaires.qcm4;
-                  if (this.qcm4){this.colorNewQcm4="green";}
-                  this.hero = this.questionnaires.hero;
+          if (this.ListQuestionnaire.length>0) {
+            this.ListQuestionnaire.forEach(questionnaireUser => {
+              if (questionnaireUser.user.id == this.userConnect.userAuthenticated.id) {
+                this.serviceClient.getQuestionnaires()
+                  .subscribe(data => {
+                    this.questionnaires = data;
+                    this.photolangage = this.questionnaires.photoLangage;
+                    this.roueVie = this.questionnaires.roueVie;
+                    this.autoportrait = this.questionnaires.autoPortrait;
+                    this.qcm1 = this.questionnaires.qcm1;
+                    if (this.qcm1) {
+                      this.colorNewQcm1 = "green";
+                    }
+                    this.qcm2 = this.questionnaires.qcm2;
+                    if (this.qcm2) {
+                      this.colorNewQcm2 = "green";
+                    }
+                    this.qcm3 = this.questionnaires.qcm3;
+                    if (this.qcm3) {
+                      this.colorNewQcm3 = "green";
+                    }
+                    this.qcm4 = this.questionnaires.qcm4;
+                    if (this.qcm4) {
+                      this.colorNewQcm4 = "green";
+                    }
+                    this.hero = this.questionnaires.hero;
 
-                  if (this.photolangage) {
-                    this.progression = 20;
-                  }
-                  if (this.roueVie) {
-                    this.progression = 40;
-                  }
-                  if (this.autoportrait) {
-                    this.progression = 60;
-                  }
-                  if (this.qcm1) {
-                    this.progression = 65;
-                  }
-                  if (this.qcm2) {
-                    this.progression = 75;
-                  }
-                  if (this.qcm3) {
-                    this.progression = 85;
-                  }
-                  if (this.qcm4) {
-                    this.progression = 90;
-                  }
-                  if (this.hero) {
-                    this.progression = 100;
-                  }
-                }, error => {
-                  console.log(error);
-                });
-            }else {
-              return null;
-            }
+                    if (this.photolangage) {
+                      this.progression = 20;
+                    }
+                    if (this.roueVie) {
+                      this.progression = 40;
+                    }
+                    if (this.autoportrait) {
+                      this.progression = 60;
+                    }
+                    if (this.qcm1) {
+                      this.progression = 65;
+                    }
+                    if (this.qcm2) {
+                      this.progression = 75;
+                    }
+                    if (this.qcm3) {
+                      this.progression = 85;
+                    }
+                    if (this.qcm4) {
+                      this.progression = 90;
+                    }
+                    if (this.hero) {
+                      this.progression = 100;
+                    }
+                  }, error => {
+                    console.log(error);
+                  });
+              } else {
+                return null;
+              }
 
-          })
+            })
+          }
         });
-      }
+
+  }
   }
 
   ngAfterViewInit() {

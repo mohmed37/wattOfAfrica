@@ -65,13 +65,20 @@ export class DicoMetiersComponent implements OnInit {
   public ListQuestionnaire:any[];
   public clientConnect:boolean;
   public select: boolean;
+  public contexteImg:string="assets/img/contexte.jpg";
+  public objectifImg:string="assets/img/objectuf.jpg";
+  public processImg:string="assets/img/consigne.jpg";
+  public contexteValide:boolean=false;
+  public objectifValide: boolean=false;
+  public processValide: boolean=false;
+
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute
     ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome,private hostTestService:ApiService ) {
     this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
 
-    this.userId=this.userConnect.userAuthenticated.num;
+    this.userId=this.userConnect.userAuthenticated.id;
       this.clientConnect=this.userConnect.userAuthenticated;
     }
 
@@ -258,4 +265,41 @@ export class DicoMetiersComponent implements OnInit {
     console.log(event);
 
   }
+
+  contexte() {
+    if(!this.contexteValide){
+      this.contexteValide=true;
+      this.objectifValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'contexte' });
+    }else {
+      this.contexteValide=false;
+      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'haut' });
+    }
+  }
+
+  objectif() {
+    if(!this.objectifValide){
+      this.objectifValide=true;
+      this.contexteValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'objectif' });
+    }else {
+      this.objectifValide=false;
+      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'haut' });
+
+    }
+  }
+  process() {
+    if(!this.processValide){
+      this.processValide=true;
+      this.objectifValide=false;
+      this.contexteValide=false;
+      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'process' });
+    }else {
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'haut' });
+    }
+  }
+
 }

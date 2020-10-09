@@ -1,16 +1,87 @@
 <h1 class="titre" id="haut">B'n Beleave</h1>
-<div class="bndream">
-  <div class="item">
+<p class="selection"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+<div class="bndream" >
+  <div class="label" *ngIf="contexteValide">
+    <img [src]="contexteImg" class="imgcontexte">
     <h2>Contexte</h2>
   </div>
-  <div class="item">
-    <h2>Objectif</h2>
+
+  <div class="item" *ngIf="contexteValide"  id="contexte">
+    <div class="button-container">
+      <button mat-mini-fab color="warn" (click)="contexte()" >
+        <mat-icon>filter_list</mat-icon>
+      </button>
+    </div>
+    <p><b>Allez à la découverte des métiers qui vous correspondent !</b></p>
+
+    <p><b>B’n Beleave</b> est une étape incontournable qui fait suite à l’étape B’n Dream.</p>
+    <p>Cette phase va vous aider à <b>mieux cerner vos forces</b> et vos axes d’amélioration en termes de
+      <b>personnalité</b>, de <b>motivation</b> et de <b>compétences.</b></p>
+    <p>A partir de tous ces éléments, vous pourrez enfin <b>découvrir les métiers</b> qui correspondent à votre profil en
+      explorant les <b>fiches métiers</b> via le <b>dico métiers</b> et choisir les métiers dans lesquels vous pourriez vous projeter.</p>
+    <p>Nous allons vous accompagner en parcourant trois étapes : <b>B’n Dream, B’n Beleave et Go’n Become.</b></p>
+    <p>Une fois ce <b>travail d’introspection</b> et <b>d’investigation</b> réalisé, vous allez pouvoir les <b>confronter à
+      l’environnement économique</b> afin d’analyser la <b>faisabilité de votre projet professionnel.</b></p>
+    </div>
+
+  <div class="label" *ngIf="objectifValide">
+    <img [src]="objectifImg" class="imgcontexte">
+    <h2>Objectifs</h2>
   </div>
-  <div class="item">
-    <h2>Résultat</h2>
+  <div class="item" *ngIf="objectifValide"  id="objectif">
+    <div class="button-container">
+      <button mat-mini-fab color="warn" (click)="objectif()">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+    </div>
+    <ul class="liObjectif">
+
+        <li>Découvrir les métiers qui correspondent à votre profil</li>
+        <li>Construire votre portefeuille de compétences</li>
+        <li>Evaluer vos aptitudes et potentialités</li>
+        <li>Cerner vos traits de personnalité et vos motivations</li>
+        <li>Etudier la faisabilité de votre projet en lien avec le marché du travail</li>
+
+    </ul>
+  </div>
+
+  <div class="label" *ngIf="processValide">
+    <img [src]="processImg" class="imgcontexte">
+    <h2>Process</h2>
+  </div>
+  <div class="item"   *ngIf="processValide"  id="process">
+    <div class="button-container">
+      <button mat-mini-fab color="warn" (click)="process()">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+    </div>
+
+    <p>Durant cette étape <b>B’N Beleave</b>, vous allez passer par <b>différentes étapes</b>:</p>
+
+    <p><b class="para" >1er étape:</b> découvrir les métiers qui sont ressortis de votre tests d’intérêts professionnels Praico
+      et explorez les métiers qui vous intéressent via Dico métiers. Cette étape va vous permettre de sélectionner
+      les métiers dans lesquels vous souhaiteriez vous réaliser.</p>
+
+    <p><b class="para">2ème étape:</b> grâce au test de personnalité Profil – U, vous allez découvrir qui vous êtes avec vos forces
+      dans vos capacités à gérer vos relations aux autres et votre capacite à faire face aux situations du quotidien.
+      Ce test va vous permettre d’évaluer deux aspects de vous : <b>votre personnalité</b> et <b>vos valeurs professionnelles.</b> </p>
+
+    <p><b class="para">3ème étape:</b> en réalisant <b>votre portfolio</b>, vous allez pouvoir vous <b>reconnecter à vos talents</b> en identifiant
+      toutes les <b>compétences déployées</b> tout au long de votre vie.</p><p>
+      L’analyse de votre parcours professionnel et / ou scolaire va vous inviter à identifier vos expériences
+    personnelles, artistiques, sociales, professionnelles…</p><p>
+    Cet <b>exercice de réflexion</b> va également vous permettre <b>d’identifier vos talents pour vos nouvelles perspectives
+    professionnelles</b>, de <b>reprendre confiance en soi</b>, de <b>bâtir votre CV</b> et vous préparer efficacement à vos prochains
+    <b>entretiens de recrutement</b>.
+    </p>
+
+    <p><b class="para">4ème étape:</b> Cette étape va vous aider à valider la pertinence de votre projet professionnel en le confrontant
+      aux réalités socio-économiques du marché du travail. Vous allez pouvoir repérer les <b>conditions d’exercice du métier,
+        comment y accéder (formations, certifications…)</b> et <b>découvrir les opportunités d’emploi</b> en termes<b> de débouchés.</b></p>
+
+    <p>Cette dernière étape de B’n Beleave va vous permettre de savoir si <b>votre projet est réaliste et réalisable.</b></p>
   </div>
 </div>
-
 <div *ngIf="questionnaires" >
   <div id="debut"></div>
   <div class="progressTotal" >

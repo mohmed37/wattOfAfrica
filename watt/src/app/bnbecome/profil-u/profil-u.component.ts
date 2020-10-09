@@ -44,13 +44,19 @@ export class ProfilUComponent implements OnInit {
   public porteFolio: boolean;
   public ListQuestionnaire:any[];
   public clientConnect:boolean;
+  public contexteImg:string="assets/img/contexte.jpg";
+  public objectifImg:string="assets/img/objectuf.jpg";
+  public processImg:string="assets/img/consigne.jpg";
+  public contexteValide:boolean=false;
+  public objectifValide: boolean=false;
+  public processValide: boolean=false;
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute
     ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome,public dialog: MatDialog) {
     if (userConnect.userAuthenticated){
       this.clientConnect=this.userConnect.userAuthenticated;
-    this.userId=this.userConnect.userAuthenticated.num;}
+    this.userId=this.userConnect.userAuthenticated.id;}
   }
 
   ngOnInit(): void {
@@ -67,7 +73,7 @@ export class ProfilUComponent implements OnInit {
                 this.porteFolio = this.questionnaires2.porteFolio;
                 if (this.profilUvalide) {
                   this.getResultatProfilU();
-                  this.resulta=true;
+
                 }
               }, error => {
                 console.log(error);
@@ -316,7 +322,7 @@ export class ProfilUComponent implements OnInit {
       saveProfilU(){
     this.resultRa.idclient=this.userId;
     this.bnbecome.saveProfilU(this.resultRa).subscribe(data=>{
-      /*  this.router.navigateByUrl("/bnBeleave");*/
+       this.router.navigateByUrl("/bnBeleave");
       this.serviceClient.putQuestionnaires("profilU");
       this.getResultatProfilU();
       this.ngOnInit();
@@ -328,9 +334,7 @@ export class ProfilUComponent implements OnInit {
   getResultatProfilU(){
     this.bnbecome.getResultatProfileU().subscribe(data=>{
       this.getResulta=data;
-      this.resulta=true;
-
-
+     this.resulta=true;
     });
   }
   closeResultatProfiliU(){
@@ -460,6 +464,43 @@ export class ProfilUComponent implements OnInit {
         break;}
     }
   }
+
+  contexte() {
+    if(!this.contexteValide){
+      this.contexteValide=true;
+      this.objectifValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'contexte' });
+    }else {
+      this.contexteValide=false;
+      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'haut' });
+    }
+  }
+
+  objectif() {
+    if(!this.objectifValide){
+      this.objectifValide=true;
+      this.contexteValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'objectif' });
+    }else {
+      this.objectifValide=false;
+      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'haut' });
+
+    }
+  }
+  process() {
+    if(!this.processValide){
+      this.processValide=true;
+      this.objectifValide=false;
+      this.contexteValide=false;
+      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'process' });
+    }else {
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'haut' });
+    }
+  }
+
 
 }
 

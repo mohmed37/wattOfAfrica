@@ -58,6 +58,12 @@ public class TestProfilUControler {
 
     @PostMapping(value = "saveClientRa")
     public ResultatRa saveClientRa(@RequestBody ResultatRa resultatRa) {
+        List<ResultatRa>listClient=resultatRaRepository.findAll();
+        for (ResultatRa clientRa:listClient){
+            if (clientRa.getIdclient().equals(resultatRa.getIdclient())){
+                return null;
+            }
+        }
         resultatRa.setAuthenticite((double) round(resultatRa.getAuthenticite()));
         resultatRa.setDirective((double) round(resultatRa.getDirective()));
         resultatRa.setGregarite((double) round(resultatRa.getGregarite()));

@@ -1,13 +1,109 @@
 <h1 class="titre" id="haut">PorteFolio</h1>
-<div class="container" *ngIf="!porteFolioValide">
-  <div class="item">
-    <h2>Contexte</h2>
-  </div>
-  <div class="item">
-    <h2>Objectif</h2>
-  </div>
-  <div class="item">
-    <h2>Résultat</h2>
+<div  *ngIf="!porteFolioValide" class="porteFolio">
+  <p class="selection"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+  <div class="bndream" >
+    <div class="label" *ngIf="contexteValide">
+      <img [src]="contexteImg" class="imgcontexte">
+      <h2>Contexte</h2>
+    </div>
+
+    <div class="item" *ngIf="contexteValide"  id="contexte">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="contexte()" >
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <p><b>VOUS ETES TOUTES ET TOUS DOTES.EES DE TALENTS EXTRAORDINAIRES !
+        VOUS ALLEZ POUVOIR ENFIN VOUS RECONNECTER A VOS TALENTS GRACE A TOUTES LES COMPETENCES DEPLOYEES TOUT AU LONG DE
+        VOTRE VIE !</b></p>
+      <img [src]="porteFolioImg1">
+
+      <p><b>Connaître vos compétences</b> vous permettra de <b>mieux cerner</b> ce pour quoi vous pourrez postuler et vous permettra
+        de comprendre quelles sont les compétences à développer quand vous choisirez le métier qui vous correspond.
+        L’analyse de votre itinéraire va vous inviter à identifier vos expériences personnelles, artistiques, sociales,
+        professionnelles…, afin de repérer les compétences développées en lien avec les productions réalisées.
+        Ces compétences que vous maîtrisez seront donc à <b>intégrer dans votre CV.</b></p>
+
+      <p>La construction de votre portefolio est une <b>étape très importante</b> pour vous : cet exercice de réflexion va vous
+        permettre de vous projeter sur de nouvelles possibilités d’activité, de <b>nouveaux horizons professionnels.</b></p>
+
+      <p>Elle vous apportera un bénéfice indéniable sur la <b>reprise de confiance</b> en vous et notamment sur vos forces et
+        vos talents. C’est une expérience à la fois libératrice et positive.</p>
+
+      <p>L’analyse de votre itinéraire va vous inviter à <b>décrire vos expériences personnelles, artistiques, sociales,
+        professionnelles, …,</b> afin de repérer les compétences que vous y avez développées, en lien avec les productions réalisées.</p>
+      <p>Vous avez capitalisé des compétences tout au long de votre parcours scolaire et / ou professionnel,
+        c’est l’occasion de faire le point sur vos compétences, vos talents !</p>
+      <p><p>Nota bene : Le portfolio que vous allez réaliser est un <b>outil vivant et évolutif.</b> Vous pourrez au
+        fur et à mesure de vos prochaines expériences <b>l’alimenter de vos nouvelles compétences acquises.</b></p>
+
+    </div>
+
+    <div class="label" *ngIf="objectifValide">
+      <img [src]="objectifImg" class="imgcontexte">
+      <h2>Objectifs</h2>
+    </div>
+    <div class="item" *ngIf="objectifValide"  id="objectif">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="objectif()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+      <ul class="liObjectif">
+        <li>Identifier vos compétences / savoir faire - savoir être - savoirs</li>
+        <li>Analyser vos forces et vos axes d’amélioration en fonction du projet professionnel identifié</li>
+        <li>Cerner les besoins en formation pour rendre viable votre projet</li>
+        <li>Construire les bases de votre CV et de votre lettre de motivation</li>
+        <li>Gagner en confiance en soi</li>
+        <li>Avoir des arguments pour défendre votre candidature lors d’un entretien de recrutement</li>
+        <li>Préparer une VAE (Validation des Acquis par l’expérience) afin de valider un diplôme</li>
+        <li>Accroître son employabilité</li>
+      </ul>
+    </div>
+
+    <div class="label" *ngIf="processValide">
+      <img [src]="processImg" class="imgcontexte">
+      <h2>Process</h2>
+    </div>
+    <div class="item"   *ngIf="processValide"  id="process">
+      <div class="button-container">
+        <button mat-mini-fab color="warn" (click)="process()">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+
+      <p>Dans un premier temps, vous allez vous remémorez toutes les expériences professionnelles et extraprofessionnelles
+             que vous avez développées au niveau scolaire, professionnel, associative ou sportive et identifier toutes
+             les compétences que vous avez déployées.</p>
+
+      <p>Il sera important de dissocier vos qualités (soft skills), vos savoir-faire (hard skills) et vos savoirs (connaissances acquises).</p>
+      <p>Vous pourrez également identifier vos compétences clés.*</p>
+      <p>Les compétences clés sont nécessaires à toute personne pour son épanouissement et le développement personnel.</p>
+      <p>Elles sont définies en 8 domaines de compétences :</p>
+      <ul class="liObjectif">
+        <li>Communiquer dans une langue étrangère </li>
+        <li>Communiquer dans une langue maternelle</li>
+       <li>Disposer d’une culture mathématiques et de compétences en sciences et technologies</li>
+        <li>Avoir une culture numérique</li>
+        <li>Apprendre à apprendre</li>
+        <li>Développer un esprit d’initiative et d’entreprise</li>
+        <li>Avoir une sensibilité et expression culturelles</li>
+      </ul>
+
+      <p>Vous allez repérer également vous autoévaluer sur votre niveau en compétences linguistiques et informatiques.</p>
+
+      <p>*la liste des compétences n’est pas exhaustive, vous avez donc la possibilité d’en rajouter.
+        Afin de faciliter la remémoration de votre parcours, nous vous proposons de renseigner votre tableau en identifiant
+        les domaines de compétences que vous avez développés (gestion, ressources humaines, développement informatique…).
+      </p>
+      <p>N’oubliez d’identifier les connaissances acquises lors de vos formations scolaires et continues
+        (ex : secourisme, BAFA, BAFD, stage de musique, danse…).</p>
+
+      <p>Dans un second temps, vous devrez vous auto-évaluer en premier lieu sur votre degré de maitrise sur la
+        compétence sélectionnée puis, en second temps, vous évaluer sur votre degré d’intérêt sur une échelle
+        de 1 à 4 pour cette compétence. </p>
+      <p><b>LET’S GO !</b></p>
+    </div>
   </div>
 </div>
 <!--<form [formGroup]="formCompetence" >

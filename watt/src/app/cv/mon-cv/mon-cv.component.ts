@@ -10,6 +10,7 @@ import {Bnbecome} from "../../services/bnbecome.service";
 import {FicheMetier} from "../../model/ficheMetier.model";
 import * as jspdf from "jspdf";
 import html2canvas from "html2canvas";
+import {Client} from "../../model/client.model";
 
 
 
@@ -96,6 +97,7 @@ fileToUpload : File= null;
   public metierValide:any[]=[];
   listByMetierSelect:FicheMetier[]=[];
   public metier:any[]=[];
+  public user=Client;
 
 
   constructor(private http: HttpClient,private clientService:ClientService, private userConnect:AuthenticationService
@@ -110,9 +112,13 @@ fileToUpload : File= null;
 
   ngOnInit(): void {
     if (this.userConnect.userAuthenticated){
-   this.nomClient=this.userConnect.userAuthenticated.nom;
-   this.premomClient=this.userConnect.userAuthenticated.prenom;
-    this.listFicheMetierClient();}
+    this.listFicheMetierClient();
+    this.clientService.getClientBy(this.userConnect.userAuthenticated.id).subscribe(user=>{
+      this.nomClient=user.nom;
+      this.premomClient=user.prenom;
+    });
+
+    }
 
   }
   public onReady( editor ) {
@@ -216,7 +222,7 @@ selectedFile=null;
   private xepOnline: any;
 
   onFileSelected(event) {
-    console.log(event);
+
     this.selectedFile=event.target.files[0];
     this.newImage=event.target.value;
   }
@@ -224,7 +230,7 @@ selectedFile=null;
 
 
   handleFinInput(file: FileList) {
-    console.log(file);
+
      this.fileToUpload = file.item(0);
     var reader = new FileReader();
     reader.onload= (ev:any) => {

@@ -9,6 +9,8 @@ import {ListCompetencesModel} from "../../model/listCompetences.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatRadioChange} from "@angular/material/radio";
 import {ListCompetencesClientModel} from "../../model/listCompetencesClient.model";
+import {BndreamService} from "../../services/bndream.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-portefolio',
@@ -49,10 +51,20 @@ export class PortefolioComponent implements OnInit {
   public afficherSelection: boolean=false;
   public metier:string="";
   public index:number=0;
-  constructor(private serviceClient:ClientService, private userConnect:AuthenticationService,private bnbecome:Bnbecome) {
+  public porteFolioImg1:string="assets/img/portfolio1.jpg";
+  public contexteImg:string="assets/img/contexte.jpg";
+  public objectifImg:string="assets/img/objectuf.jpg";
+  public processImg:string="assets/img/consigne.jpg";
+
+  public contexteValide:boolean=false;
+  public objectifValide: boolean=false;
+  public processValide: boolean=false;
+
+  constructor(private serviceClient:ClientService, private userConnect:AuthenticationService,private bnbecome:Bnbecome
+              ,private router:Router) {
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.userAuthenticated;
-    this.userId=this.userConnect.userAuthenticated.num;}
+    this.userId=this.userConnect.userAuthenticated.id;}
   }
 
   ngOnInit(): void {
@@ -295,4 +307,41 @@ this.listFaireClient=[];
       console.log(error);
     });
   }
+
+  contexte() {
+    if(!this.contexteValide){
+      this.contexteValide=true;
+      this.objectifValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'contexte' });
+    }else {
+      this.contexteValide=false;
+      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'haut' });
+    }
+  }
+
+  objectif() {
+    if(!this.objectifValide){
+      this.objectifValide=true;
+      this.contexteValide=false;
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'objectif' });
+    }else {
+      this.objectifValide=false;
+      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'haut' });
+
+    }
+  }
+  process() {
+    if(!this.processValide){
+      this.processValide=true;
+      this.objectifValide=false;
+      this.contexteValide=false;
+      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'process' });
+    }else {
+      this.processValide=false;
+      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'haut' });
+    }
+  }
+
 }

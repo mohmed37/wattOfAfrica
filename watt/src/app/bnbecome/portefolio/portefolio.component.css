@@ -1,3 +1,6 @@
+.porteFolio{
+  margin-bottom: 50px;
+}
 .titre{
   margin: 50px;
   text-align: center;
@@ -76,3 +79,67 @@ h3{
   width: 90%;
   height: auto;
 }
+
+/*contexte/objectifs/process*/
+.selection{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;
+  text-align: center;
+}
+.bndream{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.label{
+  display: flex;
+  flex-direction: column;
+}
+
+.imgcontexte{
+  float: left;
+  height: 20%;
+}
+.item{
+  border: solid 1px grey ;
+
+}
+.item{
+  border: solid 1px #3498db;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.bndream .item{
+  border: solid 1px green;
+  padding: 20px;
+  border-radius: 10px;
+  width: 70%;}
+
+.bndream p{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;}
+
+.liObjectif ul{
+  list-style-type: disc;
+}
+
+.liObjectif li{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  line-height: 2em;
+  margin-left: 30px;
+}
+.bndream h4{
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+  margin: 30px 50px;}
+
+.para{
+  color: green;
+}
+/*contexte/objectifs/process*/

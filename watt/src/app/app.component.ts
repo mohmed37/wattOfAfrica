@@ -22,7 +22,7 @@ export class AppComponent implements OnInit{
 }
 
   ngOnInit(): void {
-    this.authService.loadAuthenticatedUserFromLocalSorage();
+   /* this.authService.loadAuthenticatedUserFromLocalSorage();*/
 
 
   }

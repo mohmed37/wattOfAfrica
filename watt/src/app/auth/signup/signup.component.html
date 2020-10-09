@@ -1,41 +1,81 @@
-<div class="carre" [style.background]="color"
-     (click)="changeColor('blue')"
-     (mouseenter)="changeColor('green')"
-     (mouseleave)="changeColor('red')" >
-</div>
+<div class="container from" id="haut">
+  <form  (ngSubmit)="onFormSubmit()">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Entrer votre nom</mat-label>
+        <input matInput [formControl]="nom">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Nom</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Entrer votre Prénom</mat-label>
+        <input matInput [formControl]="prenom" >
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Prénom</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Entrer votre identifiant</mat-label>
+        <input matInput [formControl]="usernam" >
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Identifiant</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Entrer votre mot de passe</mat-label>
+        <input matInput [formControl]="password"  [type]="hide ? 'password' : 'text'" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%=:\?]).{8,12})">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-hint>Mot de passe</mat-hint>
+      </mat-form-field>
 
-<div class="data">
-  <input type="text" [(ngModel)]="content">
-  <br>
-  <p>{{content}}</p>
-</div>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Entrer à nouveau votre mot de passe</mat-label>
 
-<div class="boutton">
-  <button class="btn btn-success" (click)="displayButton =!displayButton ">Click</button>
-  <p *ngIf="displayButton">Bonjour</p>
-</div>
+        <input matInput [formControl]="matchingPassword"   [type]="hide2 ? 'password' : 'text'" >
+        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+          <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-hint>Confirmation du mot de passe</mat-hint>
+      </mat-form-field>
+      <span >{{passError}}</span>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Entrer votre adresse mail</mat-label>
+        <input matInput [formControl]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" >
+        <mat-icon matSuffix>alternate_email</mat-icon>
+        <mat-hint >Mail</mat-hint>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
 
-<div class="ngstyle">
-  <input type="text" [(ngModel)]="colorNew">
-  <div [ngStyle]="{
-    width: '200px',
-    height: '200px',
-    backgroundColor: colorNew
-    }" >
-  </div> </div>
+    </p>
 
-<div class="newCarre" [style.backgroundColor]="colorNew" (click)="changeColor('red')">2</div>
-
-<div class="class2">
-  <input type="text" [(ngModel)]="colorNew2">
-  <div class="class" [class.newClass]="colorNew2==='bleu'" ></div>
-</div>
-
-<div class="ngFor">
-  <ul>
-    <li *ngFor="let user of users let i=index">{{i}}-{{user.nom}}</li>
-
-  </ul>
-
-
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Entrer votre numéro de téléphone</mat-label>
+        <input matInput [formControl]="phone"  type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))
+        (-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" >
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-hint>Téléphone</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Entrer votre date de naissance</mat-label>
+        <input matInput [formControl]="date" type="date">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Date de naissance</mat-hint>
+      </mat-form-field>
+    </p>
+    <button class="btn btn-success" type="submit">Valider</button>
+    <span style="color: red">{{message}}</span>
+  </form>
 </div>

@@ -28,7 +28,7 @@ export class FicheMetierService {
     return this.htttpClient.get<FicheMetier>(this.hostTest + "/getPhotoFicheMetier/"+id);
   }
   getFicheMetierClient():Observable<FicheMetier[]>{
-    return this.htttpClient.get<FicheMetier[]>(this.hostTest + "/getFicheMetierClient/"+this.userConnect.userAuthenticated.num);
+    return this.htttpClient.get<FicheMetier[]>(this.hostTest + "/getFicheMetierClient/"+this.userConnect.userAuthenticated.id);
   }
 
   ficheMetierByPhotoId(id:number):Observable<FicheMetier[]>{
