@@ -31,6 +31,7 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.form = this.fb.group(
       {
         username: [''],
@@ -77,7 +78,11 @@ export class SigninComponent implements OnInit {
 
 
     },error => {
-      this.message="Erreur de connection";
+      console.log(error.status);
+      if(error.status=="200"){
+        this.message="Email n'a pas été verifié";
+      }else{
+      this.message="Erreur de connection";}
     })
   }
 
@@ -86,16 +91,17 @@ export class SigninComponent implements OnInit {
     this.messageOK="";
     this.message="";
     this.passworEnvoye=false;
+    this.formInit.reset();
   }
   initPass(){
-    return this.htttpClient.get<Boolean>(this.hostUser + "/generatePassword/"+this.formInit.value.mail).subscribe(pass => {
+    return this.htttpClient.get<any>(this.hostUser + "/generatePassword/"+this.formInit.value.mail).subscribe(pass => {
+      this.messageOK="Un nouveau mot de passe a été envoyé par mail";
+      this.message="";
+      this.passworEnvoye=true;
+      this.formInit.reset();
     },error => {
-      if (error.status==200){
-        this.messageOK="Un nouveau mot de passe a été envoyé par mail";
-        this.passworEnvoye=true;
-        this.formInit.reset();
-      }else {
-      this.message="Erreur de connection";}
+      this.message="Erreur de connection";
     })
   }
+
 }

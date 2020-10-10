@@ -106,6 +106,7 @@ export class SignupComponent implements OnInit {
     this.newClient.phone=this.phone.value;
     this.newClient.password=this.password.value;
     this.newClient.username=this.usernam.value;
+    this.newClient.date=this.date.value;
     this.newClient.role=[""];
   /*  this.newClient.matchingPassword=this.matchingPassword.value;
     this.newClient.date=this.date.value;*/

@@ -8,8 +8,5 @@ export class Client {
   public password:string;
   public role:string[];
   public active:boolean;
-/*  public matchingPassword:string;
   public date:Date;
-  public role;
-  */
 }

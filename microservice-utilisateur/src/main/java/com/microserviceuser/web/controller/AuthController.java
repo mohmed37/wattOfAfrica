@@ -1,7 +1,9 @@
 package com.microserviceuser.web.controller;
 
+import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,6 +45,7 @@ public class AuthController {
 
     private static final String PASSWORD__PATTERN = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?=\\\\S+$).{6,12}";
 
+
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -82,6 +85,11 @@ public class AuthController {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
+        Optional<User> user=userRepository.findById(userDetails.getId());
+       if (!user.get().getActive()){
+            return ResponseEntity.ok("Email n'a pas été verifié");
+        }
+
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
@@ -199,9 +207,13 @@ public class AuthController {
 
 
         @GetMapping(value = "/generatePassword/{mail}")
-        public Boolean generatePassword(@PathVariable("mail") String mail) {
-        User user=userRepository.findByEmail(mail);
+        public boolean generatePassword(@PathVariable("mail") String mail) {
+            generateur(mail);
+            return true;
+    }
 
+
+    private void generateur(String mail){
         int MAX_LENGTH = 12;
 
         java.util.Random r = new java.util.Random();
@@ -230,14 +242,17 @@ public class AuthController {
         for (int i = 0; i < MAX_LENGTH - 4; i++) {
             sb.append(locaseArray[r.nextInt(locaseArray.length)]);
         }
-        user.setPassword(encoder.encode(sb.toString()));
-            userRepository.save(user);
-            initPasswaordMail(sb.toString(),mail);
-        return true;
-
+        userPassword(sb.toString(),mail);
+        initPasswaordMail(sb.toString(),mail);
     }
 
 
+
+    public void userPassword(String toStrin,String mail){
+        User user=userRepository.findByEmail(mail);
+          user.setPassword(encoder.encode(toStrin));
+            userRepository.save(user);
+    }
 
 
     private void initPasswaordMail(String toStrin,String mail) {
@@ -273,7 +288,7 @@ public class AuthController {
 
         confirmationEmailRepository.save(confirmationEmailToken);
 
-        String url = "https://www.wattsucces.com";
+        String url = "https://www.wattsucces.com/#/confirm-account";
         String mailFrom = "postmaster@wattsucces.com";
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();

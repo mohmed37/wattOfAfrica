@@ -25,8 +25,6 @@ this.userConnect();
       this.token = params['token'];
     });
     return this.htttpClient.get(this.hostUser + "/confirm-account?token="+this.token ).subscribe(validation => {
-      this.router.navigate(['/login']);
-     console.log(validation);
 
     },error => {
       if (error.error.text=="Email verifié"){
