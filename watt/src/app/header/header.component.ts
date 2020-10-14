@@ -29,8 +29,8 @@ export class HeaderComponent implements OnInit {
   constructor(private clientService:ClientService, private router:Router,public authService:AuthenticationService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    if(this.authService.userAuthenticated) {
-    /*  this.authService.loadAuthenticatedUserFromLocalSorage();*/
+    if(sessionStorage.getItem("token")) {
+      this.authService.loadAuthenticatedUserFromLocalSorage(sessionStorage.getItem("token"));
       this.clientService.change.subscribe(
         isClient => {
           this.nomClient2 = isClient;

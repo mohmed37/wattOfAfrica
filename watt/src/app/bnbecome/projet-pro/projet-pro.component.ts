@@ -52,8 +52,8 @@ export class ProjetProComponent implements OnInit {
               private bnbecome:Bnbecome, private router:Router, private userConnect:AuthenticationService,private hostTestService:ApiService) {
     this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
-      this.clientConnect=this.userConnect.userAuthenticated;
-      this.userId=this.userConnect.userAuthenticated.num;}
+      this.clientConnect=this.userConnect.isAuthenticated;
+      this.userId=this.userConnect.userAuthenticated.id;}
   }
 
   ngOnInit(): void {
@@ -61,7 +61,7 @@ export class ProjetProComponent implements OnInit {
       this.serviceClient.getQuestionnairesAll().subscribe(list => {
         this.ListQuestionnaire = list;
         this.ListQuestionnaire.forEach(questionnaireUser => {
-          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+          if (questionnaireUser.user.id == this.userConnect.userAuthenticated.id) {
       this.serviceClient.getQuestionnaires()
         .subscribe(data => {
           this.questionnaires2 = data;

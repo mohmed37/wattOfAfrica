@@ -14,7 +14,7 @@ export class NewClientComponent implements OnInit {
   public currentClient:Client;
   public mode: number=1;
   public clients:any;
-  public size:number=1;
+  public size:number=4;
   public currentPage:number=1;
   public  totalPage:number;
   public  pages:Array<number>;
@@ -34,7 +34,7 @@ export class NewClientComponent implements OnInit {
 
   constructor(private clientService:ClientService, private router:Router,private activatedRoute:ActivatedRoute,
               private userConnect:AuthenticationService,private route: ActivatedRoute) {
-    this.userConnectClient=userConnect.userAuthenticated;
+    this.userConnectClient=userConnect.isAuthenticated;
   }
 @HostListener('click')
 click(){
@@ -109,7 +109,7 @@ click(){
   onDeleteClient(p) {
     let conf=confirm("Etes vous sûre?")
     if(conf){
-      this.idClient=p.num;
+      this.idClient=p.id;
       this.clientService.deleteClient(this.idClient)
         .subscribe(data=>{
           this.chercherClient();
@@ -121,12 +121,12 @@ click(){
   }
 
   onEditClient(p) {
-    this.idClient =p.num;
+    this.idClient =p.id;
     this.modeClient=2;
     this.clientService.getClientBy(this.idClient)
       .subscribe(data=>{
         this.currentClient=data;
-        console.log(this.currentClient);
+
       },error => {
         console.log(error);
       } )
@@ -137,7 +137,7 @@ click(){
 
 
   modifOk(value: any) {
-    this.clientService.updateClientBy(this.clientService.hostUser+"/modifUser/"+this.idClient,value)
+    this.clientService.updateClientBy(value)
       .subscribe(data=>{
         alert("Mise à jour avec succés");
         this.ngOnInit();

@@ -55,7 +55,7 @@ export class ProfilUComponent implements OnInit {
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute
     ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome,public dialog: MatDialog) {
     if (userConnect.userAuthenticated){
-      this.clientConnect=this.userConnect.userAuthenticated;
+      this.clientConnect=this.userConnect.isAuthenticated;
     this.userId=this.userConnect.userAuthenticated.id;}
   }
 
@@ -64,7 +64,7 @@ export class ProfilUComponent implements OnInit {
       this.serviceClient.getQuestionnairesAll().subscribe(list => {
         this.ListQuestionnaire = list;
         this.ListQuestionnaire.forEach(questionnaireUser => {
-          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+          if (questionnaireUser.user.id == this.userConnect.userAuthenticated.id) {
             this.serviceClient.getQuestionnaires()
               .subscribe(data => {
                 this.questionnaires2 = data;

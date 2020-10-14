@@ -19,7 +19,7 @@ export class ArdoiseComponent implements OnInit {
   public userId:number;
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient
     ,private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
-    this.userId=this.userConnect.userAuthenticated.num;
+    this.userId=this.userConnect.userAuthenticated.id;
   }
 
   ngOnInit(): void {

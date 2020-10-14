@@ -22,3 +22,6 @@ button{
   margin-left: 20%;
   margin-top: 10px;
 }
+.btn-danger ,.btn-success{
+  margin-bottom: 20px;
+}

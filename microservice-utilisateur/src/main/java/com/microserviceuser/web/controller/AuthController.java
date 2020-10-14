@@ -39,9 +39,10 @@ import org.springframework.web.bind.annotation.*;
 
 
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping("/api/auth")
 public class AuthController {
-
 
     private static final String PASSWORD__PATTERN = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?=\\\\S+$).{6,12}";
 
@@ -70,7 +71,13 @@ public class AuthController {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    @Autowired
+    private UserRepository appUserRepository;
 
+    @GetMapping(value = "/userName/{username}")
+    public Optional<User> findByUsername(@PathVariable("username") String username) {
+        return appUserRepository.findByUsername(username);
+    }
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -87,7 +94,7 @@ public class AuthController {
                 .collect(Collectors.toList());
         Optional<User> user=userRepository.findById(userDetails.getId());
        if (!user.get().getActive()){
-            return ResponseEntity.ok("Email n'a pas été verifié");
+            return ResponseEntity.ok("Email n'a pas été vérifié");
         }
 
 
@@ -245,10 +252,38 @@ public class AuthController {
         userPassword(sb.toString(),mail);
         initPasswaordMail(sb.toString(),mail);
     }
+    static class ModifPassword{
+        String mail;
+        String password;
+        String newpassword;
+
+        public ModifPassword(String mail, String password, String newpassword) {
+            this.mail = mail;
+            this.password = password;
+            this.newpassword = newpassword;
+        }
+    }
+    @PutMapping(value = "/ModifPassword")
+    public boolean generatePassword(@Valid @RequestBody ModifPassword modifPassword) {
 
 
+        User user=userRepository.findByEmail(modifPassword.mail);
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(user.getUsername(), modifPassword.password));
+            if (authentication.isAuthenticated()){
+                userPassword(modifPassword.newpassword, modifPassword.mail);
+                return true;}
+        } catch (Exception e) {
+            return false;
+        }
 
-    public void userPassword(String toStrin,String mail){
+     return false;
+
+    }
+
+
+    private void userPassword(String toStrin, String mail){
         User user=userRepository.findByEmail(mail);
           user.setPassword(encoder.encode(toStrin));
             userRepository.save(user);

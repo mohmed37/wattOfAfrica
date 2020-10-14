@@ -27,7 +27,7 @@ export class BreadcrumbComponent implements OnInit {
 
   }
 
-  private createBreadcrumbs(route: ActivatedRoute, url: string = '#', breadcrumbs: MenuItem[] = []): MenuItem[] {
+  private createBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: MenuItem[] = []): MenuItem[] {
     const children: ActivatedRoute[] = route.children;
 
     if (children.length === 0) {
@@ -60,7 +60,7 @@ export class BreadcrumbComponent implements OnInit {
   scrollToAnchor(): void {
     try {
       if (this.fragment) {
-        document.querySelector('#' + this.fragment).scrollIntoView();
+        document.querySelector('' + this.fragment).scrollIntoView();
       }
     } catch (e) { }
   }

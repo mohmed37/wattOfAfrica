@@ -1,7 +1,9 @@
 package com.microserviceuser.web.controller;
 
+import com.microserviceuser.dao.ConfirmationEmailRepository;
 import com.microserviceuser.dao.QuestionnairesRepository;
 import com.microserviceuser.dao.UserRepository;
+import com.microserviceuser.entities.ConfirmationEmailToken;
 import com.microserviceuser.entities.Questionnaires;
 import com.microserviceuser.entities.User;
 import com.microserviceuser.web.exeception.QuestionNotFoundException;
@@ -16,9 +18,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping("/api/users")
 public class UserController {
 
 
@@ -26,6 +28,8 @@ public class UserController {
     private UserRepository appUserRepository;
     @Autowired
     private QuestionnairesRepository questionRepository;
+    @Autowired
+    private ConfirmationEmailRepository confirmationEmailRepository;
 
 
     /**
@@ -38,6 +42,7 @@ public class UserController {
         Optional<User> appUsers = appUserRepository.findById(id);
         return appUsers;
     }
+
     @GetMapping(value = "/usersAll")
     public Page<User> findByAll(@RequestParam(name="page",defaultValue = "0")int page,
                                    @RequestParam(name="size",defaultValue = "3")int size,
@@ -157,13 +162,13 @@ public class UserController {
     }
 
 
-    @PutMapping(value = "modifUser/{id}")
+    @PutMapping(value = "modifUser/")
     public User modifUser(@RequestBody User appUser
-            , BindingResult bindingResult,@PathVariable("id") long id){
+            , BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return null;
         }
-        Optional<User> user=appUserRepository.findById(id);
+        Optional<User> user=appUserRepository.findById(appUser.getId());
         user.get().setPhone(appUser.getPhone());
         user.get().setEmail(appUser.getEmail());
         user.get().setPrenom(appUser.getPrenom());
@@ -174,6 +179,13 @@ public class UserController {
 
     @DeleteMapping(value = "deleteUser/{id}")
     public  void delete(@PathVariable("id") Long id){
+
+        Optional<Questionnaires> qcmClient=questionRepository.findByUser_Id(id);
+        qcmClient.ifPresent(questionnaires -> questionRepository.delete(questionnaires));
+
+        Optional<ConfirmationEmailToken> confirmationEmailToken=confirmationEmailRepository.findByUser_Id(id);
+        confirmationEmailToken.ifPresent(emailToken -> confirmationEmailRepository.delete(emailToken));
+
        appUserRepository.deleteById(id);
     }
 

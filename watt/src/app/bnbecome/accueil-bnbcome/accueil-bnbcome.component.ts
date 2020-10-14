@@ -35,7 +35,7 @@ export class AccueilBnbcomeComponent implements OnInit {
   constructor(public authService:AuthenticationService,private clientService:ClientService
     ,private router:Router,private route: ActivatedRoute, private userConnect:AuthenticationService) {
     this.serviceClient=clientService;
-    this.clientConnect=this.authService.userAuthenticated;
+    this.clientConnect=this.authService.isAuthenticated;
 
   }
 
@@ -44,7 +44,7 @@ export class AccueilBnbcomeComponent implements OnInit {
       this.clientService.getQuestionnairesAll().subscribe(list=>{
         this.ListQuestionnaire=list;
         this.ListQuestionnaire.forEach(questionnaireUser=>{
-          if (questionnaireUser.user.num==this.userConnect.userAuthenticated.num){
+          if (questionnaireUser.user.id==this.userConnect.userAuthenticated.id){
             this.serviceClient. getQuestionnaires()
               .subscribe(data=>{
                 this.questionnaires=data;

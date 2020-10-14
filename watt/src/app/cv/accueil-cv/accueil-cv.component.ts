@@ -15,7 +15,7 @@ export class AccueilCvComponent implements OnInit {
   constructor(private http: HttpClient,private clientService:ClientService, private userConnect:AuthenticationService
     ,private bnbecome:Bnbecome) {
     if (userConnect.userAuthenticated){
-      this.clientConnect=this.userConnect.userAuthenticated;
+      this.clientConnect=this.userConnect.isAuthenticated;
       this.userId=this.userConnect.userAuthenticated.id;}
   }
 

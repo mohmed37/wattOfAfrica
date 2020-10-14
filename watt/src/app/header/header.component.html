@@ -10,6 +10,7 @@
       <a *ngIf="authService.isAuthenticated"  (click)="onLogout()"><i class="fas fa-external-link-square-alt"></i> Déconnection</a>
       <a routerLink="/new-client" fragment="haut" *ngIf="!authService.isAuthenticated">Inscription</a>
       <a routerLink="/listClient" *ngIf="authService.isUserAdmin" >list des clients</a>
+      <a routerLink="/personalinfo"  fragment="haut" *ngIf="authService.isAuthenticated" >Infos compte</a>
     </nav>
     <div class="textCentre">
       <h1 >TROUVEZ VOTRE VOIE – CHANGEZ DE METIER – BOOSTEZ VOTRE CARRIERE – DEVENEZ ENTREPRENEUR</h1>

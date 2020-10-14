@@ -103,7 +103,7 @@ fileToUpload : File= null;
   constructor(private http: HttpClient,private clientService:ClientService, private userConnect:AuthenticationService
               ,private bnbecome:Bnbecome) {
     if (userConnect.userAuthenticated){
-    this.userConnectClient=userConnect.userAuthenticated;}
+    this.userConnectClient=userConnect.isAuthenticated;}
   }
   public Editor = ClassicEditor;
   public nomClient2;

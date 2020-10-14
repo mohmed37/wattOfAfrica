@@ -5,10 +5,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { FooterComponent } from './footer/footer.component';
 import { NewClientComponent } from './new-client/new-client.component';
-import { ModifClientComponent } from './modif-client/modif-client.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import {MatInputModule} from "@angular/material/input";
@@ -43,6 +42,7 @@ import { DialogModalComponent } from './dialog-modal/dialog-modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { AccueilGonbecomeComponent } from './gonbecome/accueil-gonbecome/accueil-gonbecome.component';
 import { ConfirmationComponent } from './auth/confirmation/confirmation.component';
+import {BasicAuthHtppInterceptorService} from "./services/basic-auth-htpp-interceptor.service";
 
 
 @NgModule({
@@ -51,7 +51,6 @@ import { ConfirmationComponent } from './auth/confirmation/confirmation.componen
     HeaderComponent,
     FooterComponent,
     NewClientComponent,
-    ModifClientComponent,
     LoginComponent,
     SigninComponent,
     LogoutComponent,
@@ -101,6 +100,10 @@ import { ConfirmationComponent } from './auth/confirmation/confirmation.componen
   providers: [
     ClientService,
     AuthenticationService,
+    HeaderComponent,
+    {
+      provide:HTTP_INTERCEPTORS, useClass:BasicAuthHtppInterceptorService, multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })

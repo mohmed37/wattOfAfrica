@@ -12,19 +12,22 @@ import {AuthenticationService} from "../../services/authentication.service";
 })
 export class ConfirmationComponent implements OnInit {
   public hostUser: string;
+  public hostAuth:string;
   public token:string;
   constructor(private route: ActivatedRoute, private htttpClient: HttpClient, private hostTestService: ApiService, private router: Router,private autheService: AuthenticationService) {
     this.hostUser = hostTestService.USERS_MICRO_APP;
+    this.hostAuth=hostTestService.AUTH_MICRO_APP;
   }
 
   ngOnInit(): void {
 this.userConnect();
+
 }
   public userConnect() {
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
     });
-    return this.htttpClient.get(this.hostUser + "/confirm-account?token="+this.token ).subscribe(validation => {
+    return this.htttpClient.get(this.hostAuth + "/confirm-account?token="+this.token ).subscribe(validation => {
 
     },error => {
       if (error.error.text=="Email verifié"){

@@ -63,7 +63,7 @@ export class PortefolioComponent implements OnInit {
   constructor(private serviceClient:ClientService, private userConnect:AuthenticationService,private bnbecome:Bnbecome
               ,private router:Router) {
     if (userConnect.userAuthenticated){
-    this.clientConnect=this.userConnect.userAuthenticated;
+    this.clientConnect=this.userConnect.isAuthenticated;
     this.userId=this.userConnect.userAuthenticated.id;}
   }
 
@@ -72,7 +72,7 @@ export class PortefolioComponent implements OnInit {
       this.serviceClient.getQuestionnairesAll().subscribe(list => {
         this.ListQuestionnaire = list;
         this.ListQuestionnaire.forEach(questionnaireUser => {
-          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+          if (questionnaireUser.user.id == this.userConnect.userAuthenticated.id) {
             this.serviceClient.getQuestionnaires()
               .subscribe(data => {
                 this.questionnaires2 = data;

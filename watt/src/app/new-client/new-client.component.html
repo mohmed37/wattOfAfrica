@@ -12,7 +12,7 @@
         </div>
       </form>
 
-      <table *ngIf="clients " class="table table-striped">
+      <table *ngIf="clients " class="table table-striped" id="table">
         <tr>
           <th>id</th>
           <th>date</th>
@@ -22,7 +22,7 @@
           <th>phone</th>
         </tr>
         <tr *ngFor="let p of clients">
-          <td>{{p.num}}</td>
+          <td>{{p.id}}</td>
           <td>{{p.date | date :'shortDate'}}</td>
           <td>{{p.email}}</td>
           <td>{{p.nom}}</td>
@@ -47,8 +47,12 @@
     <div class="panel panel-body" *ngIf="currentClient" >
       <form #f="ngForm"  (ngSubmit)=modifOk(f.value)>
         <div class="form-group">
+          <label class="control-label">ID</label>
+          <input class="form-control" type="text" name="id" ngModel [(ngModel)]="currentClient.id" >
+        </div>
+        <div class="form-group">
           <label class="control-label">Prénom</label>
-          <input class="form-control" type="text" name="prenom" ngModel [(ngModel)]="currentClient.prenom">
+          <input class="form-control" type="text" name="prenom" ngModel [(ngModel)]="currentClient.prenom" >
         </div>
         <div class="form-group">
           <label class="control-label">Nom</label>
@@ -60,7 +64,7 @@
         </div>
         <div class="form-group">
           <label class="control-label">Numéro de téléphone</label>
-          <input class="form-control" type="number" name="phone" ngModel [(ngModel)]="currentClient.phone">
+          <input class="form-control" type="text" name="phone" ngModel [(ngModel)]="currentClient.phone">
         </div>
         <div class="form-group">
           <label class="control-label">Validation</label>

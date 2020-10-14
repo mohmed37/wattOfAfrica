@@ -4,6 +4,10 @@ import {ClientService} from "../../services/client.service";
 import {Client} from "../../model/client.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../services/authentication.service";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogModalComponent} from "../../dialog-modal/dialog-modal.component";
+import {HttpClient} from "@angular/common/http";
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-signup',
@@ -29,10 +33,15 @@ export class SignupComponent implements OnInit {
   public passError: string='';
   public newClient:Client=new Client();
   public fragment: string;
+  color: string;
+  public hostUser: string;
+  public hostAuth: string;
 
   constructor(private clientService:ClientService, private router:Router,private activatedRoute:ActivatedRoute,
-              private userConnect:AuthenticationService,private route: ActivatedRoute) {
-    this.userConnectClient=userConnect.userAuthenticated;
+              private userConnect:AuthenticationService,private route: ActivatedRoute,public dialog: MatDialog, private hostTestService: ApiService) {
+    this.userConnectClient=userConnect.isAuthenticated;
+    this.hostUser = hostTestService.USERS_MICRO_APP;
+    this.hostAuth=hostTestService.AUTH_MICRO_APP;
   }
   @HostListener('click')
   click(){
@@ -74,6 +83,17 @@ export class SignupComponent implements OnInit {
     return this.email.hasError('email') ? "Adresse mail n'est valide" : '';
   }
 
+  openDialog(message:String): void {
+    const dialogRef = this.dialog.open(DialogModalComponent, {
+      width: '300px',
+
+      data: { restitution: message}
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      this.color = res;
+    });
+  }
 
 
 
@@ -107,11 +127,12 @@ export class SignupComponent implements OnInit {
     this.newClient.password=this.password.value;
     this.newClient.username=this.usernam.value;
     this.newClient.date=this.date.value;
-    this.newClient.role=[""];
+    this.newClient.roles=[""];
   /*  this.newClient.matchingPassword=this.matchingPassword.value;
     this.newClient.date=this.date.value;*/
-    this.clientService.saveResource(this.clientService.hostUser+"/signup",this.newClient)
+    this.userConnect.saveResource(this.newClient)
       .subscribe(res=>{
+        this.openDialog("Un mail de validation à été envoyé.");
         this.currentClient=res;
         this.router.navigateByUrl("/login");
         this.mode=2;

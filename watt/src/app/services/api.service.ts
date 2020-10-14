@@ -9,7 +9,8 @@ import {environment} from "../../environments/environment";
 export class ApiService {
   private BASE_URL =environment.backendServer;
   public TEST_MICRO_APP =`${this.BASE_URL}/microservice-tests`;
-  public USERS_MICRO_APP =`${this.BASE_URL}/microservice-utilisateur`;
+  public USERS_MICRO_APP =`${this.BASE_URL}/microservice-utilisateur/api/users`;
+  public AUTH_MICRO_APP =`${this.BASE_URL}/microservice-utilisateur/api/auth`;
 
 
   constructor(private http:HttpClient) { }

@@ -35,7 +35,7 @@ export class AccueilGonbecomeComponent implements OnInit {
       this.clientService.getQuestionnairesAll().subscribe(list=>{
         this.ListQuestionnaire=list;
         this.ListQuestionnaire.forEach(questionnaireUser=>{
-          if (questionnaireUser.user.num==this.userConnect.userAuthenticated.id){
+          if (questionnaireUser.user.id==this.userConnect.userAuthenticated.id){
       this.serviceClient. getQuestionnaires()
         .subscribe(data=>{
           this.questionnaires=data;

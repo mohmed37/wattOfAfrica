@@ -79,7 +79,7 @@ export class DicoMetiersComponent implements OnInit {
     if (userConnect.userAuthenticated){
 
     this.userId=this.userConnect.userAuthenticated.id;
-      this.clientConnect=this.userConnect.userAuthenticated;
+      this.clientConnect=this.userConnect.isAuthenticated;
     }
 
   }
@@ -89,7 +89,7 @@ export class DicoMetiersComponent implements OnInit {
         this.serviceClient.getQuestionnairesAll().subscribe(list => {
           this.ListQuestionnaire = list;
           this.ListQuestionnaire.forEach(questionnaireUser => {
-            if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+            if (questionnaireUser.user.id == this.userConnect.userAuthenticated.id) {
               this.serviceClient.getQuestionnaires()
                 .subscribe(data => {
                   this.questionnaires2 = data;

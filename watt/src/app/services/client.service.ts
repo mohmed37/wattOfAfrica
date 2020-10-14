@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
-import {HttpClient, HttpEvent} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpHeaders} from "@angular/common/http";
 import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {Client} from "../model/client.model";
 import {tap} from "rxjs/operators";
@@ -7,14 +7,17 @@ import {JwtTokenModel} from "../model/jwt-token.model";
 import {AuthenticationService} from "./authentication.service";
 import {QuestionnairesModel} from "../model/questionnaires.model";
 import {ApiService} from "./api.service";
+import {ModifPasswordModel} from "../model/modifPassword.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
+
 public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   isAuthenticated: null,
   token:null
+
 });
   public currentClient:Client;
   @Output() change: EventEmitter<Client> = new EventEmitter();
@@ -32,7 +35,7 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   }
 
   private initToken():void {
-    const token = localStorage.getItem('jwt');
+    const token = sessionStorage.getItem('token');
    if (token){
      this.jwtToken.next({
        isAuthenticated:true,
@@ -47,33 +50,30 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   }
 
   public getClient(page: number, size: number) {
-    return this.htttpClient.get(this.hostUser + "/usersAll?page=" + page + "&size=" + size);
+    return this.htttpClient.get(this.hostUser + "/usersAll?page=" + page + "&size=" + size,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
 
   public getClientBy(id):Observable<Client> {
-    return this.htttpClient.get<Client>(this.hostUser +"/user/"+id);
+       return this.htttpClient.get<Client>(this.hostUser +"/user/"+id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
+
   public getClientByKey(prenon:string,page: number, size: number) {
-    return this.htttpClient.get(this.hostUser + "/usersAll?prenom="+prenon+"&page="+page+"&size="+size);
+    return this.htttpClient.get(this.hostUser + "/usersAll?prenom="+prenon+"&page="+page+"&size="+size,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
 
   }
   public deleteClient(id:number) {
-    return this.htttpClient.delete(this.hostUser +"/deleteUser/"+id);
+    return this.htttpClient.delete(this.hostUser +"/deleteUser/"+id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
 
   }
-   public getClientConnect(){
-    return this.htttpClient.get("http://localhost:8080/getConnect");
-  }
 
-  public saveResource(url,data):Observable<Client>{
-    return this.htttpClient.post<Client>(url,data);
-  }
+
 
 
   client(){
-    this.htttpClient.get<Client>(this.hostUser +"/user/"+this.userConnect.userAuthenticated.id).subscribe(
+
+    this.htttpClient.get<Client>(this.hostUser +"/user/"+this.userConnect.userAuthenticated.id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})}).subscribe(
       client1=>{
         this.nom=client1;
       }
@@ -81,44 +81,22 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
     this.change.emit(this.nom);
   }
 
-
-
-  public updateClientBy(url,data) {
-    return this.htttpClient.put(url,data);
+  public updateClientBy(data:any) {
+    return this.htttpClient.put(this.hostUser+"/modifUser/",data,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
 
-  public signup(user):Observable<Client>{
-    console.log(user);
-    return  this.htttpClient.post<Client>(this.hostUser+"/saveUser",user)
-  }
-
-  public signin(credential: {email: string, password: string}):Observable<string>{
-
-    return this.htttpClient.post<string>(this.hostUser+"/authUser",credential).pipe(
-
-      tap((token: string)=>{
-        this.jwtToken.next({
-          isAuthenticated:true,
-          token:token
-
-        });
-        localStorage.setItem('jwt',token);
-        console.log(token)
-        })
-    );
-  }
 
   public getQuestionnaires():Observable<QuestionnairesModel>  {
-    return this.htttpClient.get<QuestionnairesModel>(this.hostUser + "/questionnairesUser/"+this.userConnect.userAuthenticated.id);
+    return this.htttpClient.get<QuestionnairesModel>(this.hostUser + "/questionnairesUser/"+this.userConnect.userAuthenticated.id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
   public getQuestionnairesAll():Observable<QuestionnairesModel[]>  {
-    return this.htttpClient.get<QuestionnairesModel[]>(this.hostUser + "/questionnairesUserAll/");
+    return this.htttpClient.get<QuestionnairesModel[]>(this.hostUser + "/questionnairesUserAll/",{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
   public putQuestionnaires(typeQuetionnaire:string){
-    return this.htttpClient.put(this.hostUser + "/modifQuestionnaire/"+this.userConnect.userAuthenticated.id,typeQuetionnaire).subscribe(data=>{
+    return this.htttpClient.put(this.hostUser + "/modifQuestionnaire/"+this.userConnect.userAuthenticated.id,typeQuetionnaire,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})}).subscribe(data=>{
 
     },error => {
       console.log(error)
@@ -127,6 +105,9 @@ public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
   }
 
   public SaveQuestionnaires(data) :Observable<QuestionnairesModel> {
-    return this.htttpClient.post<QuestionnairesModel>(this.hostUser + "/saveQuestionnaires/"+this.userConnect.userAuthenticated.id,data);
+    return this.htttpClient.post<QuestionnairesModel>(this.hostUser + "/saveQuestionnaires/"+this.userConnect.userAuthenticated.id,data,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
+
+
+
 }

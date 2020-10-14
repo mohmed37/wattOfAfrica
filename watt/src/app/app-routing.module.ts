@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {NewClientComponent} from "./new-client/new-client.component";
-import {ModifClientComponent} from "./modif-client/modif-client.component";
 import {SignupComponent} from "./auth/signup/signup.component";
 import {SigninComponent} from "./auth/signin/signin.component";
 import {DefinitionComponent} from "./definition/definition.component";
@@ -47,6 +46,10 @@ const routes: Routes = [
       {
         path: 'gonbecome', loadChildren: () => import('./gonbecome/gonbecome.module').then(m=>m.GonbecomeModule)
 
+      },
+      {
+        path: 'personalinfo', loadChildren: () => import('./compte-client/compte-client.module').then(m=>m.CompteClientModule)
+
       }
 
       ]
@@ -76,12 +79,6 @@ const routes: Routes = [
   {
     path: 'confirm-account/:token',
     component: ConfirmationComponent
-  },
-
-
-  {
-    path: "modif-client/:id",
-    component: ModifClientComponent
   },
   {
     path: "new-client",

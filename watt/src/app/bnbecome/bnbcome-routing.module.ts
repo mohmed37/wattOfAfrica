@@ -12,7 +12,7 @@ const routes: Routes = [
 
     path: '',
     data: {
-      breadcrumb: 'bnBeleave'
+      breadcrumb: 'B n Beleave'
     },
     children: [
       {

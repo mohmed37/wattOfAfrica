@@ -6,6 +6,8 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {Client} from "../../model/client.model";
 import {HttpClient} from "@angular/common/http";
 import {ApiService} from "../../services/api.service";
+import jwt_decode from "jwt-decode";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-signin',
@@ -15,19 +17,22 @@ import {ApiService} from "../../services/api.service";
 export class SigninComponent implements OnInit {
   public form: FormGroup;
   public error: string;
-  public currentClient: Client;
+
   public fragment: string;
   public hostUser: string;
+  public hostAuth: string;
   public message: string = "";
   public initPassWord: boolean;
   public formInit: FormGroup;
   public messageOK: string= "";
   public passworEnvoye: boolean;
 
+
   constructor(private fb: FormBuilder, private clientService: ClientService, private router: Router
     , private autheService: AuthenticationService, private route: ActivatedRoute
     , private htttpClient: HttpClient, private hostTestService: ApiService) {
     this.hostUser = hostTestService.USERS_MICRO_APP;
+    this.hostAuth=hostTestService.AUTH_MICRO_APP;
   }
 
   ngOnInit(): void {
@@ -62,29 +67,33 @@ export class SigninComponent implements OnInit {
   }
 
 
-  public subnit() {
-    this.clientService.signin(this.form.value).subscribe(() => {
-
-    })
-  }
 
 
   public userConnect() {
 
+    return this.htttpClient.post<any>(this.hostAuth + "/signin", this.form.value).subscribe(userConnect => {
+      this.autheService.removeTokenFromLocalStorage();
 
-    return this.htttpClient.post<Client>(this.hostUser + "/signin", this.form.value).subscribe(userConnect => {
         this.router.navigate(['/']);
-        this.autheService.clientConnect(userConnect);
+      let token:string=userConnect.accessToken;
 
+        this.autheService.loadAuthenticatedUserFromLocalSorage(token);
+      let tokenStr= 'Bearer '+userConnect.accessToken;
+      sessionStorage.setItem('token', tokenStr);
+      localStorage.setItem('token', tokenStr);
+      sessionStorage.getItem('username');
+      return userConnect;
 
     },error => {
-      console.log(error.status);
       if(error.status=="200"){
         this.message="Email n'a pas été verifié";
       }else{
       this.message="Erreur de connection";}
     })
   }
+
+
+
 
   reInitPass() {
     this.initPassWord=!this.initPassWord;
@@ -94,7 +103,7 @@ export class SigninComponent implements OnInit {
     this.formInit.reset();
   }
   initPass(){
-    return this.htttpClient.get<any>(this.hostUser + "/generatePassword/"+this.formInit.value.mail).subscribe(pass => {
+    return this.htttpClient.get<any>(this.hostAuth + "/generatePassword/"+this.formInit.value.mail).subscribe(pass => {
       this.messageOK="Un nouveau mot de passe a été envoyé par mail";
       this.message="";
       this.passworEnvoye=true;

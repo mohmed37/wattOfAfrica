@@ -33,7 +33,7 @@ export class PhotolangageComponent implements OnInit {
               ,private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute,private hostTestService:ApiService) {
     this.hostTest=hostTestService.TEST_MICRO_APP;
     if (userConnect.userAuthenticated){
-    this.clientConnect=this.userConnect.userAuthenticated;
+    this.clientConnect=this.userConnect.isAuthenticated;
     this.userId=this.userConnect.userAuthenticated.id;}
 
   }
@@ -120,18 +120,21 @@ export class PhotolangageComponent implements OnInit {
       mot6:new FormControl('',Validators.required)
 
     });
+
     if (this.userConnect.userAuthenticated){
       this.userAuthent=true;
+
       this.currentClient=this.serviceClient.getClientBy(this.userId);
 
       this.serviceClient.getQuestionnairesAll().subscribe(list => {
         this.ListQuestionnaire = list;
         this.ListQuestionnaire.forEach(questionnaireUser => {
-          if (questionnaireUser.user.num == this.userConnect.userAuthenticated.num) {
+          if (questionnaireUser.user.id == this.userConnect.userAuthenticated.id) {
             this.serviceClient. getQuestionnaires()
               .subscribe(data=>{
                 this.questionnaires2=data;
                 this.photolangageValide=this.questionnaires2.photoLangage;
+                console.log(this.photolangageValide);
                 if (this.photolangageValide){
                 this.bndreamService.getResultPhotoLangage()
                   .subscribe(data=>{
