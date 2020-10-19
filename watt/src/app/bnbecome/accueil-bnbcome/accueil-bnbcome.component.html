@@ -1,5 +1,21 @@
 <h1 class="titre" id="haut">B'n Beleave</h1>
-<p class="selection"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+
+<div class="selection">
+  <div *ngIf="questionnaires">
+  <div class="pourcent0">
+    <p>0%</p>
+  </div>
+  <mat-progress-bar class="newProgressBar"  mode="determinate" value="{{progression}}"></mat-progress-bar>
+  <div class="pourcent100">
+    <p>100%</p>
+  </div>
+  </div>
+  <div class="clic">
+    <button class="contexte" (click)="contexte()">Contexte</button>
+    <button class="objectif" (click)="objectif()">Objectifs</button>
+    <button class="process" (click)="process()">Process</button>
+  </div>
+</div>
 <div class="bndream" >
   <div class="label" *ngIf="contexteValide">
     <img [src]="contexteImg" class="imgcontexte">
@@ -82,63 +98,79 @@
     <p>Cette dernière étape de B’n Beleave va vous permettre de savoir si <b>votre projet est réaliste et réalisable.</b></p>
   </div>
 </div>
-<div *ngIf="questionnaires" >
-  <div id="debut"></div>
-  <div class="progressTotal" >
-    <img [src]="depart" class="item image" >
-    <div class="item progression">
-      <h2>B'n Beleave</h2>
-      <mat-progress-bar mode="determinate" value="{{progression}}" class="progressBar"></mat-progress-bar><p class="pourcentAttient">{{progression}}%</p>
-      <p class="pourcentMini">0%</p><br><br>
 
+<div class= etiquettes>
+<div class="our-team-main">
+  <div class="team-front">
+    <div class="imageN">
+      <img routerLink="/bnBeleave/dicoMetiers" fragment="haut" [src]="dicoImg"/>
     </div>
-    <img [src]="coupe" class="item image" >
+    <div class="projet">
+      <p class="numro" *ngIf="!dicoMetiers">1</p>
+      <p class="numro numroValide" *ngIf="dicoMetiers"><mat-icon>done_outline</mat-icon></p>
+      <p class="test" *ngIf="!dicoMetiers">Test à réaliser</p>
+      <p class="test testValide" *ngIf="dicoMetiers">Test validé</p>
+      <a class="titreProjet" routerLink="/bnBeleave/dicoMetiers" fragment="haut">Dico-Métiers</a>
+      <div class="time">
+        <mat-icon>access_time</mat-icon>
+        <p>20 minutes</p>
+    </div>
   </div>
 </div>
+</div>
+<div class="our-team-main">
+  <div class="team-front">
+    <div class="imageN">
+      <img routerLink="/bnBeleave/porteFolio" fragment="haut"  [src]="portefolioImg"/>
+    </div>
+    <div class="projet">
+      <p class="numro"*ngIf="!porteFolio">2</p>
+      <p class="numro numroValide" *ngIf="porteFolio"><mat-icon>done_outline</mat-icon></p>
+      <p class="test" *ngIf="!porteFolio">Test à réaliser</p>
+      <p class="test testValide" *ngIf="porteFolio">Test validé</p>
+      <a class="titreProjet" routerLink="/bnBeleave/porteFolio" fragment="haut" >PorteFolio</a>
+      <div class="time">
+        <mat-icon>access_time</mat-icon>
+        <p>20 minutes</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="our-team-main">
+  <div class="team-front">
+    <div class="imageN">
+      <img routerLink="/bnBeleave/profilU" fragment="haut" [src]="profilImg"/>
+    </div>
+    <div class="projet">
+      <p class="numro"*ngIf="!profilU">3</p>
+      <p class="numro numroValide" *ngIf="profilU"><mat-icon>done_outline</mat-icon></p>
+      <p class="test" *ngIf="!profilU">Test à réaliser</p>
+      <p class="test testValide" *ngIf="profilU">Test validé</p>
+      <a class="titreProjet" routerLink="/bnBeleave/profilU" fragment="haut">Profil-U</a>
+      <div class="time">
+        <mat-icon>access_time</mat-icon>
+        <p>30 minutes</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="our-team-main">
+  <div class="team-front">
+    <div class="imageN">
+      <img routerLink="/bnBeleave/projetPro" fragment="haut" [src]="projetProImg"/>
+    </div>
+    <div class="projet">
+      <p class="numro" *ngIf="!projetPro">4</p>
+      <p class="numro numroValide" *ngIf="projetPro"><mat-icon>done_outline</mat-icon></p>
+      <p class="test" *ngIf="!projetPro">Test à réaliser</p>
+      <p class="test testValide" *ngIf="projetPro">Test validé</p>
+      <a class="titreProjet" routerLink="/bnBeleave/projetPro" fragment="haut">Projet Professionnel</a>
+      <div class="time">
+        <mat-icon>access_time</mat-icon>
+        <p>20 minutes</p>
+      </div>
 
-<div class="container">
-  <div class="item projet">
-    <p class="numro" *ngIf="!dicoMetiers">1</p>
-    <p class="numro numroValide" *ngIf="dicoMetiers"><mat-icon>done_outline</mat-icon></p>
-    <p class="test" *ngIf="!dicoMetiers">Test à réaliser</p>
-    <p class="test testValide" *ngIf="dicoMetiers">Test validé</p>
-    <a class="titreProjet" routerLink="/bnBeleave/dicoMetiers" fragment="haut">Dico-Métiers</a>
-    <div class="time">
-      <mat-icon>access_time</mat-icon>
-      <p>20 minutes</p>
     </div>
   </div>
-  <div class="item projet">
-    <p class="numro"*ngIf="!porteFolio">2</p>
-    <p class="numro numroValide" *ngIf="porteFolio"><mat-icon>done_outline</mat-icon></p>
-    <p class="test" *ngIf="!porteFolio">Test à réaliser</p>
-    <p class="test testValide" *ngIf="porteFolio">Test validé</p>
-    <a class="titreProjet" routerLink="/bnBeleave/porteFolio" fragment="haut" >PorteFolio</a>
-    <div class="time">
-      <mat-icon>access_time</mat-icon>
-      <p>20 minutes</p>
-    </div>
-  </div>
-  <div class="item projet">
-    <p class="numro"*ngIf="!profilU">3</p>
-    <p class="numro numroValide" *ngIf="profilU"><mat-icon>done_outline</mat-icon></p>
-    <p class="test" *ngIf="!profilU">Test à réaliser</p>
-    <p class="test testValide" *ngIf="profilU">Test validé</p>
-    <a class="titreProjet" routerLink="/bnBeleave/profilU" fragment="haut">Profil-U</a>
-    <div class="time">
-      <mat-icon>access_time</mat-icon>
-      <p>30 minutes</p>
-    </div>
-  </div>
-  <div class="item projet">
-    <p class="numro" *ngIf="!projetPro">4</p>
-    <p class="numro numroValide" *ngIf="projetPro"><mat-icon>done_outline</mat-icon></p>
-    <p class="test" *ngIf="!projetPro">Test à réaliser</p>
-    <p class="test testValide" *ngIf="projetPro">Test validé</p>
-    <a class="titreProjet" routerLink="/bnBeleave/projetPro" fragment="haut">Projet Professionnel</a>
-    <div class="time">
-      <mat-icon>access_time</mat-icon>
-      <p>20 minutes</p>
-    </div>
-  </div>
+</div>
 </div>

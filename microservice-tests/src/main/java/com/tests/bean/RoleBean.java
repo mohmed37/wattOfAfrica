@@ -6,12 +6,43 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RoleBean {
-     Long id;
 
-    String role;
+    private Integer id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private static ERoleBean name;
+
+    public RoleBean() {
+
+    }
+
+    public RoleBean(ERoleBean name) {
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public static ERoleBean getName() {
+        return name;
+    }
+
+    public void setName(ERoleBean name) {
+        this.name = name;
+    }
+
 }

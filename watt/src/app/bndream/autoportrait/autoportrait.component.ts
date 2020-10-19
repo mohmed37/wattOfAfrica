@@ -19,7 +19,6 @@ import {ApiService} from "../../services/api.service";
   styleUrls: ['./autoportrait.component.css']
 })
 export class AutoportraitComponent implements OnInit {
-  public hostTest: string;
   traitId1: number=1;
   traitId2: number=2;
   traitId3: number=3;
@@ -77,7 +76,7 @@ export class AutoportraitComponent implements OnInit {
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute,private hostTestService:ApiService) {
-    this.hostTest=hostTestService.TEST_MICRO_APP;
+
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.isAuthenticated;
     this.userId=this.userConnect.userAuthenticated.id;}
@@ -163,7 +162,7 @@ export class AutoportraitComponent implements OnInit {
         this.traitId5=5;
     }
     this.idTrait=new Array<number>( this.traitId1,this.traitId2,this.traitId3,this.traitId4,this.traitId5);
-    this.httpClient.get(this.hostTest +"/autoportraitAll/" + this.idTrait)
+    this.bndreamService.getTraitList(this.idTrait)
       .subscribe(
         res => {
           this.retrieveResonse1 = res[0];
@@ -271,7 +270,7 @@ export class AutoportraitComponent implements OnInit {
     this.resultAutoPortrait.client=this.userId;
     this.questionnaires.photoLangage=true;
 
-    this.bndreamService.saveAutoPortrait(this.hostTest+ "/saveAutoPortraitClient/",this.resultAutoPortrait)
+    this.bndreamService.saveAutoPortrait(this.resultAutoPortrait)
       .subscribe(res=>{
         this.serviceClient.putQuestionnaires("autoPortrait");
         this.router.navigateByUrl("/bndream");

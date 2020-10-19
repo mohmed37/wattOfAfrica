@@ -1,9 +1,9 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #3498db;
+  color: #134a6b;
   font-size: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
 }
 .container{
   display: flex;
@@ -14,7 +14,7 @@
 }
 
 .item{
-  border: solid 1px #3498db;
+  border: solid 1px #134a6b;
   padding: 20px;
   border-radius: 10px;
 }
@@ -27,7 +27,7 @@
 
 }
 button{
-  background-color:#3498db;
+  background-color:#f8c620;
   color: white;
   font-size: 20px;
 }
@@ -37,24 +37,24 @@ button{
 }
 h2{
   text-align: center;
-  color:  #3498db;
+  color:  #134a6b;
   margin-top: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 30px;
 }
 
 p{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;
 
 }
 .iconHero{
-  color: #3498db;
+  color: #134a6b;
 }
 .motHero{
-  font-family: 'Poiret One', cursive;
-  color: #3498db;
+  font-family: Uberhand pro, serif;
+  color: #134a6b;
   font-size: 20px;
 }
 .mat-radio-button ~ .mat-radio-button {
@@ -69,11 +69,44 @@ ul{
   text-align: center;
 }
 li{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   line-height: 2em;
 }
 h1{
-  color: orange;
+  color: #b65010;
+}
+.selection{
+  background: #134a6b;
+  border: solid #134a6b;
+  height: 60px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 20px;
 }
 
+.contexte{
+  background: #f8c620;
+  color: #134a6b;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.objectif{
+  background: #60cfbe;
+  color: white;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.process{
+  background: #b65010;
+  color: black;
+  margin-top: 20px;
+  width: 110px;
+}
+.clic{
+
+  float: right;
+  margin-right: 50px;
+}

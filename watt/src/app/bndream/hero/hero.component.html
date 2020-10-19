@@ -1,7 +1,12 @@
 <h1 class="titre" id="haut">Héros Héroïne</h1>
-<div *ngIf="!heroValide">
+<div class="selection">
+  <div class="clic">
+    <button class="contexte" (click)="contexte()">Contexte</button>
+    <button class="objectif" (click)="objectif()">Objectifs</button>
+    <button class="process" (click)="process()">Process</button>
+  </div>
+</div>
   <div class="container" >
-    <p><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
     <div class="item" *ngIf="contexteValide"  id="contexte">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="contexte()" >
@@ -69,6 +74,7 @@
       <p><a routerLink="/bndream/heros" fragment="haut" >Haut de page</a></p>
     </div>
   </div>
+<div *ngIf="!heroValide">
 <div class="bouton">
   <button mat-raised-button *ngIf="qcm4Valide&&!hero&&clientConnect" (click)="heroStart()">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>

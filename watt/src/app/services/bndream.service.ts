@@ -1,6 +1,6 @@
 import {Injectable, Input} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Client} from "../model/client.model";
 import {FicheMetier} from "../model/ficheMetier.model";
 import {PhotoLangageModel} from "../model/photoLangage.model";
@@ -15,6 +15,7 @@ import {ListHeroModel} from "../model/listHero.model";
 import {ResultatHeroModel} from "../model/resultatHero.model";
 import {FicheMetierService} from "./fiche-metier.service";
 import {ApiService} from "./api.service";
+import {JwtTokenModel} from "../model/jwt-token.model";
 
 @Injectable({
   providedIn: 'root'
@@ -28,79 +29,120 @@ export class BndreamService {
 
   constructor(private htttpClient: HttpClient,private userConnect:AuthenticationService,private hostTestService:ApiService ) {
     this.hostTest=hostTestService.TEST_MICRO_APP;
+    this.initToken();
   }
+
+  public jwtToken: BehaviorSubject<JwtTokenModel> = new BehaviorSubject({
+    isAuthenticated: null,
+    token:null
+
+  });
+
+  private initToken():void {
+    const token = sessionStorage.getItem('token');
+    if (token){
+      this.jwtToken.next({
+        isAuthenticated:true,
+        token:token
+      });
+    }else {
+      this.jwtToken.next({
+        isAuthenticated:false,
+        token:null
+      });
+    }
+  }
+
 
 
 public getPhoto() {
-  return this.htttpClient.get(this.hostTest + "/upload");
+  return this.htttpClient.get(this.hostTest + "/upload",{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
 }
 
-  public saveFicheMetier(url,data):Observable<FicheMetier>{
-    return this.htttpClient.post<FicheMetier>(url,data.valueOf());
+  public saveFicheMetier(data):Observable<FicheMetier>{
+    return this.htttpClient.post<FicheMetier>(this.hostTest+ "/saveFicheMetier/",data.valueOf(),{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
 
   }
 
-  public savePhotLangage(url,data):Observable<PhotoLangageModel>{
-    return this.htttpClient.post<PhotoLangageModel>(url,data.valueOf());
+  public savePhotLangage(data):Observable<PhotoLangageModel>{
+    return this.htttpClient.post<PhotoLangageModel>(this.hostTest+ "/saveResultPhotoLangage/",data.valueOf(),{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
 
   }
-  public saveRoueDeLaVie(url,data):Observable<RoueDeLaVieModel>{
-    return this.htttpClient.post<RoueDeLaVieModel>(url,data.valueOf());
 
-  }
-  public saveAutoPortrait(url,data):Observable<ChoixAutoPortraitModel> {
-    return this.htttpClient.post<ChoixAutoPortraitModel>(url,data.valueOf());
+  photoClientChoix(data){
+    return this.htttpClient.get(this.hostTest +"/getId/"+data,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
-  public savepraico(url,data):Observable<ResultatPraicoModel> {
-    return this.htttpClient.post<ResultatPraicoModel>(url,data.valueOf());
+  getImageList(data){
+    return this.htttpClient.get(this.hostTest +"/getAll/"+data,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
-  public saveQcm4(url,data):Observable<Questionnaire4Model> {
-    return this.htttpClient.post<Questionnaire4Model>(url,data.valueOf());
+  imageClientChoix(data){
+    return this.htttpClient.get(this.hostTest +"/getId/"+data,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
-  public saveHero(url,data):Observable<ResultatHeroModel> {
-    return this.htttpClient.post<ResultatHeroModel>(url,data.valueOf());
+  public saveRoueDeLaVie(data):Observable<RoueDeLaVieModel>{
+    return this.htttpClient.post<RoueDeLaVieModel>(this.hostTest + "/saveRoueVieClient/",data.valueOf(),{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
+
+  }
+  public saveAutoPortrait(data):Observable<ChoixAutoPortraitModel> {
+    return this.htttpClient.post<ChoixAutoPortraitModel>(this.hostTest+ "/saveAutoPortraitClient/",data.valueOf(),{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
+  }
+
+  public savepraico(data):Observable<ResultatPraicoModel> {
+    return this.htttpClient.post<ResultatPraicoModel>(this.hostTest+ "/saveResultPraicoU/",data.valueOf(),{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
+  }
+
+  public saveQcm4(data):Observable<Questionnaire4Model> {
+    return this.htttpClient.post<Questionnaire4Model>(this.hostTest+ "/saveQcm4/",data.valueOf(),{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
+  }
+
+  public saveHero(data):Observable<ResultatHeroModel> {
+    return this.htttpClient.post<ResultatHeroModel>(this.hostTest+ "/saveHeroClient/",data.valueOf(),{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
   getResultPhotoLangage():Observable<PhotoLangageModel>{
-    return this.htttpClient.get<PhotoLangageModel>(this.hostTest + "/getPhotoLangage/"+this.userConnect.userAuthenticated.id);
+    return this.htttpClient.get<PhotoLangageModel>(this.hostTest + "/getPhotoLangage/"+this.userConnect.userAuthenticated.id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
 
   }
   getResultRoueDeLaVie():Observable<RoueDeLaVieModel>{
-    return this.htttpClient.get<RoueDeLaVieModel>(this.hostTest + "/getRoueVieClient/"+this.userConnect.userAuthenticated.id);
+    return this.htttpClient.get<RoueDeLaVieModel>(this.hostTest + "/getRoueVieClient/"+this.userConnect.userAuthenticated.id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
 
   }
 
   getResultAutoPortrait():Observable<ChoixAutoPortraitModel>{
-    return this.htttpClient.get<ChoixAutoPortraitModel>(this.hostTest + "/getResulAutoportrait/"+this.userConnect.userAuthenticated.id);
+    return this.htttpClient.get<ChoixAutoPortraitModel>(this.hostTest + "/getResulAutoportrait/"+this.userConnect.userAuthenticated.id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
+
+  }
+
+  getTraitList(data){
+    return this.htttpClient.get(this.hostTest + "/autoportraitAll/"+data,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
 
   }
 
   getQustionnaire1(id:number):Observable<Questionnaire1Model>{
-    return this.htttpClient.get<Questionnaire1Model>(this.hostTest + "/questionnaire1/"+id);
+    return this.htttpClient.get<Questionnaire1Model>(this.hostTest + "/questionnaire1/"+id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
   getQustionnaire2(id:number):Observable<Questionnaire2Model>{
-    return this.htttpClient.get<Questionnaire2Model>(this.hostTest + "/questionnaire2/"+id);
+    return this.htttpClient.get<Questionnaire2Model>(this.hostTest + "/questionnaire2/"+id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
   getQustionnaire3(id:number):Observable<Questionnaire2Model>{
-    return this.htttpClient.get<Questionnaire2Model>(this.hostTest + "/questionnaire3/"+id);
+    return this.htttpClient.get<Questionnaire2Model>(this.hostTest + "/questionnaire3/"+id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
   getQustionnaire4():Observable<Questionnaire4Model[]> {
-    return this.htttpClient.get<Questionnaire4Model[]>(this.hostTest + "/questionnaire4/");
+    return this.htttpClient.get<Questionnaire4Model[]>(this.hostTest + "/questionnaire4/",{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
   getResultPraico():Observable<ResultatPraicoModel> {
-    return this.htttpClient.get<ResultatPraicoModel>(this.hostTest + "/praicoIdClient/"+this.userConnect.userAuthenticated.id);
+    return this.htttpClient.get<ResultatPraicoModel>(this.hostTest + "/praicoIdClient/"+this.userConnect.userAuthenticated.id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
   getResultHero():Observable<ResultatHeroModel> {
-    return this.htttpClient.get<ResultatHeroModel>(this.hostTest + "/getResultHeroClient/"+this.userConnect.userAuthenticated.id);
+    return this.htttpClient.get<ResultatHeroModel>(this.hostTest + "/getResultHeroClient/"+this.userConnect.userAuthenticated.id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
   getListHero():Observable<ListHeroModel[]> {
-    return this.htttpClient.get<ListHeroModel[]>(this.hostTest + "/listvaleurHero");
+    return this.htttpClient.get<ListHeroModel[]>(this.hostTest + "/listvaleurHero",{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 }

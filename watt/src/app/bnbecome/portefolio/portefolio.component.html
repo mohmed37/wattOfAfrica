@@ -232,7 +232,7 @@
 
 
 <div *ngIf="afficherSelection" class="ficheCompetence">
-  <button class="button btn-warning" (click)="deleteFicheMetierClient()">Supprimer cette fiche</button>
+  <button class="button btn-warning" (click)="deleteFicheMetierClient(metier)">Supprimer cette fiche</button>
   <h3>{{metier}}</h3>
   <button mat-mini-fab color="warn" (click)="closeList()">
     <mat-icon>filter_list</mat-icon>

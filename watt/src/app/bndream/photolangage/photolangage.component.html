@@ -1,8 +1,12 @@
-<div *ngIf="!photolangageValide" >
-
 <h1 class="titre" id="haut">Photolangage</h1>
+<div class="selection">
+  <div class="clic">
+    <button class="contexte" (click)="contexte()">Contexte</button>
+    <button class="objectif" (click)="objectif()">Objectifs</button>
+    <button class="process" (click)="process()">Process</button>
+  </div>
+</div>
   <div class="container" >
-    <p><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
     <div class="item" *ngIf="contexteValide"  id="contexte">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="contexte()" >
@@ -132,6 +136,7 @@
     </div>
   </div>
 
+<div *ngIf="!photolangageValide" >
 <div class="bouton" *ngIf="!dedutTestPhotolangage&&userAuthent">
   <button mat-raised-button (click)="getImageList(2) ; testPhotolangage() " >Démarrer<mat-icon class="icon">send</mat-icon></button>
 </div>

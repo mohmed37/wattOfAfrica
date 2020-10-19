@@ -130,6 +130,7 @@ export class SignupComponent implements OnInit {
     this.newClient.roles=[""];
   /*  this.newClient.matchingPassword=this.matchingPassword.value;
     this.newClient.date=this.date.value;*/
+
     this.userConnect.saveResource(this.newClient)
       .subscribe(res=>{
         this.openDialog("Un mail de validation à été envoyé.");

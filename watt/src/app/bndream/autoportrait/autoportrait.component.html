@@ -1,13 +1,15 @@
 <h1 class="titre" id="haut">Auto-Portrait</h1>
-<div *ngIf="!autoPortraitValide">
-  <p class="selectionTheme"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
-  <div class="container" >
-  <div class="label" *ngIf="contexteValide">
-    <img [src]="contexteImg" class="imgcontexte">
-    <h2>Contexte</h2>
+<div class="selection">
+  <div class="clic">
+    <button class="contexte" (click)="contexte()">Contexte</button>
+    <button class="objectif" (click)="objectif()">Objectifs</button>
+    <button class="process" (click)="process()">Process</button>
   </div>
+</div>
 
+  <div class="container body" >
     <div class="item" *ngIf="contexteValide"  id="contexte">
+      <h2>Contexte</h2>
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
@@ -23,15 +25,16 @@
         dont vous percevez.
       </p>
     </div>
-    
+
 
     <div class="item" *ngIf="objectifValide"  id="objectif">
+      <h2  >Objectifs</h2>
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2  >Objectifs</h2>
+
       <ul class="liObjectif">
         <li>Identifier vos principaux traits de caractères,</li>
         <li>Cerner vos points forts et vos points faibles,</li>
@@ -41,14 +44,12 @@
       </ul>
     </div>
     <div class="item"   *ngIf="processValide"  id="process">
+      <h2 >Process</h2>
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2 >Process</h2>
-
-
       <h4><b>1ère phase : AUTOPORTRAIT</b></h4>
       <p>Une liste de qualificatifs vous est proposée. Vous allez sélectionner les cinq traits de personnalité qui vous
         correspondent le plus.</p>
@@ -62,7 +63,7 @@
       <p><b>Deux moyens d’avoir ces retours d’image :</b></p>
       <p><b>a/</b> Demandez à trois de vos proches de définir les trois qualités qu’ils apprécient chez vous et les deux
         qualités qu’ils apprécient un peu moins chez vous.</p>
-      <p><b>b/ Accepter le défi suivant :</b> Passez une soirée entre amis et ><b>profitez de l’occasion pour leur demander
+      <p><b>b/ Accepter le défi suivant :</b> Passez une soirée entre amis et <b>profitez de l’occasion pour leur demander
         ce qu’ils pensent de vous.</b>  Vous pouvez vous aider de la grille de qualificatifs pour les aider dans leur réflexion.</p>
       <h4><b>3ème phase : EXERCICE DE REFLEXION / PRISE DE HAUTEUR </b></h4>
       <p>Nous vous proposons une phase d’autoanalyse pour identifier si vos proches ont la même image de vous que vous-même
@@ -72,6 +73,7 @@
       <p><a routerLink="/bndream/autoportrait" fragment="haut" >Haut de page</a></p>
     </div>
   </div>
+<div *ngIf="!autoPortraitValide" >
 <div class="bouton">
   <button *ngIf="!testAutoPortrait &&roueDeLaVieValide&&clientConnect&&!autoPortraitValide" mat-raised-button (click)="clicTestAutoPortrait()">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
@@ -101,7 +103,7 @@
   <p *ngIf="!resultAutoPortrait">3ème phase : EXERCICE DE REFLEXION</p>
 <div class="container" >
     <ol class="item resultat">
-      <P>Comment vous vous voyez:</P>
+      <p class="constat">Comment vous vous voyez:</p>
       <img [src]="photo" class="photo">
       <div *ngIf="!autoPortraitValide ">
       <li>{{resultAutoPortrait.list1[0]}}</li>
@@ -119,7 +121,7 @@
       </div>
     </ol>
     <ol class="item resultat">
-      <P>Comment vous êtes perçu:</P>
+      <P class="constat">Comment vous êtes perçu:</P>
       <img [src]="photo2" class="photo">
       <div *ngIf="!autoPortraitValide">
       <li>{{resultAutoPortrait.list2[0]}}</li>

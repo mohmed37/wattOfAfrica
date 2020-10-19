@@ -6,59 +6,29 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserBean {
-
-    Integer num;
+    Long id;
+    String username;
+    String email;
+    String password;
     String prenom;
     String nom;
-    String username;
-    String password;
-    String matchingPassword;
-    String email;
     String phone;
     Date date;
     Boolean active;
-    @ManyToMany(fetch = FetchType.EAGER)
-    Collection<RoleBean> roles =new ArrayList<>();
-
-    public UserBean(String username, String password) {
-
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
-    public String getDateCreatedString(Date date) {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        return df.format(date);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("UserBean{");
-        sb.append("num=").append(num);
-        sb.append(", prenom='").append(prenom).append('\'');
-        sb.append(", nom='").append(nom).append('\'');
-        sb.append(", userName='").append(username).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append(", matchingPassword='").append(matchingPassword).append('\'');
-        sb.append(", email='").append(email).append('\'');
-        sb.append(", phone='").append(phone).append('\'');
-        sb.append(", date=").append(date);
-        sb.append(", active=").append(active);
-        sb.append('}');
-        return sb.toString();
-    }
+    private Set<RoleBean> roles = new HashSet<>();
 }

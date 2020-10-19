@@ -1,4 +1,4 @@
-<div class="carousel slide" data-ride="carousel" id="haut">
+<div class="carousel slide" data-ride="carousel" id="haut" *ngIf="allPhotoFicheMetier">
   <div class="carousel-inner " >
     <a class="active" (click)="clic(idCarrousel)">
       <img class="photoFicheMetier1" [src]="photoCarrousel" >
@@ -11,6 +11,7 @@
     <span class="glyphicon glyphicon-chevron-left"></span>
     <span class="sr-only" >Previous</span>
   </a>
+
   <a *ngIf="idCarrousel<allPhotoFicheMetier.length-1" class="right carousel-control" (click)="page('+')" data-slide="next"  >
     <span class="glyphicon glyphicon-chevron-right" *ngIf="idCarrousel<allPhotoFicheMetier.length-1"></span>
     <span class="sr-only">Next</span>

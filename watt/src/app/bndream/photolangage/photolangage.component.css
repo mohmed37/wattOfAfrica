@@ -1,9 +1,9 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #3498db;
+  color: #134a6b;
   font-size: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
 }
 .container{
   display: flex;
@@ -13,7 +13,7 @@
 }
 
 .item{
-  border: solid 1px #3498db;
+  border: solid 1px #134a6b;
   padding: 20px;
   border-radius: 10px;
 }
@@ -26,7 +26,7 @@
 
 }
 button{
-  background-color:#3498db;
+  background-color:#f8c620;
   color: white;
   font-size: 20px;
 }
@@ -50,7 +50,7 @@ table {
 
 .ItemPhoto input{
   width: 10%;
-  border:solid #3498db;
+  border:solid #134a6b;
   border-radius: 20px;
 
 }
@@ -66,14 +66,14 @@ table {
 
 h2{
   text-align: center;
-  color:  #3498db;
+  color:  #134a6b;
   margin-top: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 30px;
 }
 
 p{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;
 
@@ -104,7 +104,7 @@ p{
 }
 .photIntero{
   opacity: 0.7;
-  border: 1px solid #3498db;
+  border: 1px solid #134a6b;
 }
 .image1{
   float: right;
@@ -131,12 +131,47 @@ p{
   margin-top: 50px;
 }
 h4{
-  color: green;
-  font-family: 'Poiret One', cursive;
+  color: #b65010;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin-top: 30px;
   text-decoration: underline;
 }
 a{
   text-decoration:none;
+}
+
+.selection{
+  background: #134a6b;
+  border: solid #134a6b;
+  height: 60px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 20px;
+}
+
+.contexte{
+  background: #f8c620;
+  color: #134a6b;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.objectif{
+  background: #60cfbe;
+  color: white;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.process{
+  background: #b65010;
+  color: black;
+  margin-top: 20px;
+  width: 110px;
+}
+.clic{
+
+  float: right;
+  margin-right: 50px;
 }

@@ -11,12 +11,14 @@
       <a routerLink="/new-client" fragment="haut" *ngIf="!authService.isAuthenticated">Inscription</a>
       <a routerLink="/listClient" *ngIf="authService.isUserAdmin" >list des clients</a>
       <a routerLink="/personalinfo"  fragment="haut" *ngIf="authService.isAuthenticated" >Infos compte</a>
+      <a routerLink="/testpage" >test</a>
+
     </nav>
     <div class="textCentre">
       <h1 >TROUVEZ VOTRE VOIE – CHANGEZ DE METIER – BOOSTEZ VOTRE CARRIERE – DEVENEZ ENTREPRENEUR</h1>
       <h2 >VOUS CHERCHEZ A VOUS REALISER ?</h2>
       <h3>WATT est là pour vous accompagner à faire les bons choix.</h3>
-      <button class="btn btnCentre" routerLink="/EnSavoirPlus">En savoir plus</button>
+     <!-- <button class="btn btnCentre" routerLink="/EnSavoirPlus">En savoir plus</button>-->
     </div>
   </header>
 </div>

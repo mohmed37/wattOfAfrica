@@ -126,7 +126,7 @@ export class ProjetProComponent implements OnInit {
       }
 
     }
-    this.bnbecome.modifListMetierClient(this.hostTest+ "/modifMetierByClient/",this.ficheClient)
+    this.bnbecome.modifListMetierClient(this.ficheClient)
       .subscribe(res=>{
         this.ficheClient=res;
         this.message = 'Enregistré avec succès';

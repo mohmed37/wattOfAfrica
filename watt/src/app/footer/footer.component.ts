@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  public logon:string="assets/img/logon.png";
+  public logon:string="assets/img/newLogo2.png";
   constructor(private clientService:ClientService,private router:Router) { }
 
   ngOnInit(): void {

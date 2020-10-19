@@ -30,7 +30,7 @@ export class HeroComponent implements OnInit {
   formHero: FormGroup;
   listValeurClient: string[] = [];
   public resultatHero=new ResultatHeroModel();
-  public hostTest: string;
+
   message: string;
   public hero: boolean=false;
   public fragment: string;
@@ -43,8 +43,7 @@ export class HeroComponent implements OnInit {
 
 
   constructor(private bndreamService: BndreamService, private router: Router, private httpClient: HttpClient,
-              private serviceClient: ClientService, private userConnect: AuthenticationService,private route: ActivatedRoute,private hostTestService:ApiService) {
-    this.hostTest=hostTestService.TEST_MICRO_APP;
+              private serviceClient: ClientService, private userConnect: AuthenticationService,private route: ActivatedRoute) {
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.isAuthenticated;
     this.userId = this.userConnect.userAuthenticated.id;}
@@ -126,7 +125,7 @@ export class HeroComponent implements OnInit {
     this.resultatHero.valeur=this.listValeurClient;
     this.resultatHero.choixHero=this.formHero.value.hero;
     this.resultatHero.client=this.userId;
-    this.bndreamService.saveHero(this.hostTest+ "/saveHeroClient/",this.resultatHero)
+    this.bndreamService.saveHero(this.resultatHero)
       .subscribe(res=>{
         this.serviceClient.putQuestionnaires("hero");
         this.router.navigateByUrl("/bndream");

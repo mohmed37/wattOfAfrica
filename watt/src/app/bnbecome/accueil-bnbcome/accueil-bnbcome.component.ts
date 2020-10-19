@@ -28,6 +28,11 @@ export class AccueilBnbcomeComponent implements OnInit {
   public contexteImg:string="assets/img/contexte.jpg";
   public objectifImg:string="assets/img/objectuf.jpg";
   public processImg:string="assets/img/consigne.jpg";
+  public dicoImg:string="assets/img/dico.jpg";
+  public portefolioImg:string="assets/img/porteFolio.jpg";
+  public profilImg:string="assets/img/profil.jpg";
+  public projetProImg:string="assets/img/projetpro.jpg";
+  public herosImg:string="assets/img/heros.jpg";
   public contexteValide:boolean=false;
   public objectifValide: boolean=false;
   public processValide: boolean=false;

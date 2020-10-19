@@ -51,8 +51,8 @@
 
 .blockChiffre{
   border-radius:50px;
-  border: solid crimson;
-  background-color: crimson;
+  border: solid #b65010;
+  background-color: #b65010;
   width: 60px;
   height: 60px;
   position: absolute;
@@ -66,8 +66,8 @@
 
 .blockChiffre2{
   border-radius:50px;
-  border: solid crimson;
-  background-color: crimson;
+  border: solid #b65010;
+  background-color: #b65010;
   width: 60px;
   height: 60px;
   position: absolute;
@@ -103,13 +103,13 @@ color: grey;
 button{
   border-radius: 20px;
   margin-top: 20px;
-  background-color: red;
+  background-color: #f8c620;
   color: white;
 }
 .blockIcon{
   margin-top: 60px;
   float: right;
-  color: grey;
+  color: #f8c620;
   width: 100px;
   height: 100px;
   font-size: 56px;

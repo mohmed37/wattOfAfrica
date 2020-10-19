@@ -58,7 +58,7 @@ public class User{
 	public User() {
 	}
 
-	public User(String username, String nom, String prenom, String phone, String email, String password, boolean active) {
+	public User(String username,Date date, String nom, String prenom, String phone, String email, String password, boolean active) {
 		this.username = username;
 		this.phone = phone;
 		this.nom = nom;
@@ -66,6 +66,7 @@ public class User{
 		this.email = email;
 		this.password = password;
 		this.active = active;
+		this.date=date;
 	}
 
 	public Long getId() {

@@ -50,7 +50,7 @@ export class PortefolioComponent implements OnInit {
   public clientConnect:boolean;
   public afficherSelection: boolean=false;
   public metier:string="";
-  public index:number=0;
+  public index:number=-1;
   public porteFolioImg1:string="assets/img/portfolio1.jpg";
   public contexteImg:string="assets/img/contexte.jpg";
   public objectifImg:string="assets/img/objectuf.jpg";
@@ -296,15 +296,24 @@ this.listFaireClient=[];
     this.selectCompetence=null;
   }
 
-  deleteFicheMetierClient() {
-    this.ListCompetenceClient.listCompetence.splice(this.index,1);
-    this.bnbecome.saveCompetenceClient( this.ListCompetenceClient).subscribe(data=>{
-      this.getListCompetences();
-      this.getCompetencesClient();
-      this.afficherSelection=false;
-    },error => {
-      this.message="Enregistrement à échoué";
-      console.log(error);
+  deleteFicheMetierClient(metier:String) {
+
+    this.ListCompetenceClient.listCompetence.forEach(list=>{
+      console.log(this.index);
+      if(list[0][2]==metier){
+        console.log(this.index);
+        this.ListCompetenceClient.listCompetence.splice(this.index,1);
+        this.bnbecome.saveCompetenceClient( this.ListCompetenceClient).subscribe(data=>{
+
+          this.getListCompetences();
+          this.getCompetencesClient();
+          this.afficherSelection=false;
+        },error => {
+          this.message="Enregistrement à échoué";
+          console.log(error);
+
+        });
+      }
     });
   }
 

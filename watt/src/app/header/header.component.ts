@@ -15,7 +15,7 @@ import {formatDate} from "@angular/common";
 export class HeaderComponent implements OnInit {
    public nomClient2;
   public Editor = ClassicEditor;
-  public logo:string="assets/img/logo.png";
+  public logo:string="assets/img/newLogo.png";
   public portraits:string="assets/img/portraits3.jpg";
   public fragment: string;
 

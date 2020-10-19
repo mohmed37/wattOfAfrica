@@ -36,7 +36,6 @@ export class PraicoComponent implements OnInit {
   public qcm4Valide: boolean=false;
   public questionnaires:QuestionnairesModel;
   public resultatPraico=new ResultatPraicoModel(0,0,0,0,0,0);
-  public hostTest: string;
   public qcm1Id: number=1;
   public qcmRun: boolean=false;
   public message: string;
@@ -73,8 +72,8 @@ export class PraicoComponent implements OnInit {
 
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
-              private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute,private hostTestService:ApiService ) {
-    this.hostTest=hostTestService.TEST_MICRO_APP;
+              private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
+
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.isAuthenticated;
     this.userId=this.userConnect.userAuthenticated.id;}
@@ -342,7 +341,7 @@ export class PraicoComponent implements OnInit {
 
 savePreco(){
   this.resultatPraico.client=this.userId;
-  this.bndreamService.savepraico(this.hostTest+ "/saveResultPraicoU/",this.resultatPraico)
+  this.bndreamService.savepraico(this.resultatPraico)
     .subscribe(res=>{
       if(!this.qcm1Valide){
         this.serviceClient.putQuestionnaires("qcm1");
@@ -406,7 +405,7 @@ savePreco(){
     this.questionnaire4.lettres.push(this.formQcm4.value.lettre1);
     this.questionnaire4.lettres.push(this.formQcm4.value.lettre2);
     this.questionnaire4.lettres.push(this.formQcm4.value.lettre3);
-      this.bndreamService.saveQcm4(this.hostTest+ "/saveQcm4/",this.questionnaire4)
+      this.bndreamService.saveQcm4(this.questionnaire4)
         .subscribe(res=>{
           this.questionnaire4=new Questionnaire4Model(0,[]);
           this.formQcm4.patchValue({

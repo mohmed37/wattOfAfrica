@@ -8,6 +8,7 @@ import {SigninComponent} from "./auth/signin/signin.component";
 import {DefinitionComponent} from "./definition/definition.component";
 import {AdministrateurComponent} from "./administrateur/administrateur.component";
 import {ConfirmationComponent} from "./auth/confirmation/confirmation.component";
+import {LoginComponent} from "./login/login.component";
 
 
 
@@ -87,6 +88,9 @@ const routes: Routes = [
   {
     path:"flooter",
     component:FooterComponent
+  },
+  {
+    path:"testpage", component:LoginComponent
   },
 
 ];

@@ -58,7 +58,6 @@ export class DicoMetiersComponent implements OnInit {
   public selectFicheMetierValide: boolean;
   colorNewText: string="#a59b95";
   colorNewText2:string="#c12b78";
-  public hostTest: string;
   message: string;
   public profilUvalide: boolean;
   public heroValide: boolean;
@@ -75,7 +74,7 @@ export class DicoMetiersComponent implements OnInit {
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute
     ,private fichemettierService:FicheMetierService,private bnbecome:Bnbecome,private hostTestService:ApiService ) {
-    this.hostTest=hostTestService.TEST_MICRO_APP;
+
     if (userConnect.userAuthenticated){
 
     this.userId=this.userConnect.userAuthenticated.id;
@@ -232,7 +231,7 @@ export class DicoMetiersComponent implements OnInit {
 
       }
     }
-    this.bnbecome.modifListMetierClient(this.hostTest+ "/modifMetierByClient/",this.ficheClientNew)
+    this.bnbecome.modifListMetierClient(this.ficheClientNew)
       .subscribe(res=>{
         this.ficheClientNew=res;
         this.clic();
@@ -251,7 +250,7 @@ export class DicoMetiersComponent implements OnInit {
     this.listFicheMetier.valide=this.listMetierDicoValide;
     this.listFicheMetier.ficheMetiers=ficheClient;
     this.listFicheMetier.client=this.userId;
-    this.bnbecome.saveListMetierClient(this.hostTest+ "/saveMetierByClient/",this.listFicheMetier)
+    this.bnbecome.saveListMetierClient(this.listFicheMetier)
       .subscribe(res=>{
         this.message = 'Enregistré avec succès';
         this.getFicheClient();

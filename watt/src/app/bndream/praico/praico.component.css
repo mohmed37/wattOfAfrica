@@ -1,9 +1,9 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #3498db;
+  color: #134a6b;
   font-size: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
 }
 .container{
   display: flex;
@@ -13,7 +13,7 @@
   }
 
 .item{
-  border: solid 1px #3498db;
+  border: solid 1px #134a6b;
   padding: 20px;
   border-radius: 10px;
   width: 90%;
@@ -28,7 +28,7 @@
 
 }
 button{
-  background-color:#3498db;
+  background-color: #f8c620;
   color: white;
   font-size: 20px;
 }
@@ -45,17 +45,17 @@ button{
 }
 
 .item .question,.reponse{
-  border: 1px solid #3498db;
+  border: 1px solid #134a6b;
   text-align: center;
   list-style-type: none;
   margin: 10px;
   padding: 10px;
   font-size: 20px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   border-radius: 20px;
 }
 .item .reponse:hover{
-  background-color: #3498db;
+  background-color: #134a6b;
   color: white;
   cursor: pointer;
 }
@@ -66,7 +66,7 @@ button{
 }
 .numero{
   border-radius: 25px;
-  background-color:#3498db;
+  background-color:#134a6b;
   width: 100px;
   height:50px;
   text-align: center;
@@ -90,7 +90,7 @@ th.mat-sort-header-sorted {
   color: green;
 }
 mat-checkbox{
-  color:#3498db;
+  color:#134a6b;
 }
 .radar{
   width: 60%;
@@ -99,14 +99,14 @@ mat-checkbox{
 }
 h2{
   text-align: center;
-  color:  #3498db;
+  color:  #134a6b;
   margin-top: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 30px;
 }
 
 p{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin-top:30px;
   margin-left: 50px;
@@ -117,8 +117,8 @@ p{
   margin-bottom: 50px;
 }
 h3{
-  color:  darkviolet;
-  font-family: 'Poiret One', cursive;
+  color: #b65010;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin-left: 50px;
 }
@@ -130,25 +130,25 @@ h3{
 }
 h4{
   margin-left: 50px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin-top: 30px;
 }
 ul{
   list-style-type: none;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
 }
 .lettrePraico{
-  color:  #3498db;
+  color:  #134a6b;
 }
 ol{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   line-height: 2em;
 }
 h5{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   border: 1px solid black;
   padding: 10px;
@@ -170,8 +170,8 @@ h5{
   margin-top: 50px;
 }
 .dimentionInvention{
-  text-decoration: underline yellow;
-  color: yellow;
+  text-decoration: underline #f8c620;
+  color: #f8c620;
 }
 .dimentionCooperation{
   text-decoration: underline darkviolet;
@@ -190,4 +190,39 @@ h5{
 
 .dim{
   margin-top: 50px;
+}
+
+.selection{
+  background: #134a6b;
+  border: solid #134a6b;
+  height: 60px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 20px;
+}
+
+.contexte{
+  background: #f8c620;
+  color: #134a6b;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.objectif{
+  background: #60cfbe;
+  color: white;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.process{
+  background: #b65010;
+  color: black;
+  margin-top: 20px;
+  width: 110px;
+}
+.clic{
+
+  float: right;
+  margin-right: 50px;
 }

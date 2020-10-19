@@ -20,8 +20,8 @@ public interface MuserProxy {
     @GetMapping(value = "/microservice-utilisateur/user/{id}")
     Optional<UserBean> findById(@PathVariable("id") int id);
 
-    @PostMapping(value ="/microservice-utilisateur/username")
-    UserBean findUserByUsername(@RequestParam(name = "username", defaultValue = "") String username);
+    @GetMapping(value ="/microservice-utilisateur/api/auth/userName/{username}")
+    UserBean findUserByUsername(@PathVariable("username") String username);
 
     @GetMapping(value = "/microservice-utilisateur/questionnairesUser")
     Optional<QuestionnairesBean>questionnairesUser(@RequestParam(name = "id", defaultValue = " ") int id);

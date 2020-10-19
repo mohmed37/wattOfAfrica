@@ -27,8 +27,8 @@ export class RoueVieComponent implements OnInit {
   public clientConnect:boolean;
 
   constructor(private formBuilder: FormBuilder, private router:Router,private clientService:ClientService,
-              private userConnect:AuthenticationService,private bndreamService:BndreamService,private route: ActivatedRoute,private hostTestService:ApiService) {
-    this.hostTest=hostTestService.TEST_MICRO_APP;
+              private userConnect:AuthenticationService,private bndreamService:BndreamService,private route: ActivatedRoute) {
+
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.isAuthenticated;
     this.userId=this.userConnect.userAuthenticated.id;}
@@ -62,7 +62,6 @@ export class RoueVieComponent implements OnInit {
   public modifier: boolean=false;
   public arret:  boolean=false;
   public   prioriser: boolean=false;
-  public hostTest: string;
   public fragment: string;
   public texte1Valide:boolean=false;
   public texte2Valide:boolean=false;
@@ -336,7 +335,7 @@ export class RoueVieComponent implements OnInit {
     this.roueDeLaVie.client = this.userId;
     this.questionnaires.roueVie = true;
 
-    this.bndreamService.saveRoueDeLaVie(this.hostTest + "/saveRoueVieClient/", this.roueDeLaVie)
+    this.bndreamService.saveRoueDeLaVie( this.roueDeLaVie)
       .subscribe(res => {
         this.clientService.putQuestionnaires("roueDeLaVie");
         this.prioriser = true;

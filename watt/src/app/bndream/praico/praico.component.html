@@ -1,7 +1,13 @@
-<div *ngIf="!qcm4Valide">
+
   <h1 class="titre" id="haut">PRAICO</h1>
+  <div class="selection">
+    <div class="clic">
+      <button class="contexte" (click)="contexte()">Contexte</button>
+      <button class="objectif" (click)="objectif()">Objectifs</button>
+      <button class="process" (click)="process()">Process</button>
+    </div>
+  </div>
   <div class="container" >
-    <p><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
     <div class="item" *ngIf="contexteValide"  id="contexte">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="contexte()" >
@@ -124,14 +130,10 @@
           fiable dans une entreprise. </p>
         <p><span class="dimentionAction">Qualités qui vous caractérisent :</span>: prudent, conformiste, consciencieux, efficace, organisé.</p>
       </div>
-
-
-
-
-
       <p><a routerLink="/bndream/praico" fragment="haut" >Haut de page</a></p>
     </div>
 </div>
+  <div *ngIf="!qcm4Valide">
 <div class="bouton">
   <button *ngIf="!qcmRun&&!qcm1Valide&&autoPortraitValide&&clientConnect" (click)="qcm()" mat-raised-button >Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>

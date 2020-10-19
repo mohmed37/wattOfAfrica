@@ -1,9 +1,16 @@
 package com.microserviceuser.payload.request;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.*;
- 
+
+import static javax.persistence.TemporalType.DATE;
+
 public class SignupRequest {
     @NotBlank
     @Size(min = 3, max = 20)
@@ -31,7 +38,18 @@ public class SignupRequest {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
-  
+
+    @Temporal(DATE)
+    private Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public String getUsername() {
         return username;
     }

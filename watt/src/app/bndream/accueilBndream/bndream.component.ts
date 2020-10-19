@@ -17,6 +17,11 @@ export class BndreamComponent implements OnInit {
   public contexteImg:string="assets/img/contexte.jpg";
   public objectifImg:string="assets/img/objectuf.jpg";
   public processImg:string="assets/img/consigne.jpg";
+  public photlangageImg:string="assets/img/photolangage.jpg";
+  public rouedelavieImg:string="assets/img/rouedelavie.jpg";
+  public autoportraitImg:string="assets/img/newautoportrait.jpg";
+  public praicoImg:string="assets/img/newpraico.jpg";
+  public herosImg:string="assets/img/heros.jpg";
   public serviceBream;
   public serviceClient;
   public questionnaires:QuestionnairesModel;

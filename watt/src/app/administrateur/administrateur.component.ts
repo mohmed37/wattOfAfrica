@@ -106,7 +106,7 @@ export class AdministrateurComponent implements OnInit {
 
   onSaveFicheMetier() {
 
-    this.serviceBnDream.saveFicheMetier(this.hostTest+ "/saveFicheMetier/",this.formFicheMetier.value)
+    this.serviceBnDream.saveFicheMetier(this.formFicheMetier.value)
       .subscribe(res=>{
         this.formFicheMetier.reset();
         this.message = 'Enregistré avec succès';

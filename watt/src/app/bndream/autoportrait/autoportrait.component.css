@@ -1,9 +1,9 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #3498db;
+  color: #134a6b;
   font-size: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
 }
 .container{
   display: flex;
@@ -13,7 +13,7 @@
 }
 
 .item{
-  border: solid 1px #3498db;
+  border: solid 1px #134a6b;
   padding: 20px;
   border-radius: 10px;
   width: 50%;
@@ -27,26 +27,21 @@
 
 }
 button{
-  background-color:#3498db;
+  background-color:#f8c620;
   color: white;
   font-size: 20px;
 }
 .icon{
   color: white;
 }
-.selection{
-  width: 320px;
-  margin-top: 20px;
-  padding-top: 60px;
-  background-color: #dfd5ce;
-}
+
 .btn{
   margin: 20px 20px 20px 50px;
 }
 
 
 p{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;}
 
@@ -57,8 +52,8 @@ p{
   margin-top: 20px;
   margin-left: 50px;
   font-size: 20px;
-  font-family: 'Poiret One', cursive;
-  color:  #3498db;
+  color:  #b65010;
+  font-family: Uberhand pro, serif;
 }
 .photo{
   position: relative;
@@ -77,30 +72,31 @@ p{
   height: auto;
 }
 .select li{
-  border: 1px solid #3498db;
+  font-family: Uberhand pro, serif;
+  border: 1px solid #134a6b;
   text-align: center;
   list-style-type: none;
   margin: 10px;
   padding: 10px;
   font-size: 20px;
-  font-family: 'Poiret One', cursive;
   cursor: pointer;
   border-radius: 20px;
 }
 .resultat li,.selection li,.select li{
-  border: 1px solid #3498db;
+  font-family: Uberhand pro, serif;
+  border: 1px solid #134a6b;
   text-align: center;
   list-style-type: none;
   margin: 10px;
   padding: 10px;
   font-size: 20px;
-  font-family: 'Poiret One', cursive;
   cursor: pointer;
   border-radius: 20px;
 }
 .resultat li:hover,.select li:hover,.selection li:hover{
-  background-color: #3498db;
+  background-color: #134a6b;
   color: white;
+  font-family: Uberhand pro, serif;
 }
 
 .item .valide{
@@ -122,6 +118,7 @@ p{
 float: left;
 }
 .image p{
+  font-family: Uberhand pro, serif;
   float: right;
   font-size: 20px;
   color: #ff0084;
@@ -137,12 +134,12 @@ float: left;
   min-width:50%;
   color: #3498db;
   font-size: 20px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
 }
 .liObjectif li{
-  font-family: 'Poiret One', cursive;
   font-size: 20px;
   line-height: 2em;
+  font-family: Uberhand pro, serif;
 }
 .imgcontexte{
   float: left;
@@ -154,14 +151,54 @@ float: left;
 }
 
 .label h2{
-  font-family: 'Poiret One', cursive;
   font-size: 30px;
   color: black;
+  font-family: Uberhand pro, serif;
 }
 .selectionTheme{
-  font-family: 'Poiret One', cursive;
   font-size: 20px;
   margin: 30px 50px;
   text-align: center;
 }
 
+.selection{
+  background: #134a6b;
+  border: solid #134a6b;
+  height: 60px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 20px;
+}
+
+.contexte{
+  background: #f8c620;
+  color: #134a6b;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.objectif{
+  background: #60cfbe;
+  color: white;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.process{
+  background: #b65010;
+  color: black;
+  margin-top: 20px;
+  width: 110px;
+}
+.clic{
+
+  float: right;
+  margin-right: 50px;
+}
+.body{
+  margin-bottom: 20px;
+}
+
+.constat{
+  color: #b65010;
+}

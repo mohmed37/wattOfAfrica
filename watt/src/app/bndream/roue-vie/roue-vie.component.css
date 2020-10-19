@@ -1,9 +1,9 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #3498db;
+  color: #134a6b;
   font-size: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
 }
 .container{
   display: flex;
@@ -13,7 +13,7 @@
 }
 
 .item{
-  border: solid 1px #3498db;
+  border: solid 1px #134a6b;
   padding: 20px;
   border-radius: 10px;
 }
@@ -26,7 +26,7 @@
 
 }
 button{
-  background-color:#3498db;
+  background-color:#f8c620;
   color: white;
   font-size: 20px;
 }
@@ -42,7 +42,7 @@ button{
 }
 .formulaire input{
   margin-bottom: 20px;
-  border-color: #5156ff;
+  border-color: #134a6b;
   width: 280px;
 }
 #personnelle,#personnelle2{
@@ -70,14 +70,14 @@ border-color: rgba(255, 213, 4, 1);
 
 h2{
   text-align: center;
-  color:  #3498db;
+  color:  #134a6b;
   margin-top: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 30px;
 }
 
 p{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin-top:30px;
   margin-left: 50px;
@@ -91,7 +91,7 @@ p{
 }
 .contenu p{
   margin-top:20px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   margin-left: 0;
 
 }
@@ -109,7 +109,7 @@ p{
 }
 
 .message{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   color: red;
 }
 .domaine{
@@ -123,8 +123,8 @@ p{
   float: right;
 }
 h4{
-  color: green;
-  font-family: 'Poiret One', cursive;
+  color: #b65010;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin-top: 30px;
   text-decoration: underline;
@@ -135,9 +135,9 @@ h4{
 
 :host ::ng-deep .ck-editor__editable_inline {
   min-width:50%;
-  color: #3498db;
+  color: #134a6b;
   font-size: 20px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
 }
 .button-container{
   float: right;
@@ -150,5 +150,40 @@ a{
 }
 h3{
   font-size: 20px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
+}
+
+.selection{
+  background: #134a6b;
+  border: solid #134a6b;
+  height: 60px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 20px;
+}
+
+.contexte{
+  background: #f8c620;
+  color: #134a6b;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.objectif{
+  background: #60cfbe;
+  color: white;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.process{
+  background: #b65010;
+  color: black;
+  margin-top: 20px;
+  width: 110px;
+}
+.clic{
+
+  float: right;
+  margin-right: 50px;
 }

@@ -1,9 +1,8 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #3498db;
+  color: #134a6b;
   font-size: 40px;
-  font-family: 'Poiret One', cursive;
 }
 .container{
   display: flex;
@@ -20,7 +19,7 @@
 }
 
 .item{
-  border: solid 1px #3498db;
+  border: solid 1px #134a6b;
   padding: 20px;
   border-radius: 10px;
 }
@@ -29,8 +28,10 @@
   border: solid 1px green;
   padding: 20px;
   border-radius: 10px;
-  width: 50%;
+  margin-right: 20%;
+  margin-left: 20%;
 }
+
 
 
 .bouton{
@@ -41,7 +42,7 @@
 
 }
 button{
-  background-color:#3498db;
+  background-color:#f8c620;
   color: white;
   font-size: 20px;
 }
@@ -65,6 +66,25 @@ button{
 
 }
 
+.newProgressBar{
+  width: 40%;
+  float: left;
+  margin: 20px;
+}
+
+.pourcent0{
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+  color: white;
+}
+.pourcent100{
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+  color: white;
+}
+
 .progressBar{
   width: 700px;
   height: 20px;
@@ -81,13 +101,13 @@ button{
 }
 .pourcentAttient{
   float: right;
-  color:#3498db;
+  color:#134a6b;
   font-size: 20px;
   margin-top: 5px;
 }
 .pourcentMini{
   float: left;
-  color:#3498db;
+  color:#134a6b;
   font-size: 20px;
   margin-top: 5px;
 }
@@ -98,19 +118,51 @@ button{
 
 .numro{
   border-radius: 25px;
-  background-color:#3498db;
-  width: 50px;
-  height:50px;
+  background-color:#f8c620;
+  width: 40px;
+  height:40px;
   text-align: center;
-  color: white;
+  color:  #b65010;
   font-size: 30px;
   float: left;
-  padding-top: 15px;
+  padding-top: 10px;
   margin-left: 5px;
+
+}
+.selection{
+  background: #134a6b;
+  border: solid #134a6b;
+  height: 60px;
+
+}
+.contexte{
+  background: #f8c620;
+  color: #134a6b;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.objectif{
+  background: #60cfbe;
+  color: white;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.process{
+  background: #b65010;
+  color: black;
+  margin-top: 20px;
+  width: 110px;
+}
+.clic{
+
+  float: right;
+  margin-right: 50px;
 }
 
 .test{
-  color: #3498db;
+  color: #134a6b;
   float: left;
   margin-left: 20px;
   margin-right: 20px;
@@ -118,13 +170,13 @@ button{
 
 a.titreProjet{
   text-decoration:none;
-  color: black;
+  color: #b65010;
   font-size: 20px;
   margin-right: 20px;
 
 }
 a.titreProjet:hover{
-  color: #3498db;
+  color: #134a6b;
 }
 
 .time{
@@ -143,14 +195,14 @@ a.titreProjet:hover{
   padding-top: 20px;
 }
 .testValide{
-  color: green;
+  color: #b65010;
 }
 .testCours{
   color: orange;
 }
 
 .numroValide{
-  background-color:green;
+  background-color:#b65010;
 }
 .numroCours{
   background-color: orange;
@@ -158,24 +210,24 @@ a.titreProjet:hover{
 
 
 .bndream p{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;}
 
 
 .liObjectif li{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   line-height: 2em;
 }
 .bndream h4{
   text-align: center;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;}
 
 .bndream b{
-  color: green;
+  color: #b65010;
 }
 
 .imgcontexte{
@@ -188,14 +240,60 @@ a.titreProjet:hover{
 }
 
 .label h2{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 30px;
   color: black;
 }
 .selection{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;
   text-align: center;
+}
+.etiquettes{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.our-team-main
+{
+  margin: 20px;
+  border-bottom:5px #323233 solid;
+  background:#fff;
+  border-radius:10px;
+  transition:0.5s;
+  overflow:hidden;
+  position:relative;
+  text-align: center;
+}
+
+.our-team-main img{
+  align-items: center;
+}
+.our-team-main p
+{
+  margin-bottom:0;
+}
+
+.team-back
+{
+  position:absolute;
+  top:0;
+  left:0;
+  padding:5px 5px 0 5px;
+  text-align:left;
+  background:#fff;
+}
+
+.team-front
+{
+  position:relative;
+  z-index:0.5;
+  background:#fff;
+  padding:15px;
+  transition: all 0.5s ease;
 }
 

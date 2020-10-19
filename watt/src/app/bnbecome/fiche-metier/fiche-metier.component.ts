@@ -15,7 +15,7 @@ import {AuthenticationService} from "../../services/authentication.service";
   styleUrls: ['./fiche-metier.component.css']
 })
 export class FicheMetierComponent implements OnInit {
-  public hostTest: string;
+
   imageId: number;
   retrieveResonse: any;
   base64Data: any;
@@ -37,8 +37,7 @@ export class FicheMetierComponent implements OnInit {
 
   constructor(private httpClient: HttpClient, private router: Router,private serviceBnDream:BndreamService,
               private ficheMetierService:FicheMetierService,private hostTestService:ApiService ,private route: ActivatedRoute) {
-    this.hostTest=hostTestService.TEST_MICRO_APP;
-  }
+      }
   @Output() public pick:EventEmitter<number>=new EventEmitter<number>();
   public idCarrousel:number=1;
   public photoCarrousel: any;

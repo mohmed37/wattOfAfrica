@@ -21,7 +21,7 @@ import {ApiService} from "../../services/api.service";
 })
 export class PhotolangageComponent implements OnInit {
 
-  public hostTest: string;
+
   public retrieveResonseAll: any;
   public dedutTestPhotolangage: boolean=false;
   public currentClient:any;
@@ -30,8 +30,7 @@ export class PhotolangageComponent implements OnInit {
   public ListQuestionnaire:any[];
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient
-              ,private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute,private hostTestService:ApiService) {
-    this.hostTest=hostTestService.TEST_MICRO_APP;
+              ,private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
     if (userConnect.userAuthenticated){
     this.clientConnect=this.userConnect.isAuthenticated;
     this.userId=this.userConnect.userAuthenticated.id;}
@@ -134,7 +133,6 @@ export class PhotolangageComponent implements OnInit {
               .subscribe(data=>{
                 this.questionnaires2=data;
                 this.photolangageValide=this.questionnaires2.photoLangage;
-                console.log(this.photolangageValide);
                 if (this.photolangageValide){
                 this.bndreamService.getResultPhotoLangage()
                   .subscribe(data=>{
@@ -217,7 +215,7 @@ export class PhotolangageComponent implements OnInit {
         this.imageId5=5;
     }
     this.idPhoto=new Array<number>( this.imageId1,this.imageId2,this.imageId3,this.imageId4,this.imageId5);
-    this.httpClient.get(this.hostTest +"/getAll/" + this.idPhoto)
+    this.bndreamService.getImageList(this.idPhoto)
       .subscribe(
         res => {
           this.retrieveResonse1 = res[0];
@@ -258,7 +256,7 @@ export class PhotolangageComponent implements OnInit {
 
   imageClientChoix(imageId: number) {
 
-    this.httpClient.get(this.hostTest +"/getId/"+imageId)
+    this.bndreamService.imageClientChoix(imageId)
       .subscribe(
         res => {
           this.retrieveResonseChoix = res;
@@ -296,7 +294,7 @@ export class PhotolangageComponent implements OnInit {
 
   photoClientChoix(imageId: string, numberPhoto: number) {
 
-    this.httpClient.get(this.hostTest +"/getId/"+imageId)
+    this.bndreamService.photoClientChoix(imageId)
       .subscribe(
         res => {
           this.retrieveResonseChoix = res;
@@ -425,7 +423,7 @@ export class PhotolangageComponent implements OnInit {
     this.photoLangage.mot6=this.formPhotoLangage.value.mot6;
     this.photoLangage.client=this.userId;
     this.questionnaires.photoLangage=true;
-    this.bndreamService.savePhotLangage(this.hostTest+ "/saveResultPhotoLangage/",this.photoLangage)
+    this.bndreamService.savePhotLangage(this.photoLangage)
       .subscribe(res=>{
         this.serviceClient.putQuestionnaires("photolangage");
         this.router.navigateByUrl("/bndream");

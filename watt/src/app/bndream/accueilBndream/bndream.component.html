@@ -1,13 +1,26 @@
-
 <h1 class="titre" id="haut">B' n Dream</h1>
-<p class="selection"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
-  <div class="bndream" >
-   <div class="label" *ngIf="contexteValide">
-    <img [src]="contexteImg" class="imgcontexte">
-    <h2>Contexte</h2>
+<div class="selection">
+  <div *ngIf="questionnaires">
+  <div class="pourcent0">
+  <p>0%</p>
+  </div>
+  <mat-progress-bar class="newProgressBar"  mode="determinate" value="{{progression}}"></mat-progress-bar>
+  <div class="pourcent100">
+    <p>100%</p>
+  </div>
   </div>
 
+  <div class="clic">
+  <button class="contexte" (click)="contexte()">Contexte</button>
+    <button class="objectif" (click)="objectif()">Objectifs</button>
+    <button class="process" (click)="process()">Process</button>
+  </div>
+</div>
+
+  <div class="bndream" >
+
     <div class="item" *ngIf="contexteValide"  id="contexte">
+      <h2>Contexte</h2>
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
@@ -32,11 +45,8 @@
         <b>goûter au plaisir de l’infiniment possible.</b></p>
     </div>
 
-    <div class="label" *ngIf="objectifValide">
-      <img [src]="objectifImg" class="imgcontexte">
-      <h2>Objectifs</h2>
-    </div>
     <div class="item" *ngIf="objectifValide"  id="objectif">
+      <h2>Objectifs</h2>
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
@@ -50,11 +60,8 @@
       </ul>
     </div>
 
-    <div class="label" *ngIf="processValide">
-      <img [src]="processImg" class="imgcontexte">
-      <h2>Process</h2>
-    </div>
     <div class="item"   *ngIf="processValide"  id="process">
+      <h2>Process</h2>
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
@@ -82,87 +89,102 @@
     </div>
 </div>
 
-<div *ngIf="questionnaires" >
-  <div id="debut"></div>
-  <div class="progressTotal" >
-    <img [src]="depart" class="item image" >
-    <div class="item progression">
-      <h2>B'n Dream</h2>
-      <mat-progress-bar mode="determinate" value="{{progression}}" class="progressBar"></mat-progress-bar><p class="pourcentAttient">{{progression}}%</p>
-      <p class="pourcentMini">0%</p><br><br>
-
+<div class= etiquettes>
+  <div class="our-team-main">
+    <div class="team-front">
+      <div class="imageN">
+      <img routerLink="/bndream/photolangage" [src]="photlangageImg"/>
+      </div>
+      <div class="projet">
+        <p class="numro" *ngIf="!photolangage">1</p>
+        <p class="numro numroValide" *ngIf="photolangage"><mat-icon>done_outline</mat-icon></p>
+        <p class="test" *ngIf="!photolangage">A réaliser</p>
+        <p class="test testValide" *ngIf="photolangage">Validé</p>
+        <a class="titreProjet" routerLink="/bndream/photolangage" fragment="haut">Photolangage</a>
+        <div class="time">
+          <mat-icon>access_time</mat-icon>
+          <p>30 minutes</p>
+        </div>
     </div>
-    <img [src]="coupe" class="item image" >
   </div>
-</div>
+  </div>
 
-  <div class="container">
-    <div class="item projet">
-      <p class="numro" *ngIf="!photolangage">1</p>
-      <p class="numro numroValide" *ngIf="photolangage"><mat-icon>done_outline</mat-icon></p>
-      <p class="test" *ngIf="!photolangage">Test à réaliser</p>
-      <p class="test testValide" *ngIf="photolangage">Test validé</p>
-      <a class="titreProjet" routerLink="/bndream/photolangage" fragment="haut">Photolangage</a>
-      <div class="time">
-        <mat-icon>access_time</mat-icon>
-        <p>30 minutes</p>
+  <div class="our-team-main">
+    <div class="team-front">
+      <div class="imageN">
+        <img routerLink="/bndream/roue-de-la-vie" fragment="haut" [src]="rouedelavieImg"/>
+      </div>
+      <div class="projet">
+        <p class="numro"*ngIf="!roueVie">2</p>
+        <p class="numro numroValide" *ngIf="roueVie"><mat-icon>done_outline</mat-icon></p>
+        <p class="test" *ngIf="!roueVie">A réaliser</p>
+        <p class="test testValide" *ngIf="roueVie">Validé</p>
+        <a class="titreProjet" routerLink="/bndream/roue-de-la-vie" fragment="haut" (click)="serviceBream.getResultRoueDeLaVie()" >Roue de la vie </a>
+        <div class="time">
+          <mat-icon>access_time</mat-icon>
+          <p>40 minutes</p>
+        </div>
+      </div>
       </div>
     </div>
-    <div class="item projet">
-      <p class="numro"*ngIf="!roueVie">2</p>
-      <p class="numro numroValide" *ngIf="roueVie"><mat-icon>done_outline</mat-icon></p>
-      <p class="test" *ngIf="!roueVie">Test à réaliser</p>
-      <p class="test testValide" *ngIf="roueVie">Test validé</p>
-      <a class="titreProjet" routerLink="/bndream/roue-de-la-vie" fragment="haut" (click)="serviceBream.getResultRoueDeLaVie()" >Roue de la vie </a>
-      <div class="time">
-        <mat-icon>access_time</mat-icon>
-        <p>40 minutes</p>
+  <div class="our-team-main">
+    <div class="team-front">
+      <div class="imageN">
+        <img routerLink="/bndream/autoPortrait" fragment="haut" [src]="autoportraitImg"/>
       </div>
-    </div>
-    <div class="item projet">
-      <p class="numro"*ngIf="!autoportrait">3</p>
-      <p class="numro numroValide" *ngIf="autoportrait"><mat-icon>done_outline</mat-icon></p>
-      <p class="test" *ngIf="!autoportrait">Test à réaliser</p>
-      <p class="test testValide" *ngIf="autoportrait">Test validé</p>
-      <a class="titreProjet" routerLink="/bndream/autoPortrait" fragment="haut">Autoportrait</a>
-      <div class="time">
-        <mat-icon>access_time</mat-icon>
-        <p>30 minutes</p>
-      </div>
-    </div>
-    <div class="item projet">
-      <p class="numro" *ngIf="!qcm1">4</p>
-      <p class="numro numroValide" *ngIf="qcm4"><mat-icon>done_outline</mat-icon></p>
-      <p class="numro numroCours" *ngIf="qcm1&&!qcm4"><mat-icon>timer</mat-icon></p>
-      <p class="test" *ngIf="!qcm1">Test à réaliser</p>
-      <p class="test testCours" *ngIf="qcm1&&!qcm4">Test en cours </p>
-      <p class="test testValide" *ngIf="qcm4">Test validé</p>
-      <a class="titreProjet" routerLink="/bndream/praico" fragment="haut">Test d’intérêt PRAICO</a>
-      <div class="time ">
-        <mat-icon>access_time</mat-icon>
-        <p>20 minutes</p>
-      </div>
-      <div class="qcm">
-      <p [style.color]="colorNewQcm1"><mat-icon *ngIf="qcm1">done</mat-icon>Questionnaire n°1 – Comment vous décririez-vous ? (5 minutes)</p>
-      <p [style.color]="colorNewQcm2" ><mat-icon *ngIf="qcm2">done</mat-icon>Questionnaire n°2 – Quelles activités et environnements préférez-vous ? (7 minutes)</p>
-      <p [style.color]="colorNewQcm3"><mat-icon *ngIf="qcm3">done</mat-icon>Questionnaire n°3 – Quels sont vos loisirs ? (7 minutes)</p>
-      <P [style.color]="colorNewQcm4"><mat-icon *ngIf="qcm4">done</mat-icon>Questionnaire n°4 – Quels métiers vous attirent ? (3 minutes)</P>
-      </div>
-
-    </div>
-    <div class="item projet">
-      <p class="numro" *ngIf="!hero">5</p>
-      <p class="numro numroValide" *ngIf="hero"><mat-icon>done_outline</mat-icon></p>
-      <p class="test" *ngIf="!hero">Test à réaliser</p>
-      <p class="test testValide" *ngIf="hero">Test validé</p>
-      <a class="titreProjet" routerLink="/bndream/heros" fragment="haut">Votre meilleure version (Héros / Héroïne)</a>
-      <div class="time">
-        <mat-icon>access_time</mat-icon>
-        <p>20 minutes</p>
+      <div class="projet">
+        <p class="numro"*ngIf="!autoportrait">3</p>
+        <p class="numro numroValide" *ngIf="autoportrait"><mat-icon>done_outline</mat-icon></p>
+        <p class="test" *ngIf="!autoportrait">A réaliser</p>
+        <p class="test testValide" *ngIf="autoportrait">Validé</p>
+        <a class="titreProjet" routerLink="/bndream/autoPortrait" fragment="haut">Autoportrait</a>
+        <div class="time">
+          <mat-icon>access_time</mat-icon>
+          <p>30 minutes</p>
+        </div>
       </div>
     </div>
   </div>
-
-
+  <div class="our-team-main">
+    <div class="team-front">
+      <div class="imageN">
+        <img routerLink="/bndream/praico" fragment="haut" [src]="praicoImg"/>
+      </div>
+      <div class="projet">
+        <p class="numro" *ngIf="!qcm1">4</p>
+        <p class="numro numroValide" *ngIf="qcm4"><mat-icon>done_outline</mat-icon></p>
+        <p class="numro numroCours" *ngIf="qcm1&&!qcm4"><mat-icon>timer</mat-icon></p>
+        <p class="test" *ngIf="!qcm1">A réaliser</p>
+        <p class="test testCours" *ngIf="qcm1&&!qcm4">En cours </p>
+        <p class="test testValide" *ngIf="qcm4">Validé</p>
+        <a class="titreProjet" routerLink="/bndream/praico" fragment="haut">PRAICO</a>
+        <div class="time ">
+          <mat-icon>access_time</mat-icon>
+          <p>20 minutes</p>
+        </div>
+        <p [style.color]="colorNewQcm1" *ngIf="qcm1&&!qcm2"><mat-icon >done</mat-icon>Questionnaire n°1 – Comment vous décririez-vous ? (5 minutes)</p>
+        <p [style.color]="colorNewQcm2" *ngIf="qcm2&&!qcm3" ><mat-icon >done</mat-icon>Questionnaire n°2 – Quelles activités et environnements préférez-vous ? (7 minutes)</p>
+        <p [style.color]="colorNewQcm3" *ngIf="qcm3&&!qcm4"><mat-icon >done</mat-icon>Questionnaire n°3 – Quels sont vos loisirs ? (7 minutes)</p>
+        <P [style.color]="colorNewQcm4" *ngIf="qcm4"><mat-icon >done</mat-icon>Questionnaire n°4 – Quels métiers vous attirent ? (3 minutes)</P>
+    </div>
+  </div>
+  </div>
+  <div class="our-team-main">
+    <div class="team-front">
+        <img routerLink="/bndream/heros" fragment="haut" [src]="herosImg"/>
+      <div class="projet">
+        <p class="numro" *ngIf="!hero">5</p>
+        <p class="numro numroValide" *ngIf="hero"><mat-icon>done_outline</mat-icon></p>
+        <p class="test" *ngIf="!hero">A réaliser</p>
+        <p class="test testValide" *ngIf="hero">Validé</p>
+        <a class="titreProjet" routerLink="/bndream/heros" fragment="haut">Héros / Héroïne</a>
+        <div class="time">
+          <mat-icon>access_time</mat-icon>
+          <p>20 minutes</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
 
 
