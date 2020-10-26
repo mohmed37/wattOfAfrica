@@ -34,6 +34,7 @@ export class FicheMetierComponent implements OnInit {
   public code:string;
   public newTexte=new TexteModel();
   public ListQuestionnaire:any[];
+  public listImage=[];
 
   constructor(private httpClient: HttpClient, private router: Router,private serviceBnDream:BndreamService,
               private ficheMetierService:FicheMetierService,private hostTestService:ApiService ,private route: ActivatedRoute) {
@@ -80,18 +81,24 @@ export class FicheMetierComponent implements OnInit {
           this.retrieveResonse = res;
           this.base64Data = this.retrieveResonse.picByte;
           this.photoCarrousel = 'data:image/jpeg;base64,' + this.base64Data;
-          this.photoFicheMetier.push(this.retrievedImageFicheMetier);
-          this.metierDico=this.retrieveResonse.name;
-        }
+
+          this.listImage.push({photo:this.photoCarrousel,metier:this.retrieveResonse.name,id:idCarrousel});
+          this.metierDico=this.retrieveResonse.name;        }
 
       );
-
+    console.log(this.listImage)
   }
   getAllFicheMetier() {
     this.ficheMetierService.ficheMetierAll()
       .subscribe(
         res => {
           this.allPhotoFicheMetier=res;
+          this.allPhotoFicheMetier.forEach(photoFicheMetier=>{
+            this.getImageFicheMeier(photoFicheMetier.id);
+
+          });
+
+
           this.page("=");
         }
       );
@@ -139,6 +146,7 @@ split(phrase:string){
   }
 
   clic(idCarrousel: number) {
+    this.router.navigate(['/bnBeleave/fichesMetiers'], { fragment: 'select' });
     this.ficheMetierService.ficheMetierByPhotoId(idCarrousel)
       .subscribe(
         res => {
@@ -160,6 +168,12 @@ split(phrase:string){
           this.fichedetail=true;
           this.router.navigate(['/bnBeleave/fichesMetiers'], { fragment: 'ficheMetier' });
         })
+  }
+
+  close() {
+    this.router.navigate(['/bnBeleave/fichesMetiers'], { fragment: '' });
+    this.selecMetier=false;
+
   }
 }
 

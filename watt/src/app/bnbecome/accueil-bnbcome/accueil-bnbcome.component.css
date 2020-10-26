@@ -17,6 +17,10 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+img{
+  border-radius: 3%;
+  cursor: pointer;
+}
 
 .item{
   border: solid 1px #134a6b;
@@ -25,7 +29,7 @@
 }
 
 .bndream .item{
-  border: solid 1px green;
+  border: solid 1px #b65010;
   padding: 20px;
   border-radius: 10px;
   width: 50%;
@@ -200,36 +204,36 @@ a.titreProjet:hover{
   color: green;
 }
 .testCours{
-  color: orange;
+  color: #f8c620;
 }
 
 .numroValide{
   background-color:green;
 }
 .numroCours{
-  background-color: orange;
+  background-color: #f8c620;
 }
 
 
 .bndream p{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;}
 
 
 .liObjectif li{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   line-height: 2em;
 }
 .bndream h4{
   text-align: center;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;}
 
 .bndream b{
-  color: green;
+  color: #b65010;
 }
 
 .imgcontexte{
@@ -241,13 +245,15 @@ a.titreProjet:hover{
   flex-direction: column;
 }
 
-.label h2{
-  font-family: 'Poiret One', cursive;
+h2{
+  font-family: Uberhand pro, serif;
   font-size: 30px;
-  color: black;
+  background-color: #134a6b;
+  color: white;
+  padding: 10px 50px 10px 10px;
 }
 .selection{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;
   text-align: center;

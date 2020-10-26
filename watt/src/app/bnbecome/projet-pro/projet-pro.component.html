@@ -1,9 +1,12 @@
 <h1 class="titre" id="haut">Votre projet professionel</h1>
-<div class="projetPro" *ngIf="!projetProValide">
-  <p class="selection"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
-
+<div class="selection">
+  <div class="clic">
+    <button class="contexte" (click)="contexte()">Contexte</button>
+    <button class="objectif" (click)="objectif()">Objectifs</button>
+    <button class="process" (click)="process()">Process</button>
+  </div>
+</div>
   <div class="bndream" >
-    <img [src]="contexteImg" class="imgcontexte"  *ngIf="contexteValide">
     <div class="item" *ngIf="contexteValide"  id="contexte">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="contexte()" >
@@ -23,8 +26,6 @@
           (formations, certifications…).</b></p>
     </div>
 
-    <img [src]="objectifImg" class="imgcontexte" *ngIf="objectifValide">
-
     <div class="item" *ngIf="objectifValide"  id="objectif">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="objectif()">
@@ -40,8 +41,6 @@
       </ul>
     </div>
 
-
-    <img [src]="processImg" class="imgcontexte" *ngIf="processValide">
     <div class="item"   *ngIf="processValide"  id="process">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="process()">
@@ -101,7 +100,7 @@
       <p><b>LET’S GO !</b></p>
     </div>
   </div>
-</div>
+
 <div  class="textePro" *ngIf="!metierValideBySelction&&clientConnect&&profilUvalide">
 
   <h1>A - Métiers et débouchés :</h1>

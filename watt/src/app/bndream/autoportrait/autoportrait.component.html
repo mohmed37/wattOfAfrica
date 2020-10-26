@@ -8,14 +8,14 @@
 </div>
 
   <div class="container body" >
-    <div class="item" *ngIf="contexteValide"  id="contexte">
-      <h2>Contexte</h2>
+    <div class="item cont" *ngIf="contexteValide"  id="contexte">
+
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-
+      <h2>Contexte</h2>
       <p><b>Bienvenue dans Praico et découvrez votre ADN Vocationnel</b></p>
 
       <p>L’autoportrait permet d’évaluer vos traits de personnalité, aptitudes et comportements grâce à une liste prédéfinie.</p>
@@ -27,13 +27,13 @@
     </div>
 
 
-    <div class="item" *ngIf="objectifValide"  id="objectif">
-      <h2  >Objectifs</h2>
+    <div class="item cont" *ngIf="objectifValide"  id="objectif">
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
+      <h2  >Objectifs</h2>
 
       <ul class="liObjectif">
         <li>Identifier vos principaux traits de caractères,</li>
@@ -43,13 +43,14 @@
           quotidien et votre relation à l’autre.</li>
       </ul>
     </div>
-    <div class="item"   *ngIf="processValide"  id="process">
-      <h2 >Process</h2>
+    <div class="item cont"   *ngIf="processValide"  id="process">
+
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
+      <h2 >Process</h2>
       <h4><b>1ère phase : AUTOPORTRAIT</b></h4>
       <p>Une liste de qualificatifs vous est proposée. Vous allez sélectionner les cinq traits de personnalité qui vous
         correspondent le plus.</p>

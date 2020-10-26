@@ -1,13 +1,14 @@
 <h1 class="titre" id="haut">PorteFolio</h1>
-<div  *ngIf="!porteFolioValide" class="porteFolio">
-  <p class="selection"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+<div class="selection">
+  <div class="clic">
+    <button class="contexte" (click)="contexte()">Contexte</button>
+    <button class="objectif" (click)="objectif()">Objectifs</button>
+    <button class="process" (click)="process()">Process</button>
+  </div>
+</div>
   <div class="bndream" >
-    <div class="label" *ngIf="contexteValide">
-      <img [src]="contexteImg" class="imgcontexte">
-      <h2>Contexte</h2>
-    </div>
-
     <div class="item" *ngIf="contexteValide"  id="contexte">
+      <h2>Contexte</h2>
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
@@ -38,12 +39,8 @@
         fur et à mesure de vos prochaines expériences <b>l’alimenter de vos nouvelles compétences acquises.</b></p>
 
     </div>
-
-    <div class="label" *ngIf="objectifValide">
-      <img [src]="objectifImg" class="imgcontexte">
-      <h2>Objectifs</h2>
-    </div>
     <div class="item" *ngIf="objectifValide"  id="objectif">
+      <h2>Objectifs</h2>
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
@@ -61,11 +58,8 @@
       </ul>
     </div>
 
-    <div class="label" *ngIf="processValide">
-      <img [src]="processImg" class="imgcontexte">
-      <h2>Process</h2>
-    </div>
     <div class="item"   *ngIf="processValide"  id="process">
+      <h2>Process</h2>
       <div class="button-container">
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
@@ -105,7 +99,7 @@
       <p><b>LET’S GO !</b></p>
     </div>
   </div>
-</div>
+
 <!--<form [formGroup]="formCompetence" >
   <div   class="photos ItemPhoto" >
     <label>competence</label>
@@ -139,7 +133,7 @@
     <p >{{message}}</p>
   </div>
 </form>-->
-<div *ngIf="dicoMetier">
+<div *ngIf="dicoMetier" class="dico">
 <h3>Evaluer vos compétences et découvrez vos talents</h3>
 <p>Vous avez capitalisé des compétences tout au long de votre parcours scolaire et / ou professionnel,
   faîtes le point sur vos talents :</p>

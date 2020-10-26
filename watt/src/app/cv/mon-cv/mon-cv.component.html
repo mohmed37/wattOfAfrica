@@ -1,12 +1,11 @@
 <div class="container">
   <button type="button" class="btn btn-success" [style.backgroundColor]="colorBotton1"  (click)="changeColor()">new color</button>
   <button type="button" class="btn btn-success" [style.backgroundColor]="colorBotton2"   (click)="changeColor2()">new color</button>
- <!-- <div>
-    <input type = "button"  value = "CPTURE"  (click) = "captureScreen ()" />
-  </div>-->
-  <div id="pdf">
+<!--    <button class="btn btn-success" (click) = "captureScreen ()">capture</button>-->
+  <div id="htmlData">
+
   <P>{{nomClient2?.nom}}</P>
-  <div class="row" >
+  <div class="row">
     <div class="competences col-lg-4" [style.backgroundColor]="colorNew" [style.color]="colorNewText" >
       <div *ngIf="bouttonActif">
         <ckeditor  *ngIf="modifMetier" [editor]="Editor" data="{{currentCv.metier}}" (change)="onChange($event)"></ckeditor>
@@ -70,8 +69,9 @@
 
     <div class="basPage col-lg-12" [style.backgroundColor]="colorNew2"></div>
 </div>
+    <div class="elementH"></div>
 </div>
-  <div class="elementH"></div>
+
 </div>
 
 

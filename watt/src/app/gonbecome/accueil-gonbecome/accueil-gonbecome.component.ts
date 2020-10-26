@@ -23,6 +23,15 @@ export class AccueilGonbecomeComponent implements OnInit {
   public formation: boolean=false;
   public estime: boolean=false;
   public ListQuestionnaire:any[];
+  public contexteValide:boolean=false;
+  public objectifValide: boolean=false;
+  public processValide: boolean=false;
+  public entretienImg:string="assets/img/entretien.jpg";
+  public cvImg:string="assets/img/newcv.jpg";
+  public reseauImg:string="assets/img/reseau.jpg";
+  public organisationImg:string="assets/img/organiser.jpg";
+  public formationImg:string="assets/img/formation.jpg";
+  public estimeImg:string="assets/img/estime.jpg";
 
   constructor(public authService:AuthenticationService,private clientService:ClientService
     ,private router:Router,private route: ActivatedRoute, private userConnect:AuthenticationService) {
@@ -83,5 +92,40 @@ export class AccueilGonbecomeComponent implements OnInit {
     } catch (e) { }
   }
 
+  contexte() {
+    if(!this.contexteValide){
+      this.contexteValide=true;
+      this.objectifValide=false;
+      this.processValide=false;
+      this.router.navigate(['/gonbecome'], { fragment: 'contexte' });
+    }else {
+      this.contexteValide=false;
+      this.router.navigate(['/gonbecome'], { fragment: 'haut' });
+    }
+  }
+
+  objectif() {
+    if(!this.objectifValide){
+      this.objectifValide=true;
+      this.contexteValide=false;
+      this.processValide=false;
+      this.router.navigate(['/gonbecome'], { fragment: 'objectif' });
+    }else {
+      this.objectifValide=false;
+      this.router.navigate(['/gonbecome'], { fragment: 'haut' });
+
+    }
+  }
+  process() {
+    if (!this.processValide) {
+      this.processValide = true;
+      this.objectifValide = false;
+      this.contexteValide = false;
+      this.router.navigate(['/gonbecome'], {fragment: 'process'});
+    } else {
+      this.processValide = false;
+      this.router.navigate(['/gonbecome'], {fragment: 'haut'});
+    }
+  }
 
 }

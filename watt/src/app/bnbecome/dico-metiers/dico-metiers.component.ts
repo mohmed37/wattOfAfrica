@@ -28,6 +28,7 @@ export class DicoMetiersComponent implements OnInit {
   retrieveResonse: any;
   base64Data: any;
   retrievedImageFicheMetier: any;
+  ImageFicheMetier: any;
   listImageFicheMetier=[];
   public ficheClient:FicheMetier[];
   public ficheClientNew:ListMetierClientModel;
@@ -70,6 +71,7 @@ export class DicoMetiersComponent implements OnInit {
   public contexteValide:boolean=false;
   public objectifValide: boolean=false;
   public processValide: boolean=false;
+  public metierModif: string;
 
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient,
               private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute
@@ -118,6 +120,7 @@ export class DicoMetiersComponent implements OnInit {
         this.nbrsFicheMetier= this.ficheClientNew.ficheMetiers.length;
         for (let i = 0; i <this.nbrsFicheMetier; i++) {
           this.idimage.push(this.ficheClientNew.ficheMetiers[i].photo.id);
+
           this.testDicoMetiers=true;
         }
         let unique=new Set(this.idimage);
@@ -153,10 +156,22 @@ export class DicoMetiersComponent implements OnInit {
           this.base64Data = this.retrieveResonse.picByte;
           this.retrievedImageFicheMetier = 'data:image/jpeg;base64,' + this.base64Data;
 
-          this.listImageFicheMetier.push(this.retrievedImageFicheMetier);
+          this.listImageFicheMetier.push({photo:this.retrievedImageFicheMetier,metier:this.retrieveResonse.name});
           this.listMetierDico.push(this.retrieveResonse.name);
           this.photoCarrousel=this.listImageFicheMetier[0];
           this.metierDico=this.listMetierDico[0];
+        });
+  }
+
+  getImageFicheMeierDetail(idImage:number) {
+
+    this.fichemettierService.ficheMetierByImage(idImage)
+      .subscribe(
+        res => {
+          this.retrieveResonse = res;
+          this.base64Data = this.retrieveResonse.picByte;
+          this.ImageFicheMetier = 'data:image/jpeg;base64,' + this.base64Data;
+
         });
   }
 
@@ -178,12 +193,14 @@ export class DicoMetiersComponent implements OnInit {
     this.metierDico=this.listMetierDico[this.idCarrousel];
   }
 
-  clic(){
+  clic(metier:any){
+    this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'select' });
+    this.metierModif=metier;
     this.selectFicheMetierValide=false;
     this.listDesMetierSelect=[];
-    this.selecMetier=!this.selecMetier;
+    this.selecMetier=true;
     for (let i = 0; i <this.ficheClientNew.ficheMetiers.length; i++) {
-      if(this.ficheClientNew.ficheMetiers[i].photo.name==this.metierDico){
+      if(this.ficheClientNew.ficheMetiers[i].photo.name==metier){
         for (let j = 0; j <this.ficheClientNew.valide.length; j++) {
           if (this.ficheClientNew.valide[j].id==this.ficheClientNew.ficheMetiers[i].id){
             this.listDesMetierSelect.push({ficheMetier:this.ficheClientNew.ficheMetiers[i],etat:this.ficheClientNew.valide[j].etat});
@@ -201,6 +218,7 @@ export class DicoMetiersComponent implements OnInit {
         res => {
           this.FicheMetier=res;
           this.imageId=this.FicheMetier.photo.id;
+          this.getImageFicheMeierDetail(this.imageId);
           this.metier=this.FicheMetier.metier;
           this.competence=this.FicheMetier.competence;
           this.competences=this.split(this.competence);
@@ -223,6 +241,7 @@ export class DicoMetiersComponent implements OnInit {
   }
 
   changeColor(id:any) {
+
     for (let j = 0; j <this.ficheClientNew.ficheMetiers.length; j++) {
       if(this.ficheClientNew.valide[j].id==id){
         this.ficheClientNew.valide[j].etat=!this.ficheClientNew.valide[j].etat;
@@ -234,7 +253,7 @@ export class DicoMetiersComponent implements OnInit {
     this.bnbecome.modifListMetierClient(this.ficheClientNew)
       .subscribe(res=>{
         this.ficheClientNew=res;
-        this.clic();
+        this.clic(this.metierModif);
         this.selecMetier=true;
         this.message = 'Enregistré avec succès';
       }, error => {
@@ -301,4 +320,7 @@ export class DicoMetiersComponent implements OnInit {
     }
   }
 
+  close() {
+    this.selecMetier=false;
+  }
 }

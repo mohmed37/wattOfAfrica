@@ -1,12 +1,11 @@
 package com.microserviceuser.payload.request;
 
-import org.springframework.format.annotation.DateTimeFormat;
+
 
 import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.*;
 
 import static javax.persistence.TemporalType.DATE;
@@ -41,6 +40,16 @@ public class SignupRequest {
 
     @Temporal(DATE)
     private Date date;
+
+    private  Boolean newsletter;
+
+    public Boolean getNewsletter() {
+        return newsletter;
+    }
+
+    public void setNewsletter(Boolean newsletter) {
+        this.newsletter = newsletter;
+    }
 
     public Date getDate() {
         return date;

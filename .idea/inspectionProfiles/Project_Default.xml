@@ -6,9 +6,10 @@
       <option name="myIgnoreVendorSpecificProperties" value="false" />
       <option name="myCustomPropertiesList">
         <value>
-          <list size="2">
+          <list size="3">
             <item index="0" class="java.lang.String" itemvalue="fxflex" />
             <item index="1" class="java.lang.String" itemvalue="font-style-type" />
+            <item index="2" class="java.lang.String" itemvalue="ist-style-type" />
           </list>
         </value>
       </option>
@@ -16,6 +17,7 @@
     <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <Languages>
         <language minSize="66" name="Java" />
+        <language minSize="11" name="Style Sheets" />
         <language minSize="265" name="TypeScript" />
       </Languages>
     </inspection_tool>

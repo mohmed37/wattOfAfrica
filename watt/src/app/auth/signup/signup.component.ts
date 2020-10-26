@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {DialogModalComponent} from "../../dialog-modal/dialog-modal.component";
 import {HttpClient} from "@angular/common/http";
 import {ApiService} from "../../services/api.service";
+import {MatCheckboxChange} from "@angular/material/checkbox";
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,7 @@ import {ApiService} from "../../services/api.service";
 export class SignupComponent implements OnInit {
 
   public currentClient:Client;
-  public mode: number=1;
+  public mode: boolean=false;
   public clients:any;
   public size:number=1;
   public currentPage:number=1;
@@ -36,6 +37,10 @@ export class SignupComponent implements OnInit {
   color: string;
   public hostUser: string;
   public hostAuth: string;
+  public etudiantImg:string="assets/img/etudiante.png";
+  public JobseekerImg:string="assets/img/Jobseeker.png";
+  public contratValide: boolean;
+  public newsValide: boolean;
 
   constructor(private clientService:ClientService, private router:Router,private activatedRoute:ActivatedRoute,
               private userConnect:AuthenticationService,private route: ActivatedRoute,public dialog: MatDialog, private hostTestService: ApiService) {
@@ -49,7 +54,7 @@ export class SignupComponent implements OnInit {
       this.clientService.client();}
   }
   ngOnInit(): void {
-    this.onGetClient();
+   /* this.onGetClient();*/
 
   }
 
@@ -128,18 +133,27 @@ export class SignupComponent implements OnInit {
     this.newClient.username=this.usernam.value;
     this.newClient.date=this.date.value;
     this.newClient.roles=[""];
-  /*  this.newClient.matchingPassword=this.matchingPassword.value;
-    this.newClient.date=this.date.value;*/
-
+    this.newClient.newsletter=this.newsValide;
     this.userConnect.saveResource(this.newClient)
       .subscribe(res=>{
-        this.openDialog("Un mail de validation à été envoyé.");
         this.currentClient=res;
-        this.router.navigateByUrl("/login");
-        this.mode=2;
+        this.mode=true;
+
       },error => {
 console.log(error);
         this.message=error.error.message;
       });
   }
+
+
+  termes( MatCheckboxChange) {
+    if(MatCheckboxChange.source.id=="mat-checkbox-2"){
+      this.contratValide = (MatCheckboxChange.source.checked == true);
+    }
+    if(MatCheckboxChange.source.id=="mat-checkbox-1"){
+      this.newsValide = (MatCheckboxChange.source.checked == true);
+
+    }
+  }
+
 }

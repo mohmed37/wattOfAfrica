@@ -62,3 +62,61 @@ body{
   margin-bottom: 16px;
   margin-left: 40px;
 }
+.valide{
+  background-color: #f8c620;
+  color: white;
+  font-size:20px ;
+}
+.valideMail{
+  background-color: gainsboro;
+  color: #134a6b;
+  font-size:20px ;
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.arrow{
+  margin-left: 50px;
+  color: white;
+  margin-bottom: 15px;
+  font-size:40px;
+}
+.btnMail{
+  color: #134a6b;
+
+}
+a{
+  color: #f8c620;
+}
+.example-section{
+  margin-left: 100px;
+  color: #134a6b;
+}
+.imageN{
+  margin-top: 400px;
+
+}
+.imageM{
+  margin-left: 20px;
+}
+.mail{
+  width: 40%;
+  height: auto;
+  border:0.3mm ridge #134a6b;
+  font-family: Uberhand pro, serif;
+  text-align: center;
+  padding: 50px;
+  line-height:2em;
+  font-weight: bold;
+}
+.mail h3{
+  color: #f8c620;
+  font-size: 30px;
+  margin-bottom: 100px;
+
+}
+.mail p{
+  color: #134a6b;
+  font-size: 20px;
+  margin-bottom: 100px;
+}

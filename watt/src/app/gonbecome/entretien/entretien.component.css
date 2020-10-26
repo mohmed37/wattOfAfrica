@@ -1,19 +1,71 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #3498db;
+  color: #134a6b;
   font-size: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
+  color: #134a6b;
 }
 .container{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
-
+.text{
+  margin-left: 10%;
+  font-family: Uberhand pro, serif;
+  font-size: 20px;
+}
 .item{
-  border: solid 1px #3498db;
+  border: solid 1px #134a6b;
   padding: 20px;
   border-radius: 10px;
 }
+.selection{
+  background: #134a6b;
+  border: solid #134a6b;
+  height: 60px;
+
+}
+.selection{
+  font-family: Uberhand pro, serif;
+  font-size: 20px;
+  margin: 30px 50px;
+  text-align: center;
+}
+.clic{
+
+  float: right;
+  margin-right: 50px;
+}
+.contexte{
+  background: #f8c620;
+  color: #134a6b;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.objectif{
+  background: #60cfbe;
+  color: white;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.process{
+  background: #b65010;
+  color: black;
+  margin-top: 20px;
+  width: 110px;
+}
+
+
+h4{
+  text-align: center;
+  font-family: Uberhand pro, serif;
+  font-size: 30px;
+  margin: 30px 50px;
+  color: #134a6b;
+}
+

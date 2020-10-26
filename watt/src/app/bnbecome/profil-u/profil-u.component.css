@@ -11,7 +11,7 @@
    margin-left: 16px;
  }
 p{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -19,7 +19,7 @@ p{
 
 .numero{
   border-radius: 25px;
-  background-color:#3498db;
+  background-color:#134a6b;
   width:100px;
   height:30px;
   text-align: center;
@@ -100,11 +100,12 @@ p{
 .toppad
 {margin-top:10px;
 }
-h2
-{
-  color:#F8080C;
-  text-align: center;
-  font-size: 50px;
+h2{
+  font-family: Uberhand pro, serif;
+  font-size: 30px;
+  background-color: #134a6b;
+  color: white;
+  padding: 10px 50px 10px 10px;
 }
 .table-ligne1 {
 
@@ -155,9 +156,9 @@ h2
 .titre{
   margin: 50px;
   text-align: center;
-  color: #3498db;
+  color: #134a6b;
   font-size: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
 }
 .container{
   display: flex;
@@ -167,21 +168,21 @@ h2
 }
 
 .item{
-  border: solid 1px #3498db;
+  border: solid 1px #134a6b;
   padding: 20px;
   border-radius: 10px;
 }
 h5{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   text-align: center;
-  color: #3498db;
+  color: #134a6b;
 }
 
 
 /*contexte/objectifs/process*/
 .selection{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;
   text-align: center;
@@ -206,19 +207,19 @@ h5{
 
 }
 .item{
-  border: solid 1px #3498db;
+  border: solid 1px #134a6b;
   padding: 20px;
   border-radius: 10px;
 }
 
 .bndream .item{
-  border: solid 1px green;
+  border: solid 1px #b65010;
   padding: 20px;
   border-radius: 10px;
   width: 70%;}
 
 .bndream p{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;}
 
@@ -228,18 +229,48 @@ h5{
 }
 
 .liObjectif li{
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   line-height: 2em;
   margin-left: 30px;
 }
 .bndream h4{
   text-align: center;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
   font-size: 20px;
   margin: 30px 50px;}
 
 .para{
-  color: green;
+  color: #b65010;
 }
+.selection{
+  background: #134a6b;
+  border: solid #134a6b;
+  height: 60px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 20px;
+}
+
+.contexte{
+  background: #f8c620;
+  color: #134a6b;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.objectif{
+  background: #60cfbe;
+  color: white;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.process{
+  background: #b65010;
+  color: black;
+  margin-top: 20px;
+  width: 110px;
+}
+
 /*contexte/objectifs/process*/

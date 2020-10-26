@@ -18,7 +18,12 @@
   border-radius: 10px;
   width: 50%;
 }
-
+.cont{
+  border: solid 1px #b65010;
+  margin-right: 20px;
+  margin-left: 20px;
+  width: 100%;
+}
 .bouton{
   display: flex;
   flex-direction: row;
@@ -150,10 +155,13 @@ float: left;
   flex-direction: column;
 }
 
-.label h2{
-  font-size: 30px;
-  color: black;
+h2{
   font-family: Uberhand pro, serif;
+  font-size: 30px;
+  background-color: #134a6b;
+  color: white;
+  padding: 10px 50px 10px 10px;
+  margin-top: 20px;
 }
 .selectionTheme{
   font-size: 20px;

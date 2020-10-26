@@ -17,12 +17,9 @@
   </div>
 </div>
 <div class="bndream" >
-  <div class="label" *ngIf="contexteValide">
-    <img [src]="contexteImg" class="imgcontexte">
-    <h2>Contexte</h2>
-  </div>
 
   <div class="item" *ngIf="contexteValide"  id="contexte">
+    <h2>Contexte</h2>
     <div class="button-container">
       <button mat-mini-fab color="warn" (click)="contexte()" >
         <mat-icon>filter_list</mat-icon>
@@ -40,11 +37,8 @@
       l’environnement économique</b> afin d’analyser la <b>faisabilité de votre projet professionnel.</b></p>
     </div>
 
-  <div class="label" *ngIf="objectifValide">
-    <img [src]="objectifImg" class="imgcontexte">
-    <h2>Objectifs</h2>
-  </div>
   <div class="item" *ngIf="objectifValide"  id="objectif">
+    <h2>Objectifs</h2>
     <div class="button-container">
       <button mat-mini-fab color="warn" (click)="objectif()">
         <mat-icon>filter_list</mat-icon>
@@ -60,12 +54,8 @@
 
     </ul>
   </div>
-
-  <div class="label" *ngIf="processValide">
-    <img [src]="processImg" class="imgcontexte">
-    <h2>Process</h2>
-  </div>
   <div class="item"   *ngIf="processValide"  id="process">
+    <h2>Process</h2>
     <div class="button-container">
       <button mat-mini-fab color="warn" (click)="process()">
         <mat-icon>filter_list</mat-icon>

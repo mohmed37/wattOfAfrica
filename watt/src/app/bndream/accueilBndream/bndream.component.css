@@ -198,16 +198,19 @@ a.titreProjet:hover{
   color: #b65010;
 }
 .testCours{
-  color: orange;
+  color: #f8c620;
 }
 
 .numroValide{
-  background-color:#b65010;
+  background-color:green;
 }
 .numroCours{
-  background-color: orange;
+  background-color: #f8c620;
 }
-
+img{
+  border-radius: 3%;
+  cursor: pointer;
+}
 
 .bndream p{
   font-family: Uberhand pro, serif;
@@ -239,10 +242,14 @@ a.titreProjet:hover{
   flex-direction: column;
 }
 
-.label h2{
+
+
+h2{
   font-family: Uberhand pro, serif;
   font-size: 30px;
-  color: black;
+  background-color: #134a6b;
+  color: white;
+  padding: 10px 50px 10px 10px;
 }
 .selection{
   font-family: Uberhand pro, serif;

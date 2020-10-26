@@ -1,13 +1,15 @@
 <h1 class="titre" id="haut">Dico-Métiers</h1>
-  <div  *ngIf="!dicoMetiersValide" class="dico">
-    <p class="selection"><a (click)="contexte()">Contexte</a>&nbsp;/&nbsp;<a  (click)="objectif()">Objectifs</a>&nbsp; /&nbsp;<a  (click)="process()">Process</a></p>
+<div class="selection">
+  <div class="clic">
+    <button class="contexte" (click)="contexte()">Contexte</button>
+    <button class="objectif" (click)="objectif()">Objectifs</button>
+    <button class="process" (click)="process()">Process</button>
+  </div>
+</div>
     <div class="bndream" >
-      <div class="label" *ngIf="contexteValide">
-        <img [src]="contexteImg" class="imgcontexte">
-        <h2>Contexte</h2>
-      </div>
 
       <div class="item" *ngIf="contexteValide"  id="contexte">
+        <h2>Contexte</h2>
         <div class="button-container">
           <button mat-mini-fab color="warn" (click)="contexte()" >
             <mat-icon>filter_list</mat-icon>
@@ -28,11 +30,8 @@
 
       </div>
 
-      <div class="label" *ngIf="objectifValide">
-        <img [src]="objectifImg" class="imgcontexte">
-        <h2>Objectifs</h2>
-      </div>
       <div class="item" *ngIf="objectifValide"  id="objectif">
+        <h2>Objectifs</h2>
         <div class="button-container">
           <button mat-mini-fab color="warn" (click)="objectif()">
             <mat-icon>filter_list</mat-icon>
@@ -45,11 +44,8 @@
         </ul>
       </div>
 
-      <div class="label" *ngIf="processValide">
-        <img [src]="processImg" class="imgcontexte">
-        <h2>Process</h2>
-      </div>
       <div class="item"   *ngIf="processValide"  id="process">
+        <h2>Process</h2>
         <div class="button-container">
           <button mat-mini-fab color="warn" (click)="process()">
             <mat-icon>filter_list</mat-icon>
@@ -85,7 +81,7 @@
         </ul>
       </div>
     </div>
-  </div>
+
 <div class="bouton">
   <button *ngIf="!dicoMetiersValide&&heroValide&&!select" mat-raised-button (click)="listFicheMetierClient()">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
@@ -99,48 +95,45 @@
 </div>
 
 
-
-   <div class="carousel slide" data-ride="carousel" *ngIf="dicoMetiersValide||select" >
-    <div class="carousel-inner " >
-      <a class="active" (click)="clic()">
-        <img class="photoFicheMetier1" [src]="photoCarrousel" >
-      </a>
-      <label>{{metierDico}}</label>
+<div class= etiquettes>
+  <div  *ngFor="let m of listImageFicheMetier">
+<div class="our-team-main">
+  <div class="team-front">
+    <div class="imageN">
+      <img [src]="m.photo" (click)="clic(m.metier)" />
     </div>
+    <div class="projet">
+      <a class="titreProjet"  (click)="clic(m.metier)">{{m.metier}}</a>
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" (click)="page('-')" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" *ngIf="idCarrousel>0"></span>
-      <span class="sr-only" >Previous</span>
-    </a>
-    <a class="right carousel-control" (click)="page('+')" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" *ngIf="idCarrousel<listImageFicheMetier.length-1"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    </div>
   </div>
-  <div class="container" *ngIf="selecMetier">
-       <table class="table table-hover" >
+</div>
+</div>
+  <div class="container" *ngIf="selecMetier" id="select">
+    <table class="table table-hover" >
       <thead>
       <tr>
-        <th>Métier</th>
+        <th>Métier:  {{metierModif}} </th>
         <th>Sélection</th>
+        <a (click)="close()">X</a>
       </tr>
       </thead>
       <tbody *ngFor="let m of listDesMetierSelect"  >
       <tr >
         <td (click)="selectFicheMetier(m.ficheMetier.id)">{{m.ficheMetier.metier}}</td>
-       <td *ngIf="!m.etat" > <mat-icon class="icon"  (click)="changeColor(m.ficheMetier.id)" [style.color]="colorNewText">favorite</mat-icon>{{m.ficheMetier.id}}</td>
-       <td *ngIf="m.etat"> <mat-icon class="icon"  (click)="changeColor(m.ficheMetier.id)" [style.color]="colorNewText2">favorite</mat-icon>{{m.ficheMetier.id}}</td>
+        <td *ngIf="!m.etat" > <mat-icon class="icon"  (click)="changeColor(m.ficheMetier.id)" [style.color]="colorNewText">favorite</mat-icon></td>
+        <td *ngIf="m.etat"> <mat-icon class="icon"  (click)="changeColor(m.ficheMetier.id)" [style.color]="colorNewText2">favorite</mat-icon></td>
       </tr>
       </tbody>
     </table>
   </div>
+</div>
 
 
 <div class="containerfiche" *ngIf="FicheMetier &&selectFicheMetierValide" >
 
   <div class=" item photo1">
-    <img class="photoFicheMetier" [src]="photoCarrousel">
+    <img class="photoFicheMetier" [src]="ImageFicheMetier">
     <h1 class="fiche">{{metier}}</h1>
   </div>
   <div class="item texte">

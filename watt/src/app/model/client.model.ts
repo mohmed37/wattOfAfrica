@@ -9,4 +9,5 @@ export class Client {
   public roles:string[];
   public active:boolean;
   public date:Date;
+  public newsletter:boolean;
 }

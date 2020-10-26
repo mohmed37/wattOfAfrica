@@ -37,6 +37,7 @@ public class ZuulServerApplication extends SpringBootServletInitializer {
 		config.addAllowedMethod("POST");
 		config.addAllowedMethod("PUT");
 		config.addAllowedMethod("DELETE");
+
 		source.registerCorsConfiguration("/**", config);
 		return new CorsFilter(source);
 	}

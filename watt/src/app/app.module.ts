@@ -43,6 +43,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { AccueilGonbecomeComponent } from './gonbecome/accueil-gonbecome/accueil-gonbecome.component';
 import { ConfirmationComponent } from './auth/confirmation/confirmation.component';
 import {BasicAuthHtppInterceptorService} from "./services/basic-auth-htpp-interceptor.service";
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import {BasicAuthHtppInterceptorService} from "./services/basic-auth-htpp-interc
     DialogModalComponent,
     AccueilGonbecomeComponent,
     ConfirmationComponent,
+
 
   ],
   imports: [

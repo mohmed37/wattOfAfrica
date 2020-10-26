@@ -1,12 +1,25 @@
 <h1 class="titre" id="haut">Réussir un entretien d’embauche</h1>
-<div class="container">
-  <div class="item">
-    <h2>Contexte new</h2>
-  </div>
-  <div class="item">
-    <h2>Objectif</h2>
-  </div>
-  <div class="item">
-    <h2>Résultat</h2>
+<div class="selection">
+  <div class="clic">
+    <button class="contexte" (click)="contexte()">Contexte</button>
+    <button class="objectif" (click)="objectif()">Objectifs</button>
+    <button class="process" (click)="process()">Process</button>
   </div>
 </div>
+<div class="text">
+  <p>Préparer votre prochain entretien de recrutement est une étape essentielle dans votre recherche d’emploi.</p>
+  <p>Congratulation !</p>
+  <p>Si vous atteignez l’étape de l’entretien d’embauche c’est que votre candidature (Cv et lettre de motivation)
+    a passé la première sélection du process de recrutement et votre profil semble coller au poste.</p>
+  <p>Il est temps de préparer vos arguments afin d’être prêt le jour J et donner la meilleure image de vous et surtout
+    se démarquer et faire la différence.</p>
+  <p>Nous vous invitons à découvrir cette petite vidéo qui va vous guider pour vous entrainer à votre prochain entretien
+    de recrutement.</p>
+</div>
+<h4>VIDEO PREPARER SON ENTRETIEN D’EMBAUCHE</h4>
+<div class="container">
+  <video width="500" height="300" controls>
+    <source [src]="entretien" type="video/mp4">
+  </video>
+</div>
+

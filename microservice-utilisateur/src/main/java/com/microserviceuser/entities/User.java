@@ -46,6 +46,8 @@ public class User{
 	Date date;
 
 
+
+	Boolean newsletter;
 	Boolean active;
 
 
@@ -58,7 +60,7 @@ public class User{
 	public User() {
 	}
 
-	public User(String username,Date date, String nom, String prenom, String phone, String email, String password, boolean active) {
+	public User(String username,Date date, String nom, String prenom, String phone, String email, String password, boolean active,boolean newsletter) {
 		this.username = username;
 		this.phone = phone;
 		this.nom = nom;
@@ -66,9 +68,17 @@ public class User{
 		this.email = email;
 		this.password = password;
 		this.active = active;
+		this.newsletter=newsletter;
 		this.date=date;
 	}
 
+	public Boolean getNewsletter() {
+		return newsletter;
+	}
+
+	public void setNewsletter(Boolean newsletter) {
+		this.newsletter = newsletter;
+	}
 	public Long getId() {
 		return id;
 	}

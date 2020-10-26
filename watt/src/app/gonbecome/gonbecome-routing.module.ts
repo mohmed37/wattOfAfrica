@@ -6,6 +6,8 @@ import {EntretienComponent} from "./entretien/entretien.component";
 import {EstimeComponent} from "./estime/estime.component";
 import {OrganisationComponent} from "./organisation/organisation.component";
 import {OffreComponent} from "./offre/offre.component";
+import {ReseauComponent} from "./reseau/reseau.component";
+import {FormationComponent} from "./formation/formation.component";
 
 const routes: Routes = [
   {
@@ -94,6 +96,36 @@ const routes: Routes = [
               breadcrumb: null
             },
             component: OffreComponent,
+          },
+        ],
+      },
+      {
+        path: 'reseau',
+        data: {
+          breadcrumb: 'Créer son réseau'
+        },
+        children: [
+          {
+            path: '',
+            data: {
+              breadcrumb: null
+            },
+            component: ReseauComponent,
+          },
+        ],
+      },
+      {
+        path: 'formation',
+        data: {
+          breadcrumb: 'Centre de formation'
+        },
+        children: [
+          {
+            path: '',
+            data: {
+              breadcrumb: null
+            },
+            component: FormationComponent,
           },
         ],
       },

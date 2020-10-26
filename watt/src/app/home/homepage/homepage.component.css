@@ -38,6 +38,12 @@
   margin-top: 100px;
 
 }
+.video{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
 
 .imageBlock{
   max-width: 50%;

@@ -1,103 +1,14 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #3498db;
+  color: #134a6b;
   font-size: 40px;
-  font-family: 'Poiret One', cursive;
-}
-.container{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-.contexte{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-bottom: 20px;
-
-}
-.bndream{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.item{
-  border: solid 1px #3498db;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.bouton{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 50px;
-
-}
-button{
-  background-color:#3498db;
-  color: white;
-  font-size: 20px;
-}
-.icon{
-  margin-left: 20px;
-  color: white;
-}
-
-.progressTotal{
-  display: flex;
-  flex-direction: row;
-  justify-content:center;
-  margin: 50px;
-}
-.image{
-  width: 10%;
-  height: auto;
-}
-.item{
-  border: solid 1px grey ;
-
-}
-
-.progressBar{
-  width: 700px;
-  height: 20px;
-  border-radius: 10px;
-}
-
-.progression{
-  padding-left: 10px;
-  padding-right: 20px;
-
-}
-.date{
-  padding: 10px;
-}
-.pourcentAttient{
-  float: right;
-  color:#3498db;
-  font-size: 20px;
-  margin-top: 5px;
-}
-.pourcentMini{
-  float: left;
-  color:#3498db;
-  font-size: 20px;
-  margin-top: 5px;
-}
-.container {
-  display: flex;
-  flex-direction: column;
+  font-family: Uberhand pro, serif;
 }
 
 .numro{
   border-radius: 25px;
-  background-color:#3498db;
+  background-color:#134a6b;
   width: 50px;
   height:50px;
   text-align: center;
@@ -106,45 +17,179 @@ button{
   float: left;
   padding-top: 15px;
   margin-left: 5px;
+  margin-bottom: 10px;
 }
 
 .test{
-  color: #3498db;
+  color: #134a6b;
   float: left;
   margin-left: 20px;
   margin-right: 20px;
+  font-family: Uberhand pro, serif;
 }
 
-a.titreProjet{
-  text-decoration:none;
-  color: black;
-  font-size: 20px;
-  margin-right: 20px;
+.projet p{
+  color:white;
+  font-size: 30px;
+  font-family: Uberhand pro, serif;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.projet{
+  position: absolute;
+  margin-top: -50px;
+  margin-left: 30px;}
+.imageN{
+  margin-right: 50px;
+  margin-top: 50px;
+}
+
+.estime{
+  margin-left: 10px;
+}
+.organiser{
+  margin-left: 80px;
+}
+.cv{
+  margin-left: 80px;
 
 }
-a.titreProjet:hover{
-  color: #3498db;
+.entretien{
+  margin-top: -70px;
+}
+
+
+
+.imgProjet{
+  border-radius: 3%;
+  cursor: pointer;
+  font-family: Uberhand pro, serif;
 }
 
 .time{
   float: right;
-  color: #3498db;
+  color: #134a6b;
   margin-right: 20px;
 }
 
-.projet{
-  padding-top: 20px;
-}
+
 .testValide{
-  color: green;
+  color: #b65010;
 }
 .testCours{
-  color: orange;
+  color: #f8c620;
 }
 
 .numroValide{
-  background-color:green;
+  background-color:#b65010;
 }
 .numroCours{
-  background-color: orange;
+  background-color: #f8c620;
 }
+
+.etiquettes{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.our-team-main
+{
+  margin: 20px;
+  border-bottom:5px #323233 solid;
+  background:#fff;
+  border-radius:10px;
+  transition:0.5s;
+  overflow:hidden;
+  position:relative;
+  text-align: center;
+}
+
+.our-team-main img{
+  align-items: center;
+}
+.our-team-main p
+{
+  margin-bottom:0;
+}
+
+.team-back
+{
+  position:absolute;
+  top:0;
+  left:0;
+  padding:5px 5px 0 5px;
+  text-align:left;
+  background:#fff;
+}
+
+.team-front
+{
+  position:relative;
+  z-index:0.5;
+  background:#fff;
+  padding:15px;
+  transition: all 0.5s ease;
+}
+
+.newProgressBar{
+  width: 40%;
+  float: left;
+  margin: 20px;
+}
+
+.pourcent0{
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+  color: white;
+}
+.pourcent100{
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+  color: white;
+}
+.selection{
+  background: #134a6b;
+  border: solid #134a6b;
+  height: 60px;
+
+}
+.selection{
+  font-family: Uberhand pro, serif;
+  font-size: 20px;
+  margin: 30px 50px;
+  text-align: center;
+}
+.clic{
+
+  float: right;
+  margin-right: 50px;
+}
+.contexte{
+  background: #f8c620;
+  color: #134a6b;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.objectif{
+  background: #60cfbe;
+  color: white;
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 110px;
+}
+.process{
+  background: #b65010;
+  color: black;
+  margin-top: 20px;
+  width: 110px;
+}
+
+

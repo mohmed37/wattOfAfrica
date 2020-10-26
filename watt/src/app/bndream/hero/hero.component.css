@@ -36,11 +36,13 @@ button{
   color: white;
 }
 h2{
-  text-align: center;
-  color:  #134a6b;
-  margin-top: 40px;
   font-family: Uberhand pro, serif;
   font-size: 30px;
+  background-color: #134a6b;
+  color: white;
+  padding: 10px 50px 10px 10px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 p{

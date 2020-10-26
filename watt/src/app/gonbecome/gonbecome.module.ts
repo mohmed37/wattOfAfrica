@@ -20,9 +20,12 @@ import {EstimeComponent} from "./estime/estime.component";
 import {OffreComponent} from "./offre/offre.component";
 import {OrganisationComponent} from "./organisation/organisation.component";
 import {GonbecomeRoutingModule} from "./gonbecome-routing.module";
+import { ReseauComponent } from './reseau/reseau.component';
+import { FormationComponent } from './formation/formation.component';
+import {MapComponent} from "../map/map.component";
 
 @NgModule({
-  declarations: [EntretienComponent,EstimeComponent,OffreComponent,OrganisationComponent],
+  declarations: [EntretienComponent,EstimeComponent,OffreComponent,OrganisationComponent, ReseauComponent, FormationComponent,MapComponent],
   imports: [
     CommonModule,
     GonbecomeRoutingModule,

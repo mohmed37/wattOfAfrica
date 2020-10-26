@@ -154,7 +154,7 @@ public class AuthController {
                 signUpRequest.getPhone(),
                 signUpRequest.getEmail(),
 
-                encoder.encode(signUpRequest.getPassword()), false);
+                encoder.encode(signUpRequest.getPassword()), false,signUpRequest.getNewsletter());
 
 
         Set<String> strRoles = signUpRequest.getRole();
@@ -335,13 +335,68 @@ public class AuthController {
         mailMessage.setText("Bonjour,\n" +
                 "\n" +
                 "Vous avez demandé l'inscription à Wattsucces\n" +
-                "Cliquez sur le lien suivant pour obtenir la validation de votre inscription :"  + url + "/confirm-account?token="+ confirmationEmailToken.getConfirmationToken()+
+                "Cliquez sur le lien suivant pour obtenir la validation de votre inscription :"  + url + "/confirm-account?token="+ confirmationEmailToken.getConfirmationToken()+"#valide"+
+                "\n" +
+                "\n" +
                 "\n" +
                 "Cordialement\n "+
                 "\n" +
                 "L'équipe Wattsucces\n "+
                 url
                );
+
+        javaMailSender.send(mailMessage);
+
+    }
+    static class Contact{
+        String nom;
+        String prenom;
+        String entreprise;
+        String email;
+        String phone;
+        String messageObjet;
+        String message;
+
+        public Contact(String nom, String prenom, String entreprise, String email, String phone, String messageObjet, String message) {
+            this.nom = nom;
+            this.prenom = prenom;
+            this.entreprise = entreprise;
+            this.email = email;
+            this.phone = phone;
+            this.messageObjet = messageObjet;
+            this.message = message;
+        }
+    }
+    @PostMapping(value = "/contact")
+    public void contactMail(@Valid @RequestBody Contact contact) {
+
+        String url = "https://www.wattsucces.com";
+        String mailTo = contact.email;
+        String mailFrom= "contact@wattsucces.com";
+
+
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(mailTo);
+        mailMessage.setSubject("Objet:"+contact.messageObjet);
+        mailMessage.setFrom(mailFrom);
+        mailMessage.setText("Bonjour,\n" +
+                "\n" +
+                "Nom: "+contact.prenom+
+                "\n" +
+                "Prénom: "+contact.nom+
+                "\n" +
+                "Entreprise: "+contact.entreprise+
+                "\n" +
+                "Téléphone: "+contact.phone+
+                "\n" +
+                "\n" +
+                "\n" +
+                "Message: "+contact.message+
+                "\n" +
+                "\n" +
+                "\n" +
+                url
+        );
 
         javaMailSender.send(mailMessage);
 
