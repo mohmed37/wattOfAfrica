@@ -52,10 +52,8 @@ export class ContactComponent implements OnInit {
       return;
     }
     this.newContact=this.registerForm.value;
-    console.log(this.newContact);
     return this.htttpClient.post<ContactModel>(this.hostAuth + "/contact",this.newContact).subscribe(validation => {
       this.valide=true;
-      console.log(validation);
     },error => {
       console.log(error);
     })

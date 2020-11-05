@@ -39,6 +39,7 @@ public class Questionnaires implements Serializable {
     Boolean dicoMetiers;
     Boolean porteFolio;
     Boolean projetPro;
+    Boolean handiWatt;
     @OneToOne
     User user;
 

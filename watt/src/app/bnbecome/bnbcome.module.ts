@@ -21,9 +21,13 @@ import {MatListModule} from "@angular/material/list";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTableModule} from "@angular/material/table";
 import {MatSelectModule} from "@angular/material/select";
+import { HandiWattComponent } from './handi-watt/handi-watt.component';
+import {MatChipsModule} from "@angular/material/chips";
+import {ExtendedModule} from "@angular/flex-layout/typings/extended";
+import {LayoutModule} from "../share/layout/layout.module";
 
 @NgModule({
-  declarations: [DicoMetiersComponent,ProjetProComponent,PortefolioComponent,ProfilUComponent,FicheMetierComponent],
+  declarations: [DicoMetiersComponent,ProjetProComponent,PortefolioComponent,ProfilUComponent,FicheMetierComponent, HandiWattComponent],
   imports: [
     CommonModule,
     BnbcomeRoutingModule,
@@ -43,6 +47,8 @@ import {MatSelectModule} from "@angular/material/select";
     MatDialogModule,
     MatTableModule,
     MatSelectModule,
+    MatChipsModule,
+    LayoutModule,
   ]
 })
 export class BnbcomeModule{}

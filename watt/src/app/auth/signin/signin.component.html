@@ -1,28 +1,36 @@
-<div class="col-md-6" *ngIf="!initPassWord" >
+  <div class="container" id="haut"*ngIf="!initPassWord">
+    <div class="mail">
+       <form [formGroup]="form">
+         <label>Identifiant</label>
+         <p>
+           <mat-form-field appearance="outline">
+             <mat-label>Entrer votre identifiant</mat-label>
+             <input matInput formControlName="username" class="form-control" >
+             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
 
-<div class="panel panel-primary" id="haut">
-  <div class="panel-heading">Authentification</div>
-  <div class="panel-body">
-    <form [formGroup]="form">
-      <div class="form-group">
-        <label class="control-label">Itentifiant</label>
-        <input type="text" formControlName="username" class="form-control">
-      </div>
-      <div class="form-group">
-        <label class="control-label">Mot de passe</label>
-        <input type="password" formControlName="password"  class="form-control">
-      </div>
-      <p style="color: red">{{message}}</p>
+           </mat-form-field>
+         </p>
+         <label>Mot de passe</label>
+         <p>
+           <mat-form-field appearance="outline">
+             <mat-label>Entrer votre mot de passe</mat-label>
+             <input matInput formControlName="password" class="form-control" [type]="hide ? 'password' : 'text'" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%=:\?]).{8,12})">
+             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+             </button>
+           </mat-form-field>
 
-        <button class="btn btn-primary"  (click)="userConnect()" type="submit">Valider</button><br>
+         </p>
+         <button class="valideMail " mat-button  (click)="userConnect()">Valider<mat-icon class="arrow btnMail">keyboard_arrow_right</mat-icon></button>
+       </form>
       <a (click)="reInitPass()"><p>Réinitialisation de votre mot de passe</p></a>
-    </form>
+    </div>
 
+    <div class="imageM">
+      <img [src]="salarieImg"/>
+    </div>
   </div>
 
-</div>
-
-</div>
 <div class="col-md-6" *ngIf="initPassWord" >
 
   <div class="panel panel-primary" >

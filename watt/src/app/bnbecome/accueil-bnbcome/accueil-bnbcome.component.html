@@ -1,26 +1,53 @@
-<h1 class="titre" id="haut">B'n Beleave</h1>
+<h1 class="titre" id="haut">B’n Believe</h1>
+<!--<div class="container-fluid">
+  &lt;!&ndash; Second navbar for categories &ndash;&gt;
+  <nav class="navbar navbar-default">
+    <div class="container">
+      &lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      &lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a (click)="contexte()"  class="contexte">Contexte</a></li>
+          <li ><a class="objectif" (click)="objectif()">Objectifs</a></li>
+          <li ><a class="process" (click)="process()">Process</a></li>
+        </ul>
+      </div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;
+    </div>&lt;!&ndash; /.container &ndash;&gt;
+  </nav>&lt;!&ndash; /.navbar &ndash;&gt;
+</div>-->
 
 <div class="selection">
   <div *ngIf="questionnaires">
-  <div class="pourcent0">
-    <p>0%</p>
+    <div class="clic"  fxHide.lt-sm>
+      <button class="contexte" mat-button  (click)="contexte()">Contexte</button>
+      <button  class="objectif" mat-button  (click)="objectif()">Objectifs</button>
+      <button class="process" mat-button   (click)="process()">Process</button>
+    </div>
+    <div class="pourcent0">
+      <p>0%</p>
+    </div>
+    <mat-progress-bar class="newProgressBar"  mode="determinate" value="{{progression}}"></mat-progress-bar>
+    <div class="pourcent100">
+      <p>100%</p>
+    </div>
   </div>
-  <mat-progress-bar class="newProgressBar"  mode="determinate" value="{{progression}}"></mat-progress-bar>
-  <div class="pourcent100">
-    <p>100%</p>
-  </div>
-  </div>
-  <div class="clic">
-    <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
-  </div>
-</div>
-<div class="bndream" >
 
+</div>
+
+<div class="bndream" >
   <div class="item" *ngIf="contexteValide"  id="contexte">
-    <h2>Contexte</h2>
+
     <div class="button-container">
+      <h2>Contexte</h2>
       <button mat-mini-fab color="warn" (click)="contexte()" >
         <mat-icon>filter_list</mat-icon>
       </button>
@@ -38,8 +65,8 @@
     </div>
 
   <div class="item" *ngIf="objectifValide"  id="objectif">
-    <h2>Objectifs</h2>
     <div class="button-container">
+      <h2>Objectifs</h2>
       <button mat-mini-fab color="warn" (click)="objectif()">
         <mat-icon>filter_list</mat-icon>
       </button>
@@ -55,8 +82,8 @@
     </ul>
   </div>
   <div class="item"   *ngIf="processValide"  id="process">
-    <h2>Process</h2>
     <div class="button-container">
+      <h2>Process</h2>
       <button mat-mini-fab color="warn" (click)="process()">
         <mat-icon>filter_list</mat-icon>
       </button>
@@ -93,74 +120,107 @@
 <div class="our-team-main">
   <div class="team-front">
     <div class="imageN">
-      <img routerLink="/bnBeleave/dicoMetiers" fragment="haut" [src]="dicoImg"/>
+      <img routerLink="/gonBelieve/dicoMetiers" fragment="haut" [src]="dicoImg"/>
     </div>
-    <div class="projet">
+    <div class="projet" *ngIf="clientConnect">
       <p class="numro" *ngIf="!dicoMetiers">1</p>
       <p class="numro numroValide" *ngIf="dicoMetiers"><mat-icon>done_outline</mat-icon></p>
       <p class="test" *ngIf="!dicoMetiers">Test à réaliser</p>
       <p class="test testValide" *ngIf="dicoMetiers">Test validé</p>
-      <a class="titreProjet" routerLink="/bnBeleave/dicoMetiers" fragment="haut">Dico-Métiers</a>
+      <a class="titreProjet" routerLink="/gonBelieve/dicoMetiers" fragment="haut">Dico-Métiers</a>
       <div class="time">
         <mat-icon>access_time</mat-icon>
         <p>20 minutes</p>
     </div>
   </div>
+    <div class="projet " *ngIf="!clientConnect">
+      <a class="titreProjet" routerLink="/gonBelieve/dicoMetiers" fragment="haut">Dico-Métiers</a>
+    </div>
 </div>
 </div>
 <div class="our-team-main">
   <div class="team-front">
     <div class="imageN">
-      <img routerLink="/bnBeleave/porteFolio" fragment="haut"  [src]="portefolioImg"/>
+      <img routerLink="/gonBelieve/porteFolio" fragment="haut"  [src]="portefolioImg"/>
     </div>
-    <div class="projet">
+    <div class="projet" *ngIf="clientConnect">
       <p class="numro"*ngIf="!porteFolio">2</p>
       <p class="numro numroValide" *ngIf="porteFolio"><mat-icon>done_outline</mat-icon></p>
       <p class="test" *ngIf="!porteFolio">Test à réaliser</p>
       <p class="test testValide" *ngIf="porteFolio">Test validé</p>
-      <a class="titreProjet" routerLink="/bnBeleave/porteFolio" fragment="haut" >PorteFolio</a>
+      <a class="titreProjet" routerLink="/gonBelieve/porteFolio" fragment="haut" >PorteFolio</a>
       <div class="time">
         <mat-icon>access_time</mat-icon>
         <p>20 minutes</p>
       </div>
     </div>
+    <div class="projet " *ngIf="!clientConnect">
+      <a class="titreProjet" routerLink="/gonBelieve/porteFolio" fragment="haut">PorteFolio</a>
+    </div>
   </div>
 </div>
+  <div class="our-team-main">
+    <div class="team-front">
+      <div class="imageN">
+        <img routerLink="/gonBelieve/handiWatt" fragment="haut" [src]="handiWattImg"/>
+      </div>
+      <div class="projet" *ngIf="clientConnect">
+        <p class="numro" *ngIf="!handiWattValode">5</p>
+        <p class="numro numroValide" *ngIf="handiWattValode"><mat-icon>done_outline</mat-icon></p>
+        <p class="test" *ngIf="!handiWattValode">Test à réaliser</p>
+        <p class="test testValide" *ngIf="handiWattValode">Test validé</p>
+        <a class="titreProjet" routerLink="/gonBelieve/handiWatt" fragment="haut">HandiWatt</a>
+        <div class="time" >
+          <mat-icon>access_time</mat-icon>
+          <p>20 minutes</p>
+        </div>
+      </div>
+      <div class="projet " *ngIf="!clientConnect">
+        <a class="titreProjet" routerLink="/gonBelieve/handiWatt" fragment="haut">HandiWatt</a>
+      </div>
+    </div>
+  </div>
 <div class="our-team-main">
   <div class="team-front">
     <div class="imageN">
-      <img routerLink="/bnBeleave/profilU" fragment="haut" [src]="profilImg"/>
+      <img routerLink="/gonBelieve/profilU" fragment="haut" [src]="profilImg"/>
     </div>
-    <div class="projet">
+    <div class="projet" *ngIf="clientConnect" >
       <p class="numro"*ngIf="!profilU">3</p>
       <p class="numro numroValide" *ngIf="profilU"><mat-icon>done_outline</mat-icon></p>
       <p class="test" *ngIf="!profilU">Test à réaliser</p>
       <p class="test testValide" *ngIf="profilU">Test validé</p>
-      <a class="titreProjet" routerLink="/bnBeleave/profilU" fragment="haut">Profil-U</a>
+      <a class="titreProjet" routerLink="/gonBelieve/profilU" fragment="haut">Profil-U</a>
       <div class="time">
         <mat-icon>access_time</mat-icon>
         <p>30 minutes</p>
       </div>
     </div>
+    <div class="projet " *ngIf="!clientConnect">
+      <a class="titreProjet" routerLink="/gonBelieve/profilU" fragment="haut">Profil-U</a>
+    </div>
   </div>
 </div>
 <div class="our-team-main">
   <div class="team-front">
     <div class="imageN">
-      <img routerLink="/bnBeleave/projetPro" fragment="haut" [src]="projetProImg"/>
+      <img routerLink="/gonBelieve/projetPro" fragment="haut" [src]="projetProImg"/>
     </div>
-    <div class="projet">
+    <div class="projet" *ngIf="clientConnect">
       <p class="numro" *ngIf="!projetPro">4</p>
       <p class="numro numroValide" *ngIf="projetPro"><mat-icon>done_outline</mat-icon></p>
       <p class="test" *ngIf="!projetPro">Test à réaliser</p>
       <p class="test testValide" *ngIf="projetPro">Test validé</p>
-      <a class="titreProjet" routerLink="/bnBeleave/projetPro" fragment="haut">Projet Professionnel</a>
+      <a class="titreProjet" routerLink="/gonBelieve/projetPro" fragment="haut">Projet Professionnel</a>
       <div class="time">
         <mat-icon>access_time</mat-icon>
         <p>20 minutes</p>
       </div>
-
+    </div>
+    <div class="projet " *ngIf="!clientConnect">
+      <a class="titreProjet" routerLink="/gonBelieve/projetPro" fragment="haut">Projet Professionnel</a>
     </div>
   </div>
 </div>
+
 </div>

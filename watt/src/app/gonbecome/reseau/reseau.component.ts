@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-reseau',
@@ -12,8 +13,14 @@ export class ReseauComponent implements OnInit {
   public objectifValide: boolean=false;
   public processValide: boolean=false;
   public reseau:string="assets/video/reseau.mp4";
+  public userId: number | any;
+  public clientConnect:boolean;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private userConnect:AuthenticationService) {
+    if (userConnect.userAuthenticated){
+      this.clientConnect=this.userConnect.isAuthenticated;
+      this.userId=this.userConnect.userAuthenticated.id;}
+  }
 
   ngOnInit(): void {
   }

@@ -109,6 +109,7 @@ public class UserController {
         questionnaires.setPorteFolio(false);
         questionnaires.setProjetPro(false);
         questionnaires.setDicoMetiers(false);
+        questionnaires.setHandiWatt(false);
 
 
         Questionnaires saveQusetionnaires=questionRepository.save(questionnaires);
@@ -154,6 +155,9 @@ public class UserController {
                 break;
             case "projetPro":
                 questionClient.get().setProjetPro(true);
+                break;
+            case "handiWatt":
+                questionClient.get().setHandiWatt(true);
                 break;
             default:
                 break;

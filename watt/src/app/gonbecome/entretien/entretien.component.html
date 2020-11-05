@@ -1,11 +1,12 @@
 <h1 class="titre" id="haut">Réussir un entretien d’embauche</h1>
 <div class="selection">
-  <div class="clic">
-    <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
+  <div class="clic" fxHide.lt-sm>
+    <button mat-button class="contexte" (click)="contexte()">Contexte</button>
+    <button  mat-button class="objectif" (click)="objectif()">Objectifs</button>
+    <button mat-button class="process" (click)="process()">Process</button>
   </div>
 </div>
+<div *ngIf="clientConnect">
 <div class="text">
   <p>Préparer votre prochain entretien de recrutement est une étape essentielle dans votre recherche d’emploi.</p>
   <p>Congratulation !</p>
@@ -22,4 +23,4 @@
     <source [src]="entretien" type="video/mp4">
   </video>
 </div>
-
+</div>

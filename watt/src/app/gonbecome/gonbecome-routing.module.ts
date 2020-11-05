@@ -5,7 +5,6 @@ import {AccueilCvComponent} from "../cv/accueil-cv/accueil-cv.component";
 import {EntretienComponent} from "./entretien/entretien.component";
 import {EstimeComponent} from "./estime/estime.component";
 import {OrganisationComponent} from "./organisation/organisation.component";
-import {OffreComponent} from "./offre/offre.component";
 import {ReseauComponent} from "./reseau/reseau.component";
 import {FormationComponent} from "./formation/formation.component";
 
@@ -27,7 +26,7 @@ const routes: Routes = [
       {
         path: 'newCv',
         data: {
-          breadcrumb: 'Cv'
+          breadcrumb: 'Cv et lettre'
         },
         children: [
           {
@@ -81,21 +80,6 @@ const routes: Routes = [
               breadcrumb: null
             },
             component: OrganisationComponent,
-          },
-        ],
-      },
-      {
-        path: 'offre',
-        data: {
-          breadcrumb: 'Offre de formation'
-        },
-        children: [
-          {
-            path: '',
-            data: {
-              breadcrumb: null
-            },
-            component: OffreComponent,
           },
         ],
       },

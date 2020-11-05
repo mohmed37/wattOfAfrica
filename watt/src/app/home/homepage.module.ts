@@ -6,6 +6,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import { ContactComponent } from './contact/contact.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {LayoutModule} from "../share/layout/layout.module";
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatIconModule,
     MatButtonModule,
     ReactiveFormsModule,
+    LayoutModule,
 
   ]
 })

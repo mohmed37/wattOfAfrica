@@ -65,7 +65,6 @@ export class AuthenticationService {
 
       return this.htttpClient.get<Client>(this.hostAuth +"/userName/"+userToken.sub).subscribe(user=>{
         this.currentClient=user;
-
         this.userAuthenticated={
           username:this.currentClient.username,
           roles:this.currentClient.roles,
@@ -74,7 +73,6 @@ export class AuthenticationService {
           email:this.currentClient.email,
           phone:this.currentClient.phone,
           id:this.currentClient.id
-
         };
         this.clientConnect(this.userAuthenticated);
       });

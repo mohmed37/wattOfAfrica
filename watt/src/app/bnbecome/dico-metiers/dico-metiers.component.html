@@ -1,16 +1,17 @@
 <h1 class="titre" id="haut">Dico-Métiers</h1>
 <div class="selection">
   <div class="clic">
-    <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
+    <button class="contexte" mat-button  fxHide.lt-sm (click)="contexte()">Contexte</button>
+    <button class="objectif" mat-button fxHide.lt-sm (click)="objectif()">Objectifs</button>
+    <button class="process" mat-button fxHide.lt-sm (click)="process()">Process</button>
   </div>
 </div>
+
     <div class="bndream" >
 
       <div class="item" *ngIf="contexteValide"  id="contexte">
-        <h2>Contexte</h2>
         <div class="button-container">
+          <h2>Contexte</h2>
           <button mat-mini-fab color="warn" (click)="contexte()" >
             <mat-icon>filter_list</mat-icon>
           </button>
@@ -31,8 +32,9 @@
       </div>
 
       <div class="item" *ngIf="objectifValide"  id="objectif">
-        <h2>Objectifs</h2>
+
         <div class="button-container">
+          <h2>Objectifs</h2>
           <button mat-mini-fab color="warn" (click)="objectif()">
             <mat-icon>filter_list</mat-icon>
           </button>
@@ -45,8 +47,8 @@
       </div>
 
       <div class="item"   *ngIf="processValide"  id="process">
-        <h2>Process</h2>
         <div class="button-container">
+          <h2>Process</h2>
           <button mat-mini-fab color="warn" (click)="process()">
             <mat-icon>filter_list</mat-icon>
           </button>
@@ -82,6 +84,7 @@
       </div>
     </div>
 
+<div *ngIf="clientConnect">
 <div class="bouton">
   <button *ngIf="!dicoMetiersValide&&heroValide&&!select" mat-raised-button (click)="listFicheMetierClient()">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
@@ -158,4 +161,5 @@
     </ul>
   </div>
 
+</div>
 </div>

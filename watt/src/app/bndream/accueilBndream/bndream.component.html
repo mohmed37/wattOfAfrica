@@ -1,6 +1,11 @@
 <h1 class="titre" id="haut">B' n Dream</h1>
 <div class="selection">
   <div *ngIf="questionnaires">
+    <div class="clic" fxHide.lt-sm>
+      <button class="contexte" mat-button (click)="contexte()">Contexte</button>
+      <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
+      <button class="process" mat-button (click)="process()">Process</button>
+    </div>
   <div class="pourcent0">
   <p>0%</p>
   </div>
@@ -10,18 +15,15 @@
   </div>
   </div>
 
-  <div class="clic">
-  <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
-  </div>
+
 </div>
 
   <div class="bndream" >
 
     <div class="item" *ngIf="contexteValide"  id="contexte">
-      <h2>Contexte</h2>
+
       <div class="button-container">
+        <h2>Contexte</h2>
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
         </button>
@@ -46,8 +48,9 @@
     </div>
 
     <div class="item" *ngIf="objectifValide"  id="objectif">
-      <h2>Objectifs</h2>
+
       <div class="button-container">
+        <h2>Objectifs</h2>
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
         </button>
@@ -61,8 +64,9 @@
     </div>
 
     <div class="item"   *ngIf="processValide"  id="process">
-      <h2>Process</h2>
+
       <div class="button-container">
+        <h2>Process</h2>
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
         </button>
@@ -95,7 +99,7 @@
       <div class="imageN">
       <img routerLink="/bndream/photolangage" [src]="photlangageImg"/>
       </div>
-      <div class="projet">
+      <div class="projet" *ngIf="clientConnect">
         <p class="numro" *ngIf="!photolangage">1</p>
         <p class="numro numroValide" *ngIf="photolangage"><mat-icon>done_outline</mat-icon></p>
         <p class="test" *ngIf="!photolangage">A réaliser</p>
@@ -106,6 +110,9 @@
           <p>30 minutes</p>
         </div>
     </div>
+      <div class="projet " *ngIf="!clientConnect">
+        <a class="titreProjet" routerLink="/bndream/photolangage" fragment="haut">Photolangage</a>
+      </div>
   </div>
   </div>
 
@@ -114,7 +121,7 @@
       <div class="imageN">
         <img routerLink="/bndream/roue-de-la-vie" fragment="haut" [src]="rouedelavieImg"/>
       </div>
-      <div class="projet">
+      <div class="projet" *ngIf="clientConnect">
         <p class="numro"*ngIf="!roueVie">2</p>
         <p class="numro numroValide" *ngIf="roueVie"><mat-icon>done_outline</mat-icon></p>
         <p class="test" *ngIf="!roueVie">A réaliser</p>
@@ -125,6 +132,9 @@
           <p>40 minutes</p>
         </div>
       </div>
+      <div class="projet " *ngIf="!clientConnect">
+        <a class="titreProjet" routerLink="/bndream/roue-de-la-vie" fragment="haut">Roue de la vie</a>
+      </div>
       </div>
     </div>
   <div class="our-team-main">
@@ -132,7 +142,7 @@
       <div class="imageN">
         <img routerLink="/bndream/autoPortrait" fragment="haut" [src]="autoportraitImg"/>
       </div>
-      <div class="projet">
+      <div class="projet" *ngIf="clientConnect">
         <p class="numro"*ngIf="!autoportrait">3</p>
         <p class="numro numroValide" *ngIf="autoportrait"><mat-icon>done_outline</mat-icon></p>
         <p class="test" *ngIf="!autoportrait">A réaliser</p>
@@ -143,6 +153,9 @@
           <p>30 minutes</p>
         </div>
       </div>
+      <div class="projet " *ngIf="!clientConnect">
+        <a class="titreProjet" routerLink="/bndream/autoPortrait" fragment="haut">Autoportrait</a>
+      </div>
     </div>
   </div>
   <div class="our-team-main">
@@ -150,7 +163,7 @@
       <div class="imageN">
         <img routerLink="/bndream/praico" fragment="haut" [src]="praicoImg"/>
       </div>
-      <div class="projet">
+      <div class="projet" *ngIf="clientConnect">
         <p class="numro" *ngIf="!qcm1">4</p>
         <p class="numro numroValide" *ngIf="qcm4"><mat-icon>done_outline</mat-icon></p>
         <p class="numro numroCours" *ngIf="qcm1&&!qcm4"><mat-icon>timer</mat-icon></p>
@@ -167,12 +180,15 @@
         <p [style.color]="colorNewQcm3" *ngIf="qcm3&&!qcm4"><mat-icon >done</mat-icon>Questionnaire n°3 – Quels sont vos loisirs ? (7 minutes)</p>
         <P [style.color]="colorNewQcm4" *ngIf="qcm4"><mat-icon >done</mat-icon>Questionnaire n°4 – Quels métiers vous attirent ? (3 minutes)</P>
     </div>
+      <div class="projet " *ngIf="!clientConnect">
+        <a class="titreProjet" routerLink="/bndream/praico" fragment="haut">PRAICO</a>
+      </div>
   </div>
   </div>
   <div class="our-team-main">
     <div class="team-front">
         <img routerLink="/bndream/heros" fragment="haut" [src]="herosImg"/>
-      <div class="projet">
+      <div class="projet" *ngIf="clientConnect">
         <p class="numro" *ngIf="!hero">5</p>
         <p class="numro numroValide" *ngIf="hero"><mat-icon>done_outline</mat-icon></p>
         <p class="test" *ngIf="!hero">A réaliser</p>
@@ -182,6 +198,9 @@
           <mat-icon>access_time</mat-icon>
           <p>20 minutes</p>
         </div>
+      </div>
+      <div class="projet " *ngIf="!clientConnect">
+        <a class="titreProjet" routerLink="/bndream/heros" fragment="haut">Héros / Héroïne</a>
       </div>
     </div>
     </div>

@@ -1,10 +1,14 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #134a6b;
+  color: black;
   font-size: 40px;
   font-family: Uberhand pro, serif;
+  text-decoration-style: double;
+  text-decoration-line: underline;
+  text-decoration: black;
 }
+
 .container{
   display: flex;
   flex-direction: row;
@@ -12,11 +16,7 @@
   justify-content: space-around;
 }
 
-.item{
-  border: solid 1px #134a6b;
-  padding: 20px;
-  border-radius: 10px;
-}
+
 
 .bouton{
   display: flex;
@@ -66,23 +66,6 @@ border-color: rgba(255, 213, 4, 1);
 #social1,#social2{
   border-color:rgba(255, 4, 4, 1);
   background-color: rgba(255, 4, 4, 0.3);
-}
-.item h2{
-  font-family: Uberhand pro, serif;
-  font-size: 30px;
-  background-color: #134a6b;
-  color: white;
-  padding: 10px 50px 10px 10px;
-  margin-top: 20px;
-}
-
-h2{
-  text-align: center;
-  color:  #134a6b;
-  margin-top: 40px;
-  font-family: Uberhand pro, serif;
-  font-size: 30px;
-
 }
 
 p{
@@ -148,9 +131,6 @@ h4{
   font-size: 20px;
   font-family: Uberhand pro, serif;
 }
-.button-container{
-  float: left;
-}
 .bouton{
   margin-top: 20px;
 
@@ -163,37 +143,56 @@ h3{
   font-family: Uberhand pro, serif;
 }
 
+/*contexte/objectifs/process*/
+h2{
+  text-align: center;
+}
+.item{
+  border: solid 1px #b65010;
+  padding: 20px;
+  border-radius: 10px;
+  width: 70%;}
+
+.button-container{
+  font-family: Uberhand pro, serif;
+  font-size: 30px;
+  background-color: #134a6b;
+  color: white;
+  padding: 10px 50px 10px 10px;
+}
+.button-container button{
+  float: right;
+  margin-top: -50px;
+}
 .selection{
   background: #134a6b;
   border: solid #134a6b;
   height: 60px;
-  margin-left: 20%;
-  margin-right: 20%;
   margin-bottom: 20px;
 }
 
 .contexte{
   background: #f8c620;
   color: #134a6b;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 50px;
   width: 110px;
 }
 .objectif{
   background: #60cfbe;
   color: white;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 50px;
   width: 110px;
 }
 .process{
   background: #b65010;
   color: black;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 110px;
 }
 .clic{
-
   float: right;
   margin-right: 50px;
 }
+/*contexte/objectifs/process*/

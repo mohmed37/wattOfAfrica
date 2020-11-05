@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ClientService} from "../../services/client.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BndreamService} from "../../services/bndream.service";
@@ -6,14 +6,10 @@ import {HttpClient} from "@angular/common/http";
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import {PhotoLangageModel} from "../../model/photoLangage.model";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {ChangeEvent} from "@ckeditor/ckeditor5-angular";
 import {QuestionnairesModel} from "../../model/questionnaires.model";
 import {AuthenticationService} from "../../services/authentication.service";
-import {Client} from "../../model/client.model";
-import {Observable} from "rxjs";
 import {TexteModel} from "../../model/texte.model";
-import {FicheMetierService} from "../../services/fiche-metier.service";
-import {ApiService} from "../../services/api.service";
+
 @Component({
   selector: 'app-photolangage',
   templateUrl: './photolangage.component.html',
@@ -32,7 +28,6 @@ export class PhotolangageComponent implements OnInit {
   constructor(private bndreamService:BndreamService, private router:Router,private httpClient: HttpClient
               ,private serviceClient:ClientService, private userConnect:AuthenticationService,private route: ActivatedRoute) {
     if (userConnect.userAuthenticated){
-    this.clientConnect=this.userConnect.isAuthenticated;
     this.userId=this.userConnect.userAuthenticated.id;}
 
   }
@@ -109,6 +104,7 @@ export class PhotolangageComponent implements OnInit {
   public clientConnect:boolean;
 
   ngOnInit(): void {
+    this.clientConnect=this.userConnect.isAuthenticated;
 
     this.formPhotoLangage=new FormGroup({
       mot1:new FormControl('',Validators.required),
@@ -120,9 +116,7 @@ export class PhotolangageComponent implements OnInit {
 
     });
 
-    if (this.userConnect.userAuthenticated){
-      this.userAuthent=true;
-
+    if (this.clientConnect){
       this.currentClient=this.serviceClient.getClientBy(this.userId);
 
       this.serviceClient.getQuestionnairesAll().subscribe(list => {

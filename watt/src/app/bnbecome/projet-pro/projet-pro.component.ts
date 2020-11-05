@@ -57,7 +57,7 @@ export class ProjetProComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.userConnect.userAuthenticated) {
+    if (this.clientConnect) {
       this.serviceClient.getQuestionnairesAll().subscribe(list => {
         this.ListQuestionnaire = list;
         this.ListQuestionnaire.forEach(questionnaireUser => {
@@ -151,7 +151,7 @@ export class ProjetProComponent implements OnInit {
   valideSelec(){
     this.serviceClient.putQuestionnaires("projetPro");
     this.metierValideBySelction=true;
-   /* this.router.navigateByUrl("/bnBeleave");*/
+   /* this.router.navigateByUrl("/bnBelieve");*/
   }
 
   getMetierSelection(metierValide: any[], ficheClient: ListMetierClientModel){
@@ -171,10 +171,10 @@ export class ProjetProComponent implements OnInit {
       this.contexteValide=true;
       this.objectifValide=false;
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'contexte' });
+      this.router.navigate(['/gonBelieve/projetPro'], { fragment: 'contexte' });
     }else {
       this.contexteValide=false;
-      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/projetPro'], { fragment: 'haut' });
     }
   }
 
@@ -183,10 +183,10 @@ export class ProjetProComponent implements OnInit {
       this.objectifValide=true;
       this.contexteValide=false;
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'objectif' });
+      this.router.navigate(['/gonBelieve/projetPro'], { fragment: 'objectif' });
     }else {
       this.objectifValide=false;
-      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/projetPro'], { fragment: 'haut' });
 
     }
   }
@@ -195,10 +195,10 @@ export class ProjetProComponent implements OnInit {
       this.processValide=true;
       this.objectifValide=false;
       this.contexteValide=false;
-      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'process' });
+      this.router.navigate(['/gonBelieve/projetPro'], { fragment: 'process' });
     }else {
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/projetPro'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/projetPro'], { fragment: 'haut' });
     }
   }
 }

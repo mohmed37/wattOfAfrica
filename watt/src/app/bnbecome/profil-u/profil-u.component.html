@@ -1,19 +1,20 @@
 <h1 class="titre" id="haut">Profil-U</h1>
 <div class="selection">
-  <div class="clic">
-    <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
+  <div class="clic" fxHide.lt-sm>
+    <button class="contexte" mat-button (click)="contexte()">Contexte</button>
+    <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
+    <button class="process" mat-button (click)="process()">Process</button>
   </div>
 </div>
   <div class="bndream" >
     <div class="item" *ngIf="contexteValide"  id="contexte">
       <div class="button-container">
+        <h2>Contexte</h2>
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2>Contexte</h2>
+
       <p>Le test Profil-U évalue deux aspects de vous : <b>votre personnalité</b> et <b>vos valeurs professionnelles.</b> </p>
 
       <p>Ces <b>2 aspects</b> sont composés chacun de <b>sept dimensions.</b></p>
@@ -131,11 +132,12 @@
     </div>
     <div class="item" *ngIf="objectifValide"  id="objectif">
       <div class="button-container">
+        <h2>Objectifs</h2>
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2>Objectifs</h2>
+
       <ul class="liObjectif">
         <li>Découvrir vos traits de personnalité et les confronter à votre projet professionnel</li>
         <li>Cerner votre comportement professionnel, vos motivations et aspirations et vérifier la pertinence
@@ -148,11 +150,12 @@
 
     <div class="item"   *ngIf="processValide"  id="process">
       <div class="button-container">
+        <h2>Process</h2>
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2>Process</h2>
+
       <p><b>Ce questionnaire de personnalité vous permettra de mieux cerner votre personnalité, votre comportement au
         travail, vos aspirations, motivations et valeurs.</b></p>
 
@@ -183,7 +186,7 @@
     </div>
   </div>
 
-
+<div *ngIf="clientConnect">
 <div class="questionnaire" *ngIf="!profilUvalide&&porteFolio">
    <div class="question">
   <p>{{question}}</p>
@@ -705,3 +708,4 @@
 
    </div>
  </div>
+</div>

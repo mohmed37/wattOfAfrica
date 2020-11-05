@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {ClientService} from "../../services/client.service";
-import {BndreamService} from "../../services/bndream.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuestionnairesModel} from "../../model/questionnaires.model";
+
 
 @Component({
   selector: 'app-accueil-bnbcome',
@@ -33,19 +33,22 @@ export class AccueilBnbcomeComponent implements OnInit {
   public profilImg:string="assets/img/profil.jpg";
   public projetProImg:string="assets/img/projetpro.jpg";
   public herosImg:string="assets/img/heros.jpg";
+  public handiWattImg:string="assets/img/handiWatt.jpg";
   public contexteValide:boolean=false;
   public objectifValide: boolean=false;
   public processValide: boolean=false;
+  public handiWattValode: boolean=false;
 
   constructor(public authService:AuthenticationService,private clientService:ClientService
     ,private router:Router,private route: ActivatedRoute, private userConnect:AuthenticationService) {
+
     this.serviceClient=clientService;
     this.clientConnect=this.authService.isAuthenticated;
 
   }
 
   ngOnInit(): void {
-    if(this.authService.userAuthenticated){
+    if(this.clientConnect){
       this.clientService.getQuestionnairesAll().subscribe(list=>{
         this.ListQuestionnaire=list;
         this.ListQuestionnaire.forEach(questionnaireUser=>{
@@ -57,6 +60,7 @@ export class AccueilBnbcomeComponent implements OnInit {
                 this.porteFolio=this.questionnaires.porteFolio;
                 this.profilU=this.questionnaires.profilU;
                 this.projetPro=this.questionnaires.projetPro;
+                this.handiWattValode=this.questionnaires.handiWatt;
 
                 if (this.dicoMetiers){
                   this.progression=20;
@@ -64,21 +68,21 @@ export class AccueilBnbcomeComponent implements OnInit {
                 if (this.porteFolio){
                   this.progression=40;
                 }
+                if (this.handiWattValode){
+                  this.progression=60;
+                }
                 if (this.profilU){
                   this.progression=80;
                 }
                 if (this.projetPro){
                   this.progression=100;
                 }
-
               },error => {
                 console.log(error);
               });
-
           }else {
             return null;
           }
-
         })
       });
     }
@@ -104,10 +108,10 @@ export class AccueilBnbcomeComponent implements OnInit {
       this.contexteValide=true;
       this.objectifValide=false;
       this.processValide=false;
-      this.router.navigate(['/bnBeleave'], { fragment: 'contexte' });
+      this.router.navigate(['/gonBelieve'], { fragment: 'contexte' });
     }else {
       this.contexteValide=false;
-      this.router.navigate(['/bnBeleave'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve'], { fragment: 'haut' });
     }
   }
 
@@ -116,10 +120,10 @@ export class AccueilBnbcomeComponent implements OnInit {
       this.objectifValide=true;
       this.contexteValide=false;
       this.processValide=false;
-      this.router.navigate(['/bnBeleave'], { fragment: 'objectif' });
+      this.router.navigate(['/gonBelieve'], { fragment: 'objectif' });
     }else {
       this.objectifValide=false;
-      this.router.navigate(['/bnBeleave'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve'], { fragment: 'haut' });
 
     }
   }
@@ -128,10 +132,10 @@ export class AccueilBnbcomeComponent implements OnInit {
       this.processValide=true;
       this.objectifValide=false;
       this.contexteValide=false;
-      this.router.navigate(['/bnBeleave'], { fragment: 'process' });
+      this.router.navigate(['/gonBelieve'], { fragment: 'process' });
     }else {
       this.processValide=false;
-      this.router.navigate(['/bnBeleave'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve'], { fragment: 'haut' });
     }
   }
 

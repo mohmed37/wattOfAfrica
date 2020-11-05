@@ -5,6 +5,7 @@ import {QuestionnairesModel} from "../../model/questionnaires.model";
 import {BndreamService} from "../../services/bndream.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
+
 @Component({
   selector: 'app-bndream',
   templateUrl: './bndream.component.html',
@@ -43,20 +44,23 @@ export class BndreamComponent implements OnInit {
   public colorNewQcm2: string="orange";
   public colorNewQcm3: string="orange";
   public colorNewQcm4: string="orange";
-  constructor(public authService:AuthenticationService,private clientService:ClientService
-              ,private bndreamService:BndreamService,private router:Router,private route: ActivatedRoute
-              , private userConnect:AuthenticationService) {
+  public clientConnect:boolean;
+
+  constructor(private clientService:ClientService,private bndreamService:BndreamService,private router:Router,
+              private route: ActivatedRoute, private userConnect:AuthenticationService) {
     this.serviceClient=clientService;
     this.serviceBream=this.bndreamService;
   }
 
   ngOnInit(): void {
-      if(this.authService.userAuthenticated){
+    let id=sessionStorage.getItem('id');
+    this.clientConnect=this.userConnect.isAuthenticated;
+      if(this.clientConnect){
         this.clientService.getQuestionnairesAll().subscribe(list=>{
           this.ListQuestionnaire=list;
           if (this.ListQuestionnaire.length>0) {
             this.ListQuestionnaire.forEach(questionnaireUser => {
-              if (questionnaireUser.user.id == this.userConnect.userAuthenticated.id) {
+              if (questionnaireUser.user.id == id) {
                 this.serviceClient.getQuestionnaires()
                   .subscribe(data => {
                     this.questionnaires = data;

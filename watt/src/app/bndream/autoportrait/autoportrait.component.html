@@ -1,21 +1,21 @@
 <h1 class="titre" id="haut">Auto-Portrait</h1>
 <div class="selection">
-  <div class="clic">
-    <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
+  <div class="clic" fxHide.lt-sm>
+    <button class="contexte" mat-button (click)="contexte()">Contexte</button>
+    <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
+    <button class="process" mat-button (click)="process()">Process</button>
   </div>
 </div>
 
   <div class="container body" >
     <div class="item cont" *ngIf="contexteValide"  id="contexte">
-
       <div class="button-container">
+        <h2>Contexte</h2>
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2>Contexte</h2>
+
       <p><b>Bienvenue dans Praico et découvrez votre ADN Vocationnel</b></p>
 
       <p>L’autoportrait permet d’évaluer vos traits de personnalité, aptitudes et comportements grâce à une liste prédéfinie.</p>
@@ -29,11 +29,12 @@
 
     <div class="item cont" *ngIf="objectifValide"  id="objectif">
       <div class="button-container">
+        <h2 >Objectifs</h2>
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2  >Objectifs</h2>
+
 
       <ul class="liObjectif">
         <li>Identifier vos principaux traits de caractères,</li>
@@ -46,11 +47,12 @@
     <div class="item cont"   *ngIf="processValide"  id="process">
 
       <div class="button-container">
+        <h2>Process</h2>
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2 >Process</h2>
+
       <h4><b>1ère phase : AUTOPORTRAIT</b></h4>
       <p>Une liste de qualificatifs vous est proposée. Vous allez sélectionner les cinq traits de personnalité qui vous
         correspondent le plus.</p>
@@ -74,9 +76,10 @@
       <p><a routerLink="/bndream/autoportrait" fragment="haut" >Haut de page</a></p>
     </div>
   </div>
+<div *ngIf="clientConnect">
 <div *ngIf="!autoPortraitValide" >
 <div class="bouton">
-  <button *ngIf="!testAutoPortrait &&roueDeLaVieValide&&clientConnect&&!autoPortraitValide" mat-raised-button (click)="clicTestAutoPortrait()">Démarrez <mat-icon class="icon">send</mat-icon></button>
+  <button *ngIf="!testAutoPortrait &&roueDeLaVieValide&&!autoPortraitValide" mat-raised-button (click)="clicTestAutoPortrait()">Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
 <div  *ngIf="testAutoPortrait">
   <h2>Qui suis-je vraiment ?</h2>
@@ -186,3 +189,4 @@
 </ul>
 </div>
 
+</div>

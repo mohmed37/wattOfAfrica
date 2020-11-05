@@ -6,13 +6,14 @@ import {PortefolioComponent} from "./portefolio/portefolio.component";
 import {ProfilUComponent} from "./profil-u/profil-u.component";
 import {ProjetProComponent} from "./projet-pro/projet-pro.component";
 import {FicheMetierComponent} from "./fiche-metier/fiche-metier.component";
+import {HandiWattComponent} from "./handi-watt/handi-watt.component";
 
 const routes: Routes = [
   {
 
     path: '',
     data: {
-      breadcrumb: 'B n Beleave'
+      breadcrumb: 'Go n Believe'
     },
     children: [
       {
@@ -97,6 +98,21 @@ const routes: Routes = [
               breadcrumb: null
             },
             component: ProjetProComponent,
+          },
+        ],
+      },
+      {
+        path: 'handiWatt',
+        data: {
+          breadcrumb: 'HandiWatt'
+        },
+        children: [
+          {
+            path: '',
+            data: {
+              breadcrumb: null
+            },
+            component: HandiWattComponent,
           },
         ],
       },

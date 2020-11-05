@@ -26,6 +26,8 @@ export class SigninComponent implements OnInit {
   public formInit: FormGroup;
   public messageOK: string= "";
   public passworEnvoye: boolean;
+  public salarieImg:string="assets/img/salarie.png";
+  public hide = true;
 
 
   constructor(private fb: FormBuilder, private clientService: ClientService, private router: Router
@@ -74,12 +76,13 @@ export class SigninComponent implements OnInit {
     return this.htttpClient.post<any>(this.hostAuth + "/signin", this.form.value).subscribe(userConnect => {
       this.autheService.removeTokenFromLocalStorage();
 
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       let token:string=userConnect.accessToken;
 
         this.autheService.loadAuthenticatedUserFromLocalSorage(token);
       let tokenStr= 'Bearer '+userConnect.accessToken;
       sessionStorage.setItem('token', tokenStr);
+      sessionStorage.setItem('id',userConnect.id);
       localStorage.setItem('token', tokenStr);
       sessionStorage.getItem('username');
       return userConnect;

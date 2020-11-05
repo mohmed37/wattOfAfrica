@@ -60,7 +60,7 @@ export class ProfilUComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.userConnect.userAuthenticated) {
+    if (this.clientConnect) {
       this.serviceClient.getQuestionnairesAll().subscribe(list => {
         this.ListQuestionnaire = list;
         this.ListQuestionnaire.forEach(questionnaireUser => {
@@ -322,7 +322,7 @@ export class ProfilUComponent implements OnInit {
       saveProfilU(){
     this.resultRa.idclient=this.userId;
     this.bnbecome.saveProfilU(this.resultRa).subscribe(data=>{
-       this.router.navigateByUrl("/bnBeleave");
+       this.router.navigateByUrl("/gonBelieve");
       this.serviceClient.putQuestionnaires("profilU");
       this.getResultatProfilU();
       this.ngOnInit();
@@ -470,10 +470,10 @@ export class ProfilUComponent implements OnInit {
       this.contexteValide=true;
       this.objectifValide=false;
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'contexte' });
+      this.router.navigate(['/gonBelieve/profilU'], { fragment: 'contexte' });
     }else {
       this.contexteValide=false;
-      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/profilU'], { fragment: 'haut' });
     }
   }
 
@@ -482,10 +482,10 @@ export class ProfilUComponent implements OnInit {
       this.objectifValide=true;
       this.contexteValide=false;
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'objectif' });
+      this.router.navigate(['/gonBelieve/profilU'], { fragment: 'objectif' });
     }else {
       this.objectifValide=false;
-      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/profilU'], { fragment: 'haut' });
 
     }
   }
@@ -494,10 +494,10 @@ export class ProfilUComponent implements OnInit {
       this.processValide=true;
       this.objectifValide=false;
       this.contexteValide=false;
-      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'process' });
+      this.router.navigate(['/gonBelieve/profilU'], { fragment: 'process' });
     }else {
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/profilU'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/profilU'], { fragment: 'haut' });
     }
   }
 

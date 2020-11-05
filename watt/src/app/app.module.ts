@@ -43,7 +43,10 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { AccueilGonbecomeComponent } from './gonbecome/accueil-gonbecome/accueil-gonbecome.component';
 import { ConfirmationComponent } from './auth/confirmation/confirmation.component';
 import {BasicAuthHtppInterceptorService} from "./services/basic-auth-htpp-interceptor.service";
-import { MapComponent } from './map/map.component';
+import { WattMatchComponent } from './wattMatch/watt-match/watt-match.component';
+import { OffreEmploiComponent } from './wattMatch/offre-emploi/offre-emploi.component';
+import {MatSelectModule} from "@angular/material/select";
+
 
 
 @NgModule({
@@ -65,6 +68,8 @@ import { MapComponent } from './map/map.component';
     DialogModalComponent,
     AccueilGonbecomeComponent,
     ConfirmationComponent,
+    WattMatchComponent,
+    OffreEmploiComponent,
 
 
   ],
@@ -96,7 +101,8 @@ import { MapComponent } from './map/map.component';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
 
   ],
   providers: [

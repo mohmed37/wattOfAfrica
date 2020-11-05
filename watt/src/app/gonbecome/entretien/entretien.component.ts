@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-entretien',
@@ -11,10 +12,17 @@ export class EntretienComponent implements OnInit {
   public objectifValide: boolean=false;
   public processValide: boolean=false;
   public entretien:string="assets/video/entretien.mp4";
+  public userId: number | any;
+  public clientConnect:boolean;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private userConnect:AuthenticationService) {
+    if (userConnect.userAuthenticated){
+      this.clientConnect=this.userConnect.isAuthenticated;
+      this.userId=this.userConnect.userAuthenticated.id;}
+  }
 
   ngOnInit(): void {
+
   }
   contexte() {
     if(!this.contexteValide){

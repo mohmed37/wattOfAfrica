@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit {
 
   onLogout(){
     this.authService.removeTokenFromLocalStorage();
-    this.router.navigate(['/login'], { fragment: 'haut' });
+    this.router.navigate(['/home'], { fragment: 'haut' });
 
   }
   datejour(){
@@ -77,6 +77,11 @@ export class HeaderComponent implements OnInit {
     const myDate = new Date();
     const locale = 'en-FR';
     return formatDate(myDate, format, locale);
+  }
+
+  onLogin() {
+    this.authService.removeTokenFromLocalStorage();
+    this.router.navigate(['/login'], { fragment: 'haut' });
   }
 }
 

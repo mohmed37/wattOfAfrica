@@ -17,6 +17,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatInputModule} from "@angular/material/input";
 import {Ng2PageScrollModule} from "ng2-page-scroll";
 import {ArdoiseComponent} from "../ardoise/ardoise.component";
+import {LayoutModule} from "../share/layout/layout.module";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {ArdoiseComponent} from "../ardoise/ardoise.component";
     MatFormFieldModule,
     MatRadioModule,
     MatInputModule,
-    Ng2PageScrollModule
+    Ng2PageScrollModule,
+    LayoutModule
   ]
 })
 export class BndreamModule { }

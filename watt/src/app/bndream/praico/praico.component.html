@@ -1,20 +1,21 @@
 
   <h1 class="titre" id="haut">PRAICO</h1>
   <div class="selection">
-    <div class="clic">
-      <button class="contexte" (click)="contexte()">Contexte</button>
-      <button class="objectif" (click)="objectif()">Objectifs</button>
-      <button class="process" (click)="process()">Process</button>
+    <div class="clic" fxHide.lt-sm>
+      <button class="contexte" mat-button (click)="contexte()">Contexte</button>
+      <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
+      <button class="process" mat-button (click)="process()">Process</button>
     </div>
   </div>
   <div class="container" >
     <div class="item" *ngIf="contexteValide"  id="contexte">
       <div class="button-container">
+        <h2  >Contexte</h2 >
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2  >Contexte</h2 >
+
       <p><b>Bienvenue dans Praico et découvrez votre ADN Vocationnel</b></p>
 
       <p>Nous vous proposons un <b>test d’orientation professionnelle.</b> Les tests sont très fréquemment utilisés
@@ -37,11 +38,11 @@
     </div>
     <div class="item" *ngIf="objectifValide"  id="objectif">
       <div class="button-container">
+        <h2  >Objectifs</h2>
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2  >Objectifs</h2>
     <ol>
       <li>Vous aider à trouver votre voie.</li>
       <li>Découvrir vos intérêts professionnels, motivation et vocation.</li>
@@ -50,11 +51,12 @@
     </div>
     <div class="item"   *ngIf="processValide"  id="process">
       <div class="button-container">
+        <h2 >Process</h2>
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2 >Process</h2>
+
       <p>PRAICO se compose en 4 parties indépendantes évaluant vos intérêts professionnels,
         vos motivations et votre personnalité.</p>
 
@@ -133,9 +135,10 @@
       <p><a routerLink="/bndream/praico" fragment="haut" >Haut de page</a></p>
     </div>
 </div>
+  <div *ngIf="clientConnect">
   <div *ngIf="!qcm4Valide">
 <div class="bouton">
-  <button *ngIf="!qcmRun&&!qcm1Valide&&autoPortraitValide&&clientConnect" (click)="qcm()" mat-raised-button >Démarrez <mat-icon class="icon">send</mat-icon></button>
+  <button *ngIf="!qcmRun&&!qcm1Valide&&autoPortraitValide" (click)="qcm()" mat-raised-button >Démarrez <mat-icon class="icon">send</mat-icon></button>
 </div>
 
 <div class="container">
@@ -339,3 +342,4 @@
 </p>
 </div>
 </div>
+  </div>

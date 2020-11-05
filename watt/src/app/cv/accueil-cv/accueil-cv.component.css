@@ -7,10 +7,14 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #3498db;
+  color: black;
   font-size: 40px;
-  font-family: 'Poiret One', cursive;
+  font-family: Uberhand pro, serif;
+  text-decoration-style: double;
+  text-decoration-line: underline;
+  text-decoration: black;
 }
+
 .item{
   border: solid 1px #3498db;
   padding: 20px;
@@ -36,21 +40,21 @@
 .contexte{
   background: #f8c620;
   color: #134a6b;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 50px;
   width: 110px;
 }
 .objectif{
   background: #60cfbe;
   color: white;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 50px;
   width: 110px;
 }
 .process{
   background: #b65010;
   color: black;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 110px;
 }
 

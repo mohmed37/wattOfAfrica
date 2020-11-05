@@ -1,11 +1,12 @@
 <h1 class="titre" id="haut">Organiser sereinement sa recherche d’emploi</h1>
 <div class="selection">
-  <div class="clic">
-    <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
+  <div class="clic" fxHide.lt-sm>
+    <button class="contexte" mat-button (click)="contexte()">Contexte</button>
+    <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
+    <button class="process" mat-button (click)="process()">Process</button>
   </div>
 </div>
+<div *ngIf="clientConnect">
 <div class="text">
   <p>Bien organiser sa recherche d’emploi, c’est essentiel !</p>
   <p>De la recherche d’informations pour se positionner efficacement sur le marché du travail à l’étape ultime
@@ -23,4 +24,5 @@
   <video width="500" height="300" controls>
     <source [src]="organisation" type="video/mp4">
   </video>
+</div>
 </div>

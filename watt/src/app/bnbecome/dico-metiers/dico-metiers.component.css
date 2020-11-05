@@ -1,9 +1,13 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #134a6b;
+  color: black;
   font-size: 40px;
   font-family: Uberhand pro, serif;
+  text-decoration-style: double;
+  text-decoration-line: underline;
+  text-decoration: black;
+
 }
 .container{
   display: flex;
@@ -75,7 +79,7 @@ label{
 .fiche{
   position: absolute;
   background-color: #134a6b;
-  font-size: 35px;
+  font-size: 2vw;
   font-family: Uberhand pro, serif;
   top: 20%;
   color: white;
@@ -103,13 +107,6 @@ ul{
   height: 500px;
 }
 
-h2{
-  font-family: Uberhand pro, serif;
-  font-size: 30px;
-  background-color: #134a6b;
-  color: white;
-  padding: 10px 50px 10px 10px;
-}
 .texte{
   align-items: center;
 }
@@ -138,40 +135,52 @@ p{
 .explication p
 { margin-left: 20%; }
 /*contexte/objectifs/process*/
+h2{
+  text-align: center;
+}
+.button-container{
+  font-family: Uberhand pro, serif;
+  font-size: 30px;
+  background-color: #134a6b;
+  color: white;
+  padding: 10px 50px 10px 10px;
+}
+.button-container button{
+  float: right;
+  margin-top: -50px;
+}
 .selection{
   background: #134a6b;
   border: solid #134a6b;
   height: 60px;
-  margin-left: 20%;
-  margin-right: 20%;
   margin-bottom: 20px;
 }
 
 .contexte{
   background: #f8c620;
   color: #134a6b;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 50px;
   width: 110px;
 }
 .objectif{
   background: #60cfbe;
   color: white;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 50px;
   width: 110px;
 }
 .process{
   background: #b65010;
   color: black;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 110px;
 }
 .clic{
-
   float: right;
   margin-right: 50px;
 }
+/*contexte/objectifs/process*/
 
 .bndream{
   display: flex;
@@ -277,4 +286,3 @@ p{
   transition: all 0.5s ease;
 }
 
-/*contexte/objectifs/process*/

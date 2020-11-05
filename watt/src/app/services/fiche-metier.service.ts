@@ -40,22 +40,28 @@ export class FicheMetierService {
   public hostTest: string;
 
   ficheMetier(id:number):Observable<FicheMetier>{
+    this.initToken();
     return this.htttpClient.get<FicheMetier>(this.hostTest + "/getFicheMetier/"+id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
  ficheMetierAll():Observable<[]>{
+   this.initToken();
    return this.htttpClient.get<[]>(this.hostTest + "/getPhotoFicheMetierAll",{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
  }
   ficheMetierByImage(id:number):Observable<FicheMetier>{
+    this.initToken();
     return this.htttpClient.get<FicheMetier>(this.hostTest + "/getPhotoFicheMetier/"+id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
   getFicheMetierClient():Observable<FicheMetier[]>{
+    this.initToken();
     return this.htttpClient.get<FicheMetier[]>(this.hostTest + "/getFicheMetierClient/"+this.userConnect.userAuthenticated.id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 
   ficheMetierByPhotoId(id:number):Observable<FicheMetier[]>{
+    this.initToken();
     return this.htttpClient.get<FicheMetier[]>(this.hostTest + "/getFicheMetierByPhotoId/"+id,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
   ficheMetierByMetier(metier:string):Observable<FicheMetier>{
+    this.initToken();
     return this.htttpClient.get<FicheMetier>(this.hostTest + "/getFicheMetierByMetier/"+metier,{headers:new HttpHeaders({'Authorization':this.jwtToken.value.token})});
   }
 }

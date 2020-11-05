@@ -1,6 +1,5 @@
 package com.microserviceuser.web.controller;
 
-import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -379,16 +378,16 @@ public class AuthController {
         mailMessage.setTo(mailTo);
         mailMessage.setSubject("Objet:"+contact.messageObjet);
         mailMessage.setFrom(mailFrom);
-        mailMessage.setText("Bonjour,\n" +
-                "\n" +
-                "Nom: "+contact.prenom+
+        mailMessage.setText("Nom: "+contact.prenom+
                 "\n" +
                 "Prénom: "+contact.nom+
                 "\n" +
                 "Entreprise: "+contact.entreprise+
                 "\n" +
                 "Téléphone: "+contact.phone+
+                "\n" +"Bonjour,\n" +
                 "\n" +
+
                 "\n" +
                 "\n" +
                 "Message: "+contact.message+

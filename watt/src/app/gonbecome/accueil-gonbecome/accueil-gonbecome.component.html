@@ -9,18 +9,18 @@
       <p>100%</p>
     </div>
   </div>-->
-  <div class="clic">
-    <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
+  <div class="clic" fxHide.lt-sm>
+    <button class="contexte" mat-button (click)="contexte()">Contexte</button>
+    <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
+    <button class="process" mat-button (click)="process()">Process</button>
   </div>
 </div>
-<div class= etiquettes>
+<div class= "etiquettes">
   <div class="imageN">
     <img class="imgProjet" routerLink="/gonbecome/newCv" fragment="haut" [src]="cvImg"/>
 
     <div class="projet cv">
-      <p> Faire son CV</p>
+      <p>CV et lettre</p>
     </div>
   </div>
 
@@ -47,10 +47,10 @@
     </div>
   </div>
   <div class="imageN">
-    <img class="imgProjet" routerLink="/gonbecome/formation" fragment="haut" [src]="estimeImg"/>
+    <img class="imgProjet" routerLink="/gonbecome/estime" fragment="haut" [src]="estimeImg"/>
 
     <div class="projet estime">
-      <p >Exercies estime de soi</p>
+      <p >Estime de soi</p>
     </div>
   </div>
 

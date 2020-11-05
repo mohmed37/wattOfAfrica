@@ -1,19 +1,20 @@
 <h1 class="titre" id="haut">Roue de la vie</h1>
 <div class="selection">
-  <div class="clic">
-    <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
+  <div class="clic" fxHide.lt-sm>
+    <button class="contexte" mat-button (click)="contexte()">Contexte</button>
+    <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
+    <button class="process" mat-button (click)="process()">Process</button>
   </div>
 </div>
   <div class="container" id="contexte" >
     <div class="item" *ngIf="contexteValide"  >
       <div class="button-container">
+        <h2  >Contexte</h2 >
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2  >Contexte</h2 >
+
       <p>La <b>roue de la vie</b> est la roue de l’équilibre de vie. C’est un moyen efficace et très instructif sur soi pour faire
         un premier bilan sur les différentes sphères qui composent notre vie.</p><p> Elle permet de prendre conscience des zones
       de notre vie qui nous rendent heureux et d’autres qui ne nous satisfont pas.</p><p> Cette prise de conscience va nous
@@ -22,11 +23,12 @@
     </div>
     <div class="item" *ngIf="objectifValide"  id="objectif">
       <div class="button-container">
+        <h2  >Objectifs</h2>
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2  >Objectifs</h2>
+
       <p>La <b>roue de la vie</b> est un outil pratique pour évaluer la quantité de vos ressources, telles que le temps,
         l'attention ou l'énergie, que vous attribuez à chaque domaine de votre <b>vie</b>.</p>
       <p><b>Cet outil d’introspection va vous aider à concilier</b> tous les aspects de votre existence et d’œuvrer pour une vie
@@ -35,11 +37,12 @@
     </div>
     <div class="item"   *ngIf="processValide"  id="process">
       <div class="button-container">
+        <h2  >Process</h2>
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2  >Process</h2>
+
       <p>Complétez la roue de la vie pour gagner en «mieux-être» :</p>
       <p>Prenez au moins 10 minutes environ pour faire cet exercice.</p>
       <p>Installez-vous dans un endroit calme, détendez-vous et surtout, soyez honnête avec vous-même et laissez-vous
@@ -104,6 +107,7 @@
       <p><a routerLink="/bndream/roue-de-la-vie" fragment="haut" >Haut de page</a></p>
     </div>
   </div>
+<div *ngIf="clientConnect">
 <div class="bouton">
   <button mat-raised-button (click)="rouedelavieStart()" *ngIf="photolangage&&!roueVieStart&&clientConnect&&!roueVie"
   >Démarrez <mat-icon class="icon">send</mat-icon></button>
@@ -235,5 +239,5 @@
     <div class="item"><p>Ce qu’il faudrait <span style="color: green">prioriser</span> :</p><p [innerHTML]="roueDeLaVie.qcm3"></p></div>
   </div>
 </div>
-
+</div>
 

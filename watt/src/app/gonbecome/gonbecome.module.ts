@@ -17,15 +17,16 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSelectModule} from "@angular/material/select";
 import {EntretienComponent} from "./entretien/entretien.component";
 import {EstimeComponent} from "./estime/estime.component";
-import {OffreComponent} from "./offre/offre.component";
+
 import {OrganisationComponent} from "./organisation/organisation.component";
 import {GonbecomeRoutingModule} from "./gonbecome-routing.module";
 import { ReseauComponent } from './reseau/reseau.component';
 import { FormationComponent } from './formation/formation.component';
 import {MapComponent} from "../map/map.component";
+import {LayoutModule} from "../share/layout/layout.module";
 
 @NgModule({
-  declarations: [EntretienComponent,EstimeComponent,OffreComponent,OrganisationComponent, ReseauComponent, FormationComponent,MapComponent],
+  declarations: [EntretienComponent,EstimeComponent,OrganisationComponent, ReseauComponent, FormationComponent,MapComponent],
   imports: [
     CommonModule,
     GonbecomeRoutingModule,
@@ -45,6 +46,7 @@ import {MapComponent} from "../map/map.component";
     MatDialogModule,
     MatTableModule,
     MatSelectModule,
+    LayoutModule,
   ]
 })
 export class GonbecomeModule{}

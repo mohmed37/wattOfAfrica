@@ -1,12 +1,47 @@
-<h1 class="titre" id="haut">Créer son réseau</h1>
-<div class="container">
-  <div class="item">
-    <h2>Contexte</h2>
+<h1 class="titre" id="haut">Boostez son estime de soi</h1>
+<div class="selection">
+<div class="clic" fxHide.lt-sm>
+  <button class="contexte" mat-button (click)="contexte()">Contexte</button>
+  <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
+  <button class="process" mat-button (click)="process()">Process</button>
+</div>
+</div>
+<div *ngIf="clientConnect">
+<div class="text">
+  <p>L’estime de soi est l’une des sources essentielles de la joie de vivre, elle permet de s’accepter, de s’aimer et de
+    pouvoir aimer les autres. Elle peut être développée tout au long de la vie. C’est pourquoi nous vous proposons de
+    commencer tout de suite.</p>
+  <p>Vous êtes un humain au milieu de milliards d’autres ! La seule chose dont vous êtes sûre est que vous êtes unique
+    et irremplaçable ! </p>
+  <p>Pour pouvoir être tout ce que vous êtes et devenir la meilleure version de vous-même, vous devez bénéficier d’une
+    bonne estime de vous-même</p>
+  <p style="text-align: center">Je recommande à tous le succès !</p>
+  <p>C’est pour vous aider à développer cette estime de soi si essentielle que nous vous invitons à découvrir nos
+    conseils sur « Comment booster son estime de soi ». Faites les exercices proposés et SURTOUT, ayez du plaisir,
+    voilà notre souhait !</p>
+</div >
+<h3>Test niveau d'estime</h3>
+<div *ngIf="!finTest" class="texteQCM">
+<h4>Quel niveau d’estime avez-vous Quel niveau d’estime avez-vous de vous-même ?</h4>
+<p class="question" >{{questions[numero].numero}}. {{questions[numero].question}}</p>
+<div class="container" >
+  <section class="example-section">
+    <mat-radio-group (change)="onChange($event)">
+      <div *ngIf="on">
+      <mat-radio-button class="example-margin" value="0">jamais</mat-radio-button>
+      <mat-radio-button class="example-margin" value="1" >parfois</mat-radio-button>
+      <mat-radio-button class="example-margin" value="2" >souvent</mat-radio-button>
+      <mat-radio-button class="example-margin" value="3" >toujours</mat-radio-button>
+      </div>
+      <div *ngIf="!on">
+      <mat-radio-button class="example-margin" value="0">jamais</mat-radio-button>
+      <mat-radio-button class="example-margin" value="1" >parfois</mat-radio-button>
+      <mat-radio-button class="example-margin" value="2" >souvent</mat-radio-button>
+      <mat-radio-button class="example-margin" value="3" >toujours</mat-radio-button>
+      </div>
+    </mat-radio-group>
+  </section>
   </div>
-  <div class="item">
-    <h2>Objectif</h2>
-  </div>
-  <div class="item">
-    <h2>Résultat</h2>
-  </div>
+</div>
+<p class="score" *ngIf="finTest" >Votre niveau: {{resultat}} </p>
 </div>

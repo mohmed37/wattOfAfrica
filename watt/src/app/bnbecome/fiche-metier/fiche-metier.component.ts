@@ -50,6 +50,9 @@ export class FicheMetierComponent implements OnInit {
   public ficheCaroussel:FicheMetier[];
   public fichedetail: boolean;
   public fragment: string;
+  public contexteValide:boolean=false;
+  public objectifValide: boolean=false;
+  public processValide: boolean=false;
 
   ngOnInit(): void {
 
@@ -86,7 +89,7 @@ export class FicheMetierComponent implements OnInit {
           this.metierDico=this.retrieveResonse.name;        }
 
       );
-    console.log(this.listImage)
+
   }
   getAllFicheMetier() {
     this.ficheMetierService.ficheMetierAll()
@@ -146,7 +149,7 @@ split(phrase:string){
   }
 
   clic(idCarrousel: number) {
-    this.router.navigate(['/bnBeleave/fichesMetiers'], { fragment: 'select' });
+    this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: 'select' });
     this.ficheMetierService.ficheMetierByPhotoId(idCarrousel)
       .subscribe(
         res => {
@@ -158,7 +161,7 @@ split(phrase:string){
   }
 
   selectFicheMetier(id: any) {
-    this.router.navigate(['/bnBeleave/fichesMetiers'], { fragment: '' });
+    this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: '' });
     this.ficheMetierService.ficheMetier(id)
       .subscribe(
         res => {
@@ -166,14 +169,49 @@ split(phrase:string){
           this.competences=this.split(this.FicheMetier.competence);
           this.qualites=this.split(this.FicheMetier.qualite);
           this.fichedetail=true;
-          this.router.navigate(['/bnBeleave/fichesMetiers'], { fragment: 'ficheMetier' });
+          this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: 'ficheMetier' });
         })
   }
 
   close() {
-    this.router.navigate(['/bnBeleave/fichesMetiers'], { fragment: '' });
+    this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: '' });
     this.selecMetier=false;
 
+  }
+  contexte() {
+    if(!this.contexteValide){
+      this.contexteValide=true;
+      this.objectifValide=false;
+      this.processValide=false;
+      this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: 'contexte' });
+    }else {
+      this.contexteValide=false;
+      this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: 'haut' });
+    }
+  }
+
+  objectif() {
+    if(!this.objectifValide){
+      this.objectifValide=true;
+      this.contexteValide=false;
+      this.processValide=false;
+      this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: 'objectif' });
+    }else {
+      this.objectifValide=false;
+      this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: 'haut' });
+
+    }
+  }
+  process() {
+    if(!this.processValide){
+      this.processValide=true;
+      this.objectifValide=false;
+      this.contexteValide=false;
+      this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: 'process' });
+    }else {
+      this.processValide=false;
+      this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: 'haut' });
+    }
   }
 }
 

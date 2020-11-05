@@ -7,8 +7,6 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {QuestionnairesModel} from "../../model/questionnaires.model";
 import {FicheMetierService} from "../../services/fiche-metier.service";
 import {FicheMetier} from "../../model/ficheMetier.model";
-import {any} from "codelyzer/util/function";
-import {unique} from "@progress/kendo-angular-editor/dist/es2015/util";
 import {Bnbecome} from "../../services/bnbecome.service";
 import {ListMetierClientModel} from "../../model/listMetierClient.model";
 import {ApiService} from "../../services/api.service";
@@ -86,7 +84,7 @@ export class DicoMetiersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      if (this.userConnect.userAuthenticated) {
+      if (this.clientConnect) {
         this.serviceClient.getQuestionnairesAll().subscribe(list => {
           this.ListQuestionnaire = list;
           this.ListQuestionnaire.forEach(questionnaireUser => {
@@ -194,7 +192,7 @@ export class DicoMetiersComponent implements OnInit {
   }
 
   clic(metier:any){
-    this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'select' });
+    this.router.navigate(['/gonBelieve/dicoMetiers'], { fragment: 'select' });
     this.metierModif=metier;
     this.selectFicheMetierValide=false;
     this.listDesMetierSelect=[];
@@ -289,10 +287,10 @@ export class DicoMetiersComponent implements OnInit {
       this.contexteValide=true;
       this.objectifValide=false;
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'contexte' });
+      this.router.navigate(['/gonBelieve/dicoMetiers'], { fragment: 'contexte' });
     }else {
       this.contexteValide=false;
-      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/dicoMetiers'], { fragment: 'haut' });
     }
   }
 
@@ -301,10 +299,10 @@ export class DicoMetiersComponent implements OnInit {
       this.objectifValide=true;
       this.contexteValide=false;
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'objectif' });
+      this.router.navigate(['/gonBelieve/dicoMetiers'], { fragment: 'objectif' });
     }else {
       this.objectifValide=false;
-      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/dicoMetiers'], { fragment: 'haut' });
 
     }
   }
@@ -313,10 +311,10 @@ export class DicoMetiersComponent implements OnInit {
       this.processValide=true;
       this.objectifValide=false;
       this.contexteValide=false;
-      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'process' });
+      this.router.navigate(['/gonBelieve/dicoMetiers'], { fragment: 'process' });
     }else {
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/dicoMetiers'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/dicoMetiers'], { fragment: 'haut' });
     }
   }
 

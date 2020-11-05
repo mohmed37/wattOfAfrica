@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ChoixAutoPortraitModel} from "../../model/choixAutoPortrait.model";
 import {Questionnaire1Model} from "../../model/questionnaire1.model";
 import {BndreamService} from "../../services/bndream.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -12,10 +11,9 @@ import {Questionnaire2Model} from "../../model/questionnaire2.model";
 import {Questionnaire4Model} from "../../model/questionnaire4.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatCheckboxChange} from "@angular/material/checkbox";
-import {ChartDataSets, ChartOptions, ChartType, RadialChartOptions, RadialLinearScale} from "chart.js";
+import {ChartDataSets, ChartType, RadialChartOptions, RadialLinearScale} from "chart.js";
 import {Label} from "ng2-charts";
-import {FicheMetierService} from "../../services/fiche-metier.service";
-import {ApiService} from "../../services/api.service";
+
 
 @Component({
   selector: 'app-praico',
@@ -80,7 +78,7 @@ export class PraicoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.userConnect.userAuthenticated) {
+    if (this.clientConnect) {
       this.formQcm4 = new FormGroup({
         id: new FormControl('', Validators.required),
         metier: new FormControl('', Validators.required),

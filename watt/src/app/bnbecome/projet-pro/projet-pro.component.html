@@ -1,19 +1,20 @@
 <h1 class="titre" id="haut">Votre projet professionel</h1>
 <div class="selection">
-  <div class="clic">
-    <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
+  <div class="clic" fxHide.lt-sm>
+    <button class="contexte" mat-button (click)="contexte()">Contexte</button>
+    <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
+    <button class="process" mat-button (click)="process()">Process</button>
   </div>
 </div>
   <div class="bndream" >
     <div class="item" *ngIf="contexteValide"  id="contexte">
       <div class="button-container">
+        <h2>Contexte</h2>
         <button mat-mini-fab color="warn" (click)="contexte()" >
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2>Contexte</h2>
+
       <p><b>MON PROJET EST-IL VIABLE ?</b></p>
 
       <p><b>VOUS ALLEZ POUVOIR ENFIN SAVOIR SI VOTRE PROJET EST REALISTE ET REALISABLE !</b></p>
@@ -28,11 +29,12 @@
 
     <div class="item" *ngIf="objectifValide"  id="objectif">
       <div class="button-container">
+        <h2>Objectifs</h2>
         <button mat-mini-fab color="warn" (click)="objectif()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2>Objectifs</h2>
+
       <ul class="liObjectif">
         <li>Vérifier la faisabilité de votre projet au regard du marché de l’emploi</li>
         <li>Aller à la rencontre de professionnels et accroître votre réseau professionnel</li>
@@ -43,11 +45,12 @@
 
     <div class="item"   *ngIf="processValide"  id="process">
       <div class="button-container">
+        <h2>Process</h2>
         <button mat-mini-fab color="warn" (click)="process()">
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
-      <h2>Process</h2>
+
       <p>Pour vérifier la viabilité de votre projet professionnel, vous allez vous renseigner sur les <b>opportunités
         économiques / les débouchés en lien avec les projets</b> que vous avez identifiés.
         Vous allez dans un premier temps vérifier la faisabilité de votre projet au regard du marché de l’emploi.
@@ -100,8 +103,8 @@
       <p><b>LET’S GO !</b></p>
     </div>
   </div>
-
-<div  class="textePro" *ngIf="!metierValideBySelction&&clientConnect&&profilUvalide">
+<div *ngIf="clientConnect">
+<div  class="textePro" *ngIf="!metierValideBySelction&&profilUvalide">
 
   <h1>A - Métiers et débouchés :</h1>
   <p>Pour vérifier la viabilité de votre projet professionnel, vous allez vous renseigner sur les opportunités économiques
@@ -164,7 +167,7 @@
   sélectionner vos 2 ou 3 métiers qui vous semblent réalistes et réalisables.</P>
 </div>
 
-<div *ngIf="!metierValideBySelction&&clientConnect">
+<div *ngIf="!metierValideBySelction">
 
   <table class="tableau table table-striped" *ngIf="profilUvalide">
     <thead>
@@ -208,4 +211,5 @@
   <h1>MAINTENANT IL EST TEMSP DE METTRE DE REALISER VOTRE PROJET AVEC Go’N BECOME!</h1>
   <h1>YES YOU CAN !</h1>
   <button class="btn btn-success" routerLink="/gonbecome" fragment= "haut" >Go'n Become</button>
+</div>
 </div>

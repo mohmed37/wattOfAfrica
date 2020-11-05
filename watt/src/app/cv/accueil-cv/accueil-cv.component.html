@@ -1,28 +1,47 @@
-<h1 class="titre" id="haut">Faire son CV</h1>
+<h1 class="titre" id="haut">Réalisez votre CV et votre lettre de motivation</h1>
 <div class="selection">
-  <div class="clic">
-    <button class="contexte" (click)="contexte()">Contexte</button>
-    <button class="objectif" (click)="objectif()">Objectifs</button>
-    <button class="process" (click)="process()">Process</button>
+  <div class="clic" fxHide.lt-sm>
+    <button class="contexte" mat-button (click)="contexte()">Contexte</button>
+    <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
+    <button class="process" mat-button (click)="process()">Process</button>
   </div>
 </div>
+<div *ngIf="clientConnect">
 <div class="text">
   <p>Le CV est comme une publicité de vous-même et de votre parcours professionnel et scolaire.</p>
   <p>L’objectif du Cv est de vous mettre en lumière en mettant en avant votre parcours, vos compétences, qualités et
     bien d’autres atouts.</p>
-  <p>C’est un outil incontournable pour vous faire connaître auprès des acteurs de l’emploi et de la formation et pouvoir
-    intégrer l’école ou l’entreprise de votre choix.</p>
-  <p>Découvrez la vidéo ci-dessous qui vous délivre tous les secrets sur le Cv professionnel et la méthode pas à pas pour
-    créer le vôtre.</p>
+  <p>La lettre de motivation accompagne votre CV dans le cadre de vos candidatures. Elle va mettre en valeur vos
+    aptitudes, capacités, compétences, qualités et motivations en lien avec le poste visé.</p>
+
+  <p>Votre lettre de motivation reflète qui vous êtes et comment vous vous projeter dans le poste et plus largement
+    dans l’entreprise pour laquelle vous postulez.</p>
+
+  <p>Ce sont deux outils incontournables pour vous faire connaître auprès de votre futur employeur ou pour postuler
+    auprès d’une école.</p>
+  <p>Découvrez les 2 vidéos ci-dessous et suivez la méthode pas à pas pour créer votre CV professionnel et votre lettre
+    de motivation.</p>
+
 </div>
-<h4>VIDEO COMMENT CREER SON CV</h4>
 <div class="container">
+  <div class="videoCV">
+  <h4>VIDEO COMMENT CREER SON CV</h4>
+    <video width="500" height="300" controls>
+      <source [src]="cv" type="video/mp4">
+    </video>
+  </div>
+<!--  <div class="videoCV">
+  <h4>VIDEO LETTRE DE MOTIVATION</h4>
   <video width="500" height="300" controls>
-    <source [src]="cv" type="video/mp4">
+    <source [src]="motivation" type="video/mp4">
   </video>
+  </div>-->
 </div>
-<h4>Un modèle de CV Simple, facile et rapide
-</h4>
-<div class="container" *ngIf="clientConnect">
+<div  *ngIf="clientConnect">
+<h4>Deux modèles Simple, facile et rapide</h4>
+<div class="container">
 <button class="btn btn-success" routerLink="/newCv/monCv">CREER SON CV</button>
+  <button class="btn btn-success" >EXEMPLES DE LETTRES DE MOTIVATION</button>
+</div>
+</div>
 </div>

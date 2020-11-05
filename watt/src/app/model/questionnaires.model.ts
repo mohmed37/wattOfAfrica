@@ -21,6 +21,7 @@ export class QuestionnairesModel {
   public dicoMetiers:boolean;
   public porteFolio:boolean;
   public projetPro:boolean;
+  public handiWatt:boolean;
 
 
   /*constructor(profilU:boolean,qcm1: boolean,qcm2: boolean,qcm3: boolean,autoPortrait: boolean,comU: boolean,

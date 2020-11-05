@@ -9,8 +9,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ListHeroModel} from "../../model/listHero.model";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {ResultatHeroModel} from "../../model/resultatHero.model";
-import {FicheMetierService} from "../../services/fiche-metier.service";
-import {ApiService} from "../../services/api.service";
+
 
 
 
@@ -51,7 +50,7 @@ export class HeroComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (this.userConnect.userAuthenticated) {
+    if (this.clientConnect) {
 
       this.fragment = "haut";
       this.formHero = new FormGroup({

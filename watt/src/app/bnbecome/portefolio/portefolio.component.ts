@@ -68,7 +68,7 @@ export class PortefolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.userConnect.userAuthenticated) {
+    if (this.clientConnect) {
       this.serviceClient.getQuestionnairesAll().subscribe(list => {
         this.ListQuestionnaire = list;
         this.ListQuestionnaire.forEach(questionnaireUser => {
@@ -322,10 +322,10 @@ this.listFaireClient=[];
       this.contexteValide=true;
       this.objectifValide=false;
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'contexte' });
+      this.router.navigate(['/gonBelieve/porteFolio'], { fragment: 'contexte' });
     }else {
       this.contexteValide=false;
-      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/porteFolio'], { fragment: 'haut' });
     }
   }
 
@@ -334,10 +334,10 @@ this.listFaireClient=[];
       this.objectifValide=true;
       this.contexteValide=false;
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'objectif' });
+      this.router.navigate(['/gonBelieve/porteFolio'], { fragment: 'objectif' });
     }else {
       this.objectifValide=false;
-      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/porteFolio'], { fragment: 'haut' });
 
     }
   }
@@ -346,10 +346,10 @@ this.listFaireClient=[];
       this.processValide=true;
       this.objectifValide=false;
       this.contexteValide=false;
-      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'process' });
+      this.router.navigate(['/gonBelieve/porteFolio'], { fragment: 'process' });
     }else {
       this.processValide=false;
-      this.router.navigate(['/bnBeleave/porteFolio'], { fragment: 'haut' });
+      this.router.navigate(['/gonBelieve/porteFolio'], { fragment: 'haut' });
     }
   }
 

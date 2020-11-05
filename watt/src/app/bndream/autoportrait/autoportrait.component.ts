@@ -83,7 +83,7 @@ export class AutoportraitComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.userConnect.userAuthenticated) {
+    if (this.clientConnect) {
       this.serviceClient.getQuestionnairesAll().subscribe(list => {
         this.ListQuestionnaire = list;
         this.ListQuestionnaire.forEach(questionnaireUser => {

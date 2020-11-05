@@ -11,10 +11,6 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {BndreamService} from "../../services/bndream.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import {FicheMetierService} from "../../services/fiche-metier.service";
-import {ApiService} from "../../services/api.service";
-
-
 
 
 @Component({
@@ -75,7 +71,7 @@ export class RoueVieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.userConnect.userAuthenticated) {
+    if (this.clientConnect) {
 
       this.clientService.getQuestionnairesAll().subscribe(list => {
         this.ListQuestionnaire = list;

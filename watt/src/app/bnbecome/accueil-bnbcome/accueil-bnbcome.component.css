@@ -1,8 +1,13 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #134a6b;
+  color: black;
   font-size: 40px;
+  font-family: Uberhand pro, serif;
+  text-decoration-style: double;
+  text-decoration-line: underline;
+  text-decoration: black;
+
 }
 .container{
   display: flex;
@@ -22,18 +27,6 @@ img{
   cursor: pointer;
 }
 
-.item{
-  border: solid 1px #134a6b;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.bndream .item{
-  border: solid 1px #b65010;
-  padding: 20px;
-  border-radius: 10px;
-  width: 50%;
-}
 img{
   cursor: pointer;
 }
@@ -66,10 +59,7 @@ button{
   width: 10%;
   height: auto;
 }
-.item{
-  border: solid 1px grey ;
 
-}
 
 .newProgressBar{
   width: 40%;
@@ -134,39 +124,61 @@ button{
   margin-left: 5px;
 
 }
+/*contexte/objectifs/process*/
+h2{
+  text-align: center;
+}
+.item{
+  border: solid 1px #b65010;
+  padding: 20px;
+  border-radius: 10px;
+  width: 70%;}
+
+.button-container{
+  font-family: Uberhand pro, serif;
+  font-size: 30px;
+  background-color: #134a6b;
+  color: white;
+  padding: 10px 50px 10px 10px;
+}
+.button-container button{
+  float: right;
+  margin-top: -50px;
+}
 .selection{
   background: #134a6b;
   border: solid #134a6b;
   height: 60px;
-
+  margin-bottom: 60px;
+  flex-wrap: nowrap;
 }
+
 .contexte{
   background: #f8c620;
   color: #134a6b;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 50px;
-  width: 110px;
 }
+
 .objectif{
   background: #60cfbe;
   color: white;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 50px;
-  width: 110px;
 }
+
 .process{
   background: #b65010;
   color: black;
-  margin-top: 20px;
-  width: 110px;
+  margin-top: 10px;
 }
-
-
 .clic{
-
   float: right;
   margin-right: 50px;
+
 }
+
+/*contexte/objectifs/process*/
 .test{
   color: #134a6b;
   float: left;
@@ -179,6 +191,7 @@ a.titreProjet{
   color: #b65010;
   font-size: 20px;
   margin-right: 20px;
+  margin-top: 10px;
 
 }
 a.titreProjet:hover{
@@ -245,19 +258,7 @@ a.titreProjet:hover{
   flex-direction: column;
 }
 
-h2{
-  font-family: Uberhand pro, serif;
-  font-size: 30px;
-  background-color: #134a6b;
-  color: white;
-  padding: 10px 50px 10px 10px;
-}
-.selection{
-  font-family: Uberhand pro, serif;
-  font-size: 20px;
-  margin: 30px 50px;
-  text-align: center;
-}
+
 .etiquettes{
   display: flex;
   flex-direction: row;
@@ -304,3 +305,17 @@ h2{
   padding:15px;
   transition: all 0.5s ease;
 }
+.projet2 p{
+  color:white;
+  font-size: 30px;
+  font-family: Uberhand pro, serif;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.projet2{
+  position: absolute;
+  margin-top: -50px;
+  margin-left: 30px;}
+

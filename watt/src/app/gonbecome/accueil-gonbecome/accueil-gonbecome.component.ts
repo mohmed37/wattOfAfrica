@@ -32,15 +32,20 @@ export class AccueilGonbecomeComponent implements OnInit {
   public organisationImg:string="assets/img/organiser.jpg";
   public formationImg:string="assets/img/formation.jpg";
   public estimeImg:string="assets/img/estime.jpg";
+  public userId: number | any;
+  public clientConnect:boolean;
 
   constructor(public authService:AuthenticationService,private clientService:ClientService
     ,private router:Router,private route: ActivatedRoute, private userConnect:AuthenticationService) {
     this.serviceClient=clientService;
+    if (userConnect.userAuthenticated){
+      this.clientConnect=this.userConnect.isAuthenticated;
+      this.userId=this.userConnect.userAuthenticated.id;}
   }
 
   ngOnInit(): void {
 
-    if(this.authService.userAuthenticated){
+    if(this.clientConnect){
       this.clientService.getQuestionnairesAll().subscribe(list=>{
         this.ListQuestionnaire=list;
         this.ListQuestionnaire.forEach(questionnaireUser=>{

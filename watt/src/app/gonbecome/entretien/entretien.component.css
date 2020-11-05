@@ -1,11 +1,14 @@
 .titre{
   margin: 50px;
   text-align: center;
-  color: #134a6b;
+  color: black;
   font-size: 40px;
   font-family: Uberhand pro, serif;
-  color: #134a6b;
+  text-decoration-style: double;
+  text-decoration-line: underline;
+  text-decoration: black;
 }
+
 .container{
   display: flex;
   flex-direction: row;
@@ -42,21 +45,21 @@
 .contexte{
   background: #f8c620;
   color: #134a6b;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 50px;
   width: 110px;
 }
 .objectif{
   background: #60cfbe;
   color: white;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 50px;
   width: 110px;
 }
 .process{
   background: #b65010;
   color: black;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 110px;
 }
 

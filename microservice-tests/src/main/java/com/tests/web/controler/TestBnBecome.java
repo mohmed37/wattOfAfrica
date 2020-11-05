@@ -1,7 +1,9 @@
 package com.tests.web.controler;
 
+import com.tests.dao.bnbecome.HandiWattRepositories;
 import com.tests.dao.bnbecome.ListCompetencesClientRepositories;
 import com.tests.dao.bnbecome.ListCompetencesRepositories;
+import com.tests.entity.bnbecome.HandiWatt;
 import com.tests.entity.bnbecome.ListCompetences;
 import com.tests.entity.bnbecome.ListCompetencesClient;
 import com.tests.entity.bnbecome.ListMetierClient;
@@ -20,6 +22,8 @@ public class TestBnBecome {
     ListCompetencesRepositories listCompetencesRepositories;
     @Autowired
     ListCompetencesClientRepositories clientRepositories;
+    @Autowired
+    HandiWattRepositories handiWattRepositories;
 
     @GetMapping(value = "/listCompetences")
     public List<ListCompetences> listCompetences() {
@@ -67,6 +71,27 @@ public class TestBnBecome {
         Optional<ListCompetencesClient> competence = clientRepositories.findByIdclient(id);
         if (!competence.isPresent()) throw new QuestioneNotFoundException("Cette fiche n'existe pas");
         return competence;
+    }
+    //HandiWatt
+    @PostMapping(value = "/saveHandiWatt")
+    public HandiWatt saveHandiWatt(@RequestBody HandiWatt handiWatt, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return null;        }
+        List<HandiWatt> list=handiWattRepositories.findAll();
+        for( HandiWatt handiWattClient : list ) {
+            if (handiWattClient.getIdclient()==handiWatt.getIdclient()){
+                handiWattClient.setMister(handiWatt.getMister());
+                handiWattClient.setPotentiel(handiWatt.getPotentiel());
+                return  handiWattRepositories.save(handiWattClient);
+            }
+        }
+
+
+        return  handiWattRepositories.save(handiWatt);
+    }
+    @GetMapping(value = "getHandiWattByIdClient/{id}")
+    public HandiWatt getHandiWattByIdClient(@PathVariable("id") int id) {
+        return handiWattRepositories.findByIdclient(id);
     }
 
 

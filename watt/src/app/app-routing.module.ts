@@ -39,7 +39,7 @@ const routes: Routes = [
         path: 'bndream', loadChildren: () => import('./bndream/bndream.module').then(m=>m.BndreamModule)
       },
       {
-        path: 'bnBeleave', loadChildren: () => import('./bnbecome/bnbcome.module').then(m=>m.BnbcomeModule)
+        path: 'gonBelieve', loadChildren: () => import('./bnbecome/bnbcome.module').then(m=>m.BnbcomeModule)
       },
       {
         path: 'newCv', loadChildren: () => import('./cv/cv.module').then(m=>m.CvModule)
@@ -50,6 +50,10 @@ const routes: Routes = [
       },
       {
         path: 'personalinfo', loadChildren: () => import('./compte-client/compte-client.module').then(m=>m.CompteClientModule)
+
+      },
+      {
+        path: 'wattMatch', loadChildren: () => import('./wattMatch/watt-match.module').then(m=>m.WattMatchModule)
 
       }
 

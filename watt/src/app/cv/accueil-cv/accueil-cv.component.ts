@@ -19,6 +19,7 @@ export class AccueilCvComponent implements OnInit {
   public entretien:string="assets/video/entretien.mp4";
   public cv:string="assets/video/cv.mp4";
 
+
   constructor(private http: HttpClient,private clientService:ClientService, private userConnect:AuthenticationService
     ,private bnbecome:Bnbecome,private router:Router) {
     if (userConnect.userAuthenticated){
