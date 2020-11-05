@@ -1,6 +1,6 @@
 package com.tests.security.jwt;
 
-import com.microserviceuser.security.services.UserDetailsImpl;
+import com.tests.security.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
