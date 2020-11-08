@@ -23,9 +23,9 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
    /* this.authService.loadAuthenticatedUserFromLocalSorage();*/
-    if(!this.authService.userAuthenticated){
+    /*if(!this.authService.userAuthenticated){
       this.router.navigate(['/'], { fragment: 'haut' });
-    }
+    }*/
 
   }
   onLogout(){

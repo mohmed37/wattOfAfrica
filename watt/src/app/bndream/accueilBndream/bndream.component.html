@@ -1,11 +1,12 @@
 <h1 class="titre" id="haut">B' n Dream</h1>
 <div class="selection">
-  <div *ngIf="questionnaires">
+
     <div class="clic" fxHide.lt-sm>
       <button class="contexte" mat-button (click)="contexte()">Contexte</button>
       <button class="objectif" mat-button (click)="objectif()">Objectifs</button>
       <button class="process" mat-button (click)="process()">Process</button>
     </div>
+  <div *ngIf="questionnaires">
   <div class="pourcent0">
   <p>0%</p>
   </div>
@@ -14,8 +15,6 @@
     <p>100%</p>
   </div>
   </div>
-
-
 </div>
 
   <div class="bndream" >

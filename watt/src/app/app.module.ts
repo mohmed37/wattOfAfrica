@@ -46,6 +46,7 @@ import {BasicAuthHtppInterceptorService} from "./services/basic-auth-htpp-interc
 import { WattMatchComponent } from './wattMatch/watt-match/watt-match.component';
 import { OffreEmploiComponent } from './wattMatch/offre-emploi/offre-emploi.component';
 import {MatSelectModule} from "@angular/material/select";
+import {CguWattComponent} from "./cgu-watt/cgu-watt.component";
 
 
 
@@ -70,6 +71,7 @@ import {MatSelectModule} from "@angular/material/select";
     ConfirmationComponent,
     WattMatchComponent,
     OffreEmploiComponent,
+    CguWattComponent
 
 
   ],

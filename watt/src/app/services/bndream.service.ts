@@ -1,7 +1,6 @@
 import {Injectable, Input} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
-import {Client} from "../model/client.model";
 import {FicheMetier} from "../model/ficheMetier.model";
 import {PhotoLangageModel} from "../model/photoLangage.model";
 import {AuthenticationService} from "./authentication.service";
@@ -13,7 +12,6 @@ import {Questionnaire2Model} from "../model/questionnaire2.model";
 import {Questionnaire4Model} from "../model/questionnaire4.model";
 import {ListHeroModel} from "../model/listHero.model";
 import {ResultatHeroModel} from "../model/resultatHero.model";
-import {FicheMetierService} from "./fiche-metier.service";
 import {ApiService} from "./api.service";
 import {JwtTokenModel} from "../model/jwt-token.model";
 

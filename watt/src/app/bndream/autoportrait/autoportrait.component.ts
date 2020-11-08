@@ -4,13 +4,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {ClientService} from "../../services/client.service";
 import {AuthenticationService} from "../../services/authentication.service";
-import {ListAutoPortraitModel} from "../../model/listAutoPortrait.model";
 import {ChoixAutoPortraitModel} from "../../model/choixAutoPortrait.model";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {ChangeEvent, CKEditor5} from "@ckeditor/ckeditor5-angular";
 import {QuestionnairesModel} from "../../model/questionnaires.model";
 import {TexteModel} from "../../model/texte.model";
-import {FicheMetierService} from "../../services/fiche-metier.service";
 import {ApiService} from "../../services/api.service";
 
 @Component({

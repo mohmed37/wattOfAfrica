@@ -22,6 +22,7 @@ export class FicheMetierService {
     this.hostTest=hostTestService.TEST_MICRO_APP;
     this.initToken();
   }
+
   private initToken():void {
     const token = sessionStorage.getItem('token');
     if (token){

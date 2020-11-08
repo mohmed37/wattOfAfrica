@@ -9,6 +9,7 @@ import {DefinitionComponent} from "./definition/definition.component";
 import {AdministrateurComponent} from "./administrateur/administrateur.component";
 import {ConfirmationComponent} from "./auth/confirmation/confirmation.component";
 import {LoginComponent} from "./login/login.component";
+import {CguWattComponent} from "./cgu-watt/cgu-watt.component";
 
 
 
@@ -26,6 +27,10 @@ const routes: Routes = [
     component: DefinitionComponent
   },
 
+  {
+    path: 'cgu',
+    component: CguWattComponent
+  },
 
 
   {

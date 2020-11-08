@@ -16,7 +16,10 @@ import java.util.Optional;
 
 import static java.lang.Math.round;
 
+
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping("/api/watt")
 public class TestProfilUControler {
     @Autowired
     ResultatRaRepository resultatRaRepository;

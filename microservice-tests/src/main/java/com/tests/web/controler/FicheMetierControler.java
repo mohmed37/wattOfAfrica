@@ -22,7 +22,9 @@ import java.util.*;
 import static com.tests.web.controler.TestNbreamControler.compressBytes;
 import static com.tests.web.controler.TestNbreamControler.decompressBytes;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping("/api/watt")
 public class FicheMetierControler {
     @Autowired
     FicheMetierRepositories ficheMetierRepositories;
