@@ -39,6 +39,7 @@ export class EstimeComponent implements OnInit {
   public processValide: boolean=false;
   public userId: number | any;
   public clientConnect:boolean;
+  public estime:string="assets/video/EstimeDeSoi.mp4";
 
   constructor(private router:Router,private userConnect:AuthenticationService) {
     if (userConnect.userAuthenticated){

@@ -47,6 +47,7 @@ import { WattMatchComponent } from './wattMatch/watt-match/watt-match.component'
 import { OffreEmploiComponent } from './wattMatch/offre-emploi/offre-emploi.component';
 import {MatSelectModule} from "@angular/material/select";
 import {CguWattComponent} from "./cgu-watt/cgu-watt.component";
+import {AngularEditorModule} from "@kolkov/angular-editor";
 
 
 
@@ -105,6 +106,7 @@ import {CguWattComponent} from "./cgu-watt/cgu-watt.component";
     ModalModule.forRoot(),
     MatDialogModule,
     MatSelectModule,
+    AngularEditorModule,
 
   ],
   providers: [
