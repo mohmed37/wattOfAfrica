@@ -2,8 +2,6 @@ package com.tests.web.controler;
 
 import com.tests.dao.cgu.CguProperties;
 import com.tests.entity.cgu.Cgu;
-import com.tests.entity.ndream.FicheMetier;
-import com.tests.web.exceptions.QuestioneNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +11,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/cgu")
+@RequestMapping("/api/watt")
 public class cguControler {
 
     @Autowired
