@@ -10,7 +10,8 @@
   </div>
 <angular-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent"></angular-editor>
   <button class="btn btn-success" (click)="valide()">Valider</button></div>
-  <div [innerHTML]="htmlContent"></div>
+ <!-- <div [innerHTML]="htmlContent"></div>-->
+  <div>{{htmlContent}}</div>
 </div>
 
 <div class="texte" id="cgu">

@@ -41,12 +41,14 @@ export class SignupComponent implements OnInit {
   public JobseekerImg:string="assets/img/Jobseeker.png";
   public contratValide: boolean;
   public newsValide: boolean;
+  public host: string;
 
   constructor(private clientService:ClientService, private router:Router,private activatedRoute:ActivatedRoute,
               private userConnect:AuthenticationService,private route: ActivatedRoute,public dialog: MatDialog, private hostTestService: ApiService) {
     this.userConnectClient=userConnect.isAuthenticated;
     this.hostUser = hostTestService.USERS_MICRO_APP;
     this.hostAuth=hostTestService.AUTH_MICRO_APP;
+    this.host=hostTestService.LOCALHOST_URL;
   }
   @HostListener('click')
   click(){

@@ -53,10 +53,10 @@ export class ReseauComponent implements OnInit {
       this.processValide=true;
       this.objectifValide=false;
       this.contexteValide=false;
-      this.router.navigate(['/gonbecome/entretien'], { fragment: 'process' });
+      this.router.navigate(['/gonbecome/reseau'], { fragment: 'process' });
     }else {
       this.processValide=false;
-      this.router.navigate(['/gonbecome/entretien'], { fragment: 'haut' });
+      this.router.navigate(['/gonbecome/reseau'], { fragment: 'haut' });
     }
   }
 }
