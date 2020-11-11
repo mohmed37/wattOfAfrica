@@ -11,19 +11,25 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/watt")
+@RequestMapping("/api/cgu")
 public class cguControler {
 
     @Autowired
     CguProperties cguProperties;
 
     @PostMapping(value = "/saveCgu")
-    public ResponseEntity<Cgu> saveFicheMetier(@RequestBody Cgu cgu, BindingResult bindingResult){
+    public Cgu saveFicheMetier(@RequestBody Cgu cgu, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return null;
         }
-        Cgu saveCgu = cguProperties.save(cgu);
-        return new ResponseEntity<Cgu>(saveCgu, HttpStatus.CREATED);}
+        Optional<Cgu> cgu1=cguProperties.findById(0);
+        if(cgu1.isPresent()){
+            cgu1.get().setDate(cgu.getDate());
+            cgu1.get().setTexte(cgu.getTexte());
+            return cguProperties.save(cgu1.get());
+        }
+
+        return cguProperties.save(cgu);}
 
     @GetMapping(value = "getCgu")
     public Optional<Cgu> getCgu() {

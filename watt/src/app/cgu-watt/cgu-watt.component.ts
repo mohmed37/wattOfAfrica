@@ -6,6 +6,8 @@ import {MenuService} from "../services/menu.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../services/authentication.service";
 import {BndreamService} from "../services/bndream.service";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogModalComponent} from "src/app/dialog-modal/dialog-modal.component";
 
 @Component({
   selector: 'app-cgu-watt',
@@ -20,8 +22,9 @@ export class CguWattComponent implements OnInit {
   public cgu:CguModel=new CguModel("",'');
   public cguGet:CguModel=new CguModel("",'');
   public fragment: string;
+  public message: string;
   constructor(private formBuilder: FormBuilder,private menuService:MenuService
-              ,public authService:AuthenticationService, private router:Router,private route: ActivatedRoute) { }
+              ,public authService:AuthenticationService, private router:Router,private route: ActivatedRoute,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.menuService.getCgu()
@@ -102,10 +105,10 @@ export class CguWattComponent implements OnInit {
    this.cgu.texte=this.htmlContent;
     this.menuService.saveCgu(this.cgu)
       .subscribe(res=>{
-        console.log(res)
+       this.message="Enregistrement Ok";
+        this.cguGet=new CguModel("",'');
       }, error => {
         this.ngOnInit();
-
         console.log(error)
       })
 

@@ -17,6 +17,7 @@
         <option value="$PROJECT_DIR$/zuul-server/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-utilisateur/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-tests/pom.xml" />
+        <option value="$PROJECT_DIR$/config_server/pom.xml" />
       </list>
     </option>
   </component>
