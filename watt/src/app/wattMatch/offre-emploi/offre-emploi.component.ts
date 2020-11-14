@@ -16,6 +16,8 @@ export class OffreEmploiComponent implements OnInit {
   selectedQualification: string;
   selectedContrat: string;
   selectedDurreSalaire: string;
+  selectedMotifDiffusion:string;
+  selectedModeContact:string;
   public listCompetences:ListCompetencesModel[];
   public competenceSelected:ListCompetencesModel;
   public selectCompetence: boolean;
@@ -38,7 +40,10 @@ export class OffreEmploiComponent implements OnInit {
   public contratType:string[]=["CDI","CDD","CDD alternance (Contrat d'apprentissage)","CDD alternance (Contrat de professionnalisation)","CDD Senior","Contrat intermittent","Contrat travail saisonnier"]
   public prisePoste: boolean;
   private newDate: Date;
-  public  dureeSalaire:string[]=["Horaire","Mensuel","Annuel"]
+  public  dureeSalaire:string[]=["Horaire","Mensuel","Annuel"];
+  public  motifDiffusion:string[]=["En préservant votre anonymat","En affichant uniquement votre enseigne","Avec vos coordonnées"];
+  public  modeContact:string[]=["Par courrier électronique","Par téléphone","Par courrier postal","En se présentant dans" +
+  " vos locaux","En postulant sur votre site internet"];
 
 
 
@@ -60,6 +65,9 @@ export class OffreEmploiComponent implements OnInit {
       salaireMin: ['', Validators.required],
       salaireMax:[''],
       nbMoisSalaireAnnuell:[''],
+      competence1:[''],
+      competence2:[''],
+      competence3:[''],
     });
 
     this.getListCompetences();
@@ -185,4 +193,8 @@ export class OffreEmploiComponent implements OnInit {
   }
 
 
+  modalit($event: MatCheckboxChange) {
+
+
+  }
 }

@@ -1,10 +1,7 @@
 <div class="texte">
 <h1>Publier votre offre d’emploi</h1>
-<p>Une offre bien renseignée et personnalisée, c’est l’assurance de trouver le bon profil !</p>
-<p>Plus votre offre d’emploi est précise, plus les candidatures seront ciblées. N’hésitez pas à détailler le poste à
-  pourvoir et le profil recherché.</p>
-<p>Publiez une offre attractive en intégrant une présentation de votre entreprise, votre logo et un lien vers votre
-  site internet.</p>
+<p>Une offre bien renseignée et précise, c’est la garantie de trouver le talent qu’il vous faut ! Attirez les candidats
+  en y mettant en valeur votre entreprise, votre logo et le lien vers votre site internet.</p>
 </div>
 <form [formGroup]="registerForm" >
 <div class="item" *ngIf="valide==0">
@@ -28,10 +25,10 @@
 
 </div>
   <div class="texte"  *ngIf="valide==1">
-    <h2>Compétences (5 maximum)</h2>
-    <p>Savoirs et savoir-faire généralement les plus recherchés pour ce métier.</p>
+    <h2>Hard skills / Compétences</h2>
+    <p>1-	Sélectionnez les 5 compétences essentielles que votre futur recrue devra posséder sur la base d’une liste prédéfinie.</p>
   </div>
-  <div class="container" *ngIf="valide==1">
+  <div class="item" *ngIf="valide==1">
     <form class="form">
       <mat-form-field appearance="fill">
         <mat-label>Secteur d'activité:</mat-label>
@@ -42,7 +39,8 @@
         </mat-select>
       </mat-form-field>
     </form>
-
+  </div>
+    <div class="container" *ngIf="valide==1">
 <table class="table table-bordered" *ngIf="selectCompetence">
   <thead>
   <tr>
@@ -67,13 +65,31 @@
     </mat-radio-group></td>
   </tr>
   </tbody>
-  <tr class="competence">AJOUTER D'AUTRES SAVOIRS ET SAVOIR-FAIRE</tr>
 </table>
-    <div class="validationComp" *ngIf="selectCompetence">
+  </div>
+    <div class="texte" >
+    <p *ngIf="number<=5&&number>0">2- Vous pouvez ensuite ajouter 3 compétences que vous jugez importantes ou utiles pour le poste à pourvoir.</p>
+    </div>
+    <div class="item3" *ngIf="number<=5&&number>0">
+    <div class="form-group">
+      <label>Compétence</label>
+      <input type="text" formControlName="competence1" class="form-control objet"/>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="competence2" class="form-control objet"/>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="competence3" class="form-control objet"/>
+    </div>
+    </div>
+
+    <div class="container" *ngIf="selectCompetence&&valide==1">
    <button class="valideRetour" mat-button  (click)="validation('-')"><mat-icon class="arrow Retour">keyboard_arrow_left</mat-icon>Retour</button>
     <button *ngIf="number<=5&&number>0" class="valideContact" mat-button  (click)="validation('+')">Suite<mat-icon class="arrow">keyboard_arrow_right</mat-icon></button>
     </div>
-  </div>
+
+
+
   <div class="item" *ngIf="valide==2">
     <h2>Compétences complémentaires / langues / permis</h2>
     <div class="form-group">
@@ -213,10 +229,52 @@
     <button class="valideRetour" mat-button  (click)="validation('-')"><mat-icon class="arrow Retour">keyboard_arrow_left</mat-icon>Retour</button>
     <button *ngIf="selectedContrat&&selectedDurreSalaire" class="valideContact" mat-button (click)="onSubmit3()" >Suite<mat-icon class="arrow">keyboard_arrow_right</mat-icon></button>
   </div>
- <!-- <div class="item">
+  <div class="item" *ngIf="valide==5">
     <h1>3. Modalités de recrutement</h1>
+      <mat-radio-group aria-label="Select an option">
+        <mat-checkbox value="Je publie et je gère mon offre en ligne"  (change)="modalit($event)" >Je publie et je gère mon offre en ligne.
+          Les candidats intéressés me contactent directement.</mat-checkbox>
+      </mat-radio-group>
+    <mat-radio-group aria-label="Select an option">
+      <mat-checkbox value="Je souhaite être rappelé"  (change)="onChange($event)" >Je souhaite être rappelé(e)
+        par un consultant WATT Match pour bénéficier de services complémentaires (présélection des candidats, évaluation
+        psychologique et des compétences des profils…).</mat-checkbox>
+    </mat-radio-group>
+    <P style="margin-top: 20px; margin-left: 50px; font-size: 20px">Je suis notamment intéressé(e) par :</P>
+    <mat-radio-group aria-label="Select an option">
+      <mat-checkbox value="une présélection des candidats"  (change)="onChange($event)" >une présélection des candidats</mat-checkbox>
+    </mat-radio-group>
+    <mat-radio-group aria-label="Select an option">
+      <mat-checkbox value="une présélection téléphonique"  (change)="onChange($event)" >une présélection téléphonique</mat-checkbox>
+    </mat-radio-group>
+    <mat-radio-group aria-label="Select an option">
+      <mat-checkbox value="une aide à la décision"  (change)="onChange($event)" >une aide à la décision via des tests
+        psychotechniques (personnalité, motivation, aptitudes intellectuelles…) ou de compétences </mat-checkbox>
+    </mat-radio-group>
+    <form class="form" style="margin-top: 20px ; margin-left: 50px">
+      <mat-form-field appearance="fill">
+        <mat-label>Mode de diffusion</mat-label>
+        <mat-select [(ngModel)]="selectedMotifDiffusion" name="experience">
+          <mat-option *ngFor="let diffusion of motifDiffusion" [value]="diffusion" (click)="info()">
+            {{diffusion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+    <form class="form" style="margin-top: 20px ; margin-left: 50px">
+      <mat-form-field appearance="fill">
+        <mat-label>Mode de diffusion</mat-label>
+        <mat-select [(ngModel)]="selectedModeContact" name="experience">
+          <mat-option *ngFor="let contact of modeContact" [value]="contact" (click)="info()">
+            {{contact}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="validationSavoir"  *ngIf="valide==5">
+    <button class="valideRetour" mat-button  (click)="validation('-')"><mat-icon class="arrow Retour">keyboard_arrow_left</mat-icon>Retour</button>
+    <button *ngIf="selectedMotifDiffusion&&selectedModeContact" class="valideContact" mat-button (click)="onSubmit3()" >valider mon offre<mat-icon class="arrow">keyboard_arrow_right</mat-icon></button>
+  </div>
 
-
-
-  </div>-->
 </form>

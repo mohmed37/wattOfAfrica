@@ -19,13 +19,20 @@ h1, h2{
 }
 .item{
   margin-top: 20px;
-  margin-left: 40%;
   font-family: Uberhand pro, serif;
+  align-items: flex-start;
+  margin-left: 100px;
 }
 item2{
   margin-top: 20px;
   margin-left:10%;
   font-family: Uberhand pro, serif;
+}
+.item3{
+  margin-top: 20px;
+  font-family: Uberhand pro, serif;
+  align-items: flex-start;
+  margin-left: 20%;
 }
 .input{
   margin-top: 20px;
