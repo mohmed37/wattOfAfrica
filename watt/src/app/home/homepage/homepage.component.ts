@@ -12,7 +12,7 @@ public photoblock1:string="assets/img/photo12.jpg";
 public photoblock2:string="assets/img/photo22.jpg";
 public photoblock3:string="assets/img/photo32.jpg";
 public portraits:string="assets/img/portraits3.jpg";
-public presentation:string="assets/video/presentation.mp4";
+
   public clientConnect:boolean;
   constructor(private autheService:AuthenticationService) { }
 

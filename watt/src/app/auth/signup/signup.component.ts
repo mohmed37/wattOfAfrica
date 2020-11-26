@@ -39,8 +39,8 @@ export class SignupComponent implements OnInit {
   public hostAuth: string;
   public etudiantImg:string="assets/img/etudiante.png";
   public JobseekerImg:string="assets/img/Jobseeker.png";
-  public contratValide: boolean;
-  public newsValide: boolean;
+  public contratValide: boolean=false;
+  public newsValide: boolean=false;
   public host: string;
 
   constructor(private clientService:ClientService, private router:Router,private activatedRoute:ActivatedRoute,
@@ -77,7 +77,6 @@ export class SignupComponent implements OnInit {
 
   prenom=new FormControl('',Validators.required);
   password=new FormControl('',Validators.required);
-  usernam=new FormControl('',Validators.required);
   matchingPassword=new FormControl('',Validators.required);
   phone=new FormControl('',Validators.required);
   date=new FormControl('',Validators.required);
@@ -132,7 +131,7 @@ export class SignupComponent implements OnInit {
     this.newClient.email=this.email.value;
     this.newClient.phone=this.phone.value;
     this.newClient.password=this.password.value;
-    this.newClient.username=this.usernam.value;
+    this.newClient.username=this.email.value;
     this.newClient.date=this.date.value;
     this.newClient.roles=[""];
     this.newClient.newsletter=this.newsValide;

@@ -24,16 +24,31 @@ public class TestComUControler {
     @Autowired
     ComUResultProperties comUResultProperties;
 
+
+    /**
+     * List des questions du test de communication
+      @return
+     */
     @GetMapping(value = "/listQuestionComU")
     public List<ComU> listQuestionComU() {
         return comUProperties.findAll();
     }
+
+    /**
+     * List des resultats du test de communication
+     * @return
+     */
 
     @GetMapping(value = "/listResultatComU")
     public List<ComUResult> listResultatComU() {
         return comUResultProperties.findAll();
     }
 
+    /**
+     * recherche d'une  question du test de communication par son id
+     * @param id
+     * @return
+     */
 
     @GetMapping(value = "/questionComU/{id}")
     public Optional<ComU> questionComU(@PathVariable("id") int id) {
@@ -42,12 +57,25 @@ public class TestComUControler {
         return question;
     }
 
+
+    /**
+     * recherche du  résultat du question du test de communication par id client
+     * @param id
+     * @return
+     */
+
     @GetMapping(value = "/resultClientComU/{id}")
     public Optional<ComUResult> resultClientComU(@PathVariable("id") int id) {
         Optional<ComUResult> resultatClient = comUResultProperties.findByClient(id);
         if (!resultatClient.isPresent()) throw new QuestioneNotFoundException("Ce client n'a pas de test");
         return resultatClient;
     }
+
+
+    /**
+     * enregistrement  du test de communication
+     * @return
+     */
 
     @PostMapping(value = "saveClientComU")
     public ComUResult saveClientComU(@RequestBody ComUResult comUResult) {
@@ -68,6 +96,10 @@ public class TestComUControler {
         return comUResultProperties.save(comUResult);
     }
 
+    /**
+     * modification  du test de communication client
+     * @return
+     */
     @PutMapping(value = "saveResutatComU")
     public void saveResutatComU(@RequestBody ComUResult comUResult ) {
         comUResultProperties.save(comUResult);

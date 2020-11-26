@@ -38,7 +38,11 @@ public class FicheMetierControler {
     ListMetierClientReposirories metierClientReposirories;
 
 
-
+    /**
+     * Enregistrements des fiches metiers
+     *
+     * @return
+     */
     @PostMapping(value = "/saveFicheMetier")
     public ResponseEntity<FicheMetier> saveFicheMetier(@RequestBody FicheMetier ficheMetier, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
@@ -50,6 +54,11 @@ public class FicheMetierControler {
         return new ResponseEntity<FicheMetier>(saveFicheMetier, HttpStatus.CREATED);
     }
 
+    /**
+     * Rechercher une fiche metier par son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "getFicheMetier/{id}")
     public Optional<FicheMetier> getFicheMetier(@PathVariable("id") int id) {
         Optional<FicheMetier> ficheMetier = ficheMetierRepositories.findById(id);
@@ -57,11 +66,22 @@ public class FicheMetierControler {
         return ficheMetier;
     }
 
-    @GetMapping(value = "getFicheMetierCode/{code}")
+    /**
+     * Rechercher une fiche metier par son code
+     * @param code
+     * @return
+     */
+
+    @GetMapping(value = "getFicheMetierCode/{}")
     public List<FicheMetier> getFicheMetierCode(@PathVariable("code") String code) {
         return ficheMetierRepositories.findByCode(code);
     }
 
+    /**
+     * Enregistrements des photos des fiches metiers
+     *
+     * @return
+     */
     @PostMapping("/photoFicheMetier")
     public ResponseEntity<Object> photoFicheMetier(@RequestParam("imageFile") MultipartFile file) throws IOException {
         System.out.println("Original Image Byte Size - " + file.getBytes().length);
@@ -71,6 +91,11 @@ public class FicheMetierControler {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    /**
+     * Rechercher une photo de la fiche metier par son id
+     * @param id
+     * @return
+     */
 
     @GetMapping(path = { "/getPhotoFicheMetier/{id}" })
     public PhotoFicheMetier getPhotoFicheMetier(@PathVariable("id") int id) throws IOException {
@@ -79,6 +104,12 @@ public class FicheMetierControler {
                 decompressBytes(retrievedImage.get().getPicByte()));
         return img;
     }
+
+    /**
+     * Rechercher une fiche metier par id client
+     * @param id
+     * @return
+     */
 
     @GetMapping(path = { "/getFicheMetierClient/{idClient}" })
     public List<FicheMetier> getFicheMetierClient(@PathVariable("idClient") int id) {
@@ -103,13 +134,23 @@ public class FicheMetierControler {
         return listFicheClient;
     }
 
-
+    /**
+     * Recherche toutes les fiches metiers
+     *
+     * @return
+     */
 
     @GetMapping(value = "getPhotoFicheMetierAll")
     public List<PhotoFicheMetier>getPhotoFicheMetierAll() {
 
         return photoFMRepositories.findAll();
     }
+
+    /**
+     * Rechercher une photo fiche metier par id
+     ** @param id
+     * @return
+     */
 
     @GetMapping(value = "getFicheMetierByPhotoId/{id}")
     public List<FicheMetier> getFicheMetierByPhotoId(@PathVariable("id") int id) {
@@ -118,6 +159,12 @@ public class FicheMetierControler {
         return ficheMetier;
     }
 
+    /**
+     * Rechercher une fiche metier par le métier
+     * @param metier
+     * @return
+     */
+
     @GetMapping(value = "getFicheMetierByMetier/{metier}")
     public Optional<FicheMetier> getFicheMetierByMetier(@PathVariable("metier") String metier) {
         Optional<FicheMetier> ficheMetier = ficheMetierRepositories.findByMetier(metier);
@@ -125,12 +172,23 @@ public class FicheMetierControler {
         return ficheMetier;
     }
 
+    /**
+     * Rechercher une fiche metier client par id client
+     * @param id
+     * @return
+     */
+
     @GetMapping(value = "getMetierByClient/{id}")
     public Optional<ListMetierClient> getMetierByClient(@PathVariable("id") Integer id) {
         Optional<ListMetierClient> ficheMetier = metierClientReposirories.findByClient(id);
         if (!ficheMetier.isPresent()) throw new QuestioneNotFoundException("Cette fiche n'existe pas");
         return ficheMetier;
     }
+
+    /**
+     * enregistrement de la fiche metier client
+     * @return
+     */
 
     @PostMapping(value = "/saveMetierByClient")
     public ListMetierClient saveMetierByClient(@RequestBody ListMetierClient ficheMetier, BindingResult bindingResult){
@@ -145,6 +203,10 @@ public class FicheMetierControler {
         return  metierClientReposirories.save(ficheMetier);
     }
 
+    /**
+     * modifier la fiche metier client
+     * @return
+     */
     @PutMapping(value = "/modifMetierByClient")
     public ListMetierClient modifMetierByClient(@RequestBody ListMetierClient ficheMetier, BindingResult bindingResult){
         if (bindingResult.hasErrors()){

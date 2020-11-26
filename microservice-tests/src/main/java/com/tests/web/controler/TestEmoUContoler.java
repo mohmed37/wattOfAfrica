@@ -23,11 +23,19 @@ public class TestEmoUContoler {
     EmoUProperties emoUProperties;
     @Autowired
     MuserProxy proxy;
-
+    /**
+     * List des questions du test de emoU
+     @return
+     */
     @GetMapping(value = "/listQuestionEmoU")
     public List<EmoU> listQuestionEmoU() {
         return emoUProperties.findAll();
     }
+
+    /**
+     * List des resultats du test de EmoU
+     * @return
+     */
 
     @GetMapping(value = "/listResultatEmoU")
     public List<EmoUResult> listResultatEmoU() {
@@ -35,19 +43,33 @@ public class TestEmoUContoler {
     }
 
 
+    /**
+     * recherche d'une  question du test de EmoU par son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/questionEmoU/{id}")
     public Optional<EmoU> questionEmoU(@PathVariable("id") int id) {
         Optional<EmoU> question = emoUProperties.findById(id);
         if (!question.isPresent()) throw new QuestioneNotFoundException("Cette question n'existe pas");
         return question;
     }
-
+    /**
+     * recherche du  résultat du question du test de EmoU par id client
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/resultClientEmoU/{id}")
     public Optional<EmoUResult> resultClientEmoU(@PathVariable("id") int id) {
         Optional<EmoUResult> resultatClient = emoUResultProperties.findByClient(id);
         if (!resultatClient.isPresent()) throw new QuestioneNotFoundException("Ce client n'a pas de test");
         return resultatClient;
     }
+
+    /**
+     * enregistrement  du test de EmoU
+     * @return
+     */
 
     @PostMapping(value = "saveClientEmoU")
     public EmoUResult saveClientEmoU(@RequestBody EmoUResult emoUResult) {
@@ -67,6 +89,11 @@ public class TestEmoUContoler {
 
         return emoUResultProperties.save(emoUResult);
     }
+
+    /**
+     * modification  du test de EmoU client
+     * @return
+     */
 
     @PutMapping(value = "saveResutatEmoU")
     public void saveResutatEmoU(@RequestBody EmoUResult emoUResult ) {
@@ -88,16 +115,10 @@ public class TestEmoUContoler {
             emoUResult.setMaitrise(claculEmoU(emoUResult.getMaitrise()));
 
             emoUResultProperties.save(emoUResult);
-
         }
-
-
     }
-
     private double claculEmoU(double result){
         return Math.round((result*10)/35);
     }
-
-
 
 }

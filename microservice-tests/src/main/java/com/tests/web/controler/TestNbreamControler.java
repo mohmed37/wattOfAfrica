@@ -59,6 +59,10 @@ public class TestNbreamControler {
     @Autowired
     PhotoFMRepositories photoFMRepositories;
 
+    /**
+     * Enregistrement des images
+     * @return
+     */
 
     @PostMapping("/upload")
     public ResponseEntity<Object> uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
@@ -69,6 +73,11 @@ public class TestNbreamControler {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    /**
+     * recherche image
+     * @return
+     */
+
     @GetMapping(path = {"/get/{imageName}"})
     public Photo getImage(@PathVariable("imageName") String imageName) throws IOException {
         final Optional<Photo> retrievedImage = photoRepositories.findByName(imageName);
@@ -76,7 +85,11 @@ public class TestNbreamControler {
                 decompressBytes(retrievedImage.get().getPicByte()));
         return img;
     }
-
+    /**
+     * recherche une image par son id
+     * @param id
+     * @return
+     */
     @GetMapping(path = {"/getId/{id}"})
     public Photo getImageId(@PathVariable("id") int id) throws IOException {
         final Optional<Photo> retrievedImage = photoRepositories.findById(id);
@@ -85,6 +98,10 @@ public class TestNbreamControler {
         return img;
     }
 
+    /**
+     * List des images
+     * @return
+     */
 
     @GetMapping(path = {"/getAll/{listImage}"})
     public List<Photo> getAll(@PathVariable("listImage") ArrayList<Integer> imageName) throws IOException {
@@ -149,6 +166,10 @@ public class TestNbreamControler {
         return outputStream.toByteArray();
     }
 
+    /**
+     *Enregistrement des photos
+     * @return
+     */
 
     @PostMapping(value = "/photo")
     public ResponseEntity<Photo> savePhoto(@RequestBody Photo photo, BindingResult bindingResult) {
@@ -161,7 +182,10 @@ public class TestNbreamControler {
         return new ResponseEntity<Photo>(savePhoto, HttpStatus.CREATED);
     }
 
-
+    /**
+     *List des photos par page
+     * @return
+     */
     @GetMapping(value = "/listPhotos")
     public Page<Photo> listPhotos(@RequestParam(name = "page", defaultValue = "0") int page,
                                   @RequestParam(name = "size", defaultValue = "4") int size) {
@@ -169,12 +193,22 @@ public class TestNbreamControler {
         return photoRepositories.findAll(PageRequest.of(page, size));
     }
 
+    /**
+     *List de toutes les photos
+     * @return
+     */
+
     @GetMapping(value = "/listPhotosAll")
     public List<Photo> listPhotosAll() {
 
         return photoRepositories.findAll();
     }
 
+    /**
+     * Recherche une photopar son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "getPhoto/{id}")
     public Optional<Photo> getPhoto(@PathVariable("id") int id) {
         Optional<Photo> photo = photoRepositories.findById(id);
@@ -183,7 +217,10 @@ public class TestNbreamControler {
 
     }
 
-
+    /**
+     * Enregistrement du photo langege client
+     * @return
+     */
     @PostMapping(value = "saveResultPhotoLangage")
     public PhotoLangage saveResultPhotoLangage(@RequestBody PhotoLangage resultNbdream, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -197,7 +234,11 @@ public class TestNbreamControler {
         }
         return langageRepositories.save(resultNbdream);
     }
-
+    /**
+     * recherche du  résultat du photo langage par id client
+     * @param id
+     * @return
+     */
     @GetMapping(value = "getPhotoLangage/{id}")
     public Optional<PhotoLangage> getPhotoLangage(@PathVariable("id") int id) {
         Optional<PhotoLangage> resultatClient = langageRepositories.findByClient(id);
@@ -205,17 +246,29 @@ public class TestNbreamControler {
         return resultatClient;
     }
 
+    /**
+     * List des photos langage
+     * @return
+     */
     @GetMapping(value = "getPhotoLangageAll")
     public List<PhotoLangage> getNbdreamAll() {
         return langageRepositories.findAll();
     }
 
-
+    /**
+     * List des questions roue de la vie
+     * @return
+     */
     @GetMapping(value = "/listRoueVie")
     public List<RoueVie> listRoueVie() {
         return roueVieRepositories.findAll();
     }
 
+    /**
+     * recherche du  résultat de la roue de la vie par id client
+     * @param id
+     * @return
+     */
     @GetMapping(value = "getRoueVieClient/{id}")
     public Optional<RoueVie> getRoueVieClient(@PathVariable("id") int id) {
         Optional<RoueVie> roueVieClient = roueVieRepositories.findByClient(id);
@@ -223,7 +276,10 @@ public class TestNbreamControler {
         return roueVieClient;
     }
 
-
+    /**
+     * Enregistrement de la rou de la vie client
+     * @return
+     */
     @PostMapping(value = "saveRoueVieClient")
     public RoueVie saveRoueVieClient(@RequestBody RoueVie roueVie, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -239,7 +295,10 @@ public class TestNbreamControler {
         return roueVieRepositories.save(roueVie);
 
         }
-
+    /**
+     *Modification de la roue de la vie client
+     * @return
+     */
     @PutMapping(value = "modifRoueVieClient")
     public RoueVie modifRoueVieClient(@RequestBody RoueVie roueVie, BindingResult bindingResult ) {
         if (bindingResult.hasErrors()) {
@@ -249,18 +308,30 @@ public class TestNbreamControler {
 
     }
 
+    /**
+     * List des question autoportrait
+     * @return
+     */
     @GetMapping(value = "/listAutoportrait")
     public List<Autoportrait> listAutoportrait(){
         return autoportraitRepositories.findAll();
     }
 
+    /**
+     * recherche d'une question auto portrait par son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "getAutoportrait/{id}")
     public Optional<Autoportrait>getAutoportrait(@PathVariable("id") int id) {
         Optional<Autoportrait> autoPortrait = autoportraitRepositories.findById(id);
         if (!autoPortrait.isPresent()) throw new QuestioneNotFoundException("Ce mot n'existe pas");
         return autoPortrait;
     }
-
+    /**
+     * Afficher la list de l'autoPortrait
+     * @return
+     */
     @GetMapping(path = { "/autoportraitAll/{listTrait}" })
     public List<Autoportrait> autoportraitAll(@PathVariable("listTrait") ArrayList<Integer> traitId ) throws IOException {
         int traitId1 = 0;
@@ -289,12 +360,21 @@ public class TestNbreamControler {
         return listTrait;
     }
 
-
+    /**
+     *List des résultat auto portrait
+     * @return
+     */
     @GetMapping(value = "/ResulAutoportraitAll")
     public List<AutoportraitResult> ResulAutoportraitAll(){
         return autoportraitResultRepositories.findAll();
     }
 
+
+    /**
+     * recherche du  résultat du question auto portrait par id client
+     * @param id
+     * @return
+     */
     @GetMapping(value = "getResulAutoportrait/{id}")
     public Optional<AutoportraitResult>getResulAutoportrait(@PathVariable("id") int id) {
         Optional<AutoportraitResult> autoPortrait = autoportraitResultRepositories.findByClient(id);
@@ -302,16 +382,22 @@ public class TestNbreamControler {
         return autoPortrait;
     }
 
-
+    /**
+     * Enregistrement de l'autoportrait client
+     * @return
+     */
     @PostMapping(value = "saveAutoPortraitClient")
     public AutoportraitResult saveAutoPortraitClient(@RequestBody AutoportraitResult autoportraitResult, BindingResult bindingResult ) {
         if (bindingResult.hasErrors()) {
             return null;
         }
-
-
         return autoportraitResultRepositories.save(autoportraitResult);
     }
+
+    /**
+     * Modification de l'auto portrait client
+     * @return
+     */
     @PutMapping(value = "modifAutoPortraitClient")
     public AutoportraitResult modifAutoPortraitClient(@RequestBody AutoportraitResult autoportraitResult, BindingResult bindingResult ) {
         if (bindingResult.hasErrors()) {
@@ -320,16 +406,32 @@ public class TestNbreamControler {
         return autoportraitResultRepositories.save(autoportraitResult);
     }
 
+    /**
+     * List des valeur heros
+     * @return
+     */
+
     @GetMapping(value = "/listvaleurHero")
     public List<Hero> listvaleurHero(){
         return heroRepositories.findAll();
     }
+
+    /**
+     * List des resultats heros
+     * @return
+     */
 
     @GetMapping(value = "/listResultHero")
     public List<HeroResult> listResultHero(){
         return heroResultRepositories.findAll();
     }
 
+
+    /**
+     * recherche une valeur par son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "getValeurHero/{id}")
     public Optional<Hero>getValeurHero(@PathVariable("id") int id) {
         Optional<Hero> valeurHero = heroRepositories.findById(id);
@@ -337,6 +439,11 @@ public class TestNbreamControler {
         return valeurHero;
     }
 
+    /**
+     * recherche du  résultat du question heros par id client
+     * @param id
+     * @return
+     */
     @GetMapping(value = "getResultHeroClient/{id}")
     public Optional<HeroResult>getResultHeroClient(@PathVariable("id") int id) {
         Optional<HeroResult> heroResult = heroResultRepositories.findByClient(id);
@@ -344,6 +451,10 @@ public class TestNbreamControler {
         return heroResult;
     }
 
+    /**
+     * Enregistrement du resultat client du test heros
+     * @return
+     */
     @PostMapping(value = "saveHeroClient")
     public HeroResult saveHeroClient(@RequestBody HeroResult heroResult, BindingResult bindingResult ) {
         if (bindingResult.hasErrors()) {
@@ -352,6 +463,11 @@ public class TestNbreamControler {
         return heroResultRepositories.save(heroResult);
 
     }
+
+    /**
+     *Modification du test client heros
+     * @return
+     */
 
     @PutMapping(value = "modifHeroClient")
     public HeroResult mmodifHeroClient(@RequestBody HeroResult heroResult, BindingResult bindingResult ) {
@@ -362,10 +478,10 @@ public class TestNbreamControler {
 
     }
 
-
-
-
-
+    /**
+     * Recherche une photo par son nom
+     * @return
+     */
 
     @GetMapping(value = "/name")
     public List<FicheMetier> findByCategorie(  @RequestParam(name = "name",defaultValue =" " )String name){

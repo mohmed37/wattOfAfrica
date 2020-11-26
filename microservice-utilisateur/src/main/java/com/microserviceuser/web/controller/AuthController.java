@@ -73,11 +73,22 @@ public class AuthController {
     @Autowired
     private UserRepository appUserRepository;
 
+
+    /**
+     * Rechercher un user avec username de user
+     * @param username
+     * @return
+     */
+
     @GetMapping(value = "/userName/{username}")
     public Optional<User> findByUsername(@PathVariable("username") String username) {
         return appUserRepository.findByUsername(username);
     }
 
+    /**
+     * connexion d'un user     *
+     * @return
+     */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -104,6 +115,11 @@ public class AuthController {
                 roles));
     }
 
+    /**
+     * Validation de user avec contrôle Token
+     * @return
+     */
+
     @RequestMapping(value = "/confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
     public ResponseEntity<?> confirmUserAccount(@RequestParam("token") String confirmationToken) {
         ConfirmationEmailToken token = confirmationEmailRepository.findByConfirmationToken(confirmationToken);
@@ -124,6 +140,11 @@ public class AuthController {
             return ResponseEntity.ok("Error : Lien invalid ou expiré!");
         }
     }
+
+    /**
+     * Emregistrement d'un nouveau user     *
+     * @return
+     */
 
     @PostMapping(value = "signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
@@ -202,6 +223,12 @@ public class AuthController {
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
+
+    /**
+     * Validation du pattern du mot de passe
+     * @return
+     */
+
     public boolean validate(final String password){
 
         Pattern pattern = Pattern.compile(PASSWORD__PATTERN,Pattern.CASE_INSENSITIVE);
@@ -212,7 +239,10 @@ public class AuthController {
         else
             return false;
     }
-
+    /**
+     * methode pour appeler le generateur de mot de passe
+     * @return
+     */
 
         @GetMapping(value = "/generatePassword/{mail}")
         public boolean generatePassword(@PathVariable("mail") String mail) {
@@ -220,6 +250,10 @@ public class AuthController {
             return true;
     }
 
+    /**
+     * generateur de mot de passe
+     * @return
+     */
 
     private void generateur(String mail){
         int MAX_LENGTH = 12;
@@ -264,6 +298,11 @@ public class AuthController {
             this.newpassword = newpassword;
         }
     }
+
+    /**
+     *l'appel pour modifier le mot de passe
+     * @return
+     */
     @PutMapping(value = "/ModifPassword")
     public boolean generatePassword(@Valid @RequestBody ModifPassword modifPassword) {
 
@@ -283,14 +322,19 @@ public class AuthController {
 
     }
 
-
+    /**
+     * methode pour enregistere le mot de passede l'user
+     * @return
+     */
     private void userPassword(String toStrin, String mail){
         User user=userRepository.findByEmail(mail);
           user.setPassword(encoder.encode(toStrin));
             userRepository.save(user);
     }
 
-
+    /**
+     * mail de du nouveau mot de passe demandé
+     */
     private void initPasswaordMail(String toStrin,String mail) {
 
         String url = "https://www.wattsucces.com";
@@ -315,7 +359,9 @@ public class AuthController {
 
     }
 
-
+    /**
+     * mail de validation de l'adresse mail user
+     */
     private void sendConfirmationMail(User user) {
 
 
@@ -366,6 +412,10 @@ public class AuthController {
             this.message = message;
         }
     }
+
+    /**
+     * mail d'envoi contact
+     */
     @PostMapping(value = "/contact")
     public void contactMail(@Valid @RequestBody Contact contact) {
 

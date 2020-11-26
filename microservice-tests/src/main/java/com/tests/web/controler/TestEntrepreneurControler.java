@@ -26,18 +26,29 @@ public class TestEntrepreneurControler {
     @Autowired
     MuserProxy proxy;
 
-
+    /**
+     * List des questions du test de entrepreneur
+     @return
+     */
     @GetMapping(value = "/listQuestionEntrepreneur")
     public List<Entrepreneur>listQuestionEntrepreneur() {
         return entrepProperties.findAll();
     }
 
+    /**
+     * List des resultats du test de entrepreneur
+     * @return
+     */
     @GetMapping(value = "/listResultatEntrepreneur")
     public List<EntreprResult> listResultatEntrepreneur() {
         return entreResultProperties.findAll();
     }
 
-
+    /**
+     * recherche d'une  question du test de entrepreneur par son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/questionEntrepreneur/{id}")
     public Optional<Entrepreneur> questionEntrepreneur(@PathVariable("id") int id) {
         Optional<Entrepreneur> question = entrepProperties.findById(id);
@@ -45,13 +56,21 @@ public class TestEntrepreneurControler {
         return question;
     }
 
+    /**
+     * recherche du  résultat du question du test de Entreprneur par id client
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/resultClientEntrepr/{id}")
     public Optional<EntreprResult> resultClientEntrepr(@PathVariable("id") int id) {
         Optional<EntreprResult> resultatClient = entreResultProperties.findByClient(id);
         if (!resultatClient.isPresent()) throw new QuestioneNotFoundException("Ce client n'a pas de test");
         return resultatClient;
     }
-
+    /**
+     * enregistrement  du test de entrepreneur
+     * @return
+     */
     @PostMapping(value = "/saveClientEntrep")
     public EntreprResult saveClientEntrep(@RequestBody EntreprResult entreprResult) {
         entreprResult.setAction(0.0);
@@ -68,6 +87,10 @@ public class TestEntrepreneurControler {
 
         return entreResultProperties.save(entreprResult);
     }
+    /**
+     * modification  du test de Entrepreneur client
+     * @return
+     */
 
     @PutMapping(value = "/saveResutatEntrep")
     public void saveResutatEntrep(@RequestBody EntreprResult entreprResult ) {

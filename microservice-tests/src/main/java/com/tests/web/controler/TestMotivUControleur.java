@@ -24,17 +24,30 @@ public class TestMotivUControleur {
     @Autowired
     MotivUProperties motivUProperties;
 
+    /**
+     * List des questions du test de motivU
+     @return
+     */
     @GetMapping(value = "/listQuestionMotivU")
     public List<MotivU> listQuestionMotivUr() {
         return motivUProperties.findAll();
     }
 
+    /**
+     * List des resultats du test de motivU
+     * @return
+     */
     @GetMapping(value = "/listResultatMotivU")
     public List<MotivUResult> listResultatMotivU() {
         return motivUResultProperties.findAll();
     }
 
 
+    /**
+     * recherche d'une  question du test de motivU par son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/questionMotivU/{id}")
     public Optional<MotivU> questionMotivU(@PathVariable("id") int id) {
         Optional<MotivU> question = motivUProperties.findById(id);
@@ -42,12 +55,23 @@ public class TestMotivUControleur {
         return question;
     }
 
+    /**
+     * recherche du  résultat du question du test de motivU par id client
+     * @param id
+     * @return
+     */
+
     @GetMapping(value = "/resultClientMotivU/{id}")
     public Optional<MotivUResult> resultClientMotivU(@PathVariable("id") int id) {
         Optional<MotivUResult> resultatClient = motivUResultProperties.findByClient(id);
         if (!resultatClient.isPresent()) throw new QuestioneNotFoundException("Ce client n'a pas de test");
         return resultatClient;
     }
+
+    /**
+     * enregistrement  du test de motivU
+     * @return
+     */
 
     @PostMapping(value = "/saveClientMotivU")
     public MotivUResult saveClientMotivU(@RequestBody MotivUResult motivUResult) {
@@ -69,6 +93,10 @@ public class TestMotivUControleur {
         return motivUResultProperties.save(motivUResult);
     }
 
+    /**
+     * modification  du test de motivU client
+     * @return
+     */
     @PutMapping(value = "/saveResutatMotiv")
     public void saveResutatMotivU(@RequestBody MotivUResult motivUResult ) {
         motivUResultProperties.save(motivUResult);

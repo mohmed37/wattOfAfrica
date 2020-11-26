@@ -43,8 +43,6 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { AccueilGonbecomeComponent } from './gonbecome/accueil-gonbecome/accueil-gonbecome.component';
 import { ConfirmationComponent } from './auth/confirmation/confirmation.component';
 import {BasicAuthHtppInterceptorService} from "./services/basic-auth-htpp-interceptor.service";
-import { WattMatchComponent } from './wattMatch/watt-match/watt-match.component';
-import { OffreEmploiComponent } from './wattMatch/offre-emploi/offre-emploi.component';
 import {MatSelectModule} from "@angular/material/select";
 import {CguWattComponent} from "./cgu-watt/cgu-watt.component";
 import {AngularEditorModule} from "@kolkov/angular-editor";
@@ -70,8 +68,6 @@ import {AngularEditorModule} from "@kolkov/angular-editor";
     DialogModalComponent,
     AccueilGonbecomeComponent,
     ConfirmationComponent,
-    WattMatchComponent,
-    OffreEmploiComponent,
     CguWattComponent
 
 

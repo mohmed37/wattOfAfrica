@@ -50,6 +50,43 @@ public class UserController {
         Page<User> appUsers = appUserRepository.findByPrenomContains(prenom,PageRequest.of(page,size));
         return appUsers;
     }
+    /**
+     * Modifier les information d'un user
+     * @return
+     */
+    @PutMapping(value = "modifUser/")
+    public User modifUser(@RequestBody User appUser
+            , BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return null;
+        }
+        Optional<User> user=appUserRepository.findById(appUser.getId());
+        user.get().setPhone(appUser.getPhone());
+        user.get().setEmail(appUser.getEmail());
+        user.get().setPrenom(appUser.getPrenom());
+        user.get().setActive(appUser.getActive());
+        user.get().setNom(appUser.getNom());
+        return appUserRepository.save(user.get());
+    }
+
+    /**
+     * supprimer un user avec son id
+     * @param id
+     * @return
+     */
+
+    @DeleteMapping(value = "deleteUser/{id}")
+    public  void delete(@PathVariable("id") Long id){
+
+        Optional<Questionnaires> qcmClient=questionRepository.findByUser_Id(id);
+        qcmClient.ifPresent(questionnaires -> questionRepository.delete(questionnaires));
+
+        Optional<ConfirmationEmailToken> confirmationEmailToken=confirmationEmailRepository.findByUser_Id(id);
+        confirmationEmailToken.ifPresent(emailToken -> confirmationEmailRepository.delete(emailToken));
+
+        appUserRepository.deleteById(id);
+    }
+
 
     /**
      * Enregistrer un utilisateur
@@ -62,6 +99,12 @@ public class UserController {
         return appUserRepository.findByUsername(username);
     }
 
+    /**
+     * Rechercher un questionnaire avec id de user
+     * @param id
+     * @return
+     */
+
     @GetMapping(value = "questionnairesUser/{id}")
     public Optional<Questionnaires>questionnairesUser(@PathVariable("id") long id){
         Optional<Questionnaires>question=questionRepository.findByUser_Id(id);
@@ -69,10 +112,20 @@ public class UserController {
         return question;
     }
 
+    /**
+     * Rechercher tous les questionnaires
+    */
+
     @GetMapping(value = "questionnairesUserAll")
     public  List<Questionnaires> questionnairesUserAll(){
         return questionRepository.findAll();
     }
+
+    /**
+     * enregistrer questionnaire avec id de user
+     * @param id
+     * @return
+     */
 
     @PostMapping(value = "saveQuestionnaires/{id}")
     public ResponseEntity<Questionnaires>saveQuestionnaires(@PathVariable("id") Long id,@RequestBody Questionnaires questionnaires
@@ -115,6 +168,12 @@ public class UserController {
         Questionnaires saveQusetionnaires=questionRepository.save(questionnaires);
         return new ResponseEntity<Questionnaires>(saveQusetionnaires, HttpStatus.CREATED);
     }
+
+    /**
+     * modififier un questionnaire avec id de user
+     * @param id
+     *
+     */
 
     @PutMapping(value = "modifQuestionnaire/{id}")
     public void updateQuestionnaire(@PathVariable("id") long id,@RequestBody String questionnaireType){
@@ -165,33 +224,6 @@ public class UserController {
         questionRepository.save(questionClient.get());
     }
 
-
-    @PutMapping(value = "modifUser/")
-    public User modifUser(@RequestBody User appUser
-            , BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            return null;
-        }
-        Optional<User> user=appUserRepository.findById(appUser.getId());
-        user.get().setPhone(appUser.getPhone());
-        user.get().setEmail(appUser.getEmail());
-        user.get().setPrenom(appUser.getPrenom());
-        user.get().setActive(appUser.getActive());
-        user.get().setNom(appUser.getNom());
-        return appUserRepository.save(user.get());
-    }
-
-    @DeleteMapping(value = "deleteUser/{id}")
-    public  void delete(@PathVariable("id") Long id){
-
-        Optional<Questionnaires> qcmClient=questionRepository.findByUser_Id(id);
-        qcmClient.ifPresent(questionnaires -> questionRepository.delete(questionnaires));
-
-        Optional<ConfirmationEmailToken> confirmationEmailToken=confirmationEmailRepository.findByUser_Id(id);
-        confirmationEmailToken.ifPresent(emailToken -> confirmationEmailRepository.delete(emailToken));
-
-       appUserRepository.deleteById(id);
-    }
 
 
 

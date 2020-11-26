@@ -34,19 +34,37 @@ public class TestVerbaleControler {
     VerbaleResultProperties verbaleResultProperties;
 
 
-
+    /**
+     * Rechercher  list des questions exercice 1
+     * @return
+     */
     @GetMapping(value = "exercice1All")
     public List<CompVerbale1>exercice1All(){
         return compVerbale1Properties.findAll();
     }
+    /**
+     * Rechercher  list des questions exercice 2
+     * @return
+     */
     @GetMapping(value = "exercice2All")
     public List<CompVerbale2>exercice2All(){
         return compVerbale2Properties.findAll();
     }
+
+    /**
+     * Rechercher  list des questions exercice 3
+     * @return
+     */
     @GetMapping(value = "exercice3All")
     public List<CompVerbale3>exercice3All(){
         return compVerbale3Properties.findAll();
     }
+
+    /**
+     * Rechercher une question de l'exercice 1 par son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "exercice1/{id}")
     public Optional<CompVerbale1>exercice1(@PathVariable("id") int id){
         Optional<CompVerbale1> question = compVerbale1Properties.findById(id);
@@ -54,12 +72,24 @@ public class TestVerbaleControler {
         return question;
     }
 
+    /**
+     * Rechercher une question de l'exercice 2 par son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "exercice2/{id}")
     public Optional<CompVerbale2>exercice2(@PathVariable("id") int id){
         Optional<CompVerbale2> question = compVerbale2Properties.findById(id);
         if (!question.isPresent()) throw new QuestioneNotFoundException("Cette question n'existe pas");
         return question;
+
     }
+
+    /**
+     * Rechercher une question de l'exercice 3 par son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "exercice3/{id}")
     public Optional<CompVerbale3>exercice3(@PathVariable("id") int id){
         Optional<CompVerbale3> question = compVerbale3Properties.findById(id);
@@ -67,11 +97,22 @@ public class TestVerbaleControler {
         return question;
     }
 
+    /**
+     * Rechercher  list des questions verbale
+     * @return
+     */
+
     @GetMapping(value = "/listVerbaleAll")
     public List<VerbaleResult> listVerbaleAll() {
         return verbaleResultProperties.findAll();
 
     }
+
+    /**
+     * Recherche du resultat verbale
+     *  @param id
+     * @return
+     */
 
     @GetMapping(value = "/resultatVerbaleClient/{id}")
     public Optional<VerbaleResult>resultatVerbaleClient(@PathVariable("id") int id){
@@ -80,7 +121,10 @@ public class TestVerbaleControler {
         return question;
     }
 
-
+    /**
+     * enregistrement de l'exercice verbal
+     * @return
+     */
     @PostMapping(value = "saveVerbale")
     public VerbaleResult saveVerbale(@RequestBody VerbaleResult verbaleResult) {
         verbaleResult.setExercice1(false);
@@ -91,13 +135,15 @@ public class TestVerbaleControler {
 
     }
 
+    /**
+     * Modification de l'exercice verbal
+     * @return
+     */
+
     @PutMapping(value = "changeVerbale")
     public void changeVerbale(@RequestBody VerbaleResult verbaleResult) {
         verbaleResultProperties.save(verbaleResult);
     }
-
-
-
 
     }
 

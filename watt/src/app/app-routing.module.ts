@@ -57,10 +57,6 @@ const routes: Routes = [
         path: 'personalinfo', loadChildren: () => import('./compte-client/compte-client.module').then(m=>m.CompteClientModule)
 
       },
-      {
-        path: 'wattMatch', loadChildren: () => import('./wattMatch/watt-match.module').then(m=>m.WattMatchModule)
-
-      }
 
       ]
   },

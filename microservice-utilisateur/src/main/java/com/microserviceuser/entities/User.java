@@ -159,4 +159,59 @@ public class User{
 		this.active = active;
 	}
 
+	private User(Builder builder) {
+		this.id=builder.id;
+		this.prenom=builder.prenom;
+		this.nom=builder.nom;
+		this.username=builder.username;
+		this.password=builder.password;
+		this.email=builder.email;
+		this.phone=builder.phone;
+		this.date=builder.date;
+		this.active=builder.active;
+	}
+
+	public static class Builder{
+		Long id;
+		String prenom;
+		String nom;
+		String username;
+		String password;
+		String email;
+		String phone;
+		Date date;
+		Boolean active;
+
+		public  User.Builder id(Long id){
+			this.id= id;
+			return this;}
+		public User.Builder prenom(String prenom){
+			this.prenom= prenom;
+			return this;}
+		public User.Builder nom(String nom){
+			this.nom= nom;
+			return this;}
+		public User.Builder username(String username){
+			this.username= username;
+			return this;}
+		public User.Builder password(String password){
+			this.password= password;
+			return this;}
+		public User.Builder email(String email){
+			this.email= email;
+			return this;}
+		public User.Builder phone(String phone){
+			this.phone= phone;
+			return this;}
+		public User.Builder date(Date date){
+			this.date= date;
+			return this;}
+		public User.Builder  active( Boolean active){
+			this. active=  active;
+			return this;}
+		public User build(){
+			return new User(this);}
+
+	}
+
 }

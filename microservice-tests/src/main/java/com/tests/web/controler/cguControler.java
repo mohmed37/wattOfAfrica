@@ -17,12 +17,18 @@ public class cguControler {
     @Autowired
     CguProperties cguProperties;
 
+    /**
+     * Enregistrements de conditions générales d'utilisation
+     *
+     * @return
+     */
+
     @PostMapping(value = "/saveCgu")
     public Cgu saveFicheMetier(@RequestBody Cgu cgu, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return null;
         }
-        Optional<Cgu> cgu1=cguProperties.findById(0);
+        Optional<Cgu> cgu1=cguProperties.findById(1);
         if(cgu1.isPresent()){
             cgu1.get().setDate(cgu.getDate());
             cgu1.get().setTexte(cgu.getTexte());
@@ -31,8 +37,13 @@ public class cguControler {
 
         return cguProperties.save(cgu);}
 
+    /**
+     * lecture de conditions générales d'utilisation
+     *
+     * @return
+     */
     @GetMapping(value = "getCgu")
     public Optional<Cgu> getCgu() {
-        return cguProperties.findById(0);
+        return cguProperties.findById(1);
     }
 }

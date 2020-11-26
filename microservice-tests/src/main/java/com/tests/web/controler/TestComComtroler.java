@@ -24,16 +24,31 @@ public class TestComComtroler {
     @Autowired
     MuserProxy proxy;
 
+    /**
+     * Rechercher  list des questions commercial
+     * @return
+     */
+
     @GetMapping(value = "/listQuestionCommercial")
     public List<Commercial> listQuestionCommercial() {
         return commerceProperties.findAll();
     }
 
+
+    /**
+     * Rechercher  list des resultat du test commercial
+     * @return
+     */
     @GetMapping(value = "/listResultatCommercial")
     public List<CommercialResult> listResultatCommercial() {
         return comResultProperties.findAll();
     }
 
+    /**
+     * Rechercher une question  par son id
+     * @param id
+     * @return
+     */
 
     @GetMapping(value = "/questionCommercial/{id}")
     public Optional<Commercial> questionCommercial(@PathVariable("id") int id) {
@@ -42,13 +57,22 @@ public class TestComComtroler {
         return question;
     }
 
+    /**
+     * Rechercher le resultat du test client  par id client
+     * @param id
+     * @return
+     */
+
     @GetMapping(value = "/resultClientCom/{id}")
     public Optional<CommercialResult> resultClientCom(@PathVariable("id") int id) {
         Optional<CommercialResult> resultatClient = comResultProperties.findByClient(id);
         if (!resultatClient.isPresent()) throw new QuestioneNotFoundException("Ce client n'a pas de test");
         return resultatClient;
     }
-
+    /**
+     * Enregistrement du test commercial client
+     * @return
+     */
     @PostMapping(value = "/saveClientCom")
     public CommercialResult saveClientCom(@RequestBody CommercialResult commercialResult) {
         commercialResult.setAffirmation(0.0);
@@ -66,7 +90,10 @@ public class TestComComtroler {
 
         return comResultProperties.save(commercialResult);
     }
-
+    /**
+     * modification du test commercial client
+     * @return
+     */
     @PutMapping(value = "/saveResutatCom")
     public void saveResutatCom(@RequestBody CommercialResult entreprResult ) {
         comResultProperties.save(entreprResult);

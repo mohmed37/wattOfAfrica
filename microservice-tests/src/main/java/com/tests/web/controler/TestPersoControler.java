@@ -23,16 +23,30 @@ public class TestPersoControler {
     @Autowired
     PersoProperties persoProperties;
 
+    /**
+     * List des questions du test de perso
+     @return
+     */
     @GetMapping(value = "/listQuestionPerso")
     public List<Personnalite> listQuestionPerso() {
         return persoProperties.findAll();
     }
 
+    /**
+     * List des resultats du test de perso
+     * @return
+     */
     @GetMapping(value = "/listResultatPerso")
     public List<PersonnaliteResult> listResultatPerso() {
         return persoResultProperties.findAll();
     }
 
+
+    /**
+     * recherche d'une  question du test de perso par son id
+     * @param id
+     * @return
+     */
 
     @GetMapping(value = "/questionPerso/{id}")
     public Optional<Personnalite> questionPerso(@PathVariable("id") int id) {
@@ -41,12 +55,23 @@ public class TestPersoControler {
         return question;
     }
 
+    /**
+     * recherche du  résultat du question du test de perso par id client
+     * @param id
+     * @return
+     */
+
     @GetMapping(value = "/resultClientPerso/{id}")
     public Optional<PersonnaliteResult> resultClientPerso(@PathVariable("id") int id) {
         Optional<PersonnaliteResult> resultatClient = persoResultProperties.findByClient(id);
         if (!resultatClient.isPresent()) throw new QuestioneNotFoundException("Ce client n'a pas de test");
         return resultatClient;
     }
+
+    /**
+     * enregistrement  du test de perso
+     * @return
+     */
 
     @PostMapping(value = "/saveClientPerso")
     public PersonnaliteResult saveClientPerso(@RequestBody PersonnaliteResult personnaliteResult) {
@@ -59,6 +84,11 @@ public class TestPersoControler {
 
         return persoResultProperties.save(personnaliteResult);
     }
+
+    /**
+     * modification  du test de perso client
+     * @return
+     */
 
     @PutMapping(value = "/saveResutatPerso")
     public void ssaveResutatPerso(@RequestBody PersonnaliteResult entreprResult ) {

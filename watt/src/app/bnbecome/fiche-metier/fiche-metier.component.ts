@@ -5,9 +5,8 @@ import {BndreamService} from "../../services/bndream.service";
 import {TexteModel} from "../../model/texte.model";
 import {FicheMetierService} from "../../services/fiche-metier.service";
 import {FicheMetier} from "../../model/ficheMetier.model";
-import {Bnbecome} from "../../services/bnbecome.service";
 import {ApiService} from "../../services/api.service";
-import {AuthenticationService} from "../../services/authentication.service";
+
 
 @Component({
   selector: 'app-fiche-metier',
@@ -42,6 +41,7 @@ export class FicheMetierComponent implements OnInit {
   @Output() public pick:EventEmitter<number>=new EventEmitter<number>();
   public idCarrousel:number=1;
   public photoCarrousel: any;
+  public photodetail:any;
   public listImageFicheMetier=[];
   public metierDico:string;
   public selectFicheMetierValide: boolean;
@@ -87,10 +87,22 @@ export class FicheMetierComponent implements OnInit {
 
           this.listImage.push({photo:this.photoCarrousel,metier:this.retrieveResonse.name,id:idCarrousel});
           this.metierDico=this.retrieveResonse.name;        }
-
       );
 
   }
+  getImageDetail(idCarrousel) {
+    this.ficheMetierService.ficheMetierByImage(idCarrousel)
+      .subscribe(
+        res => {
+          this.retrieveResonse = res;
+          this.base64Data = this.retrieveResonse.picByte;
+          this.photodetail = 'data:image/jpeg;base64,' + this.base64Data;
+
+        }
+      );
+
+  }
+
   getAllFicheMetier() {
     this.ficheMetierService.ficheMetierAll()
       .subscribe(
@@ -149,13 +161,14 @@ split(phrase:string){
   }
 
   clic(idCarrousel: number) {
-    this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: 'select' });
+    this.fichedetail=false;
+    this.router.navigate(['/gonBelieve/fichesMetiers']);
     this.ficheMetierService.ficheMetierByPhotoId(idCarrousel)
       .subscribe(
         res => {
           this.ficheCaroussel=res;
           this.selecMetier=true;
-
+          this.router.navigate(['/gonBelieve/fichesMetiers'], { fragment: 'select' });
         });
 
   }
@@ -166,6 +179,7 @@ split(phrase:string){
       .subscribe(
         res => {
           this.FicheMetier=res;
+          this.getImageDetail(this.FicheMetier.photo.id);
           this.competences=this.split(this.FicheMetier.competence);
           this.qualites=this.split(this.FicheMetier.qualite);
           this.fichedetail=true;
